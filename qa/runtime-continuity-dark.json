@@ -1,0 +1,6092 @@
+{
+  "schemaVersion": 1,
+  "kind": "codex-pet-runtime-continuity-theme",
+  "theme": "dark",
+  "ok": true,
+  "measurementPolicy": "project-specific release thresholds are enforced for every runtime transition",
+  "thresholds": {
+    "requiredTransitionCount": 65,
+    "maximumNormalizedAlphaDifference": 0.25,
+    "maximumNormalizedCompositedRgbDifference": 0.25,
+    "maximumChangedPixelFraction": 0.45,
+    "maximumAlphaAreaRatioSymmetric": 2.5
+  },
+  "atlas": {
+    "path": "pet/grok-bot-dark/spritesheet.webp",
+    "width": 1536,
+    "height": 2288,
+    "channels": 4,
+    "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4"
+  },
+  "compositingStageBackground": {
+    "hex": "#101010",
+    "rgb": [
+      16,
+      16,
+      16
+    ]
+  },
+  "runtimeModel": {
+    "atlasVersion": 2,
+    "timedRows": "rows 0 through 8",
+    "neutralLookFrame": {
+      "row": 0,
+      "column": 6,
+      "timed": false
+    },
+    "transparentIdleCell": {
+      "row": 0,
+      "column": 7
+    },
+    "idle": {
+      "timedColumns": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "durationMultiplier": 6,
+      "cycleDurationMs": 6600,
+      "loopBoundary": "row 0 c5 to row 0 c0"
+    },
+    "nonIdleActions": {
+      "rows": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cycleCountBeforeIdle": 3,
+      "repeatBoundaries": [
+        "cycle 1 last to cycle 2 c0",
+        "cycle 2 last to cycle 3 c0"
+      ],
+      "exitBoundary": "cycle 3 last to idle c0"
+    },
+    "previews": "each action preview renders three action cycles followed by one 6x-duration idle cycle; the idle preview renders one 6x-duration idle cycle"
+  },
+  "metricDefinitions": {
+    "normalizedAlphaDifference": "sum(abs(alphaTo-alphaFrom)) / (255 * cellPixelCount)",
+    "normalizedRgbaDifference": "sum(abs(toRGBA-fromRGBA)) / (255 * 4 * cellPixelCount)",
+    "normalizedCompositedRgbDifference": "sum(abs(toRGB-over-stage - fromRGB-over-stage)) / (255 * 3 * cellPixelCount); straight-alpha sRGB-channel compositing",
+    "changedPixelFraction": "count(alphaTo != alphaFrom) / cellPixelCount; exact lossless alpha comparison",
+    "changedCompositedPixelFraction": "count(any composited RGB channel differs) / cellPixelCount",
+    "alphaAreaEquivalentPixels": "sum(alpha) / 255",
+    "alphaAreaRatio": "toAlphaAreaEquivalentPixels / fromAlphaAreaEquivalentPixels; directional",
+    "alphaAreaRatioSymmetric": "max(fromAlphaArea,toAlphaArea) / min(fromAlphaArea,toAlphaArea); always >= 1"
+  },
+  "rows": [
+    {
+      "row": 0,
+      "id": "idle",
+      "label": "Idle / neutral",
+      "timedFrameCount": 6,
+      "sourceDurationsMs": [
+        280,
+        110,
+        110,
+        140,
+        140,
+        320
+      ],
+      "runtimeDurationsMs": [
+        1680,
+        660,
+        660,
+        840,
+        840,
+        1920
+      ],
+      "sourceCycleDurationMs": 1100,
+      "runtimeCycleDurationMs": 6600,
+      "adjacent": [
+        {
+          "id": "r00-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 0,
+            "frame": "quiet-breath"
+          },
+          "to": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 1,
+            "frame": "ambient-orbit-a"
+          },
+          "holdBeforeTransitionMs": 1680,
+          "runtimeOccurrences": {
+            "perIdleCycle": 1
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.006428,
+            "normalizedRgbaDifference": 0.007978,
+            "normalizedCompositedRgbDifference": 0.006663,
+            "changedPixelFraction": 0.025065,
+            "changedPixels": 1001,
+            "changedCompositedPixelFraction": 0.033003,
+            "changedCompositedPixels": 1318,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15833.443,
+            "toAlphaAreaEquivalentPixels": 15844.686,
+            "fromAlphaAreaFraction": 0.39647,
+            "toAlphaAreaFraction": 0.396752,
+            "alphaAreaRatio": 1.00071,
+            "alphaAreaRatioSymmetric": 1.00071
+          }
+        },
+        {
+          "id": "r00-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 1,
+            "frame": "ambient-orbit-a"
+          },
+          "to": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 2,
+            "frame": "shy-glance"
+          },
+          "holdBeforeTransitionMs": 660,
+          "runtimeOccurrences": {
+            "perIdleCycle": 1
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.004516,
+            "normalizedRgbaDifference": 0.023087,
+            "normalizedCompositedRgbDifference": 0.026789,
+            "changedPixelFraction": 0.023362,
+            "changedPixels": 933,
+            "changedCompositedPixelFraction": 0.053461,
+            "changedCompositedPixels": 2135,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15844.686,
+            "toAlphaAreaEquivalentPixels": 15845.635,
+            "fromAlphaAreaFraction": 0.396752,
+            "toAlphaAreaFraction": 0.396776,
+            "alphaAreaRatio": 1.00006,
+            "alphaAreaRatioSymmetric": 1.00006
+          }
+        },
+        {
+          "id": "r00-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 2,
+            "frame": "shy-glance"
+          },
+          "to": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 3,
+            "frame": "idle-blink"
+          },
+          "holdBeforeTransitionMs": 660,
+          "runtimeOccurrences": {
+            "perIdleCycle": 1
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.005758,
+            "normalizedRgbaDifference": 0.023791,
+            "normalizedCompositedRgbDifference": 0.028037,
+            "changedPixelFraction": 0.023988,
+            "changedPixels": 958,
+            "changedCompositedPixelFraction": 0.054612,
+            "changedCompositedPixels": 2181,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15845.635,
+            "toAlphaAreaEquivalentPixels": 15811.663,
+            "fromAlphaAreaFraction": 0.396776,
+            "toAlphaAreaFraction": 0.395925,
+            "alphaAreaRatio": 0.997856,
+            "alphaAreaRatioSymmetric": 1.002149
+          }
+        },
+        {
+          "id": "r00-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 3,
+            "frame": "idle-blink"
+          },
+          "to": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 4,
+            "frame": "ambient-orbit-b"
+          },
+          "holdBeforeTransitionMs": 840,
+          "runtimeOccurrences": {
+            "perIdleCycle": 1
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.004056,
+            "normalizedRgbaDifference": 0.025108,
+            "normalizedCompositedRgbDifference": 0.0316,
+            "changedPixelFraction": 0.021109,
+            "changedPixels": 843,
+            "changedCompositedPixelFraction": 0.057617,
+            "changedCompositedPixels": 2301,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15811.663,
+            "toAlphaAreaEquivalentPixels": 15775.867,
+            "fromAlphaAreaFraction": 0.395925,
+            "toAlphaAreaFraction": 0.395029,
+            "alphaAreaRatio": 0.997736,
+            "alphaAreaRatioSymmetric": 1.002269
+          }
+        },
+        {
+          "id": "r00-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 4,
+            "frame": "ambient-orbit-b"
+          },
+          "to": {
+            "row": 0,
+            "rowId": "idle",
+            "column": 5,
+            "frame": "idle-reopen"
+          },
+          "holdBeforeTransitionMs": 840,
+          "runtimeOccurrences": {
+            "perIdleCycle": 1
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.00386,
+            "normalizedRgbaDifference": 0.00536,
+            "normalizedCompositedRgbDifference": 0.005534,
+            "changedPixelFraction": 0.021234,
+            "changedPixels": 848,
+            "changedCompositedPixelFraction": 0.031726,
+            "changedCompositedPixels": 1267,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15775.867,
+            "toAlphaAreaEquivalentPixels": 15799.325,
+            "fromAlphaAreaFraction": 0.395029,
+            "toAlphaAreaFraction": 0.395616,
+            "alphaAreaRatio": 1.001487,
+            "alphaAreaRatioSymmetric": 1.001487
+          }
+        }
+      ],
+      "runtimeRole": "slow-idle-loop",
+      "durationMultiplier": 6,
+      "excludedFromTiming": [
+        {
+          "row": 0,
+          "column": 6,
+          "frame": "neutral-look",
+          "reason": "reserved neutralLookFrame"
+        }
+      ],
+      "idleLoop": {
+        "id": "r00-idle-c5-to-c0",
+        "kind": "idle-loop",
+        "from": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 5,
+          "frame": "idle-reopen"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 1920,
+        "runtimeOccurrences": {
+          "perIdleCycle": 1
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.001895,
+          "normalizedRgbaDifference": 0.02327,
+          "normalizedCompositedRgbDifference": 0.030047,
+          "changedPixelFraction": 0.018855,
+          "changedPixels": 753,
+          "changedCompositedPixelFraction": 0.054913,
+          "changedCompositedPixels": 2193,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15799.325,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.395616,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.002159,
+          "alphaAreaRatioSymmetric": 1.002159
+        }
+      },
+      "summary": {
+        "transitionCount": 6,
+        "normalizedAlphaDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.001895
+          },
+          "mean": 0.004419,
+          "p50": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.004056
+          },
+          "p95": {
+            "transitionId": "r00-c0-to-c1",
+            "value": 0.006428
+          },
+          "max": {
+            "transitionId": "r00-c0-to-c1",
+            "value": 0.006428
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.00536
+          },
+          "mean": 0.018099,
+          "p50": {
+            "transitionId": "r00-c1-to-c2",
+            "value": 0.023087
+          },
+          "p95": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.025108
+          },
+          "max": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.025108
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.005534
+          },
+          "mean": 0.021445,
+          "p50": {
+            "transitionId": "r00-c1-to-c2",
+            "value": 0.026789
+          },
+          "p95": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.0316
+          },
+          "max": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.0316
+          }
+        },
+        "changedPixelFraction": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.018855
+          },
+          "mean": 0.022269,
+          "p50": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.021234
+          },
+          "p95": {
+            "transitionId": "r00-c0-to-c1",
+            "value": 0.025065
+          },
+          "max": {
+            "transitionId": "r00-c0-to-c1",
+            "value": 0.025065
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.031726
+          },
+          "mean": 0.047555,
+          "p50": {
+            "transitionId": "r00-c1-to-c2",
+            "value": 0.053461
+          },
+          "p95": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.057617
+          },
+          "max": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 0.057617
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 6,
+          "min": {
+            "transitionId": "r00-c1-to-c2",
+            "value": 1.00006
+          },
+          "mean": 1.001472,
+          "p50": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 1.001487
+          },
+          "p95": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 1.002269
+          },
+          "max": {
+            "transitionId": "r00-c3-to-c4",
+            "value": 1.002269
+          }
+        }
+      }
+    },
+    {
+      "row": 1,
+      "id": "running-right",
+      "label": "Travel right",
+      "timedFrameCount": 8,
+      "sourceDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "runtimeDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "sourceCycleDurationMs": 1060,
+      "runtimeCycleDurationMs": 1060,
+      "adjacent": [
+        {
+          "id": "r01-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 0,
+            "frame": "right-search"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 1,
+            "frame": "right-receive-entry"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.119229,
+            "normalizedRgbaDifference": 0.134446,
+            "normalizedCompositedRgbDifference": 0.131982,
+            "changedPixelFraction": 0.135517,
+            "changedPixels": 5412,
+            "changedCompositedPixelFraction": 0.171374,
+            "changedCompositedPixels": 6844,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15761.376,
+            "toAlphaAreaEquivalentPixels": 10999.867,
+            "fromAlphaAreaFraction": 0.394666,
+            "toAlphaAreaFraction": 0.275437,
+            "alphaAreaRatio": 0.6979,
+            "alphaAreaRatioSymmetric": 1.43287
+          }
+        },
+        {
+          "id": "r01-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 1,
+            "frame": "right-receive-entry"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 2,
+            "frame": "right-receive-open"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.075691,
+            "normalizedRgbaDifference": 0.099059,
+            "normalizedCompositedRgbDifference": 0.101509,
+            "changedPixelFraction": 0.089017,
+            "changedPixels": 3555,
+            "changedCompositedPixelFraction": 0.126077,
+            "changedCompositedPixels": 5035,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 10999.867,
+            "toAlphaAreaEquivalentPixels": 7977.082,
+            "fromAlphaAreaFraction": 0.275437,
+            "toAlphaAreaFraction": 0.199747,
+            "alphaAreaRatio": 0.725198,
+            "alphaAreaRatioSymmetric": 1.378934
+          }
+        },
+        {
+          "id": "r01-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 2,
+            "frame": "right-receive-open"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 3,
+            "frame": "right-receive-contact"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.062649,
+            "normalizedRgbaDifference": 0.071049,
+            "normalizedCompositedRgbDifference": 0.069732,
+            "changedPixelFraction": 0.073092,
+            "changedPixels": 2919,
+            "changedCompositedPixelFraction": 0.08729,
+            "changedCompositedPixels": 3486,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 7977.082,
+            "toAlphaAreaEquivalentPixels": 5475.145,
+            "fromAlphaAreaFraction": 0.199747,
+            "toAlphaAreaFraction": 0.137098,
+            "alphaAreaRatio": 0.686359,
+            "alphaAreaRatioSymmetric": 1.456963
+          }
+        },
+        {
+          "id": "r01-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 3,
+            "frame": "right-receive-contact"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 4,
+            "frame": "right-receive-release"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.063781,
+            "normalizedRgbaDifference": 0.070059,
+            "normalizedCompositedRgbDifference": 0.067886,
+            "changedPixelFraction": 0.074444,
+            "changedPixels": 2973,
+            "changedCompositedPixelFraction": 0.085562,
+            "changedCompositedPixels": 3417,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5475.145,
+            "toAlphaAreaEquivalentPixels": 8022.31,
+            "fromAlphaAreaFraction": 0.137098,
+            "toAlphaAreaFraction": 0.200879,
+            "alphaAreaRatio": 1.465223,
+            "alphaAreaRatioSymmetric": 1.465223
+          }
+        },
+        {
+          "id": "r01-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 4,
+            "frame": "right-receive-release"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 5,
+            "frame": "right-scan-release"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.07522,
+            "normalizedRgbaDifference": 0.08925,
+            "normalizedCompositedRgbDifference": 0.088905,
+            "changedPixelFraction": 0.088416,
+            "changedPixels": 3531,
+            "changedCompositedPixelFraction": 0.112355,
+            "changedCompositedPixels": 4487,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 8022.31,
+            "toAlphaAreaEquivalentPixels": 11026.278,
+            "fromAlphaAreaFraction": 0.200879,
+            "toAlphaAreaFraction": 0.276099,
+            "alphaAreaRatio": 1.374452,
+            "alphaAreaRatioSymmetric": 1.374452
+          }
+        },
+        {
+          "id": "r01-c5-to-c6",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 5,
+            "frame": "right-scan-release"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 6,
+            "frame": "right-drag"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.124874,
+            "normalizedRgbaDifference": 0.136337,
+            "normalizedCompositedRgbDifference": 0.132285,
+            "changedPixelFraction": 0.142378,
+            "changedPixels": 5686,
+            "changedCompositedPixelFraction": 0.167543,
+            "changedCompositedPixels": 6691,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 11026.278,
+            "toAlphaAreaEquivalentPixels": 16013.231,
+            "fromAlphaAreaFraction": 0.276099,
+            "toAlphaAreaFraction": 0.400972,
+            "alphaAreaRatio": 1.452279,
+            "alphaAreaRatioSymmetric": 1.452279
+          }
+        },
+        {
+          "id": "r01-c6-to-c7",
+          "kind": "adjacent",
+          "from": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 6,
+            "frame": "right-drag"
+          },
+          "to": {
+            "row": 1,
+            "rowId": "running-right",
+            "column": 7,
+            "frame": "right-settle"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.039251,
+            "normalizedRgbaDifference": 0.051382,
+            "normalizedCompositedRgbDifference": 0.052803,
+            "changedPixelFraction": 0.058018,
+            "changedPixels": 2317,
+            "changedCompositedPixelFraction": 0.08421,
+            "changedCompositedPixels": 3363,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 16013.231,
+            "toAlphaAreaEquivalentPixels": 15777.165,
+            "fromAlphaAreaFraction": 0.400972,
+            "toAlphaAreaFraction": 0.395061,
+            "alphaAreaRatio": 0.985258,
+            "alphaAreaRatioSymmetric": 1.014963
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 3180,
+      "repeatBoundary": {
+        "id": "r01-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 1,
+          "rowId": "running-right",
+          "column": 7,
+          "frame": "right-settle"
+        },
+        "to": {
+          "row": 1,
+          "rowId": "running-right",
+          "column": 0,
+          "frame": "right-search"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.028705,
+          "normalizedRgbaDifference": 0.069817,
+          "normalizedCompositedRgbDifference": 0.08145,
+          "changedPixelFraction": 0.046324,
+          "changedPixels": 1850,
+          "changedCompositedPixelFraction": 0.110201,
+          "changedCompositedPixels": 4401,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15761.376,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.394666,
+          "alphaAreaRatio": 0.998999,
+          "alphaAreaRatioSymmetric": 1.001002
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r01-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 1,
+          "rowId": "running-right",
+          "column": 7,
+          "frame": "right-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.006778,
+          "normalizedRgbaDifference": 0.008035,
+          "normalizedCompositedRgbDifference": 0.007697,
+          "changedPixelFraction": 0.024239,
+          "changedPixels": 968,
+          "changedCompositedPixelFraction": 0.033729,
+          "changedCompositedPixels": 1347,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.003567,
+          "alphaAreaRatioSymmetric": 1.003567
+        }
+      },
+      "summary": {
+        "transitionCount": 9,
+        "normalizedAlphaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.006778
+          },
+          "mean": 0.066242,
+          "p50": {
+            "transitionId": "r01-c3-to-c4",
+            "value": 0.063781
+          },
+          "p95": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.124874
+          },
+          "max": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.124874
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.008035
+          },
+          "mean": 0.081048,
+          "p50": {
+            "transitionId": "r01-c2-to-c3",
+            "value": 0.071049
+          },
+          "p95": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.136337
+          },
+          "max": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.136337
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.007697
+          },
+          "mean": 0.081583,
+          "p50": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.08145
+          },
+          "p95": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.132285
+          },
+          "max": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.132285
+          }
+        },
+        "changedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.024239
+          },
+          "mean": 0.081272,
+          "p50": {
+            "transitionId": "r01-c3-to-c4",
+            "value": 0.074444
+          },
+          "p95": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.142378
+          },
+          "max": {
+            "transitionId": "r01-c5-to-c6",
+            "value": 0.142378
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.033729
+          },
+          "mean": 0.108705,
+          "p50": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.110201
+          },
+          "p95": {
+            "transitionId": "r01-c0-to-c1",
+            "value": 0.171374
+          },
+          "max": {
+            "transitionId": "r01-c0-to-c1",
+            "value": 0.171374
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 9,
+          "min": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 1.001002
+          },
+          "mean": 1.286695,
+          "p50": {
+            "transitionId": "r01-c1-to-c2",
+            "value": 1.378934
+          },
+          "p95": {
+            "transitionId": "r01-c3-to-c4",
+            "value": 1.465223
+          },
+          "max": {
+            "transitionId": "r01-c3-to-c4",
+            "value": 1.465223
+          }
+        }
+      }
+    },
+    {
+      "row": 2,
+      "id": "running-left",
+      "label": "Travel left",
+      "timedFrameCount": 8,
+      "sourceDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "runtimeDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "sourceCycleDurationMs": 1060,
+      "runtimeCycleDurationMs": 1060,
+      "adjacent": [
+        {
+          "id": "r02-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 0,
+            "frame": "left-compose"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 1,
+            "frame": "left-pencil-entry"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.192777,
+            "normalizedRgbaDifference": 0.204422,
+            "normalizedCompositedRgbDifference": 0.195241,
+            "changedPixelFraction": 0.208383,
+            "changedPixels": 8322,
+            "changedCompositedPixelFraction": 0.229743,
+            "changedCompositedPixels": 9175,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15768.486,
+            "toAlphaAreaEquivalentPixels": 8069.745,
+            "fromAlphaAreaFraction": 0.394844,
+            "toAlphaAreaFraction": 0.202067,
+            "alphaAreaRatio": 0.511764,
+            "alphaAreaRatioSymmetric": 1.954025
+          }
+        },
+        {
+          "id": "r02-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 1,
+            "frame": "left-pencil-entry"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 2,
+            "frame": "left-pencil-write"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.094682,
+            "normalizedRgbaDifference": 0.10216,
+            "normalizedCompositedRgbDifference": 0.099089,
+            "changedPixelFraction": 0.106696,
+            "changedPixels": 4261,
+            "changedCompositedPixelFraction": 0.120768,
+            "changedCompositedPixels": 4823,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 8069.745,
+            "toAlphaAreaEquivalentPixels": 4288.541,
+            "fromAlphaAreaFraction": 0.202067,
+            "toAlphaAreaFraction": 0.107385,
+            "alphaAreaRatio": 0.531435,
+            "alphaAreaRatioSymmetric": 1.881699
+          }
+        },
+        {
+          "id": "r02-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 2,
+            "frame": "left-pencil-write"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 3,
+            "frame": "left-pencil-lift"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.006163,
+            "normalizedRgbaDifference": 0.012443,
+            "normalizedCompositedRgbDifference": 0.01314,
+            "changedPixelFraction": 0.016176,
+            "changedPixels": 646,
+            "changedCompositedPixelFraction": 0.027394,
+            "changedCompositedPixels": 1094,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 4288.541,
+            "toAlphaAreaEquivalentPixels": 4211.059,
+            "fromAlphaAreaFraction": 0.107385,
+            "toAlphaAreaFraction": 0.105445,
+            "alphaAreaRatio": 0.981933,
+            "alphaAreaRatioSymmetric": 1.0184
+          }
+        },
+        {
+          "id": "r02-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 3,
+            "frame": "left-pencil-lift"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 4,
+            "frame": "left-send"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.047336,
+            "normalizedRgbaDifference": 0.055755,
+            "normalizedCompositedRgbDifference": 0.055145,
+            "changedPixelFraction": 0.05644,
+            "changedPixels": 2254,
+            "changedCompositedPixelFraction": 0.070613,
+            "changedCompositedPixels": 2820,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 4211.059,
+            "toAlphaAreaEquivalentPixels": 6085.612,
+            "fromAlphaAreaFraction": 0.105445,
+            "toAlphaAreaFraction": 0.152384,
+            "alphaAreaRatio": 1.44515,
+            "alphaAreaRatioSymmetric": 1.44515
+          }
+        },
+        {
+          "id": "r02-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 4,
+            "frame": "left-send"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 5,
+            "frame": "left-dock"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.006212,
+            "normalizedRgbaDifference": 0.014621,
+            "normalizedCompositedRgbDifference": 0.016961,
+            "changedPixelFraction": 0.01585,
+            "changedPixels": 633,
+            "changedCompositedPixelFraction": 0.030799,
+            "changedCompositedPixels": 1230,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 6085.612,
+            "toAlphaAreaEquivalentPixels": 6086.627,
+            "fromAlphaAreaFraction": 0.152384,
+            "toAlphaAreaFraction": 0.15241,
+            "alphaAreaRatio": 1.000167,
+            "alphaAreaRatioSymmetric": 1.000167
+          }
+        },
+        {
+          "id": "r02-c5-to-c6",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 5,
+            "frame": "left-dock"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 6,
+            "frame": "left-dock-release"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.081224,
+            "normalizedRgbaDifference": 0.091834,
+            "normalizedCompositedRgbDifference": 0.089842,
+            "changedPixelFraction": 0.092924,
+            "changedPixels": 3711,
+            "changedCompositedPixelFraction": 0.111178,
+            "changedCompositedPixels": 4440,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 6086.627,
+            "toAlphaAreaEquivalentPixels": 9330.408,
+            "fromAlphaAreaFraction": 0.15241,
+            "toAlphaAreaFraction": 0.233634,
+            "alphaAreaRatio": 1.532936,
+            "alphaAreaRatioSymmetric": 1.532936
+          }
+        },
+        {
+          "id": "r02-c6-to-c7",
+          "kind": "adjacent",
+          "from": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 6,
+            "frame": "left-dock-release"
+          },
+          "to": {
+            "row": 2,
+            "rowId": "running-left",
+            "column": 7,
+            "frame": "left-settle"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.161427,
+            "normalizedRgbaDifference": 0.1706,
+            "normalizedCompositedRgbDifference": 0.163457,
+            "changedPixelFraction": 0.177008,
+            "changedPixels": 7069,
+            "changedCompositedPixelFraction": 0.199244,
+            "changedCompositedPixels": 7957,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9330.408,
+            "toAlphaAreaEquivalentPixels": 15777.165,
+            "fromAlphaAreaFraction": 0.233634,
+            "toAlphaAreaFraction": 0.395061,
+            "alphaAreaRatio": 1.690941,
+            "alphaAreaRatioSymmetric": 1.690941
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 3180,
+      "repeatBoundary": {
+        "id": "r02-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 2,
+          "rowId": "running-left",
+          "column": 7,
+          "frame": "left-settle"
+        },
+        "to": {
+          "row": 2,
+          "rowId": "running-left",
+          "column": 0,
+          "frame": "left-compose"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.023374,
+          "normalizedRgbaDifference": 0.041102,
+          "normalizedCompositedRgbDifference": 0.045493,
+          "changedPixelFraction": 0.041016,
+          "changedPixels": 1638,
+          "changedCompositedPixelFraction": 0.072691,
+          "changedCompositedPixels": 2903,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15768.486,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.394844,
+          "alphaAreaRatio": 0.99945,
+          "alphaAreaRatioSymmetric": 1.00055
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r02-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 2,
+          "rowId": "running-left",
+          "column": 7,
+          "frame": "left-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.006778,
+          "normalizedRgbaDifference": 0.008035,
+          "normalizedCompositedRgbDifference": 0.007697,
+          "changedPixelFraction": 0.024239,
+          "changedPixels": 968,
+          "changedCompositedPixelFraction": 0.033729,
+          "changedCompositedPixels": 1347,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.003567,
+          "alphaAreaRatioSymmetric": 1.003567
+        }
+      },
+      "summary": {
+        "transitionCount": 9,
+        "normalizedAlphaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-c2-to-c3",
+            "value": 0.006163
+          },
+          "mean": 0.068886,
+          "p50": {
+            "transitionId": "r02-c3-to-c4",
+            "value": 0.047336
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.192777
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.192777
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-cycle3-last-to-idle-c0",
+            "value": 0.008035
+          },
+          "mean": 0.077886,
+          "p50": {
+            "transitionId": "r02-c3-to-c4",
+            "value": 0.055755
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.204422
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.204422
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-cycle3-last-to-idle-c0",
+            "value": 0.007697
+          },
+          "mean": 0.076229,
+          "p50": {
+            "transitionId": "r02-c3-to-c4",
+            "value": 0.055145
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.195241
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.195241
+          }
+        },
+        "changedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-c4-to-c5",
+            "value": 0.01585
+          },
+          "mean": 0.082081,
+          "p50": {
+            "transitionId": "r02-c3-to-c4",
+            "value": 0.05644
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.208383
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.208383
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-c2-to-c3",
+            "value": 0.027394
+          },
+          "mean": 0.099573,
+          "p50": {
+            "transitionId": "r02-repeat-last-to-c0",
+            "value": 0.072691
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.229743
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.229743
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 9,
+          "min": {
+            "transitionId": "r02-c4-to-c5",
+            "value": 1.000167
+          },
+          "mean": 1.391937,
+          "p50": {
+            "transitionId": "r02-c3-to-c4",
+            "value": 1.44515
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 1.954025
+          },
+          "max": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 1.954025
+          }
+        }
+      }
+    },
+    {
+      "row": 3,
+      "id": "waving",
+      "label": "Greeting",
+      "timedFrameCount": 4,
+      "sourceDurationsMs": [
+        140,
+        140,
+        140,
+        280
+      ],
+      "runtimeDurationsMs": [
+        140,
+        140,
+        140,
+        280
+      ],
+      "sourceCycleDurationMs": 700,
+      "runtimeCycleDurationMs": 700,
+      "adjacent": [
+        {
+          "id": "r03-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 0,
+            "frame": "wave-rise"
+          },
+          "to": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 1,
+            "frame": "wave-dictate-entry"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.128548,
+            "normalizedRgbaDifference": 0.144792,
+            "normalizedCompositedRgbDifference": 0.141401,
+            "changedPixelFraction": 0.148012,
+            "changedPixels": 5911,
+            "changedCompositedPixelFraction": 0.177384,
+            "changedCompositedPixels": 7084,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 16398.529,
+            "toAlphaAreaEquivalentPixels": 11264.827,
+            "fromAlphaAreaFraction": 0.41062,
+            "toAlphaAreaFraction": 0.282072,
+            "alphaAreaRatio": 0.686941,
+            "alphaAreaRatioSymmetric": 1.455728
+          }
+        },
+        {
+          "id": "r03-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 1,
+            "frame": "wave-dictate-entry"
+          },
+          "to": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 2,
+            "frame": "wave-dictate-open"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.054475,
+            "normalizedRgbaDifference": 0.075764,
+            "normalizedCompositedRgbDifference": 0.079338,
+            "changedPixelFraction": 0.068034,
+            "changedPixels": 2717,
+            "changedCompositedPixelFraction": 0.102915,
+            "changedCompositedPixels": 4110,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 11264.827,
+            "toAlphaAreaEquivalentPixels": 9089.318,
+            "fromAlphaAreaFraction": 0.282072,
+            "toAlphaAreaFraction": 0.227597,
+            "alphaAreaRatio": 0.806876,
+            "alphaAreaRatioSymmetric": 1.239348
+          }
+        },
+        {
+          "id": "r03-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 2,
+            "frame": "wave-dictate-open"
+          },
+          "to": {
+            "row": 3,
+            "rowId": "waving",
+            "column": 3,
+            "frame": "wave-settle"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.18124,
+            "normalizedRgbaDifference": 0.214193,
+            "normalizedCompositedRgbDifference": 0.212925,
+            "changedPixelFraction": 0.20002,
+            "changedPixels": 7988,
+            "changedCompositedPixelFraction": 0.254282,
+            "changedCompositedPixels": 10155,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9089.318,
+            "toAlphaAreaEquivalentPixels": 16327.31,
+            "fromAlphaAreaFraction": 0.227597,
+            "toAlphaAreaFraction": 0.408837,
+            "alphaAreaRatio": 1.796319,
+            "alphaAreaRatioSymmetric": 1.796319
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 2100,
+      "repeatBoundary": {
+        "id": "r03-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 3,
+          "rowId": "waving",
+          "column": 3,
+          "frame": "wave-settle"
+        },
+        "to": {
+          "row": 3,
+          "rowId": "waving",
+          "column": 0,
+          "frame": "wave-rise"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.01022,
+          "normalizedRgbaDifference": 0.049511,
+          "normalizedCompositedRgbDifference": 0.06195,
+          "changedPixelFraction": 0.032001,
+          "changedPixels": 1278,
+          "changedCompositedPixelFraction": 0.094676,
+          "changedCompositedPixels": 3781,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 16327.31,
+          "toAlphaAreaEquivalentPixels": 16398.529,
+          "fromAlphaAreaFraction": 0.408837,
+          "toAlphaAreaFraction": 0.41062,
+          "alphaAreaRatio": 1.004362,
+          "alphaAreaRatioSymmetric": 1.004362
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r03-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 3,
+          "rowId": "waving",
+          "column": 3,
+          "frame": "wave-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.02198,
+          "normalizedRgbaDifference": 0.063136,
+          "normalizedCompositedRgbDifference": 0.075352,
+          "changedPixelFraction": 0.043745,
+          "changedPixels": 1747,
+          "changedCompositedPixelFraction": 0.108248,
+          "changedCompositedPixels": 4323,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 16327.31,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.408837,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 0.969752,
+          "alphaAreaRatioSymmetric": 1.031191
+        }
+      },
+      "summary": {
+        "transitionCount": 5,
+        "normalizedAlphaDifference": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.01022
+          },
+          "mean": 0.079293,
+          "p50": {
+            "transitionId": "r03-c1-to-c2",
+            "value": 0.054475
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.18124
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.18124
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.049511
+          },
+          "mean": 0.109479,
+          "p50": {
+            "transitionId": "r03-c1-to-c2",
+            "value": 0.075764
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.214193
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.214193
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.06195
+          },
+          "mean": 0.114193,
+          "p50": {
+            "transitionId": "r03-c1-to-c2",
+            "value": 0.079338
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.212925
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.212925
+          }
+        },
+        "changedPixelFraction": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.032001
+          },
+          "mean": 0.098362,
+          "p50": {
+            "transitionId": "r03-c1-to-c2",
+            "value": 0.068034
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.20002
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.20002
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.094676
+          },
+          "mean": 0.147501,
+          "p50": {
+            "transitionId": "r03-cycle3-last-to-idle-c0",
+            "value": 0.108248
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.254282
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.254282
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 5,
+          "min": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 1.004362
+          },
+          "mean": 1.30539,
+          "p50": {
+            "transitionId": "r03-c1-to-c2",
+            "value": 1.239348
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 1.796319
+          },
+          "max": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 1.796319
+          }
+        }
+      }
+    },
+    {
+      "row": 4,
+      "id": "jumping",
+      "label": "Hover / jump",
+      "timedFrameCount": 5,
+      "sourceDurationsMs": [
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "runtimeDurationsMs": [
+        140,
+        140,
+        140,
+        140,
+        280
+      ],
+      "sourceCycleDurationMs": 840,
+      "runtimeCycleDurationMs": 840,
+      "adjacent": [
+        {
+          "id": "r04-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 0,
+            "frame": "jump-crouch"
+          },
+          "to": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 1,
+            "frame": "jump-ball-rise"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.184467,
+            "normalizedRgbaDifference": 0.195944,
+            "normalizedCompositedRgbDifference": 0.188761,
+            "changedPixelFraction": 0.20002,
+            "changedPixels": 7988,
+            "changedCompositedPixelFraction": 0.24056,
+            "changedCompositedPixels": 9607,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15675.176,
+            "toAlphaAreaEquivalentPixels": 9209.596,
+            "fromAlphaAreaFraction": 0.392507,
+            "toAlphaAreaFraction": 0.230609,
+            "alphaAreaRatio": 0.587527,
+            "alphaAreaRatioSymmetric": 1.702048
+          }
+        },
+        {
+          "id": "r04-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 1,
+            "frame": "jump-ball-rise"
+          },
+          "to": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 2,
+            "frame": "jump-ball-impact"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.098135,
+            "normalizedRgbaDifference": 0.105786,
+            "normalizedCompositedRgbDifference": 0.101622,
+            "changedPixelFraction": 0.108974,
+            "changedPixels": 4352,
+            "changedCompositedPixelFraction": 0.122095,
+            "changedCompositedPixels": 4876,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9209.596,
+            "toAlphaAreaEquivalentPixels": 5290.459,
+            "fromAlphaAreaFraction": 0.230609,
+            "toAlphaAreaFraction": 0.132473,
+            "alphaAreaRatio": 0.574451,
+            "alphaAreaRatioSymmetric": 1.740793
+          }
+        },
+        {
+          "id": "r04-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 2,
+            "frame": "jump-ball-impact"
+          },
+          "to": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 3,
+            "frame": "jump-ball-rebound"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.102924,
+            "normalizedRgbaDifference": 0.121883,
+            "normalizedCompositedRgbDifference": 0.120863,
+            "changedPixelFraction": 0.113682,
+            "changedPixels": 4540,
+            "changedCompositedPixelFraction": 0.145558,
+            "changedCompositedPixels": 5813,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5290.459,
+            "toAlphaAreaEquivalentPixels": 9209.545,
+            "fromAlphaAreaFraction": 0.132473,
+            "toAlphaAreaFraction": 0.230608,
+            "alphaAreaRatio": 1.740784,
+            "alphaAreaRatioSymmetric": 1.740784
+          }
+        },
+        {
+          "id": "r04-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 3,
+            "frame": "jump-ball-rebound"
+          },
+          "to": {
+            "row": 4,
+            "rowId": "jumping",
+            "column": 4,
+            "frame": "jump-land"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.202737,
+            "normalizedRgbaDifference": 0.235224,
+            "normalizedCompositedRgbDifference": 0.232266,
+            "changedPixelFraction": 0.218274,
+            "changedPixels": 8717,
+            "changedCompositedPixelFraction": 0.269356,
+            "changedCompositedPixels": 10757,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9209.545,
+            "toAlphaAreaEquivalentPixels": 15712.427,
+            "fromAlphaAreaFraction": 0.230608,
+            "toAlphaAreaFraction": 0.39344,
+            "alphaAreaRatio": 1.706102,
+            "alphaAreaRatioSymmetric": 1.706102
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 2520,
+      "repeatBoundary": {
+        "id": "r04-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 4,
+          "rowId": "jumping",
+          "column": 4,
+          "frame": "jump-land"
+        },
+        "to": {
+          "row": 4,
+          "rowId": "jumping",
+          "column": 0,
+          "frame": "jump-crouch"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.010766,
+          "normalizedRgbaDifference": 0.051094,
+          "normalizedCompositedRgbDifference": 0.063773,
+          "changedPixelFraction": 0.027669,
+          "changedPixels": 1105,
+          "changedCompositedPixelFraction": 0.091647,
+          "changedCompositedPixels": 3660,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15712.427,
+          "toAlphaAreaEquivalentPixels": 15675.176,
+          "fromAlphaAreaFraction": 0.39344,
+          "toAlphaAreaFraction": 0.392507,
+          "alphaAreaRatio": 0.997629,
+          "alphaAreaRatioSymmetric": 1.002376
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r04-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 4,
+          "rowId": "jumping",
+          "column": 4,
+          "frame": "jump-land"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.052297,
+          "normalizedRgbaDifference": 0.073711,
+          "normalizedCompositedRgbDifference": 0.076952,
+          "changedPixelFraction": 0.070363,
+          "changedPixels": 2810,
+          "changedCompositedPixelFraction": 0.10617,
+          "changedCompositedPixels": 4240,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15712.427,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.39344,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.007702,
+          "alphaAreaRatioSymmetric": 1.007702
+        }
+      },
+      "summary": {
+        "transitionCount": 6,
+        "normalizedAlphaDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.010766
+          },
+          "mean": 0.108554,
+          "p50": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 0.098135
+          },
+          "p95": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.202737
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.202737
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.051094
+          },
+          "mean": 0.130607,
+          "p50": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 0.105786
+          },
+          "p95": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.235224
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.235224
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.063773
+          },
+          "mean": 0.130706,
+          "p50": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 0.101622
+          },
+          "p95": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.232266
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.232266
+          }
+        },
+        "changedPixelFraction": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.027669
+          },
+          "mean": 0.123164,
+          "p50": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 0.108974
+          },
+          "p95": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.218274
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.218274
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.091647
+          },
+          "mean": 0.162564,
+          "p50": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 0.122095
+          },
+          "p95": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.269356
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.269356
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 6,
+          "min": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 1.002376
+          },
+          "mean": 1.483301,
+          "p50": {
+            "transitionId": "r04-c0-to-c1",
+            "value": 1.702048
+          },
+          "p95": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 1.740793
+          },
+          "max": {
+            "transitionId": "r04-c1-to-c2",
+            "value": 1.740793
+          }
+        }
+      }
+    },
+    {
+      "row": 5,
+      "id": "failed",
+      "label": "Blocked",
+      "timedFrameCount": 8,
+      "sourceDurationsMs": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        240
+      ],
+      "runtimeDurationsMs": [
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        140,
+        240
+      ],
+      "sourceCycleDurationMs": 1220,
+      "runtimeCycleDurationMs": 1220,
+      "adjacent": [
+        {
+          "id": "r05-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 0,
+            "frame": "blocked-suspicious"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 1,
+            "frame": "blocked-bang-entry"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.171512,
+            "normalizedRgbaDifference": 0.198297,
+            "normalizedCompositedRgbDifference": 0.195793,
+            "changedPixelFraction": 0.18765,
+            "changedPixels": 7494,
+            "changedCompositedPixelFraction": 0.229567,
+            "changedCompositedPixels": 9168,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15771.886,
+            "toAlphaAreaEquivalentPixels": 8922.4,
+            "fromAlphaAreaFraction": 0.394929,
+            "toAlphaAreaFraction": 0.223417,
+            "alphaAreaRatio": 0.565715,
+            "alphaAreaRatioSymmetric": 1.767673
+          }
+        },
+        {
+          "id": "r05-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 1,
+            "frame": "blocked-bang-entry"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 2,
+            "frame": "blocked-bang-open"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.08462,
+            "normalizedRgbaDifference": 0.093734,
+            "normalizedCompositedRgbDifference": 0.091216,
+            "changedPixelFraction": 0.096204,
+            "changedPixels": 3842,
+            "changedCompositedPixelFraction": 0.113482,
+            "changedCompositedPixels": 4532,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 8922.4,
+            "toAlphaAreaEquivalentPixels": 5543.035,
+            "fromAlphaAreaFraction": 0.223417,
+            "toAlphaAreaFraction": 0.138798,
+            "alphaAreaRatio": 0.621249,
+            "alphaAreaRatioSymmetric": 1.60966
+          }
+        },
+        {
+          "id": "r05-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 2,
+            "frame": "blocked-bang-open"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 3,
+            "frame": "blocked-bang-impact"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.015372,
+            "normalizedRgbaDifference": 0.024884,
+            "normalizedCompositedRgbDifference": 0.02757,
+            "changedPixelFraction": 0.02529,
+            "changedPixels": 1010,
+            "changedCompositedPixelFraction": 0.041617,
+            "changedCompositedPixels": 1662,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5543.035,
+            "toAlphaAreaEquivalentPixels": 4934.902,
+            "fromAlphaAreaFraction": 0.138798,
+            "toAlphaAreaFraction": 0.12357,
+            "alphaAreaRatio": 0.890289,
+            "alphaAreaRatioSymmetric": 1.123231
+          }
+        },
+        {
+          "id": "r05-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 3,
+            "frame": "blocked-bang-impact"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 4,
+            "frame": "blocked-standby"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.078735,
+            "normalizedRgbaDifference": 0.056796,
+            "normalizedCompositedRgbDifference": 0.073569,
+            "changedPixelFraction": 0.153596,
+            "changedPixels": 6134,
+            "changedCompositedPixelFraction": 0.153596,
+            "changedCompositedPixels": 6134,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 4934.902,
+            "toAlphaAreaEquivalentPixels": 2837.349,
+            "fromAlphaAreaFraction": 0.12357,
+            "toAlphaAreaFraction": 0.071047,
+            "alphaAreaRatio": 0.574955,
+            "alphaAreaRatioSymmetric": 1.739265
+          }
+        },
+        {
+          "id": "r05-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 4,
+            "frame": "blocked-standby"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 5,
+            "frame": "blocked-sad-drift"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.019643,
+            "normalizedRgbaDifference": 0.019686,
+            "normalizedCompositedRgbDifference": 0.020223,
+            "changedPixelFraction": 0.143354,
+            "changedPixels": 5725,
+            "changedCompositedPixelFraction": 0.143354,
+            "changedCompositedPixels": 5725,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 2837.349,
+            "toAlphaAreaEquivalentPixels": 3621.792,
+            "fromAlphaAreaFraction": 0.071047,
+            "toAlphaAreaFraction": 0.09069,
+            "alphaAreaRatio": 1.27647,
+            "alphaAreaRatioSymmetric": 1.27647
+          }
+        },
+        {
+          "id": "r05-c5-to-c6",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 5,
+            "frame": "blocked-sad-drift"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 6,
+            "frame": "blocked-shy-recover"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.084591,
+            "normalizedRgbaDifference": 0.092405,
+            "normalizedCompositedRgbDifference": 0.084738,
+            "changedPixelFraction": 0.230644,
+            "changedPixels": 9211,
+            "changedCompositedPixelFraction": 0.230644,
+            "changedCompositedPixels": 9211,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 3621.792,
+            "toAlphaAreaEquivalentPixels": 7000.008,
+            "fromAlphaAreaFraction": 0.09069,
+            "toAlphaAreaFraction": 0.175281,
+            "alphaAreaRatio": 1.932747,
+            "alphaAreaRatioSymmetric": 1.932747
+          }
+        },
+        {
+          "id": "r05-c6-to-c7",
+          "kind": "adjacent",
+          "from": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 6,
+            "frame": "blocked-shy-recover"
+          },
+          "to": {
+            "row": 5,
+            "rowId": "failed",
+            "column": 7,
+            "frame": "blocked-confused-settle"
+          },
+          "holdBeforeTransitionMs": 140,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.219698,
+            "normalizedRgbaDifference": 0.19965,
+            "normalizedCompositedRgbDifference": 0.218434,
+            "changedPixelFraction": 0.405349,
+            "changedPixels": 16188,
+            "changedCompositedPixelFraction": 0.405349,
+            "changedCompositedPixels": 16188,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 7000.008,
+            "toAlphaAreaEquivalentPixels": 15773.867,
+            "fromAlphaAreaFraction": 0.175281,
+            "toAlphaAreaFraction": 0.394979,
+            "alphaAreaRatio": 2.253407,
+            "alphaAreaRatioSymmetric": 2.253407
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 3660,
+      "repeatBoundary": {
+        "id": "r05-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 5,
+          "rowId": "failed",
+          "column": 7,
+          "frame": "blocked-confused-settle"
+        },
+        "to": {
+          "row": 5,
+          "rowId": "failed",
+          "column": 0,
+          "frame": "blocked-suspicious"
+        },
+        "holdBeforeTransitionMs": 240,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.002685,
+          "normalizedRgbaDifference": 0.024464,
+          "normalizedCompositedRgbDifference": 0.031746,
+          "changedPixelFraction": 0.019907,
+          "changedPixels": 795,
+          "changedCompositedPixelFraction": 0.057267,
+          "changedCompositedPixels": 2287,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15773.867,
+          "toAlphaAreaEquivalentPixels": 15771.886,
+          "fromAlphaAreaFraction": 0.394979,
+          "toAlphaAreaFraction": 0.394929,
+          "alphaAreaRatio": 0.999874,
+          "alphaAreaRatioSymmetric": 1.000126
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r05-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 5,
+          "rowId": "failed",
+          "column": 7,
+          "frame": "blocked-confused-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 240,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.001987,
+          "normalizedRgbaDifference": 0.022835,
+          "normalizedCompositedRgbDifference": 0.029446,
+          "changedPixelFraction": 0.01863,
+          "changedPixels": 744,
+          "changedCompositedPixelFraction": 0.054087,
+          "changedCompositedPixels": 2160,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15773.867,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.394979,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.003777,
+          "alphaAreaRatioSymmetric": 1.003777
+        }
+      },
+      "summary": {
+        "transitionCount": 9,
+        "normalizedAlphaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-cycle3-last-to-idle-c0",
+            "value": 0.001987
+          },
+          "mean": 0.075427,
+          "p50": {
+            "transitionId": "r05-c3-to-c4",
+            "value": 0.078735
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.219698
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.219698
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-c4-to-c5",
+            "value": 0.019686
+          },
+          "mean": 0.081417,
+          "p50": {
+            "transitionId": "r05-c3-to-c4",
+            "value": 0.056796
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.19965
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.19965
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-c4-to-c5",
+            "value": 0.020223
+          },
+          "mean": 0.085859,
+          "p50": {
+            "transitionId": "r05-c3-to-c4",
+            "value": 0.073569
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.218434
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.218434
+          }
+        },
+        "changedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-cycle3-last-to-idle-c0",
+            "value": 0.01863
+          },
+          "mean": 0.142292,
+          "p50": {
+            "transitionId": "r05-c4-to-c5",
+            "value": 0.143354
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-c2-to-c3",
+            "value": 0.041617
+          },
+          "mean": 0.158774,
+          "p50": {
+            "transitionId": "r05-c4-to-c5",
+            "value": 0.143354
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 9,
+          "min": {
+            "transitionId": "r05-repeat-last-to-c0",
+            "value": 1.000126
+          },
+          "mean": 1.522928,
+          "p50": {
+            "transitionId": "r05-c1-to-c2",
+            "value": 1.60966
+          },
+          "p95": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 2.253407
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 2.253407
+          }
+        }
+      }
+    },
+    {
+      "row": 6,
+      "id": "waiting",
+      "label": "Needs input",
+      "timedFrameCount": 6,
+      "sourceDurationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        260
+      ],
+      "runtimeDurationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        260
+      ],
+      "sourceCycleDurationMs": 1010,
+      "runtimeCycleDurationMs": 1010,
+      "adjacent": [
+        {
+          "id": "r06-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 0,
+            "frame": "wait-attentive"
+          },
+          "to": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 1,
+            "frame": "wait-orbit-entry"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.177584,
+            "normalizedRgbaDifference": 0.200524,
+            "normalizedCompositedRgbDifference": 0.196233,
+            "changedPixelFraction": 0.196665,
+            "changedPixels": 7854,
+            "changedCompositedPixelFraction": 0.234701,
+            "changedCompositedPixels": 9373,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 16373.91,
+            "toAlphaAreaEquivalentPixels": 9281.902,
+            "fromAlphaAreaFraction": 0.410004,
+            "toAlphaAreaFraction": 0.232419,
+            "alphaAreaRatio": 0.566871,
+            "alphaAreaRatioSymmetric": 1.764068
+          }
+        },
+        {
+          "id": "r06-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 1,
+            "frame": "wait-orbit-entry"
+          },
+          "to": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 2,
+            "frame": "wait-orbit"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.098109,
+            "normalizedRgbaDifference": 0.099585,
+            "normalizedCompositedRgbDifference": 0.093584,
+            "changedPixelFraction": 0.109475,
+            "changedPixels": 4372,
+            "changedCompositedPixelFraction": 0.116561,
+            "changedCompositedPixels": 4655,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9281.902,
+            "toAlphaAreaEquivalentPixels": 5363.82,
+            "fromAlphaAreaFraction": 0.232419,
+            "toAlphaAreaFraction": 0.13431,
+            "alphaAreaRatio": 0.577879,
+            "alphaAreaRatioSymmetric": 1.730465
+          }
+        },
+        {
+          "id": "r06-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 2,
+            "frame": "wait-orbit"
+          },
+          "to": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 3,
+            "frame": "wait-progress"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.009764,
+            "normalizedRgbaDifference": 0.013451,
+            "normalizedCompositedRgbDifference": 0.009141,
+            "changedPixelFraction": 0.021509,
+            "changedPixels": 859,
+            "changedCompositedPixelFraction": 0.021509,
+            "changedCompositedPixels": 859,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5363.82,
+            "toAlphaAreaEquivalentPixels": 5753.749,
+            "fromAlphaAreaFraction": 0.13431,
+            "toAlphaAreaFraction": 0.144074,
+            "alphaAreaRatio": 1.072696,
+            "alphaAreaRatioSymmetric": 1.072696
+          }
+        },
+        {
+          "id": "r06-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 3,
+            "frame": "wait-progress"
+          },
+          "to": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 4,
+            "frame": "wait-progress-release"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.088344,
+            "normalizedRgbaDifference": 0.092211,
+            "normalizedCompositedRgbDifference": 0.092169,
+            "changedPixelFraction": 0.109225,
+            "changedPixels": 4362,
+            "changedCompositedPixelFraction": 0.121945,
+            "changedCompositedPixels": 4870,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5753.749,
+            "toAlphaAreaEquivalentPixels": 9281.847,
+            "fromAlphaAreaFraction": 0.144074,
+            "toAlphaAreaFraction": 0.232418,
+            "alphaAreaRatio": 1.613182,
+            "alphaAreaRatioSymmetric": 1.613182
+          }
+        },
+        {
+          "id": "r06-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 4,
+            "frame": "wait-progress-release"
+          },
+          "to": {
+            "row": 6,
+            "rowId": "waiting",
+            "column": 5,
+            "frame": "wait-uncertain-settle"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.17434,
+            "normalizedRgbaDifference": 0.190097,
+            "normalizedCompositedRgbDifference": 0.183709,
+            "changedPixelFraction": 0.192683,
+            "changedPixels": 7695,
+            "changedCompositedPixelFraction": 0.220954,
+            "changedCompositedPixels": 8824,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 9281.847,
+            "toAlphaAreaEquivalentPixels": 16244.282,
+            "fromAlphaAreaFraction": 0.232418,
+            "toAlphaAreaFraction": 0.406758,
+            "alphaAreaRatio": 1.750113,
+            "alphaAreaRatioSymmetric": 1.750113
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 3030,
+      "repeatBoundary": {
+        "id": "r06-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 6,
+          "rowId": "waiting",
+          "column": 5,
+          "frame": "wait-uncertain-settle"
+        },
+        "to": {
+          "row": 6,
+          "rowId": "waiting",
+          "column": 0,
+          "frame": "wait-attentive"
+        },
+        "holdBeforeTransitionMs": 260,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.018844,
+          "normalizedRgbaDifference": 0.047254,
+          "normalizedCompositedRgbDifference": 0.055486,
+          "changedPixelFraction": 0.041141,
+          "changedPixels": 1643,
+          "changedCompositedPixelFraction": 0.088817,
+          "changedCompositedPixels": 3547,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 16244.282,
+          "toAlphaAreaEquivalentPixels": 16373.91,
+          "fromAlphaAreaFraction": 0.406758,
+          "toAlphaAreaFraction": 0.410004,
+          "alphaAreaRatio": 1.00798,
+          "alphaAreaRatioSymmetric": 1.00798
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r06-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 6,
+          "rowId": "waiting",
+          "column": 5,
+          "frame": "wait-uncertain-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 260,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.013611,
+          "normalizedRgbaDifference": 0.035098,
+          "normalizedCompositedRgbDifference": 0.040941,
+          "changedPixelFraction": 0.033228,
+          "changedPixels": 1327,
+          "changedCompositedPixelFraction": 0.069486,
+          "changedCompositedPixels": 2775,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 16244.282,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.406758,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 0.974709,
+          "alphaAreaRatioSymmetric": 1.025948
+        }
+      },
+      "summary": {
+        "transitionCount": 7,
+        "normalizedAlphaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.009764
+          },
+          "mean": 0.082942,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 0.088344
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.177584
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.177584
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.013451
+          },
+          "mean": 0.096889,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 0.092211
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.200524
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.200524
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.009141
+          },
+          "mean": 0.095895,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 0.092169
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.196233
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.196233
+          }
+        },
+        "changedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.021509
+          },
+          "mean": 0.100561,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 0.109225
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.196665
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.196665
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.021509
+          },
+          "mean": 0.124853,
+          "p50": {
+            "transitionId": "r06-c1-to-c2",
+            "value": 0.116561
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.234701
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 0.234701
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 7,
+          "min": {
+            "transitionId": "r06-repeat-last-to-c0",
+            "value": 1.00798
+          },
+          "mean": 1.423493,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 1.613182
+          },
+          "p95": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 1.764068
+          },
+          "max": {
+            "transitionId": "r06-c0-to-c1",
+            "value": 1.764068
+          }
+        }
+      }
+    },
+    {
+      "row": 7,
+      "id": "running",
+      "label": "Active work",
+      "timedFrameCount": 6,
+      "sourceDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "runtimeDurationsMs": [
+        120,
+        120,
+        120,
+        120,
+        120,
+        220
+      ],
+      "sourceCycleDurationMs": 820,
+      "runtimeCycleDurationMs": 820,
+      "adjacent": [
+        {
+          "id": "r07-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 7,
+            "rowId": "running",
+            "column": 0,
+            "frame": "work-focus"
+          },
+          "to": {
+            "row": 7,
+            "rowId": "running",
+            "column": 1,
+            "frame": "work-gather"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.182738,
+            "normalizedRgbaDifference": 0.205091,
+            "normalizedCompositedRgbDifference": 0.200236,
+            "changedPixelFraction": 0.198342,
+            "changedPixels": 7921,
+            "changedCompositedPixelFraction": 0.235602,
+            "changedCompositedPixels": 9409,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15775.816,
+            "toAlphaAreaEquivalentPixels": 8477.984,
+            "fromAlphaAreaFraction": 0.395027,
+            "toAlphaAreaFraction": 0.212289,
+            "alphaAreaRatio": 0.537404,
+            "alphaAreaRatioSymmetric": 1.860798
+          }
+        },
+        {
+          "id": "r07-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 7,
+            "rowId": "running",
+            "column": 1,
+            "frame": "work-gather"
+          },
+          "to": {
+            "row": 7,
+            "rowId": "running",
+            "column": 2,
+            "frame": "work-think"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.088394,
+            "normalizedRgbaDifference": 0.078678,
+            "normalizedCompositedRgbDifference": 0.093546,
+            "changedPixelFraction": 0.219226,
+            "changedPixels": 8755,
+            "changedCompositedPixelFraction": 0.219226,
+            "changedCompositedPixels": 8755,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 8477.984,
+            "toAlphaAreaEquivalentPixels": 4947.89,
+            "fromAlphaAreaFraction": 0.212289,
+            "toAlphaAreaFraction": 0.123895,
+            "alphaAreaRatio": 0.583616,
+            "alphaAreaRatioSymmetric": 1.713454
+          }
+        },
+        {
+          "id": "r07-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 7,
+            "rowId": "running",
+            "column": 2,
+            "frame": "work-think"
+          },
+          "to": {
+            "row": 7,
+            "rowId": "running",
+            "column": 3,
+            "frame": "work-radar"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.043614,
+            "normalizedRgbaDifference": 0.046803,
+            "normalizedCompositedRgbDifference": 0.046371,
+            "changedPixelFraction": 0.180088,
+            "changedPixels": 7192,
+            "changedCompositedPixelFraction": 0.180163,
+            "changedCompositedPixels": 7195,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 4947.89,
+            "toAlphaAreaEquivalentPixels": 5438.929,
+            "fromAlphaAreaFraction": 0.123895,
+            "toAlphaAreaFraction": 0.136191,
+            "alphaAreaRatio": 1.099242,
+            "alphaAreaRatioSymmetric": 1.099242
+          }
+        },
+        {
+          "id": "r07-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 7,
+            "rowId": "running",
+            "column": 3,
+            "frame": "work-radar"
+          },
+          "to": {
+            "row": 7,
+            "rowId": "running",
+            "column": 4,
+            "frame": "work-whirl-release"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.071949,
+            "normalizedRgbaDifference": 0.081681,
+            "normalizedCompositedRgbDifference": 0.076077,
+            "changedPixelFraction": 0.090094,
+            "changedPixels": 3598,
+            "changedCompositedPixelFraction": 0.101613,
+            "changedCompositedPixels": 4058,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 5438.929,
+            "toAlphaAreaEquivalentPixels": 8225.294,
+            "fromAlphaAreaFraction": 0.136191,
+            "toAlphaAreaFraction": 0.205962,
+            "alphaAreaRatio": 1.5123,
+            "alphaAreaRatioSymmetric": 1.5123
+          }
+        },
+        {
+          "id": "r07-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 7,
+            "rowId": "running",
+            "column": 4,
+            "frame": "work-whirl-release"
+          },
+          "to": {
+            "row": 7,
+            "rowId": "running",
+            "column": 5,
+            "frame": "work-settle"
+          },
+          "holdBeforeTransitionMs": 120,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.189099,
+            "normalizedRgbaDifference": 0.199967,
+            "normalizedCompositedRgbDifference": 0.191184,
+            "changedPixelFraction": 0.204527,
+            "changedPixels": 8168,
+            "changedCompositedPixelFraction": 0.230444,
+            "changedCompositedPixels": 9203,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 8225.294,
+            "toAlphaAreaEquivalentPixels": 15777.165,
+            "fromAlphaAreaFraction": 0.205962,
+            "toAlphaAreaFraction": 0.395061,
+            "alphaAreaRatio": 1.918128,
+            "alphaAreaRatioSymmetric": 1.918128
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 2460,
+      "repeatBoundary": {
+        "id": "r07-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 7,
+          "rowId": "running",
+          "column": 5,
+          "frame": "work-settle"
+        },
+        "to": {
+          "row": 7,
+          "rowId": "running",
+          "column": 0,
+          "frame": "work-focus"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.002114,
+          "normalizedRgbaDifference": 0.035334,
+          "normalizedCompositedRgbDifference": 0.046303,
+          "changedPixelFraction": 0.018455,
+          "changedPixels": 737,
+          "changedCompositedPixelFraction": 0.072691,
+          "changedCompositedPixels": 2903,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15775.816,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.395027,
+          "alphaAreaRatio": 0.999914,
+          "alphaAreaRatioSymmetric": 1.000086
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r07-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 7,
+          "rowId": "running",
+          "column": 5,
+          "frame": "work-settle"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 220,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.006778,
+          "normalizedRgbaDifference": 0.031799,
+          "normalizedCompositedRgbDifference": 0.039384,
+          "changedPixelFraction": 0.024239,
+          "changedPixels": 968,
+          "changedCompositedPixelFraction": 0.066131,
+          "changedCompositedPixels": 2641,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15777.165,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.395061,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.003567,
+          "alphaAreaRatioSymmetric": 1.003567
+        }
+      },
+      "summary": {
+        "transitionCount": 7,
+        "normalizedAlphaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-repeat-last-to-c0",
+            "value": 0.002114
+          },
+          "mean": 0.083527,
+          "p50": {
+            "transitionId": "r07-c3-to-c4",
+            "value": 0.071949
+          },
+          "p95": {
+            "transitionId": "r07-c4-to-c5",
+            "value": 0.189099
+          },
+          "max": {
+            "transitionId": "r07-c4-to-c5",
+            "value": 0.189099
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 0.031799
+          },
+          "mean": 0.09705,
+          "p50": {
+            "transitionId": "r07-c1-to-c2",
+            "value": 0.078678
+          },
+          "p95": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.205091
+          },
+          "max": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.205091
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 0.039384
+          },
+          "mean": 0.099014,
+          "p50": {
+            "transitionId": "r07-c3-to-c4",
+            "value": 0.076077
+          },
+          "p95": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.200236
+          },
+          "max": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.200236
+          }
+        },
+        "changedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-repeat-last-to-c0",
+            "value": 0.018455
+          },
+          "mean": 0.133567,
+          "p50": {
+            "transitionId": "r07-c2-to-c3",
+            "value": 0.180088
+          },
+          "p95": {
+            "transitionId": "r07-c1-to-c2",
+            "value": 0.219226
+          },
+          "max": {
+            "transitionId": "r07-c1-to-c2",
+            "value": 0.219226
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 0.066131
+          },
+          "mean": 0.157981,
+          "p50": {
+            "transitionId": "r07-c2-to-c3",
+            "value": 0.180163
+          },
+          "p95": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.235602
+          },
+          "max": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.235602
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 7,
+          "min": {
+            "transitionId": "r07-repeat-last-to-c0",
+            "value": 1.000086
+          },
+          "mean": 1.443939,
+          "p50": {
+            "transitionId": "r07-c3-to-c4",
+            "value": 1.5123
+          },
+          "p95": {
+            "transitionId": "r07-c4-to-c5",
+            "value": 1.918128
+          },
+          "max": {
+            "transitionId": "r07-c4-to-c5",
+            "value": 1.918128
+          }
+        }
+      }
+    },
+    {
+      "row": 8,
+      "id": "review",
+      "label": "Ready / review",
+      "timedFrameCount": 6,
+      "sourceDurationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        280
+      ],
+      "runtimeDurationsMs": [
+        150,
+        150,
+        150,
+        150,
+        150,
+        280
+      ],
+      "sourceCycleDurationMs": 1030,
+      "runtimeCycleDurationMs": 1030,
+      "adjacent": [
+        {
+          "id": "r08-c0-to-c1",
+          "kind": "adjacent",
+          "from": {
+            "row": 8,
+            "rowId": "review",
+            "column": 0,
+            "frame": "review-ready"
+          },
+          "to": {
+            "row": 8,
+            "rowId": "review",
+            "column": 1,
+            "frame": "review-surprise"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.041268,
+            "normalizedRgbaDifference": 0.071526,
+            "normalizedCompositedRgbDifference": 0.076765,
+            "changedPixelFraction": 0.062525,
+            "changedPixels": 2497,
+            "changedCompositedPixelFraction": 0.114358,
+            "changedCompositedPixels": 4567,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15778.345,
+            "toAlphaAreaEquivalentPixels": 16260.424,
+            "fromAlphaAreaFraction": 0.395091,
+            "toAlphaAreaFraction": 0.407162,
+            "alphaAreaRatio": 1.030553,
+            "alphaAreaRatioSymmetric": 1.030553
+          }
+        },
+        {
+          "id": "r08-c1-to-c2",
+          "kind": "adjacent",
+          "from": {
+            "row": 8,
+            "rowId": "review",
+            "column": 1,
+            "frame": "review-surprise"
+          },
+          "to": {
+            "row": 8,
+            "rowId": "review",
+            "column": 2,
+            "frame": "review-ribbon-entry"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.028744,
+            "normalizedRgbaDifference": 0.052262,
+            "normalizedCompositedRgbDifference": 0.052167,
+            "changedPixelFraction": 0.057267,
+            "changedPixels": 2287,
+            "changedCompositedPixelFraction": 0.107722,
+            "changedCompositedPixels": 4302,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 16260.424,
+            "toAlphaAreaEquivalentPixels": 16052.835,
+            "fromAlphaAreaFraction": 0.407162,
+            "toAlphaAreaFraction": 0.401964,
+            "alphaAreaRatio": 0.987234,
+            "alphaAreaRatioSymmetric": 1.012932
+          }
+        },
+        {
+          "id": "r08-c2-to-c3",
+          "kind": "adjacent",
+          "from": {
+            "row": 8,
+            "rowId": "review",
+            "column": 2,
+            "frame": "review-ribbon-entry"
+          },
+          "to": {
+            "row": 8,
+            "rowId": "review",
+            "column": 3,
+            "frame": "review-ribbon-crest"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.022306,
+            "normalizedRgbaDifference": 0.047667,
+            "normalizedCompositedRgbDifference": 0.052243,
+            "changedPixelFraction": 0.047701,
+            "changedPixels": 1905,
+            "changedCompositedPixelFraction": 0.104267,
+            "changedCompositedPixels": 4164,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 16052.835,
+            "toAlphaAreaEquivalentPixels": 15787.627,
+            "fromAlphaAreaFraction": 0.401964,
+            "toAlphaAreaFraction": 0.395323,
+            "alphaAreaRatio": 0.983479,
+            "alphaAreaRatioSymmetric": 1.016798
+          }
+        },
+        {
+          "id": "r08-c3-to-c4",
+          "kind": "adjacent",
+          "from": {
+            "row": 8,
+            "rowId": "review",
+            "column": 3,
+            "frame": "review-ribbon-crest"
+          },
+          "to": {
+            "row": 8,
+            "rowId": "review",
+            "column": 4,
+            "frame": "review-ribbon-storm"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.017762,
+            "normalizedRgbaDifference": 0.072384,
+            "normalizedCompositedRgbDifference": 0.089192,
+            "changedPixelFraction": 0.035056,
+            "changedPixels": 1400,
+            "changedCompositedPixelFraction": 0.178911,
+            "changedCompositedPixels": 7145,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15787.627,
+            "toAlphaAreaEquivalentPixels": 15849.725,
+            "fromAlphaAreaFraction": 0.395323,
+            "toAlphaAreaFraction": 0.396878,
+            "alphaAreaRatio": 1.003933,
+            "alphaAreaRatioSymmetric": 1.003933
+          }
+        },
+        {
+          "id": "r08-c4-to-c5",
+          "kind": "adjacent",
+          "from": {
+            "row": 8,
+            "rowId": "review",
+            "column": 4,
+            "frame": "review-ribbon-storm"
+          },
+          "to": {
+            "row": 8,
+            "rowId": "review",
+            "column": 5,
+            "frame": "review-ribbon-exit"
+          },
+          "holdBeforeTransitionMs": 150,
+          "runtimeOccurrences": {
+            "perThreeCycleActionSequence": 3
+          },
+          "metrics": {
+            "normalizedAlphaDifference": 0.015536,
+            "normalizedRgbaDifference": 0.048831,
+            "normalizedCompositedRgbDifference": 0.058596,
+            "changedPixelFraction": 0.032777,
+            "changedPixels": 1309,
+            "changedCompositedPixelFraction": 0.148738,
+            "changedCompositedPixels": 5940,
+            "pixelCount": 39936,
+            "fromAlphaAreaEquivalentPixels": 15849.725,
+            "toAlphaAreaEquivalentPixels": 15778.506,
+            "fromAlphaAreaFraction": 0.396878,
+            "toAlphaAreaFraction": 0.395095,
+            "alphaAreaRatio": 0.995507,
+            "alphaAreaRatioSymmetric": 1.004514
+          }
+        }
+      ],
+      "runtimeRole": "three-cycles-then-idle",
+      "actionCycleCount": 3,
+      "actionDurationBeforeIdleMs": 3090,
+      "repeatBoundary": {
+        "id": "r08-repeat-last-to-c0",
+        "kind": "repeat-boundary",
+        "from": {
+          "row": 8,
+          "rowId": "review",
+          "column": 5,
+          "frame": "review-ribbon-exit"
+        },
+        "to": {
+          "row": 8,
+          "rowId": "review",
+          "column": 0,
+          "frame": "review-ready"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 2,
+          "boundaries": [
+            "cycle-1-to-2",
+            "cycle-2-to-3"
+          ]
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.000227,
+          "normalizedRgbaDifference": 0.001488,
+          "normalizedCompositedRgbDifference": 0.001863,
+          "changedPixelFraction": 0.014022,
+          "changedPixels": 560,
+          "changedCompositedPixelFraction": 0.027995,
+          "changedCompositedPixels": 1118,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15778.506,
+          "toAlphaAreaEquivalentPixels": 15778.345,
+          "fromAlphaAreaFraction": 0.395095,
+          "toAlphaAreaFraction": 0.395091,
+          "alphaAreaRatio": 0.99999,
+          "alphaAreaRatioSymmetric": 1.00001
+        }
+      },
+      "thirdCycleExitToIdle": {
+        "id": "r08-cycle3-last-to-idle-c0",
+        "kind": "third-cycle-to-idle",
+        "from": {
+          "row": 8,
+          "rowId": "review",
+          "column": 5,
+          "frame": "review-ribbon-exit"
+        },
+        "to": {
+          "row": 0,
+          "rowId": "idle",
+          "column": 0,
+          "frame": "quiet-breath"
+        },
+        "holdBeforeTransitionMs": 280,
+        "runtimeOccurrences": {
+          "perThreeCycleActionSequence": 1,
+          "boundary": "cycle-3-to-idle"
+        },
+        "metrics": {
+          "normalizedAlphaDifference": 0.007857,
+          "normalizedRgbaDifference": 0.024219,
+          "normalizedCompositedRgbDifference": 0.028744,
+          "changedPixelFraction": 0.025466,
+          "changedPixels": 1017,
+          "changedCompositedPixelFraction": 0.061523,
+          "changedCompositedPixels": 2457,
+          "pixelCount": 39936,
+          "fromAlphaAreaEquivalentPixels": 15778.506,
+          "toAlphaAreaEquivalentPixels": 15833.443,
+          "fromAlphaAreaFraction": 0.395095,
+          "toAlphaAreaFraction": 0.39647,
+          "alphaAreaRatio": 1.003482,
+          "alphaAreaRatioSymmetric": 1.003482
+        }
+      },
+      "summary": {
+        "transitionCount": 7,
+        "normalizedAlphaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.000227
+          },
+          "mean": 0.0191,
+          "p50": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.017762
+          },
+          "p95": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 0.041268
+          },
+          "max": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 0.041268
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.001488
+          },
+          "mean": 0.045482,
+          "p50": {
+            "transitionId": "r08-c4-to-c5",
+            "value": 0.048831
+          },
+          "p95": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.072384
+          },
+          "max": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.072384
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.001863
+          },
+          "mean": 0.051367,
+          "p50": {
+            "transitionId": "r08-c2-to-c3",
+            "value": 0.052243
+          },
+          "p95": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.089192
+          },
+          "max": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.089192
+          }
+        },
+        "changedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.014022
+          },
+          "mean": 0.039259,
+          "p50": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.035056
+          },
+          "p95": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 0.062525
+          },
+          "max": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 0.062525
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.027995
+          },
+          "mean": 0.106216,
+          "p50": {
+            "transitionId": "r08-c1-to-c2",
+            "value": 0.107722
+          },
+          "p95": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.178911
+          },
+          "max": {
+            "transitionId": "r08-c3-to-c4",
+            "value": 0.178911
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 7,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 1.00001
+          },
+          "mean": 1.010317,
+          "p50": {
+            "transitionId": "r08-c4-to-c5",
+            "value": 1.004514
+          },
+          "p95": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 1.030553
+          },
+          "max": {
+            "transitionId": "r08-c0-to-c1",
+            "value": 1.030553
+          }
+        }
+      }
+    }
+  ],
+  "previews": [
+    {
+      "row": 0,
+      "rowId": "idle",
+      "path": "qa/runtime-previews-dark/00-idle-runtime.webp",
+      "sha256": "57e7d9be7aee9d4c06a231d7bfe311ff84ac4f2d0b4a5843bf7fb284934fd90d",
+      "frameCount": 6,
+      "actionCycles": 0,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 6600,
+      "pageHeight": 208,
+      "pages": 6,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 1,
+      "rowId": "running-right",
+      "path": "qa/runtime-previews-dark/01-running-right-runtime.webp",
+      "sha256": "bbbe036278320458a08b12a6a003423c2b3e82098ace275f87af3b6c05bfc1a8",
+      "frameCount": 30,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9780,
+      "pageHeight": 208,
+      "pages": 30,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 1,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 1,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 1,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 2,
+      "rowId": "running-left",
+      "path": "qa/runtime-previews-dark/02-running-left-runtime.webp",
+      "sha256": "b39eaf730f1745e4a8af41c1162ed12e0da719792365eef20ea7f02991374ac5",
+      "frameCount": 30,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9780,
+      "pageHeight": 208,
+      "pages": 30,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 2,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 2,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 5,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 6,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 2,
+          "column": 7,
+          "delayMs": 220
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 3,
+      "rowId": "waving",
+      "path": "qa/runtime-previews-dark/03-waving-runtime.webp",
+      "sha256": "8ffbf04830fbf846e77df21ce58825de3dca6edc6505f95aca32ac0624cc4031",
+      "frameCount": 18,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 8700,
+      "pageHeight": 208,
+      "pages": 18,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 3,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 3,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 3,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 3,
+          "column": 3,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 3,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 3,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 3,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 3,
+          "column": 3,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 3,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 3,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 3,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 3,
+          "column": 3,
+          "delayMs": 280
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 4,
+      "rowId": "jumping",
+      "path": "qa/runtime-previews-dark/04-jumping-runtime.webp",
+      "sha256": "e16d1056c9351000fb82ff3ee3a4fb388be178614e56ab1c791822b90ec25356",
+      "frameCount": 21,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9120,
+      "pageHeight": 208,
+      "pages": 21,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 4,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 4,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 4,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 4,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 4,
+          "column": 4,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 4,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 4,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 4,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 4,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 4,
+          "column": 4,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 4,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 4,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 4,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 4,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 4,
+          "column": 4,
+          "delayMs": 280
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 5,
+      "rowId": "failed",
+      "path": "qa/runtime-previews-dark/05-failed-runtime.webp",
+      "sha256": "7a450b396011c7da7e4accf11d6c2ac7e10c1c00ff51313931ba608313ef10cb",
+      "frameCount": 30,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 10260,
+      "pageHeight": 208,
+      "pages": 30,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 4,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 5,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 6,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 5,
+          "column": 7,
+          "delayMs": 240
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 4,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 5,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 6,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 5,
+          "column": 7,
+          "delayMs": 240
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 0,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 1,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 2,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 3,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 4,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 5,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 6,
+          "delayMs": 140
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 5,
+          "column": 7,
+          "delayMs": 240
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 6,
+      "rowId": "waiting",
+      "path": "qa/runtime-previews-dark/06-waiting-runtime.webp",
+      "sha256": "97d2a3f8100b982c27c5fe47c504ddfe575fdded8b4e147babfeb6af170204f6",
+      "frameCount": 24,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9630,
+      "pageHeight": 208,
+      "pages": 24,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 6,
+          "column": 5,
+          "delayMs": 260
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 6,
+          "column": 5,
+          "delayMs": 260
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 6,
+          "column": 5,
+          "delayMs": 260
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 7,
+      "rowId": "running",
+      "path": "qa/runtime-previews-dark/07-running-runtime.webp",
+      "sha256": "7054ef51889385bbc1da1e6fb7c2ee2e68f9c14b48145347d6aa37d6e8ddf941",
+      "frameCount": 24,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9060,
+      "pageHeight": 208,
+      "pages": 24,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 7,
+          "column": 5,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 7,
+          "column": 5,
+          "delayMs": 220
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 0,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 1,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 2,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 3,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 4,
+          "delayMs": 120
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 7,
+          "column": 5,
+          "delayMs": 220
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    },
+    {
+      "row": 8,
+      "rowId": "review",
+      "path": "qa/runtime-previews-dark/08-review-runtime.webp",
+      "sha256": "4a2586455f17ef61ca745ef03c8e7c3349b08bcf68331a8842da550865ec5fdc",
+      "frameCount": 24,
+      "actionCycles": 3,
+      "includesOneSlowIdleCycle": true,
+      "totalDurationMs": 9690,
+      "pageHeight": 208,
+      "pages": 24,
+      "loop": "infinite preview loop; each loop replays the documented finite runtime sequence",
+      "sequence": [
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 1,
+          "row": 8,
+          "column": 5,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 2,
+          "row": 8,
+          "column": 5,
+          "delayMs": 280
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 0,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 1,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 2,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 3,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 4,
+          "delayMs": 150
+        },
+        {
+          "phase": "action",
+          "cycle": 3,
+          "row": 8,
+          "column": 5,
+          "delayMs": 280
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 0,
+          "delayMs": 1680
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 1,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 2,
+          "delayMs": 660
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 3,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 4,
+          "delayMs": 840
+        },
+        {
+          "phase": "slow-idle",
+          "cycle": 1,
+          "row": 0,
+          "column": 5,
+          "delayMs": 1920
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "allTransitions": {
+      "transitionCount": 65,
+      "normalizedAlphaDifference": {
+        "count": 65,
+        "min": {
+          "transitionId": "r08-repeat-last-to-c0",
+          "value": 0.000227
+        },
+        "mean": 0.065666,
+        "p50": {
+          "transitionId": "r07-c2-to-c3",
+          "value": 0.043614
+        },
+        "p95": {
+          "transitionId": "r07-c4-to-c5",
+          "value": 0.189099
+        },
+        "max": {
+          "transitionId": "r05-c6-to-c7",
+          "value": 0.219698
+        }
+      },
+      "normalizedRgbaDifference": {
+        "count": 65,
+        "min": {
+          "transitionId": "r08-repeat-last-to-c0",
+          "value": 0.001488
+        },
+        "mean": 0.081211,
+        "p50": {
+          "transitionId": "r01-repeat-last-to-c0",
+          "value": 0.069817
+        },
+        "p95": {
+          "transitionId": "r02-c0-to-c1",
+          "value": 0.204422
+        },
+        "max": {
+          "transitionId": "r04-c3-to-c4",
+          "value": 0.235224
+        }
+      },
+      "normalizedCompositedRgbDifference": {
+        "count": 65,
+        "min": {
+          "transitionId": "r08-repeat-last-to-c0",
+          "value": 0.001863
+        },
+        "mean": 0.08309,
+        "p50": {
+          "transitionId": "r05-c3-to-c4",
+          "value": 0.073569
+        },
+        "p95": {
+          "transitionId": "r07-c0-to-c1",
+          "value": 0.200236
+        },
+        "max": {
+          "transitionId": "r04-c3-to-c4",
+          "value": 0.232266
+        }
+      },
+      "changedPixelFraction": {
+        "count": 65,
+        "min": {
+          "transitionId": "r08-repeat-last-to-c0",
+          "value": 0.014022
+        },
+        "mean": 0.092753,
+        "p50": {
+          "transitionId": "r03-c1-to-c2",
+          "value": 0.068034
+        },
+        "p95": {
+          "transitionId": "r04-c3-to-c4",
+          "value": 0.218274
+        },
+        "max": {
+          "transitionId": "r05-c6-to-c7",
+          "value": 0.405349
+        }
+      },
+      "changedCompositedPixelFraction": {
+        "count": 65,
+        "min": {
+          "transitionId": "r06-c2-to-c3",
+          "value": 0.021509
+        },
+        "mean": 0.123462,
+        "p50": {
+          "transitionId": "r03-cycle3-last-to-idle-c0",
+          "value": 0.108248
+        },
+        "p95": {
+          "transitionId": "r04-c0-to-c1",
+          "value": 0.24056
+        },
+        "max": {
+          "transitionId": "r05-c6-to-c7",
+          "value": 0.405349
+        }
+      },
+      "alphaAreaRatioSymmetric": {
+        "count": 65,
+        "min": {
+          "transitionId": "r08-repeat-last-to-c0",
+          "value": 1.00001
+        },
+        "mean": 1.329137,
+        "p50": {
+          "transitionId": "r05-c2-to-c3",
+          "value": 1.123231
+        },
+        "p95": {
+          "transitionId": "r07-c4-to-c5",
+          "value": 1.918128
+        },
+        "max": {
+          "transitionId": "r05-c6-to-c7",
+          "value": 2.253407
+        }
+      }
+    },
+    "byKind": {
+      "adjacent": {
+        "transitionCount": 48,
+        "normalizedAlphaDifference": {
+          "count": 48,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.00386
+          },
+          "mean": 0.084404,
+          "p50": {
+            "transitionId": "r01-c1-to-c2",
+            "value": 0.075691
+          },
+          "p95": {
+            "transitionId": "r02-c0-to-c1",
+            "value": 0.192777
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.219698
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 48,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.00536
+          },
+          "mean": 0.097261,
+          "p50": {
+            "transitionId": "r07-c3-to-c4",
+            "value": 0.081681
+          },
+          "p95": {
+            "transitionId": "r07-c0-to-c1",
+            "value": 0.205091
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.235224
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 48,
+          "min": {
+            "transitionId": "r00-c4-to-c5",
+            "value": 0.005534
+          },
+          "mean": 0.097428,
+          "p50": {
+            "transitionId": "r01-c4-to-c5",
+            "value": 0.088905
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.212925
+          },
+          "max": {
+            "transitionId": "r04-c3-to-c4",
+            "value": 0.232266
+          }
+        },
+        "changedPixelFraction": {
+          "count": 48,
+          "min": {
+            "transitionId": "r02-c4-to-c5",
+            "value": 0.01585
+          },
+          "mean": 0.114695,
+          "p50": {
+            "transitionId": "r05-c1-to-c2",
+            "value": 0.096204
+          },
+          "p95": {
+            "transitionId": "r07-c1-to-c2",
+            "value": 0.219226
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 48,
+          "min": {
+            "transitionId": "r06-c2-to-c3",
+            "value": 0.021509
+          },
+          "mean": 0.142105,
+          "p50": {
+            "transitionId": "r06-c3-to-c4",
+            "value": 0.121945
+          },
+          "p95": {
+            "transitionId": "r03-c2-to-c3",
+            "value": 0.254282
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 0.405349
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 48,
+          "min": {
+            "transitionId": "r00-c1-to-c2",
+            "value": 1.00006
+          },
+          "mean": 1.443592,
+          "p50": {
+            "transitionId": "r03-c0-to-c1",
+            "value": 1.455728
+          },
+          "p95": {
+            "transitionId": "r05-c5-to-c6",
+            "value": 1.932747
+          },
+          "max": {
+            "transitionId": "r05-c6-to-c7",
+            "value": 2.253407
+          }
+        }
+      },
+      "idle-loop": {
+        "transitionCount": 1,
+        "normalizedAlphaDifference": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.001895
+          },
+          "mean": 0.001895,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.001895
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.001895
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.001895
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.02327
+          },
+          "mean": 0.02327,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.02327
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.02327
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.02327
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.030047
+          },
+          "mean": 0.030047,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.030047
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.030047
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.030047
+          }
+        },
+        "changedPixelFraction": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.018855
+          },
+          "mean": 0.018855,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.018855
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.018855
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.018855
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.054913
+          },
+          "mean": 0.054913,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.054913
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.054913
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 0.054913
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 1,
+          "min": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 1.002159
+          },
+          "mean": 1.002159,
+          "p50": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 1.002159
+          },
+          "p95": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 1.002159
+          },
+          "max": {
+            "transitionId": "r00-idle-c5-to-c0",
+            "value": 1.002159
+          }
+        }
+      },
+      "repeat-boundary": {
+        "transitionCount": 8,
+        "normalizedAlphaDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.000227
+          },
+          "mean": 0.012117,
+          "p50": {
+            "transitionId": "r03-repeat-last-to-c0",
+            "value": 0.01022
+          },
+          "p95": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.028705
+          },
+          "max": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.028705
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.001488
+          },
+          "mean": 0.040008,
+          "p50": {
+            "transitionId": "r02-repeat-last-to-c0",
+            "value": 0.041102
+          },
+          "p95": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.069817
+          },
+          "max": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.069817
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.001863
+          },
+          "mean": 0.048508,
+          "p50": {
+            "transitionId": "r07-repeat-last-to-c0",
+            "value": 0.046303
+          },
+          "p95": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.08145
+          },
+          "max": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.08145
+          }
+        },
+        "changedPixelFraction": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.014022
+          },
+          "mean": 0.030067,
+          "p50": {
+            "transitionId": "r04-repeat-last-to-c0",
+            "value": 0.027669
+          },
+          "p95": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.046324
+          },
+          "max": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.046324
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 0.027995
+          },
+          "mean": 0.076998,
+          "p50": {
+            "transitionId": "r07-repeat-last-to-c0",
+            "value": 0.072691
+          },
+          "p95": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.110201
+          },
+          "max": {
+            "transitionId": "r01-repeat-last-to-c0",
+            "value": 0.110201
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-repeat-last-to-c0",
+            "value": 1.00001
+          },
+          "mean": 1.002061,
+          "p50": {
+            "transitionId": "r02-repeat-last-to-c0",
+            "value": 1.00055
+          },
+          "p95": {
+            "transitionId": "r06-repeat-last-to-c0",
+            "value": 1.00798
+          },
+          "max": {
+            "transitionId": "r06-repeat-last-to-c0",
+            "value": 1.00798
+          }
+        }
+      },
+      "third-cycle-to-idle": {
+        "transitionCount": 8,
+        "normalizedAlphaDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r05-cycle3-last-to-idle-c0",
+            "value": 0.001987
+          },
+          "mean": 0.014758,
+          "p50": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 0.006778
+          },
+          "p95": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.052297
+          },
+          "max": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.052297
+          }
+        },
+        "normalizedRgbaDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.008035
+          },
+          "mean": 0.033358,
+          "p50": {
+            "transitionId": "r08-cycle3-last-to-idle-c0",
+            "value": 0.024219
+          },
+          "p95": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.073711
+          },
+          "max": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.073711
+          }
+        },
+        "normalizedCompositedRgbDifference": {
+          "count": 8,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.007697
+          },
+          "mean": 0.038277,
+          "p50": {
+            "transitionId": "r05-cycle3-last-to-idle-c0",
+            "value": 0.029446
+          },
+          "p95": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.076952
+          },
+          "max": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.076952
+          }
+        },
+        "changedPixelFraction": {
+          "count": 8,
+          "min": {
+            "transitionId": "r05-cycle3-last-to-idle-c0",
+            "value": 0.01863
+          },
+          "mean": 0.033019,
+          "p50": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 0.024239
+          },
+          "p95": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.070363
+          },
+          "max": {
+            "transitionId": "r04-cycle3-last-to-idle-c0",
+            "value": 0.070363
+          }
+        },
+        "changedCompositedPixelFraction": {
+          "count": 8,
+          "min": {
+            "transitionId": "r01-cycle3-last-to-idle-c0",
+            "value": 0.033729
+          },
+          "mean": 0.066638,
+          "p50": {
+            "transitionId": "r08-cycle3-last-to-idle-c0",
+            "value": 0.061523
+          },
+          "p95": {
+            "transitionId": "r03-cycle3-last-to-idle-c0",
+            "value": 0.108248
+          },
+          "max": {
+            "transitionId": "r03-cycle3-last-to-idle-c0",
+            "value": 0.108248
+          }
+        },
+        "alphaAreaRatioSymmetric": {
+          "count": 8,
+          "min": {
+            "transitionId": "r08-cycle3-last-to-idle-c0",
+            "value": 1.003482
+          },
+          "mean": 1.01035,
+          "p50": {
+            "transitionId": "r07-cycle3-last-to-idle-c0",
+            "value": 1.003567
+          },
+          "p95": {
+            "transitionId": "r03-cycle3-last-to-idle-c0",
+            "value": 1.031191
+          },
+          "max": {
+            "transitionId": "r03-cycle3-last-to-idle-c0",
+            "value": 1.031191
+          }
+        }
+      }
+    }
+  },
+  "validation": {
+    "ok": true,
+    "checks": [
+      {
+        "id": "transition-count",
+        "actual": 65,
+        "expected": 65,
+        "operator": "equal",
+        "pass": true
+      },
+      {
+        "id": "normalized-alpha-difference",
+        "actual": 0.219698,
+        "maximum": 0.25,
+        "operator": "maximum",
+        "pass": true
+      },
+      {
+        "id": "composited-rgb-difference",
+        "actual": 0.232266,
+        "maximum": 0.25,
+        "operator": "maximum",
+        "pass": true
+      },
+      {
+        "id": "changed-pixel-fraction",
+        "actual": 0.405349,
+        "maximum": 0.45,
+        "operator": "maximum",
+        "pass": true
+      },
+      {
+        "id": "alpha-area-ratio-symmetric",
+        "actual": 2.253407,
+        "maximum": 2.5,
+        "operator": "maximum",
+        "pass": true
+      }
+    ]
+  }
+}

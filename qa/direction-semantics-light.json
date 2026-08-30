@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "variant": "light",
+  "petId": "grok-bot-light",
+  "atlasSha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+  "ok": true,
+  "reviewer": {
+    "kind": "independent-agent-visual-audit",
+    "name": "Sagan"
+  },
+  "method": "Original-detail visual inspection of the final official 16-direction QA sheet, checking clockwise order, cardinal anchors, diagonals, and screen-coordinate left/right semantics.",
+  "reviewedArtifact": {
+    "path": "qa/look-directions-light.png",
+    "sha256": "0128ddb7d8bd58d0cf6c9119270497281b21eee03b7de56aeac2dc31bee20931"
+  },
+  "directions": [
+    {
+      "angle": 0,
+      "row": 9,
+      "column": 0,
+      "frame": "gaze-000",
+      "pass": true,
+      "observation": "The eye pair points clearly upward with centered horizontal balance."
+    },
+    {
+      "angle": 22.5,
+      "row": 9,
+      "column": 1,
+      "frame": "gaze-22.5",
+      "pass": true,
+      "observation": "The eye pair points upward and toward screen-right without ambiguity."
+    },
+    {
+      "angle": 45,
+      "row": 9,
+      "column": 2,
+      "frame": "gaze-045",
+      "pass": true,
+      "observation": "The eye pair reads as a clear upper-right diagonal."
+    },
+    {
+      "angle": 67.5,
+      "row": 9,
+      "column": 3,
+      "frame": "gaze-67.5",
+      "pass": true,
+      "observation": "The eye pair points mostly screen-right with a visible upward component."
+    },
+    {
+      "angle": 90,
+      "row": 9,
+      "column": 4,
+      "frame": "gaze-090",
+      "pass": true,
+      "observation": "The eye pair points directly toward screen-right."
+    },
+    {
+      "angle": 112.5,
+      "row": 9,
+      "column": 5,
+      "frame": "gaze-112.5",
+      "pass": true,
+      "observation": "The eye pair points mostly screen-right with a visible downward component."
+    },
+    {
+      "angle": 135,
+      "row": 9,
+      "column": 6,
+      "frame": "gaze-135",
+      "pass": true,
+      "observation": "The eye pair reads as a clear lower-right diagonal."
+    },
+    {
+      "angle": 157.5,
+      "row": 9,
+      "column": 7,
+      "frame": "gaze-157.5",
+      "pass": true,
+      "observation": "The eye pair points downward and toward screen-right without ambiguity."
+    },
+    {
+      "angle": 180,
+      "row": 10,
+      "column": 0,
+      "frame": "gaze-180",
+      "pass": true,
+      "observation": "The eye pair points clearly downward with centered horizontal balance."
+    },
+    {
+      "angle": 202.5,
+      "row": 10,
+      "column": 1,
+      "frame": "gaze-202.5",
+      "pass": true,
+      "observation": "The eye pair points downward and toward screen-left without ambiguity."
+    },
+    {
+      "angle": 225,
+      "row": 10,
+      "column": 2,
+      "frame": "gaze-225",
+      "pass": true,
+      "observation": "The eye pair reads as a clear lower-left diagonal."
+    },
+    {
+      "angle": 247.5,
+      "row": 10,
+      "column": 3,
+      "frame": "gaze-247.5",
+      "pass": true,
+      "observation": "The eye pair points mostly screen-left with a visible downward component."
+    },
+    {
+      "angle": 270,
+      "row": 10,
+      "column": 4,
+      "frame": "gaze-270",
+      "pass": true,
+      "observation": "The eye pair points directly toward screen-left."
+    },
+    {
+      "angle": 292.5,
+      "row": 10,
+      "column": 5,
+      "frame": "gaze-292.5",
+      "pass": true,
+      "observation": "The eye pair points mostly screen-left with a visible upward component."
+    },
+    {
+      "angle": 315,
+      "row": 10,
+      "column": 6,
+      "frame": "gaze-315",
+      "pass": true,
+      "observation": "The eye pair reads as a clear upper-left diagonal."
+    },
+    {
+      "angle": 337.5,
+      "row": 10,
+      "column": 7,
+      "frame": "gaze-337.5",
+      "pass": true,
+      "observation": "The eye pair points upward and toward screen-left without ambiguity."
+    }
+  ],
+  "issues": [],
+  "warnings": []
+}

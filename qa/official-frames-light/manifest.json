@@ -1,0 +1,609 @@
+{
+  "schemaVersion": 1,
+  "kind": "codex-pet-official-preview-frame-extraction",
+  "variant": "light",
+  "atlas": {
+    "path": "pet/grok-bot-light/spritesheet.webp",
+    "sha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+    "decodedRgbaSha256": "d7384ca6cf37290b0ccb421e58e79a918f03b49457d97d56e1e23b835a4e2ba5",
+    "width": 1536,
+    "height": 2288,
+    "channels": 4
+  },
+  "cell": {
+    "width": 192,
+    "height": 208,
+    "channels": 4,
+    "bytes": 159744
+  },
+  "extractionPolicy": {
+    "timedRows": [
+      "idle",
+      "running-right",
+      "running-left",
+      "waving",
+      "jumping",
+      "failed",
+      "waiting",
+      "running",
+      "review"
+    ],
+    "idleNeutralLookCellExcluded": {
+      "row": 0,
+      "column": 6
+    },
+    "verification": "every extracted PNG was decoded and compared byte-for-byte with its source atlas cell"
+  },
+  "frames": [
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 0,
+      "durationMs": 280,
+      "atlasFrameName": "quiet-breath",
+      "path": "qa/official-frames-light/idle/00.png",
+      "pngSha256": "c4fa65486edbd2ed7b88b7d9fa97a206046970c90a68706b78a59f3adcc7db61",
+      "rgbaSha256": "37670a3dd25b41334ec462218c8166250629293ff65409a8ecbe93e87fbd8917"
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 1,
+      "durationMs": 110,
+      "atlasFrameName": "ambient-orbit-a",
+      "path": "qa/official-frames-light/idle/01.png",
+      "pngSha256": "0828ebbe8b40fa64b758aaee553f947939054ee3edfeb9cb0eae36ed03bceec2",
+      "rgbaSha256": "35c293d766afbb80832a7be3c0ccd762089d4c4dd8b11f88bd7881f10eb9e3ff"
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 2,
+      "durationMs": 110,
+      "atlasFrameName": "shy-glance",
+      "path": "qa/official-frames-light/idle/02.png",
+      "pngSha256": "3b26ce3fdc1a8af825f9b9cca61687b4ad2f1a0fe96e61363372bbe5a58c15ca",
+      "rgbaSha256": "5e265370f894a8d7c3e94f347fe8e6b20290a0e959fe54be86c555ef978dc604"
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 3,
+      "durationMs": 140,
+      "atlasFrameName": "idle-blink",
+      "path": "qa/official-frames-light/idle/03.png",
+      "pngSha256": "c90a3fe9ccb9f9a606b38faa714c0e62c3837eca88033fa897d03be5d6098c96",
+      "rgbaSha256": "6aab3057dd4c6aa96351e17b1278abcfa406f113d75824c013e5de08d1d87ea1"
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 4,
+      "durationMs": 140,
+      "atlasFrameName": "ambient-orbit-b",
+      "path": "qa/official-frames-light/idle/04.png",
+      "pngSha256": "a1549b4577c338a9f5dc156b0156faceaf91456d4e12435cb831856f11634f85",
+      "rgbaSha256": "6687edf2afc2b2b5ec30702d449606bb5cf6b01feb9d7563c74ce7722b82a073"
+    },
+    {
+      "state": "idle",
+      "row": 0,
+      "column": 5,
+      "durationMs": 320,
+      "atlasFrameName": "idle-reopen",
+      "path": "qa/official-frames-light/idle/05.png",
+      "pngSha256": "bf7cf314033bcab299d0e4701efbd70b055509975022c7c07c56862127eb818d",
+      "rgbaSha256": "400787327856d0693c42408562696dc64fdeafec6bbd1ec63482224ca965cbda"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 0,
+      "durationMs": 120,
+      "atlasFrameName": "right-search",
+      "path": "qa/official-frames-light/running-right/00.png",
+      "pngSha256": "a8f2291a25f607c9f8838583b30b0826f7cefe20d7338695144ce5ca942363be",
+      "rgbaSha256": "cf355ee4f6720b92cd550d40f22806b060c75011073bb134d03ae7e72a0e1537"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 1,
+      "durationMs": 120,
+      "atlasFrameName": "right-receive-entry",
+      "path": "qa/official-frames-light/running-right/01.png",
+      "pngSha256": "f6bce48126acf62cb5b72207a4730a08978d76cde58ac0f457098e6a649f8207",
+      "rgbaSha256": "98a72546dd43784a1ffcd3fba488b22a4db6a5b791fbfe6750fe63a6fd9bc7a8"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 2,
+      "durationMs": 120,
+      "atlasFrameName": "right-receive-open",
+      "path": "qa/official-frames-light/running-right/02.png",
+      "pngSha256": "ad27f13b119671aa266aa1b62d2423919849f758d2634d16ef99e58b42b995ba",
+      "rgbaSha256": "fc01e96a1f5733a781a9f68236e75e79638a2b895a748c12290263f3d4bce797"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 3,
+      "durationMs": 120,
+      "atlasFrameName": "right-receive-contact",
+      "path": "qa/official-frames-light/running-right/03.png",
+      "pngSha256": "7d786e2cfeed1c1a5479cee26322534d5b67c0b849a54c52bdd7e1f2b966d967",
+      "rgbaSha256": "18493400daebe3b22d696aaeccd57292793a524543342f15516ef456850a7c0b"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 4,
+      "durationMs": 120,
+      "atlasFrameName": "right-receive-release",
+      "path": "qa/official-frames-light/running-right/04.png",
+      "pngSha256": "f4b1683c75f47a579e507230b1e8d6d1f2e69b6d2fae75d1bc66ca0a48573af1",
+      "rgbaSha256": "bf0c615af3bba94be1ca7b097a2691bf2b79b09ca49fe7c8163836499b56fb8d"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 5,
+      "durationMs": 120,
+      "atlasFrameName": "right-scan-release",
+      "path": "qa/official-frames-light/running-right/05.png",
+      "pngSha256": "adc85c15a04c208cb72fb1078500ca7c9adcea4fc624c5b2d48f5ff34a41849e",
+      "rgbaSha256": "a1e194fe92bd063f231d638c14800444e138b21254098b4892a48b7be78ed327"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 6,
+      "durationMs": 120,
+      "atlasFrameName": "right-drag",
+      "path": "qa/official-frames-light/running-right/06.png",
+      "pngSha256": "9b0b0e83cf61a651cca63e76a4cdf25b0ece837fe1535b88ce98e7ce15f2a5ea",
+      "rgbaSha256": "6cabd6d7846e68d1aec1dabeba68a5221654966acd6797071133e344e055b292"
+    },
+    {
+      "state": "running-right",
+      "row": 1,
+      "column": 7,
+      "durationMs": 220,
+      "atlasFrameName": "right-settle",
+      "path": "qa/official-frames-light/running-right/07.png",
+      "pngSha256": "463849a98b156f527b3c0ee8ef95fac70506120beb66a79ac517905041055c04",
+      "rgbaSha256": "fcfaffef87fda07cdf5bca8d860c5e91936badd90b3773c77f580cc58d7a16ff"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 0,
+      "durationMs": 120,
+      "atlasFrameName": "left-compose",
+      "path": "qa/official-frames-light/running-left/00.png",
+      "pngSha256": "4d5f71dd4457cad8945329228b8609e4aa8ee078976b1192480ace4029c10d37",
+      "rgbaSha256": "d67a488d935dfc7d3586d41e9ac960b3fbda449e7fb2bcf92d0fc75f83d9a837"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 1,
+      "durationMs": 120,
+      "atlasFrameName": "left-pencil-entry",
+      "path": "qa/official-frames-light/running-left/01.png",
+      "pngSha256": "53bb6d9430c27524d53fa3b98f7f2371996455dbdf6d6475a45e6fde83a67723",
+      "rgbaSha256": "aa5c0e6ff1dfbce58bb5bc7e3568c5ba665dfaa81bb8b942ccceac83ad6ac3b5"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 2,
+      "durationMs": 120,
+      "atlasFrameName": "left-pencil-write",
+      "path": "qa/official-frames-light/running-left/02.png",
+      "pngSha256": "8f49cf4dd4b8a22bfd2445a7c04e14e95ca6329429840ab20acdf5ad1dfbbcf0",
+      "rgbaSha256": "384326b17d15a97620837f0697532e57737f481b7cdde9b2a999508adf8288df"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 3,
+      "durationMs": 120,
+      "atlasFrameName": "left-pencil-lift",
+      "path": "qa/official-frames-light/running-left/03.png",
+      "pngSha256": "a04ee99f6f4c1fde0074ca14c83d08d01358176e907a0772b39f9f852e843a21",
+      "rgbaSha256": "e27ea08ccccd9606666253fee5d4fc75c60a7a47db7a1eae3d90146f5eef5b0e"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 4,
+      "durationMs": 120,
+      "atlasFrameName": "left-send",
+      "path": "qa/official-frames-light/running-left/04.png",
+      "pngSha256": "64ce14ff837ea52d774da43bbc49402ce8858f756f7df8ffd1a9a9155e21a36a",
+      "rgbaSha256": "437f349bebbf62de4891b279aff440734f48761fbdd2a3c1e5754c46ff7e71a7"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 5,
+      "durationMs": 120,
+      "atlasFrameName": "left-dock",
+      "path": "qa/official-frames-light/running-left/05.png",
+      "pngSha256": "e372e5b0e1b55f429069def2b94bb4787d1b602ee555cbaccb86346f4d8d1bb5",
+      "rgbaSha256": "0e1efed68d71bd829769370502ba7d8bb1be92d1fb70c5bfc8a08fef9a9c0177"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 6,
+      "durationMs": 120,
+      "atlasFrameName": "left-dock-release",
+      "path": "qa/official-frames-light/running-left/06.png",
+      "pngSha256": "d49c536c61c48ca8607efb2828cdb5334f99fd2708f79ef85c2f4fa25520d58b",
+      "rgbaSha256": "5ea667ff524a0671d5bdfe0fd12fa0843d711f7adc10d7654648ba6b5ca92138"
+    },
+    {
+      "state": "running-left",
+      "row": 2,
+      "column": 7,
+      "durationMs": 220,
+      "atlasFrameName": "left-settle",
+      "path": "qa/official-frames-light/running-left/07.png",
+      "pngSha256": "463849a98b156f527b3c0ee8ef95fac70506120beb66a79ac517905041055c04",
+      "rgbaSha256": "fcfaffef87fda07cdf5bca8d860c5e91936badd90b3773c77f580cc58d7a16ff"
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "column": 0,
+      "durationMs": 140,
+      "atlasFrameName": "wave-rise",
+      "path": "qa/official-frames-light/waving/00.png",
+      "pngSha256": "4b26afae0b29f9f52f1729f006d722759c78b50e4deb85a179d3127a7dd60608",
+      "rgbaSha256": "d55b57893ba93ebb634005c6ab4e3bf1c14658214b713afb714ad11b032d1cc4"
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "column": 1,
+      "durationMs": 140,
+      "atlasFrameName": "wave-dictate-entry",
+      "path": "qa/official-frames-light/waving/01.png",
+      "pngSha256": "760d4805bf4b046a01cb838e494915895316b31349ef32922db8786c9d00cca8",
+      "rgbaSha256": "63b6130eb414eb03dfaf1b23f34fb145918fa286aa2882a25b2dd8369b861ef3"
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "column": 2,
+      "durationMs": 140,
+      "atlasFrameName": "wave-dictate-open",
+      "path": "qa/official-frames-light/waving/02.png",
+      "pngSha256": "e808cc0b74b66b054dfefa01100b74921e966f76ccfea456d2ce941c97c5e774",
+      "rgbaSha256": "0bbbe4c7f678d1252b0908ca7eb3cc0c73d1484bec55ac90990c2155c78c2e0a"
+    },
+    {
+      "state": "waving",
+      "row": 3,
+      "column": 3,
+      "durationMs": 280,
+      "atlasFrameName": "wave-settle",
+      "path": "qa/official-frames-light/waving/03.png",
+      "pngSha256": "c0056e30ab5d6fb475bde8e460d184a20f1f6ed50d1975f37f31f28bdef1e1f5",
+      "rgbaSha256": "00e4bde11dfc723bef88cc6e962d9c05a410d7b30d2d7e953426029fbef77b06"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "column": 0,
+      "durationMs": 140,
+      "atlasFrameName": "jump-crouch",
+      "path": "qa/official-frames-light/jumping/00.png",
+      "pngSha256": "002f801773562865f8c5ae5f91c6b185d40c56067f7b08f3c418e26227eaff1a",
+      "rgbaSha256": "a3320e0dbf512dde7608fa22e2478497cd018d41983cb7396b1b10ba3f7cc4ca"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "column": 1,
+      "durationMs": 140,
+      "atlasFrameName": "jump-ball-rise",
+      "path": "qa/official-frames-light/jumping/01.png",
+      "pngSha256": "adf5caac10eacad23efd6ec6baf6eaf3e841f9d5d20b09c7435b9164c9e987b0",
+      "rgbaSha256": "cd15b615dcf0929fb367a211814f732705c6c8704665209c80a3d30966275332"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "column": 2,
+      "durationMs": 140,
+      "atlasFrameName": "jump-ball-impact",
+      "path": "qa/official-frames-light/jumping/02.png",
+      "pngSha256": "ab406d8ae2b161ae448e88e0ba93ab7c2ec1728755259026c320f4fdb75bdfdd",
+      "rgbaSha256": "4834556e82f6016d753f883206fd7a98e5ddaf5f282ff8614468f67bb8bbd7cd"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "column": 3,
+      "durationMs": 140,
+      "atlasFrameName": "jump-ball-rebound",
+      "path": "qa/official-frames-light/jumping/03.png",
+      "pngSha256": "af664038c173ffb93df6b1f9060a4c5630329a198677902bb6bd04eb3681c9eb",
+      "rgbaSha256": "b038d412eaa331e110ed01681c10d3bb5448f0b44da37210f63d9ff79e074425"
+    },
+    {
+      "state": "jumping",
+      "row": 4,
+      "column": 4,
+      "durationMs": 280,
+      "atlasFrameName": "jump-land",
+      "path": "qa/official-frames-light/jumping/04.png",
+      "pngSha256": "a1749ffc63329f42da8a17d05bde8929143311bffd911e998efa5d0fe5f5f1c9",
+      "rgbaSha256": "5e179e09a61d7c69118851fc199ee96205e2e27e107620625b14517672bd1707"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 0,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-suspicious",
+      "path": "qa/official-frames-light/failed/00.png",
+      "pngSha256": "5c1c92f92a54b82fa2f1c3d8a74e43c89e1096ad93341adebf77524219b9684f",
+      "rgbaSha256": "624170b91ff39a403483cb0c59884eb13c0f033e5f052d7e775a962d74fe7710"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 1,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-bang-entry",
+      "path": "qa/official-frames-light/failed/01.png",
+      "pngSha256": "97bc88bdd31505171197dcb8f63c9518e62cf2ed74b34b379d8b30717f1280d1",
+      "rgbaSha256": "2de75dea7b9cbdcbd1ae0e737fa6bed85d367a8234f777ff9eba1242c2920b1e"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 2,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-bang-open",
+      "path": "qa/official-frames-light/failed/02.png",
+      "pngSha256": "a3477c2ff161230b2d420bbe1a01795d129ea0417cec3fb0e3c72a1bf44f7386",
+      "rgbaSha256": "b04b273534c682da44513c27fbc57dc081fda08604863b616b5a6a19b78f1507"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 3,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-bang-impact",
+      "path": "qa/official-frames-light/failed/03.png",
+      "pngSha256": "132ec4c19f5a1199e5884c4e2fe847b33a4ebb5be055d22348097c35f32fea80",
+      "rgbaSha256": "4908d9290749065a65dfa5da8c433ffc79c926c5ea5c158b97a2072c60015e05"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 4,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-standby",
+      "path": "qa/official-frames-light/failed/04.png",
+      "pngSha256": "8498d48d632dcc2a29fb2c27fc34cc4ceecc46e028cac43f8f1a0873b87e807b",
+      "rgbaSha256": "72e16c3d54adbd14960760287d5e515a8b0eaf22e98d6983c74c15a65143c1ce"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 5,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-sad-drift",
+      "path": "qa/official-frames-light/failed/05.png",
+      "pngSha256": "0a2ae3046a423bc007a8a481052b29ddcc3f6cb5ecefdd8386656f536193cd5d",
+      "rgbaSha256": "0e5b1c78def23acea7e914fce5ed11061a5c18b4af5936cbf8dcef8c9c4d488d"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 6,
+      "durationMs": 140,
+      "atlasFrameName": "blocked-shy-recover",
+      "path": "qa/official-frames-light/failed/06.png",
+      "pngSha256": "ea4ea67c76a12605e027debc42fffba5faf43f34f928dcab01d9afaac82f557d",
+      "rgbaSha256": "7a8795a675c60c9ee991a9bdf52c0a04e4de6b23e6242dd274b71c2322cd5685"
+    },
+    {
+      "state": "failed",
+      "row": 5,
+      "column": 7,
+      "durationMs": 240,
+      "atlasFrameName": "blocked-confused-settle",
+      "path": "qa/official-frames-light/failed/07.png",
+      "pngSha256": "7fa8323066daf7ca631bf6450f46a4f2bd0e72f57d18f33e0092af0d3a6d49f5",
+      "rgbaSha256": "630f892b709e13d314e8792d48ebecf10155a77ae11b7eb4d6a7933932655b60"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 0,
+      "durationMs": 150,
+      "atlasFrameName": "wait-attentive",
+      "path": "qa/official-frames-light/waiting/00.png",
+      "pngSha256": "4961725f20c79b53aa33703318c4aa05275cf73d94370e3bb8bae0a5c028d4ba",
+      "rgbaSha256": "cc9976134e2fe15477fb9ec99adf6b3e4beff93eefd3e5d2de84f2e401a6e95e"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 1,
+      "durationMs": 150,
+      "atlasFrameName": "wait-orbit-entry",
+      "path": "qa/official-frames-light/waiting/01.png",
+      "pngSha256": "5d795571131df6644ed84aa1e1c4b61269d370fe9cc7b0dde0f6fcb2f03d1919",
+      "rgbaSha256": "e340d0a85e322e9c422e9bc571e4f80e45c06cc9754b5c63b4697485c1b4a60e"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 2,
+      "durationMs": 150,
+      "atlasFrameName": "wait-orbit",
+      "path": "qa/official-frames-light/waiting/02.png",
+      "pngSha256": "4aad16d8f64ed6dcb9f3705c1b0001150ef135fcf505e7762659538e5cc66f40",
+      "rgbaSha256": "d935080ff128b6a87028fd5f3b966239720ec84b542976d9451a290497472a5e"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 3,
+      "durationMs": 150,
+      "atlasFrameName": "wait-progress",
+      "path": "qa/official-frames-light/waiting/03.png",
+      "pngSha256": "45ee8e75de8891dd6127caf7d98e137d9e4ae6fdc9481c7b30548c3ac67c1b80",
+      "rgbaSha256": "3bedd8666d0be953f62cff57c5ff55a35554669c9da1bd61cd1143ba3e6926eb"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 4,
+      "durationMs": 150,
+      "atlasFrameName": "wait-progress-release",
+      "path": "qa/official-frames-light/waiting/04.png",
+      "pngSha256": "d95701283c5d2bc44f10fee30c2885f8e5b03e59e9d12e043c261b531cc926ca",
+      "rgbaSha256": "04a5477b5da89615d97ca4672fc79298f4d76afe68bd666d2006121b21e7c90b"
+    },
+    {
+      "state": "waiting",
+      "row": 6,
+      "column": 5,
+      "durationMs": 260,
+      "atlasFrameName": "wait-uncertain-settle",
+      "path": "qa/official-frames-light/waiting/05.png",
+      "pngSha256": "d373ed9b588a9d014ac3f56baeb6752dc1b4c55c7b5b7d0b7d33038dce78109a",
+      "rgbaSha256": "421e8e5b91290304af09a0797b261c2df2fa29c20472cb662833ee7d321857d6"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 0,
+      "durationMs": 120,
+      "atlasFrameName": "work-focus",
+      "path": "qa/official-frames-light/running/00.png",
+      "pngSha256": "00c98c225e37b1270947f1276b0716288353cf32a9b6dc7b682733ad59f9be61",
+      "rgbaSha256": "a65e290a5d5844cf3d99d608b548a5587aec27b52e4a7b64cfb90864b129ee96"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 1,
+      "durationMs": 120,
+      "atlasFrameName": "work-gather",
+      "path": "qa/official-frames-light/running/01.png",
+      "pngSha256": "89177f2aaa4016f4b4237d64487072a15783b174dfe72a34c7ca7a7ccadd42de",
+      "rgbaSha256": "c8c4a425fe938870c82ff775269cd4b8ee76005f10d07b2821af1c6f03340ad5"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 2,
+      "durationMs": 120,
+      "atlasFrameName": "work-think",
+      "path": "qa/official-frames-light/running/02.png",
+      "pngSha256": "e492c06b2c04626b8421a2d00cd9ab94f249ec6cb4888f710a0382e36ea658bd",
+      "rgbaSha256": "9ab3cfef5bf0f444b9decec5d6362219bc431a329814733291759aeac15e2d00"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 3,
+      "durationMs": 120,
+      "atlasFrameName": "work-radar",
+      "path": "qa/official-frames-light/running/03.png",
+      "pngSha256": "cdcc156464ca06a7ec1a5e2f0439db48fd707e37f2c0b681bb7f27efadfa3e98",
+      "rgbaSha256": "5066f5b49f098e0468ed9be2d53833032b9b20a2718e1fda0cbca37916d61a21"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 4,
+      "durationMs": 120,
+      "atlasFrameName": "work-whirl-release",
+      "path": "qa/official-frames-light/running/04.png",
+      "pngSha256": "dd623b2ae3118eea1a0393bb6040e100fa5c18454531e2dafc3dbf63b482a2d4",
+      "rgbaSha256": "a48d1f94615b6f77da8d8d3ecca0d4a6ae9c50c1ab0d89d52a135f773f224819"
+    },
+    {
+      "state": "running",
+      "row": 7,
+      "column": 5,
+      "durationMs": 220,
+      "atlasFrameName": "work-settle",
+      "path": "qa/official-frames-light/running/05.png",
+      "pngSha256": "672e36b6502ab1798a22f3b3483e9a84d34602062558a1995417077754d47642",
+      "rgbaSha256": "9ce5591f545d03788741a60199878864a4b730e43ebab04a26bc0346d24cbc41"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 0,
+      "durationMs": 150,
+      "atlasFrameName": "review-ready",
+      "path": "qa/official-frames-light/review/00.png",
+      "pngSha256": "d8f6b89e114ca6575f1142ef58de91a8f4a86bf11eee9beaac9672e871dc69ff",
+      "rgbaSha256": "5b71e7fa24a5e06fb81cdaa196b11fbe0e80e625aa18340e60b1462b856fe0c0"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 1,
+      "durationMs": 150,
+      "atlasFrameName": "review-surprise",
+      "path": "qa/official-frames-light/review/01.png",
+      "pngSha256": "ce3342d79ff1c05d68ab535893a45f5abfc1aae731b8290a6fd3f4daa1c990f0",
+      "rgbaSha256": "cf722ae22f62ca609270e72a041ac2b5dba300d30eba436fe5a4763c80a9568d"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 2,
+      "durationMs": 150,
+      "atlasFrameName": "review-ribbon-entry",
+      "path": "qa/official-frames-light/review/02.png",
+      "pngSha256": "79d4586dc8d4a3cf70a5946dc7b54941d1fdb3201daf54f09c6bf0cbf07e3fc4",
+      "rgbaSha256": "86224c1ba0aa2775c31a09c4e0f17887f59751102314489071f27538f2d05d64"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 3,
+      "durationMs": 150,
+      "atlasFrameName": "review-ribbon-crest",
+      "path": "qa/official-frames-light/review/03.png",
+      "pngSha256": "747209e559bcffecd193262010ca0db5b3e079113b0572a8554f013d2dbefb34",
+      "rgbaSha256": "ba3d3877ab57f64daa6354e69de9625712e9c30168bb5e2e4411ae759e711775"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 4,
+      "durationMs": 150,
+      "atlasFrameName": "review-ribbon-storm",
+      "path": "qa/official-frames-light/review/04.png",
+      "pngSha256": "98c8ae4602201bda6046fb7730fc087538adf9706f8d1f35f35238e347019e9b",
+      "rgbaSha256": "66095d9b52b705bde0475f29838559d5b180078f7f75adcddca28bc03f5980ef"
+    },
+    {
+      "state": "review",
+      "row": 8,
+      "column": 5,
+      "durationMs": 280,
+      "atlasFrameName": "review-ribbon-exit",
+      "path": "qa/official-frames-light/review/05.png",
+      "pngSha256": "ff3136f13ff976fe038b4226662db5db4306e4b16899b84057aa3a5c5ef30e8c",
+      "rgbaSha256": "60f27e3e60b4f6846d25728d550367cba6b5efa82eea5de115d4f432dbe60c10"
+    }
+  ]
+}

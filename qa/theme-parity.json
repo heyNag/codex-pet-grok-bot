@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "darkAtlasSha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
+  "lightAtlasSha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+  "dimensions": {
+    "width": 1536,
+    "height": 2288,
+    "channels": 4
+  },
+  "alphaMaskSha256": {
+    "dark": "5dfba0e1d5a2e7399293eea598d7f9ec54a904018bb14aedb34eedf313aa8284",
+    "light": "5dfba0e1d5a2e7399293eea598d7f9ec54a904018bb14aedb34eedf313aa8284"
+  },
+  "alphaMismatchPixels": 0,
+  "unclassifiedOpaquePairs": 2214,
+  "exactAccentColorPixels": {
+    "dark": {
+      "coral": 108,
+      "blue": 598,
+      "green": 706,
+      "gold": 565,
+      "violet": 726,
+      "teal": 201,
+      "body": 844462,
+      "eyes": 46031
+    },
+    "light": {
+      "coral": 108,
+      "blue": 598,
+      "green": 706,
+      "gold": 565,
+      "violet": 726,
+      "teal": 201,
+      "body": 844461,
+      "eyes": 46039
+    }
+  },
+  "accentColors": {
+    "coral": "#F9705C",
+    "blue": "#5B95F0",
+    "green": "#3FBE86",
+    "gold": "#F5B13F",
+    "violet": "#9A72EE",
+    "teal": "#35C3BD"
+  },
+  "errors": [],
+  "warnings": [
+    "2214 fully opaque overlapping pixels are composited colors rather than direct monochrome inversions or exact accents"
+  ]
+}

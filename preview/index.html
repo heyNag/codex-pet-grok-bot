@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Interactive animation and atlas preview for the Grok Bot Codex pet."
+    />
+    <title>Grok Bot · Codex Pet Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-pet-theme="dark" data-preview-mode="both">
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="../README.md" aria-label="Grok Bot project README">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span>
+        </span>
+        <span>
+          <strong>Grok Bot</strong>
+          <small>Codex pet lab</small>
+        </span>
+      </a>
+
+      <nav aria-label="Project links">
+        <a href="../docs/STATE-MAP.md">39-state map</a>
+        <a href="../docs/FORMAT.md">v2 contract</a>
+        <button class="quiet-button" id="sheet-toggle" type="button" aria-expanded="false">
+          View atlas
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span></span> Full-range character study</p>
+        <h1 id="page-title">One little bot.<br /><em>A lot going on.</em></h1>
+        <p class="lede">
+          Compare both installable variants in sync, inspect all 39 character-state
+          snapshots in the separate Character Lab, and move through the
+          gaze field to make both pets follow you in 22.5° steps.
+        </p>
+      </section>
+
+      <section class="lab" aria-label="Pet animation lab">
+        <div class="stage-panel">
+          <div class="stage-topline">
+            <div>
+              <span class="status-light" aria-hidden="true"></span>
+              <span id="runtime-state">Idle</span>
+            </div>
+            <code id="cell-readout">r0 · c0</code>
+          </div>
+
+          <div class="theme-panes pet-stages" id="pet-stages">
+            <div
+              class="pet-stage"
+              id="pet-stage-dark"
+              data-theme-pane="dark"
+              data-surface-theme="dark"
+            >
+              <div class="variant-badge">
+                <strong>Dark Codex</strong>
+                <code>grok-bot-dark</code>
+              </div>
+              <div class="halo" aria-hidden="true"></div>
+              <div class="sprite-wrap">
+                <div
+                  class="pet-sprite"
+                  data-pet-sprite="dark"
+                  role="img"
+                  aria-label="Dark Codex Grok Bot playing the idle animation"
+                ></div>
+              </div>
+              <div class="build-message" data-atlas-missing="dark" hidden>
+                <strong>Dark atlas not built yet.</strong>
+                <span>Run <code>npm run build</code>, then refresh.</span>
+              </div>
+            </div>
+            <div
+              class="pet-stage"
+              id="pet-stage-light"
+              data-theme-pane="light"
+              data-surface-theme="light"
+            >
+              <div class="variant-badge">
+                <strong>Light Codex</strong>
+                <code>grok-bot-light</code>
+              </div>
+              <div class="halo" aria-hidden="true"></div>
+              <div class="sprite-wrap">
+                <div
+                  class="pet-sprite"
+                  data-pet-sprite="light"
+                  role="img"
+                  aria-label="Light Codex Grok Bot playing the idle animation"
+                ></div>
+              </div>
+              <div class="build-message" data-atlas-missing="light" hidden>
+                <strong>Light atlas not built yet.</strong>
+                <span>Run <code>npm run build</code>, then refresh.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="transport" aria-label="Animation playback controls">
+            <button class="transport-primary" id="play-pause" type="button">
+              <span id="play-icon" aria-hidden="true">Ⅱ</span>
+              <span id="play-label">Pause</span>
+            </button>
+            <button class="transport-button" id="previous-frame" type="button" aria-label="Previous frame">
+              ←
+            </button>
+            <button class="transport-button" id="next-frame" type="button" aria-label="Next frame">
+              →
+            </button>
+            <label class="settle-toggle">
+              <input id="host-settle" type="checkbox" checked />
+              <span aria-hidden="true"></span>
+              Host settle
+            </label>
+          </div>
+
+          <div
+            class="gaze-card"
+            id="gaze-field"
+            tabindex="0"
+            aria-label="Pointer gaze field. Move the pointer here or use the arrow keys to choose a direction."
+          >
+            <div class="gaze-copy">
+              <span class="mini-label">Pointer gaze · rows 9–10</span>
+              <strong>Move through this field</strong>
+            </div>
+            <div class="gaze-angle">
+              <span id="angle-readout">0°</span>
+              <small id="direction-readout">up</small>
+            </div>
+            <div class="gaze-origin" aria-hidden="true"></div>
+            <div class="gaze-pointer" id="gaze-pointer" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <aside class="control-panel" aria-label="Pet preview controls">
+          <fieldset class="theme-picker" aria-describedby="theme-description">
+            <legend>
+              <span class="mini-label">Independent pet packages</span>
+              <strong>Comparison view</strong>
+            </legend>
+            <div class="theme-options">
+              <button
+                class="theme-button theme-button-both is-active"
+                type="button"
+                data-preview-mode-button="both"
+                aria-pressed="true"
+                aria-controls="pet-stages source-motion-previews atlas-views"
+              >
+                <span class="theme-swatch theme-swatch-both" aria-hidden="true"></span>
+                <span>
+                  <strong>Compare both</strong>
+                  <small>Synchronized white and black variants</small>
+                  <code>dark + light</code>
+                </span>
+              </button>
+              <button
+                class="theme-button"
+                type="button"
+                data-preview-mode-button="dark"
+                aria-pressed="false"
+                aria-controls="pet-stages source-motion-previews atlas-views"
+              >
+                <span class="theme-swatch theme-swatch-dark" aria-hidden="true"></span>
+                <span>
+                  <strong>Dark Codex</strong>
+                  <small>White bot · dark surface</small>
+                  <code>grok-bot-dark</code>
+                </span>
+              </button>
+              <button
+                class="theme-button"
+                type="button"
+                data-preview-mode-button="light"
+                aria-pressed="false"
+                aria-controls="pet-stages source-motion-previews atlas-views"
+              >
+                <span class="theme-swatch theme-swatch-light" aria-hidden="true"></span>
+                <span>
+                  <strong>Light Codex</strong>
+                  <small>Black bot · light surface</small>
+                  <code>grok-bot-light</code>
+                </span>
+              </button>
+            </div>
+            <p id="theme-description" aria-live="polite">
+              Comparing <code>grok-bot-dark</code> and <code>grok-bot-light</code>
+              with one synchronized controller.
+            </p>
+          </fieldset>
+
+          <div class="control-heading">
+            <div>
+              <p class="mini-label">Codex behavior</p>
+              <h2>Animation rows</h2>
+            </div>
+            <span class="frame-pill" id="frame-pill">6 frames</span>
+          </div>
+
+          <div class="behavior-list" id="behavior-list"></div>
+
+          <div class="state-picker">
+            <label for="source-state">
+              <span class="mini-label">Grok Bot Character Lab</span>
+              <strong>Inspect one of 39 character states</strong>
+            </label>
+            <p class="state-picker-note">
+              Each choice opens a paused character-state snapshot in its own five-row
+              inspection atlas. It does not replace the timed Codex row mapped below it.
+            </p>
+            <div class="select-wrap">
+              <select id="source-state"></select>
+              <span aria-hidden="true">⌄</span>
+            </div>
+            <p id="state-explanation"></p>
+          </div>
+
+          <div class="timing-card">
+            <div>
+              <span class="mini-label">Live frame timing</span>
+              <code id="timing-readout">280 · 110 · 110 · 140 · 140 · 320 ms</code>
+            </div>
+            <div class="timing-track" id="timing-track" aria-hidden="true"></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="source-motion-lab" aria-labelledby="source-motion-title">
+        <div class="source-motion-heading">
+          <div>
+            <p class="eyebrow"><span></span> Grok Bot motion bench</p>
+            <h2 id="source-motion-title">All 14 body-morph effects, moving.</h2>
+          </div>
+          <p>
+            Lossless 60 fps studies driven by the character's activation spring.
+            Each loop shows onset, sustained motion, and spring release; the installable
+            Codex rows above select readable frames from this richer character vocabulary.
+          </p>
+        </div>
+        <div class="source-motion-grid">
+          <div class="source-motion-preview-column">
+            <div class="theme-panes source-motion-previews" id="source-motion-previews">
+              <div
+                class="source-motion-stage"
+                data-theme-pane="dark"
+                data-surface-theme="dark"
+              >
+                <div class="variant-badge">
+                  <strong>Dark Codex</strong>
+                  <code>grok-bot-dark</code>
+                </div>
+                <div class="source-motion-checker" aria-hidden="true"></div>
+                <img
+                  data-source-motion-image="dark"
+                  src="./source-lab/motion/dark/whirl.webp"
+                  alt="Loading whirl for the Grok Bot loading state, rendered at 60 frames per second for Dark Codex"
+                />
+                <div class="build-message" data-motion-missing="dark" hidden>
+                  <strong>Dark motion study not built yet.</strong>
+                  <span>Run <code>npm run build:source-motion</code>, then refresh.</span>
+                </div>
+              </div>
+              <div
+                class="source-motion-stage"
+                data-theme-pane="light"
+                data-surface-theme="light"
+              >
+                <div class="variant-badge">
+                  <strong>Light Codex</strong>
+                  <code>grok-bot-light</code>
+                </div>
+                <div class="source-motion-checker" aria-hidden="true"></div>
+                <img
+                  data-source-motion-image="light"
+                  src="./source-lab/motion/light/whirl.webp"
+                  alt="Loading whirl for the Grok Bot loading state, rendered at 60 frames per second for Light Codex"
+                />
+                <div class="build-message" data-motion-missing="light" hidden>
+                  <strong>Light motion study not built yet.</strong>
+                  <span>Run <code>npm run build:source-motion</code>, then refresh.</span>
+                </div>
+              </div>
+            </div>
+            <div class="source-motion-readout" id="source-motion-readout">
+              <strong>Loading whirl</strong>
+              <span><code>whirl</code> · loading · exact spring onset, sustained sample, and spring release</span>
+            </div>
+          </div>
+          <div class="source-effect-list" id="source-effect-list" aria-label="Character effect motion studies"></div>
+        </div>
+      </section>
+
+      <section class="atlas-panel" id="atlas-panel" hidden aria-labelledby="atlas-title">
+        <div class="atlas-heading">
+          <div>
+            <p class="eyebrow"><span></span> Active atlas view</p>
+            <h2 id="atlas-title">1536 × 2288 transparent atlas</h2>
+            <p>
+              <span id="atlas-variant">Dark Codex + Light Codex · synchronized comparison</span><br />
+              <span id="atlas-description">Eight columns, eleven rows, 192 × 208 pixels per cell.</span>
+            </p>
+          </div>
+          <button class="quiet-button" id="sheet-close" type="button">Close atlas</button>
+        </div>
+
+        <div class="theme-panes atlas-views" id="atlas-views">
+          <div class="atlas-view" data-theme-pane="dark" data-surface-theme="dark">
+            <div class="atlas-view-label">
+              <strong>Dark Codex</strong>
+              <code>grok-bot-dark</code>
+            </div>
+            <div class="atlas-scroll">
+              <div class="atlas-frame" data-atlas-frame="dark">
+                <img
+                  data-atlas-image="dark"
+                  src="../pet/grok-bot-dark/spritesheet.webp"
+                  alt="Complete 8 by 11 Grok Bot sprite atlas for Dark Codex, the white bot on a dark surface"
+                />
+                <div class="atlas-grid" aria-hidden="true"></div>
+                <div class="atlas-focus" data-atlas-focus="dark" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+          <div class="atlas-view" data-theme-pane="light" data-surface-theme="light">
+            <div class="atlas-view-label">
+              <strong>Light Codex</strong>
+              <code>grok-bot-light</code>
+            </div>
+            <div class="atlas-scroll">
+              <div class="atlas-frame" data-atlas-frame="light">
+                <img
+                  data-atlas-image="light"
+                  src="../pet/grok-bot-light/spritesheet.webp"
+                  alt="Complete 8 by 11 Grok Bot sprite atlas for Light Codex, the black bot on a light surface"
+                />
+                <div class="atlas-grid" aria-hidden="true"></div>
+                <div class="atlas-focus" data-atlas-focus="light" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="atlas-legend" aria-label="Atlas row legend" id="atlas-legend"></div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Independent package IDs · grok-bot-dark · grok-bot-light</span>
+      <span>Build and inspect now. Install only when you choose.</span>
+    </footer>
+
+    <script type="module" src="./app.mjs"></script>
+  </body>
+</html>

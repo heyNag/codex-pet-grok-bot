@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "reviewer": {
+    "kind": "independent-blind-agent",
+    "id": "agent:/root/blind_verdict_5"
+  },
+  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "pairs": [
+    {
+      "pair": "horizontal-1",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eye group leads toward the right rim with the small outer eye ahead; B's group sits more inward and reads leftward."
+    },
+    {
+      "pair": "horizontal-2",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eyes and diagonal axis project toward the right edge; B's larger eye is pulled inward and the face reads left."
+    },
+    {
+      "pair": "horizontal-3",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye cluster is centered inward with a left-leading stance; B's cluster crowds the right contour and leads right."
+    },
+    {
+      "pair": "horizontal-4",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's near eye and pair tilt pull the gaze inward-left; B's unequal eyes extend toward the right silhouette."
+    },
+    {
+      "pair": "horizontal-5",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye group sits inward and its diagonal reads left; B's small outer eye nearly reaches the right rim, leading right."
+    },
+    {
+      "pair": "horizontal-6",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eyes are carried toward the right boundary with an outward-leading tilt; B's group is set inward and reads left."
+    },
+    {
+      "pair": "horizontal-7",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye placement and near-eye weight pull toward the interior-left; B's cluster projects to the right edge."
+    },
+    {
+      "pair": "vertical-1",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes sit lower toward the face center; B's pair is lifted close to the top contour and reads upward."
+    },
+    {
+      "pair": "vertical-2",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eye cluster drops inward with a lower diagonal; B's cluster rides high against the upper silhouette."
+    },
+    {
+      "pair": "vertical-3",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes are visibly low and centerward; B's eyes are elevated and their tilt leads toward the top."
+    },
+    {
+      "pair": "vertical-4",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye pair is raised toward the crown; B's heavier eye sits lower and gives the face a downward gaze."
+    },
+    {
+      "pair": "vertical-5",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eyes and slanted axis sit higher in the silhouette; B's cluster is dropped toward the center and reads down."
+    },
+    {
+      "pair": "vertical-6",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye group is lifted and top-leading; B's larger eye falls lower, making the gaze appear downward."
+    },
+    {
+      "pair": "vertical-7",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes sit low and inward within the circle; B's eyes are raised toward the upper contour and read up."
+    }
+  ]
+}

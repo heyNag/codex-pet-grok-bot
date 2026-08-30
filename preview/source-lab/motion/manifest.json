@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 1,
+  "kind": "grok-bot-motion-studies",
+  "frameRate": 60,
+  "activeSeconds": 1.8,
+  "releaseSeconds": 0.8,
+  "nominalFrameCount": 156,
+  "presentationDurationMs": 2600,
+  "encoder": {
+    "node": "v26.8.1",
+    "sharp": "0.35.4",
+    "libvips": "8.18.6",
+    "webp": "1.6.0"
+  },
+  "spring": {
+    "damping": 28,
+    "stiffness": 196,
+    "maximumStepSeconds": 0.008333333333333333
+  },
+  "inputs": {
+    ".node-version": "50b8995029fdebc8ca439031c6945518d38ab6ad38a3985c9ba386bfafebcb35",
+    "src/grok-art.mjs": "10246bee0d957f974d9d363a44f2657897ffdb3cea719ede7568c2621acc68d4",
+    "src/grok-body-registry.mjs": "75b77a3af8fcba76129de5f16ffdacbfd870bf5c31f3c58f2880c95a3ffb685b",
+    "src/grok-eye-topologies.mjs": "5dbc163ca9b6189cb9b76a83affc890c0187ae912c485ca57e78886e8da9f223",
+    "src/grok-motion.mjs": "f9907704d2a69a4f984714e1f2947d12f88e8d4ac38d06a53737e6ee61a17d6e",
+    "src/spec.mjs": "9a9913cf8ee01eb21248bb7045a5fa2dc4bf5b46c88ecc8c5c5c8e8fc667b627",
+    "scripts/build-source-motion.mjs": "cf3dfe9d31a629a0166b8bb929c98d1b6289f5138c48736604e504cafb602474",
+    "package.json": "cfcad99653a4c7690fba1f5392aa5c5ade75ac84538e50da795a97818e82d4e7",
+    "package-lock.json": "65101407e34beafcfe770f1ba66868e1ef3157ace9fca773f5cc33b1939c038a"
+  },
+  "assets": [
+    {
+      "theme": "dark",
+      "state": "thinking",
+      "effect": "dots",
+      "path": "preview/source-lab/motion/dark/dots.webp",
+      "sha256": "53bb458f0b5b5b1df73708bcd5de771dbaf76b649d0a36688610c9d68f5d5f7e",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "orbit",
+      "effect": "orbit",
+      "path": "preview/source-lab/motion/dark/orbit.webp",
+      "sha256": "fd1d3843846e0dd32a21cac26a4f748180a439e365335c59775600c1f0402bc9",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "radar",
+      "effect": "radar",
+      "path": "preview/source-lab/motion/dark/radar.webp",
+      "sha256": "f2fb806f90fbc930fb8c7eed90182fddf95aade788f5a31e641d3c03969a975a",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "progress",
+      "effect": "progress",
+      "path": "preview/source-lab/motion/dark/progress.webp",
+      "sha256": "fd7877e68bb8c20b1629adb2a206e2e383a51474aa39f3a815e33267c8ca1ee2",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "spawning",
+      "effect": "gather",
+      "path": "preview/source-lab/motion/dark/gather.webp",
+      "sha256": "c8e8245d186801453f5585584b6cf0419f1f57b6a4666a9be080b21cd4d21611",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "dictating",
+      "effect": "wave",
+      "path": "preview/source-lab/motion/dark/wave.webp",
+      "sha256": "337f1d36fc41b494d3a264f40ce90d21d2e6cdc1e2b8f9324f8281d47ce198c7",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "sending",
+      "effect": "send",
+      "path": "preview/source-lab/motion/dark/send.webp",
+      "sha256": "7d9739cee70a0be04062bd10fd962793276e2e400dd2d2014cee838a6252f22b",
+      "pages": 82,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "receiving",
+      "effect": "receive",
+      "path": "preview/source-lab/motion/dark/receive.webp",
+      "sha256": "a77b89bcaaca616b0d3f2051c7d5f8ea80068f912d5b62814c2cf92e80391307",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "uploading",
+      "effect": "dock",
+      "path": "preview/source-lab/motion/dark/dock.webp",
+      "sha256": "1ecc6a7ef2904713f4a826b8ef540696900fe49776d3b3e29c761a37ce35e40b",
+      "pages": 82,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "bouncing",
+      "effect": "ball",
+      "path": "preview/source-lab/motion/dark/ball.webp",
+      "sha256": "2b83aea8f3180d75188aa661585471027d9526d374e4c0b7cca1c77d20594bd4",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "loading",
+      "effect": "whirl",
+      "path": "preview/source-lab/motion/dark/whirl.webp",
+      "sha256": "522955131067e849c5e113c27e7fb4e89c08854f1f0f89f1443ca7e63d598d46",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "powering-down",
+      "effect": "standby",
+      "path": "preview/source-lab/motion/dark/standby.webp",
+      "sha256": "b3e1cba92c4d91e5ee8e0176237446ad32a077144e0d13084e3c3c11ab906af1",
+      "pages": 145,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "writing",
+      "effect": "pencil",
+      "path": "preview/source-lab/motion/dark/pencil.webp",
+      "sha256": "2d4eb34b35781034912c0d83bd6e156a71fb6db5c45b056264e8b51a9c2fb273",
+      "pages": 110,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "dark",
+      "state": "alerting",
+      "effect": "bang",
+      "path": "preview/source-lab/motion/dark/bang.webp",
+      "sha256": "f0ae7dd478108fd9641f4d6444fff55cf94e2f317db8c1c9ce0317f72a4d57f9",
+      "pages": 121,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "thinking",
+      "effect": "dots",
+      "path": "preview/source-lab/motion/light/dots.webp",
+      "sha256": "9c86eda29d78a9160f4a31fec14fe49003c7c24bfcda73b2ec00dbd72e5b19bb",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "orbit",
+      "effect": "orbit",
+      "path": "preview/source-lab/motion/light/orbit.webp",
+      "sha256": "848c04752851b43b3ff56df943ccc8213c31295b4516f5573b02949fbf71bba5",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "radar",
+      "effect": "radar",
+      "path": "preview/source-lab/motion/light/radar.webp",
+      "sha256": "008dec42fadc96b99362158c69e6b5fe743a589e859f9787b52e4955560df649",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "progress",
+      "effect": "progress",
+      "path": "preview/source-lab/motion/light/progress.webp",
+      "sha256": "8a7b006f228eebcc48172f248262a57e49e9ad5abe7ad4864f0281ebc228d6a0",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "spawning",
+      "effect": "gather",
+      "path": "preview/source-lab/motion/light/gather.webp",
+      "sha256": "b73e5ae99b3cd9e32fa93df5c5492994eeb355c631dda698e638433fa6aef1b3",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "dictating",
+      "effect": "wave",
+      "path": "preview/source-lab/motion/light/wave.webp",
+      "sha256": "b392875e34c7a771fecaa763bac035933bc0e062e0eaf142e81eec43615d0aef",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "sending",
+      "effect": "send",
+      "path": "preview/source-lab/motion/light/send.webp",
+      "sha256": "bb5f976a58afbd2f9f29e8e959486ddb5d5072161fc40ba95ecb1cecc84cd06b",
+      "pages": 82,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "receiving",
+      "effect": "receive",
+      "path": "preview/source-lab/motion/light/receive.webp",
+      "sha256": "77e2d02e6e6d199009dffed342e0339664f1838a704e0a6dec0cfee4090b8e99",
+      "pages": 81,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "uploading",
+      "effect": "dock",
+      "path": "preview/source-lab/motion/light/dock.webp",
+      "sha256": "ff046d3d630ebc0e3725c11a7b13158ff21637edf05493fb73afe63dbd084885",
+      "pages": 82,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "bouncing",
+      "effect": "ball",
+      "path": "preview/source-lab/motion/light/ball.webp",
+      "sha256": "9c2f59586c0735c4d3abfb024568e95707de8d72f80b95d148c0760686f22d6f",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "loading",
+      "effect": "whirl",
+      "path": "preview/source-lab/motion/light/whirl.webp",
+      "sha256": "d5ed25ef48dd63feb2ee4850b40b6b76ccc9ea7bbbef66334a0038ade3ef7e97",
+      "pages": 147,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "powering-down",
+      "effect": "standby",
+      "path": "preview/source-lab/motion/light/standby.webp",
+      "sha256": "f7d4d7975d8b537521015df58824559c53d1962bb0a846a695222563ccda664d",
+      "pages": 145,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "writing",
+      "effect": "pencil",
+      "path": "preview/source-lab/motion/light/pencil.webp",
+      "sha256": "7f559a3e5589ab7b9dd8f7d6b04e9a9642720e66a69c22150a5b91cd9c4ba043",
+      "pages": 110,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    },
+    {
+      "theme": "light",
+      "state": "alerting",
+      "effect": "bang",
+      "path": "preview/source-lab/motion/light/bang.webp",
+      "sha256": "155b53b179c9371320de912ecc93cd9b5aed5b5fdd28f1b253fdc7bd9975a306",
+      "pages": 121,
+      "pageHeight": 208,
+      "loop": 0,
+      "durationMs": 2600
+    }
+  ]
+}

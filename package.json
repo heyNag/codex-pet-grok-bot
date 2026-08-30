@@ -1,0 +1,30 @@
+{
+  "name": "codex-pet-grok-bot",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11.19.0",
+  "description": "A full-range Grok Bot pet for Codex desktop.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:pets": "node scripts/build.mjs --sprites-only",
+    "build:source-motion": "node scripts/build-source-motion.mjs",
+    "validate": "node scripts/validate.mjs",
+    "validate:dark": "node scripts/validate.mjs dark",
+    "validate:light": "node scripts/validate.mjs light",
+    "qa:themes": "node scripts/compare-themes.mjs",
+    "qa:runtime": "node scripts/runtime-continuity.mjs",
+    "qa:official": "node scripts/verify-official-hatch-qa.mjs",
+    "test": "node --test",
+    "qa:evidence": "node scripts/qa-evidence.mjs",
+    "qa:seal": "node scripts/qa-evidence.mjs --seal",
+    "qa": "npm run build && npm run validate && npm run qa:themes && npm run qa:runtime && npm test && npm run qa:evidence",
+    "preview": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "sharp": "0.35.4"
+  }
+}

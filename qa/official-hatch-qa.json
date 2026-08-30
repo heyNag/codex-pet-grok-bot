@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "kind": "codex-pet-official-hatch-qa-seal",
+  "ok": true,
+  "officialScripts": {
+    "validate_atlas.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/validate_atlas.py",
+      "sha256": "ebbbc77cfbd27ef8476ac6fda716e864cf372a2ed4c2beb27ebdb2487e972194"
+    },
+    "make_contact_sheet.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/make_contact_sheet.py",
+      "sha256": "51e2085b8acb172dcdd5fff9993bdee413f3851b714229ca095dc99cd551aa96"
+    },
+    "make_direction_qa_sheet.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/make_direction_qa_sheet.py",
+      "sha256": "823e81e0aece24d1d6537889c9daaa2660208ff52604509b24fd5e24e7302acb"
+    },
+    "make_direction_blind_qa_sheet.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/make_direction_blind_qa_sheet.py",
+      "sha256": "52f2a29251872449fed51c7744c3f9f503274ee288eb23efc29a2c568b0d52bd"
+    },
+    "combine_direction_blind_verdicts.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/combine_direction_blind_verdicts.py",
+      "sha256": "4dad56adaad032a4e6d070494b0ab2ca316429cf69363450f9fbf7135d1c2d42"
+    },
+    "validate_direction_blind_verdicts.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/validate_direction_blind_verdicts.py",
+      "sha256": "7871667432918e0ffcdbb9beaf88a01c0af4b9e2809c5000f7b533a9ddc6e13d"
+    },
+    "measure_direction_continuity.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/measure_direction_continuity.py",
+      "sha256": "e24b7065af82eab5638f1fcdeb627d497391a2f1e9ba19801827d1db3a6d8c2d"
+    },
+    "render_animation_previews.py": {
+      "path": "/Applications/ChatGPT.app/Contents/Resources/skills/skills/.curated/hatch-pet/scripts/render_animation_previews.py",
+      "sha256": "911e8813e1b79b7f9da44fae8a667c044818e8c71f41eaa4b280e91c78cde61e"
+    }
+  },
+  "verification": [
+    "official validation reports pass the current v2 atlas paths",
+    "all 57 timed PNG frames per theme round-trip byte-for-byte to their current atlas cells",
+    "all 9 official GIFs per theme have the expected frame counts and duration tables",
+    "direction continuity passes all 16 wraparound pairs without warnings or alpha holes"
+  ],
+  "limitations": [
+    "The bundled official GIF renderer uses GIF's indexed palette and binary transparency, so GIFs are lightweight visual QA only; lossless animated WebPs remain the color/alpha-fidelity previews.",
+    "Idle c6 is the runtime's separately selected neutral-look cell and is intentionally excluded from the six-frame timed idle GIF."
+  ],
+  "themes": {
+    "dark": {
+      "atlas": {
+        "path": "pet/grok-bot-dark/spritesheet.webp",
+        "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
+        "decodedRgbaSha256": "0ee3df4953d77feae29f348fd71a6cb6913100f305edeb390dbf4b690ba9942d",
+        "width": 1536,
+        "height": 2288,
+        "channels": 4
+      },
+      "officialValidation": {
+        "path": "qa/official-validation-dark.json",
+        "sha256": "5a1731a416f04be7d41c4c7a547e7d9e44dffb79bf65c9794bdab4b2b741c394",
+        "ok": true,
+        "warnings": 0,
+        "errors": 0
+      },
+      "frameExtraction": {
+        "path": "qa/official-frames-dark/manifest.json",
+        "sha256": "2cf939e6cb0842c23d3806505decd49c822d69eb6d204872d53e7de8ce2aa8b8",
+        "frameCount": 57,
+        "pixelIdentityVerified": true
+      },
+      "contactSheet": {
+        "path": "qa/contact-sheet-dark.png",
+        "sha256": "bbb2c8baabd0e04773f45d305d1b4f8493c62b4d29821d39c214874d1298775e",
+        "bytes": 168524,
+        "width": 768,
+        "height": 1386
+      },
+      "lookDirectionSheet": {
+        "path": "qa/look-directions-dark.png",
+        "sha256": "6eae807f0bf8e5b5d934b6b61f50b11f830c28bb3b6808c81eff8ff1dae83278",
+        "bytes": 105931,
+        "width": 1536,
+        "height": 1170
+      },
+      "lookContinuity": {
+        "path": "qa/look-continuity-dark.json",
+        "sha256": "6e82b7585f048bd0db5bb7815aa27035b9831a6e6bbf85b9f308e65cb0ca4d36",
+        "ok": true,
+        "pairCount": 16,
+        "warnings": 0,
+        "alphaHoles": 0
+      },
+      "animatedPreviews": [
+        {
+          "state": "idle",
+          "path": "qa/official-previews-dark/idle.gif",
+          "sha256": "5758523d2becaab31ba6167dfce37b7ce69e4ef667d87773edd4b477427f9a59",
+          "bytes": 14093,
+          "frames": 6,
+          "durationsMs": [
+            280,
+            110,
+            110,
+            140,
+            140,
+            320
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running-right",
+          "path": "qa/official-previews-dark/running-right.gif",
+          "sha256": "506b9b69c83c4d7f203a83bfd37f0221f9b844b8bbb4cb6cb045800edee89560",
+          "bytes": 16979,
+          "frames": 8,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running-left",
+          "path": "qa/official-previews-dark/running-left.gif",
+          "sha256": "a944206f9fd176f95d17d37bd1bc1fbfbdfb2879ca897a350bde9329dfd12204",
+          "bytes": 15692,
+          "frames": 8,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "waving",
+          "path": "qa/official-previews-dark/waving.gif",
+          "sha256": "ebab2a8e04903d5d3958c65068005b081a3bd99883c89e1f8b58497c78af331c",
+          "bytes": 9408,
+          "frames": 4,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            280
+          ],
+          "loop": 0
+        },
+        {
+          "state": "jumping",
+          "path": "qa/official-previews-dark/jumping.gif",
+          "sha256": "6158c43be7b3cbe3a1b68bd5dc05e0daf936fd556f386d55161a818aa664753e",
+          "bytes": 10734,
+          "frames": 5,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            140,
+            280
+          ],
+          "loop": 0
+        },
+        {
+          "state": "failed",
+          "path": "qa/official-previews-dark/failed.gif",
+          "sha256": "6cc7232bda17f3818f23e4b87716364dae329447cfdbbd9108368223bde97f24",
+          "bytes": 15711,
+          "frames": 8,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140,
+            140,
+            240
+          ],
+          "loop": 0
+        },
+        {
+          "state": "waiting",
+          "path": "qa/official-previews-dark/waiting.gif",
+          "sha256": "bcae205a4920f6c252a3bc57bdf624d68a25a10dd81f0f79d2435ba859078b9b",
+          "bytes": 12517,
+          "frames": 6,
+          "durationsMs": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            260
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running",
+          "path": "qa/official-previews-dark/running.gif",
+          "sha256": "fd4eec675c7721702f241d836e59ef728a41c6b3fd9acff805d9ffd228434dcc",
+          "bytes": 12891,
+          "frames": 6,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "review",
+          "path": "qa/official-previews-dark/review.gif",
+          "sha256": "4b6ea022483f14b08c84865c9813e4d6ee8151e45f4ddc92590a306c8e9f1230",
+          "bytes": 17507,
+          "frames": 6,
+          "durationsMs": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            280
+          ],
+          "loop": 0
+        }
+      ]
+    },
+    "light": {
+      "atlas": {
+        "path": "pet/grok-bot-light/spritesheet.webp",
+        "sha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+        "decodedRgbaSha256": "d7384ca6cf37290b0ccb421e58e79a918f03b49457d97d56e1e23b835a4e2ba5",
+        "width": 1536,
+        "height": 2288,
+        "channels": 4
+      },
+      "officialValidation": {
+        "path": "qa/official-validation-light.json",
+        "sha256": "bb05d015b38fc98abb20ae9f9ae8441c7adb3fad551b42138b30ebfaaeb4bef7",
+        "ok": true,
+        "warnings": 0,
+        "errors": 0
+      },
+      "frameExtraction": {
+        "path": "qa/official-frames-light/manifest.json",
+        "sha256": "48184b93725736dc196e206d6c46ee992a53dfe139accaed78951ecb9f02d524",
+        "frameCount": 57,
+        "pixelIdentityVerified": true
+      },
+      "contactSheet": {
+        "path": "qa/contact-sheet-light.png",
+        "sha256": "514300485dec37c45dbe5725a7546ff8316af2d1e6f5d102aaa2e53457fa058a",
+        "bytes": 223753,
+        "width": 768,
+        "height": 1386
+      },
+      "lookDirectionSheet": {
+        "path": "qa/look-directions-light.png",
+        "sha256": "0128ddb7d8bd58d0cf6c9119270497281b21eee03b7de56aeac2dc31bee20931",
+        "bytes": 121582,
+        "width": 1536,
+        "height": 1170
+      },
+      "lookContinuity": {
+        "path": "qa/look-continuity-light.json",
+        "sha256": "6e82b7585f048bd0db5bb7815aa27035b9831a6e6bbf85b9f308e65cb0ca4d36",
+        "ok": true,
+        "pairCount": 16,
+        "warnings": 0,
+        "alphaHoles": 0
+      },
+      "animatedPreviews": [
+        {
+          "state": "idle",
+          "path": "qa/official-previews-light/idle.gif",
+          "sha256": "c566485fece88ba11700dae85c0942c5d5c3bb14acb31f889bbbf4751324b4f6",
+          "bytes": 14454,
+          "frames": 6,
+          "durationsMs": [
+            280,
+            110,
+            110,
+            140,
+            140,
+            320
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running-right",
+          "path": "qa/official-previews-light/running-right.gif",
+          "sha256": "de54beb23938accf44a59f0070ec2c6e7b5a00702644381b895b692075aed6c3",
+          "bytes": 17473,
+          "frames": 8,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running-left",
+          "path": "qa/official-previews-light/running-left.gif",
+          "sha256": "76e4fa7997dad62f7f83435b13880ac6c6da5787f6449f67ef5995d339af8f00",
+          "bytes": 16070,
+          "frames": 8,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "waving",
+          "path": "qa/official-previews-light/waving.gif",
+          "sha256": "882bfac13e7654dec2adfcc7fb53e4924846ff89f0acc38dd3c2bc5f3060f609",
+          "bytes": 9708,
+          "frames": 4,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            280
+          ],
+          "loop": 0
+        },
+        {
+          "state": "jumping",
+          "path": "qa/official-previews-light/jumping.gif",
+          "sha256": "55b7d72dbf72f29b71c537a95d77e270acf00f02fde9b798a430358bcfb99662",
+          "bytes": 11036,
+          "frames": 5,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            140,
+            280
+          ],
+          "loop": 0
+        },
+        {
+          "state": "failed",
+          "path": "qa/official-previews-light/failed.gif",
+          "sha256": "98f49f446f9a12028ffcadfc6a78849aac3dad9a7245a651d69536ad9278a75f",
+          "bytes": 16096,
+          "frames": 8,
+          "durationsMs": [
+            140,
+            140,
+            140,
+            140,
+            140,
+            140,
+            140,
+            240
+          ],
+          "loop": 0
+        },
+        {
+          "state": "waiting",
+          "path": "qa/official-previews-light/waiting.gif",
+          "sha256": "64dfe43e3fc5275c873820b07a83fc90e46e9bd803f71401c89ab90fef0472cb",
+          "bytes": 12807,
+          "frames": 6,
+          "durationsMs": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            260
+          ],
+          "loop": 0
+        },
+        {
+          "state": "running",
+          "path": "qa/official-previews-light/running.gif",
+          "sha256": "5276ff9cb97f29435c78d1b1bc1ad8d5f21b0fbc7abb31ee6cd39cc724fbcdbb",
+          "bytes": 13038,
+          "frames": 6,
+          "durationsMs": [
+            120,
+            120,
+            120,
+            120,
+            120,
+            220
+          ],
+          "loop": 0
+        },
+        {
+          "state": "review",
+          "path": "qa/official-previews-light/review.gif",
+          "sha256": "3307fec86933cecff4ffd357d9f5e8ced7fbe1992d22b639706f8eb21652d69b",
+          "bytes": 18164,
+          "frames": 6,
+          "durationsMs": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            280
+          ],
+          "loop": 0
+        }
+      ]
+    }
+  }
+}

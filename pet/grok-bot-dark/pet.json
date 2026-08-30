@@ -1,0 +1,7 @@
+{
+  "id": "grok-bot-dark",
+  "displayName": "Grok Bot Dark",
+  "description": "A warm, watchful Grok Bot companion tuned for dark Codex surfaces.",
+  "spriteVersionNumber": 2,
+  "spritesheetPath": "spritesheet.webp"
+}

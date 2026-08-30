@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "reviewer": {
+    "kind": "independent-blind-agent",
+    "id": "agent:/root/blind_verdict_1"
+  },
+  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "pairs": [
+    {
+      "pair": "horizontal-1",
+      "A": "screen-left",
+      "B": "screen-left",
+      "reason": "In both, the eye cluster sits at the left edge of the observed horizontal travel range."
+    },
+    {
+      "pair": "horizontal-2",
+      "A": "screen-left",
+      "B": "screen-left",
+      "reason": "Both eye clusters are strongly displaced toward the left side of the horizontal range."
+    },
+    {
+      "pair": "horizontal-3",
+      "A": "screen-left",
+      "B": "screen-left",
+      "reason": "Both clusters remain left of the visual horizontal midpoint, though less extremely than pairs 1 and 2."
+    },
+    {
+      "pair": "horizontal-4",
+      "A": "screen-right",
+      "B": "screen-right",
+      "reason": "Both eye clusters occupy the far-right portion of the observed horizontal range."
+    },
+    {
+      "pair": "horizontal-5",
+      "A": "screen-right",
+      "B": "screen-right",
+      "reason": "Both clusters are visibly shifted to the right side of the horizontal range."
+    },
+    {
+      "pair": "horizontal-6",
+      "A": "screen-right",
+      "B": "screen-right",
+      "reason": "Both clusters sit right of the visual midpoint, with A slightly farther right than B."
+    },
+    {
+      "pair": "horizontal-7",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "This is near-neutral: A's cluster is marginally right of the shared midpoint and B's marginally left."
+    },
+    {
+      "pair": "vertical-1",
+      "A": "up",
+      "B": "up",
+      "reason": "Both eye clusters sit at the top edge of the observed vertical travel range."
+    },
+    {
+      "pair": "vertical-2",
+      "A": "up",
+      "B": "up",
+      "reason": "Both clusters are strongly displaced upward within their circles."
+    },
+    {
+      "pair": "vertical-3",
+      "A": "up",
+      "B": "up",
+      "reason": "Both clusters remain above the visual vertical midpoint."
+    },
+    {
+      "pair": "vertical-4",
+      "A": "up",
+      "B": "up",
+      "reason": "Both are close to neutral but sit slightly above the midpoint of the observed vertical range."
+    },
+    {
+      "pair": "vertical-5",
+      "A": "down",
+      "B": "down",
+      "reason": "Both clusters sit below the visual vertical midpoint."
+    },
+    {
+      "pair": "vertical-6",
+      "A": "down",
+      "B": "down",
+      "reason": "Both eye clusters are strongly displaced toward the bottom of the vertical range."
+    },
+    {
+      "pair": "vertical-7",
+      "A": "down",
+      "B": "down",
+      "reason": "Both clusters sit at the bottom edge of the observed vertical travel range."
+    }
+  ]
+}

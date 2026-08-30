@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "reviewer": {
+    "kind": "independent-blind-agent",
+    "id": "agent:/root/blind_verdict_3"
+  },
+  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "pairs": [
+    {
+      "pair": "horizontal-1",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye cluster sits farther left within the circle; B's is shifted toward the right rim."
+    },
+    {
+      "pair": "horizontal-2",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eyes are displaced toward the right rim, while B's sit nearer the circle's center."
+    },
+    {
+      "pair": "horizontal-3",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eyes occupy the more leftward position; B's cluster is visibly farther right."
+    },
+    {
+      "pair": "horizontal-4",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye cluster is closer to center-left, whereas B's approaches the right edge."
+    },
+    {
+      "pair": "horizontal-5",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eyes sit farther left in the face; B's are shifted markedly to the right."
+    },
+    {
+      "pair": "horizontal-6",
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eye cluster lies near the right rim, while B's is pulled inward and leftward."
+    },
+    {
+      "pair": "horizontal-7",
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eyes are the leftward cluster; B's cluster sits closer to the right boundary."
+    },
+    {
+      "pair": "vertical-1",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes sit lower on the circle; B's are visibly closer to the top rim."
+    },
+    {
+      "pair": "vertical-2",
+      "A": "down",
+      "B": "up",
+      "reason": "A has the lower eye placement, while B's eye cluster is raised toward the top."
+    },
+    {
+      "pair": "vertical-3",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes are displaced downward; B's sit substantially higher in the circle."
+    },
+    {
+      "pair": "vertical-4",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye cluster is near the top rim, whereas B's is visibly lower."
+    },
+    {
+      "pair": "vertical-5",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eyes occupy the higher position; B's cluster is shifted downward."
+    },
+    {
+      "pair": "vertical-6",
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye cluster sits high in the face, while B's appears lower."
+    },
+    {
+      "pair": "vertical-7",
+      "A": "down",
+      "B": "up",
+      "reason": "A's eyes are lower within the circle; B's are raised toward the top edge."
+    }
+  ]
+}

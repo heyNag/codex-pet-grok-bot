@@ -1,0 +1,11 @@
+title = "codex-pet-grok-bot Gitleaks configuration"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "A sealed SHA-256 beside the blind-review answer-key path is evidence metadata, not a credential."
+regexTarget = "match"
+regexes = [
+  '''direction-blind-answer-key\.json": "[a-f0-9]{64}"''',
+]

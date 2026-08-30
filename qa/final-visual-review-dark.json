@@ -1,0 +1,263 @@
+{
+  "schemaVersion": 1,
+  "variant": "dark",
+  "petId": "grok-bot-dark",
+  "atlasSha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
+  "ok": true,
+  "reviewer": {
+    "kind": "independent-agent-visual-audit",
+    "name": "Sagan"
+  },
+  "reviewedAt": "2026-08-31T01:40:09+07:00",
+  "method": "Independent original-detail inspection of the final installed atlas, all runtime-length previews, all 39 character-state snapshots, all 14 static and animated effect studies, both theme treatments, and the complete contact and direction sheets.",
+  "coverage": {
+    "installedRows": [
+      "idle",
+      "running-right",
+      "running-left",
+      "waving",
+      "jumping",
+      "failed",
+      "waiting",
+      "running",
+      "review"
+    ],
+    "gazeAngles": [
+      0,
+      22.5,
+      45,
+      67.5,
+      90,
+      112.5,
+      135,
+      157.5,
+      180,
+      202.5,
+      225,
+      247.5,
+      270,
+      292.5,
+      315,
+      337.5
+    ],
+    "characterStates": [
+      "sleeping",
+      "waking",
+      "idle",
+      "listening",
+      "thinking",
+      "searching",
+      "working",
+      "excited",
+      "surprised",
+      "suspicious",
+      "angry",
+      "drowsy",
+      "happy",
+      "curious",
+      "confused",
+      "bored",
+      "proud",
+      "shy",
+      "sad",
+      "laughing",
+      "scared",
+      "playful",
+      "celebrate",
+      "orbit",
+      "radar",
+      "progress",
+      "spawning",
+      "humming",
+      "loading",
+      "dictating",
+      "writing",
+      "sending",
+      "receiving",
+      "uploading",
+      "notifying",
+      "alerting",
+      "dragging",
+      "bouncing",
+      "powering-down"
+    ],
+    "effects": [
+      "dots",
+      "orbit",
+      "radar",
+      "progress",
+      "gather",
+      "wave",
+      "send",
+      "receive",
+      "dock",
+      "ball",
+      "whirl",
+      "standby",
+      "pencil",
+      "bang"
+    ],
+    "runtimePreviews": [
+      "idle",
+      "running-right",
+      "running-left",
+      "waving",
+      "jumping",
+      "failed",
+      "waiting",
+      "running",
+      "review"
+    ]
+  },
+  "reviewedArtifacts": [
+    {
+      "path": "pet/grok-bot-dark/spritesheet.webp",
+      "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4"
+    },
+    {
+      "path": "qa/contact-sheet-dark.png",
+      "sha256": "bbb2c8baabd0e04773f45d305d1b4f8493c62b4d29821d39c214874d1298775e"
+    },
+    {
+      "path": "qa/look-directions-dark.png",
+      "sha256": "6eae807f0bf8e5b5d934b6b61f50b11f830c28bb3b6808c81eff8ff1dae83278"
+    },
+    {
+      "path": "qa/runtime-continuity-dark.json",
+      "sha256": "fbc88c52ec867847877e4b27477740d8c6711330a5a9d8ef4ad644a9bb6fd7ee"
+    },
+    {
+      "path": "qa/runtime-previews-dark/00-idle-runtime.webp",
+      "sha256": "57e7d9be7aee9d4c06a231d7bfe311ff84ac4f2d0b4a5843bf7fb284934fd90d"
+    },
+    {
+      "path": "qa/runtime-previews-dark/01-running-right-runtime.webp",
+      "sha256": "bbbe036278320458a08b12a6a003423c2b3e82098ace275f87af3b6c05bfc1a8"
+    },
+    {
+      "path": "qa/runtime-previews-dark/02-running-left-runtime.webp",
+      "sha256": "b39eaf730f1745e4a8af41c1162ed12e0da719792365eef20ea7f02991374ac5"
+    },
+    {
+      "path": "qa/runtime-previews-dark/03-waving-runtime.webp",
+      "sha256": "8ffbf04830fbf846e77df21ce58825de3dca6edc6505f95aca32ac0624cc4031"
+    },
+    {
+      "path": "qa/runtime-previews-dark/04-jumping-runtime.webp",
+      "sha256": "e16d1056c9351000fb82ff3ee3a4fb388be178614e56ab1c791822b90ec25356"
+    },
+    {
+      "path": "qa/runtime-previews-dark/05-failed-runtime.webp",
+      "sha256": "7a450b396011c7da7e4accf11d6c2ac7e10c1c00ff51313931ba608313ef10cb"
+    },
+    {
+      "path": "qa/runtime-previews-dark/06-waiting-runtime.webp",
+      "sha256": "97d2a3f8100b982c27c5fe47c504ddfe575fdded8b4e147babfeb6af170204f6"
+    },
+    {
+      "path": "qa/runtime-previews-dark/07-running-runtime.webp",
+      "sha256": "7054ef51889385bbc1da1e6fb7c2ee2e68f9c14b48145347d6aa37d6e8ddf941"
+    },
+    {
+      "path": "qa/runtime-previews-dark/08-review-runtime.webp",
+      "sha256": "4a2586455f17ef61ca745ef03c8e7c3349b08bcf68331a8842da550865ec5fdc"
+    },
+    {
+      "path": "preview/source-lab/state-atlas-dark.webp",
+      "sha256": "af92337a169708201d747e9771a2be0661814498e2703d4878b08cf1b4fe4113"
+    },
+    {
+      "path": "preview/source-lab/state-contact-dark.png",
+      "sha256": "7a29248f777127148b23cd15f668c03a6aaeeee724e45a6ab2984f0b0fbf68c2"
+    },
+    {
+      "path": "preview/source-lab/effect-transitions-dark.webp",
+      "sha256": "87491482aa0a45f63c924fde0ceef20da49f458b8ad70453f929d31981f5e5d3"
+    },
+    {
+      "path": "preview/source-lab/effect-transitions-dark.png",
+      "sha256": "106cc6d346693b3c4af1f2d54ec14dc00f02e080ae76f2de4ec6a715dccd0876"
+    },
+    {
+      "path": "preview/source-lab/motion/manifest.json",
+      "sha256": "a22b7db00666baba594a50ca7d77f45f52319d9b96f456c3c2403eff2a750c05"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/dots.webp",
+      "sha256": "53bb458f0b5b5b1df73708bcd5de771dbaf76b649d0a36688610c9d68f5d5f7e"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/orbit.webp",
+      "sha256": "fd1d3843846e0dd32a21cac26a4f748180a439e365335c59775600c1f0402bc9"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/radar.webp",
+      "sha256": "f2fb806f90fbc930fb8c7eed90182fddf95aade788f5a31e641d3c03969a975a"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/progress.webp",
+      "sha256": "fd7877e68bb8c20b1629adb2a206e2e383a51474aa39f3a815e33267c8ca1ee2"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/gather.webp",
+      "sha256": "c8e8245d186801453f5585584b6cf0419f1f57b6a4666a9be080b21cd4d21611"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/wave.webp",
+      "sha256": "337f1d36fc41b494d3a264f40ce90d21d2e6cdc1e2b8f9324f8281d47ce198c7"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/send.webp",
+      "sha256": "7d9739cee70a0be04062bd10fd962793276e2e400dd2d2014cee838a6252f22b"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/receive.webp",
+      "sha256": "a77b89bcaaca616b0d3f2051c7d5f8ea80068f912d5b62814c2cf92e80391307"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/dock.webp",
+      "sha256": "1ecc6a7ef2904713f4a826b8ef540696900fe49776d3b3e29c761a37ce35e40b"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/ball.webp",
+      "sha256": "2b83aea8f3180d75188aa661585471027d9526d374e4c0b7cca1c77d20594bd4"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/whirl.webp",
+      "sha256": "522955131067e849c5e113c27e7fb4e89c08854f1f0f89f1443ca7e63d598d46"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/standby.webp",
+      "sha256": "b3e1cba92c4d91e5ee8e0176237446ad32a077144e0d13084e3c3c11ab906af1"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/pencil.webp",
+      "sha256": "2d4eb34b35781034912c0d83bd6e156a71fb6db5c45b056264e8b51a9c2fb273"
+    },
+    {
+      "path": "preview/source-lab/motion/dark/bang.webp",
+      "sha256": "f0ae7dd478108fd9641f4d6444fff55cf94e2f317db8c1c9ce0317f72a4d57f9"
+    },
+    {
+      "path": "qa/official-hatch-qa.json",
+      "sha256": "5669b3ffbb306e1a3640f2d0263f4b7aef592970257a858dc259ad5d71865549"
+    }
+  ],
+  "observations": [
+    "The six idle samples now visibly advance the opposed satellites through a continuous orbit with natural front and rear occlusion.",
+    "Whirl ribbons reveal smoothly from the emission threshold through the mature activation landmark without a one-frame pop.",
+    "The exact black and white inversion and all six character accent colors remain intact in this theme.",
+    "All 25 literal eye topology families remain expressive at pet scale, including surprise rounds, slits, brushes, mixed eyes, and recovery poses.",
+    "All sixteen gaze poses are semantically clear, clockwise, and free of left-right or up-down inversion.",
+    "The review performance reads cleanly as surprise burst, ribbon entry, foreground storm, and a controlled return to the neutral body.",
+    "No clipping, dirty transparent pixels, theme-specific geometry drift, or detached full-size effect artifacts are visible.",
+    "The deliberately punchy jump, wave, failed, and travel beats remain coherent within the host's fixed four-to-eight-frame action rows."
+  ],
+  "limitations": [
+    "Whirl uses a deterministic four-belt treatment rather than a stochastic trail population.",
+    "The fixed Codex row budget cannot include every 60 fps intermediate frame from the motion studies.",
+    "Travel rows communicate receive and write/send/dock status performances rather than literal locomotion."
+  ],
+  "blockingIssues": [],
+  "warnings": []
+}
