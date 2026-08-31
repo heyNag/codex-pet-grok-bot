@@ -176,10 +176,18 @@ reduced-motion setting is active, and the v2 manifest has no opt-out field.
 
 ## Local activation boundary
 
-No build, test, preview, or validation command writes to Codex. No mutating
-installer is shipped. The validated, reviewable generated bundles remain under
-`pet/grok-bot-dark` and `pet/grok-bot-light`. Machine-local activation is
-deliberately deferred: when requested, use the then-current official Codex
-import path and review the exact destination and collision behavior before any
-copy. This keeps generation and validation separate from activation and avoids
-granting a repository helper write authority over `CODEX_HOME`.
+Build, test, preview, and validation commands never write to Codex. The sole
+activation utility is [`../install.sh`](../install.sh), which is invoked
+explicitly with `dark`, `light`, or `both` and installs only the selected bundle
+IDs under `$CODEX_HOME/pets` (normally `~/.codex/pets`). Its staging directory,
+run lock, and temporary rollback directory live under the same `CODEX_HOME`
+boundary but outside the active pet-ID directories.
+
+The installer pins its source assets to an immutable repository commit,
+verifies exact byte sizes and SHA-256 hashes in staging, and records ownership
+in a receipt inside each managed bundle. A future run may replace only an
+unmodified receipt-owned copy; symlinked, unmanaged, modified, or otherwise
+conflicting destinations are rejected. Updates temporarily rename the previous
+managed directory under `$CODEX_HOME/pet-backups`, restore it on failure, and
+remove it after the replacement passes final verification. See
+[INSTALL.md](INSTALL.md) for the public command and manual fallback.

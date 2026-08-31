@@ -51,10 +51,12 @@ effect, and atlas control updates both panes together. This makes shape, timing,
 alpha, and inverse-color differences easier to spot without trying to
 synchronize two browser tabs by hand.
 
-## 2. Test in the actual Codex desktop pet runtime
+## 2. Test this checkout in the actual Codex desktop pet runtime
 
 This step installs local copies of both pet bundles. Complete the browser
-review first.
+review first. It uses the manual creation flow intentionally so a maintainer can
+test uncommitted files from the current checkout; ordinary users should use the
+one-line path in [INSTALL.md](INSTALL.md).
 
 1. In the ChatGPT desktop app, open **Settings > Pets**.
 2. Select **Create your own pet**. The app installs its bundled `hatch-pet`

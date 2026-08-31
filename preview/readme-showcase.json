@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "inputs": {
+    "dark": {
+      "path": "pet/grok-bot-dark/spritesheet.webp",
+      "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4"
+    },
+    "light": {
+      "path": "pet/grok-bot-light/spritesheet.webp",
+      "sha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314"
+    }
+  },
+  "output": {
+    "path": "preview/readme-showcase.webp",
+    "sha256": "631d7d35a670f56a42099bfab80d7eb43797534f77d432131bd22c95a1043d43",
+    "width": 1200,
+    "height": 480,
+    "frames": 45,
+    "loop": 0,
+    "delays": [
+      900,
+      180,
+      180,
+      240,
+      240,
+      800,
+      350,
+      220,
+      220,
+      650,
+      240,
+      240,
+      240,
+      240,
+      240,
+      650,
+      300,
+      300,
+      300,
+      300,
+      300,
+      700,
+      300,
+      300,
+      300,
+      300,
+      300,
+      900,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      160,
+      1000
+    ]
+  }
+}
