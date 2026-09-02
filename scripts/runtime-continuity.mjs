@@ -28,17 +28,28 @@ const CONTINUITY_THRESHOLDS = Object.freeze({
   maximumChangedPixelFraction: 0.45,
   maximumAlphaAreaRatioSymmetric: 2.5,
 });
+const MOTION_GATES = Object.freeze({
+  idle: Object.freeze({ minimumMeanSilhouetteIou: 0.94, maximumMeanSilhouetteAreaStepFraction: 0.02, maximumMeanSilhouetteCentroidStepPx: 1.5 }),
+  "running-right": Object.freeze({ minimumMeanSilhouetteIou: 0.88, maximumMeanSilhouetteAreaStepFraction: 0.04, maximumMeanSilhouetteCentroidStepPx: 2.5 }),
+  "running-left": Object.freeze({ minimumMeanSilhouetteIou: 0.88, maximumMeanSilhouetteAreaStepFraction: 0.04, maximumMeanSilhouetteCentroidStepPx: 2.5 }),
+  waving: Object.freeze({ minimumMeanSilhouetteIou: 0.90, maximumMeanSilhouetteAreaStepFraction: 0.02, maximumMeanSilhouetteCentroidStepPx: 2.5 }),
+  jumping: Object.freeze({ minimumMeanSilhouetteIou: 0.73, maximumMeanSilhouetteAreaStepFraction: 0.06, maximumMeanSilhouetteCentroidStepPx: 11 }),
+  failed: Object.freeze({ minimumMeanSilhouetteIou: 0.82, maximumMeanSilhouetteAreaStepFraction: 0.06, maximumMeanSilhouetteCentroidStepPx: 3 }),
+  waiting: Object.freeze({ minimumMeanSilhouetteIou: 0.84, maximumMeanSilhouetteAreaStepFraction: 0.06, maximumMeanSilhouetteCentroidStepPx: 4 }),
+  running: Object.freeze({ minimumMeanSilhouetteIou: 0.89, maximumMeanSilhouetteAreaStepFraction: 0.03, maximumMeanSilhouetteCentroidStepPx: 2.5 }),
+  review: Object.freeze({ minimumMeanSilhouetteIou: 0.75, maximumMeanSilhouetteAreaStepFraction: 0.04, maximumMeanSilhouetteCentroidStepPx: 12 }),
+});
 
 const VARIANTS = Object.freeze([
   Object.freeze({
     theme: "dark",
     stageBackground: Object.freeze({ hex: "#101010", rgb: Object.freeze([16, 16, 16]) }),
-    atlasPath: path.join(repositoryRoot, "pet", "grok-bot-dark", "spritesheet.webp"),
+    atlasPath: path.join(repositoryRoot, "qa", "authoring-atlas-dark.webp"),
   }),
   Object.freeze({
     theme: "light",
     stageBackground: Object.freeze({ hex: "#F3F3F1", rgb: Object.freeze([243, 243, 241]) }),
-    atlasPath: path.join(repositoryRoot, "pet", "grok-bot-light", "spritesheet.webp"),
+    atlasPath: path.join(repositoryRoot, "qa", "authoring-atlas-light.webp"),
   }),
 ]);
 
@@ -50,11 +61,12 @@ const themeParity = compareThemeMetrics(reports);
 const combinedValidation = validateCombined(reports, themeParity);
 
 const combined = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   kind: "codex-pet-runtime-continuity",
   ok: combinedValidation.ok,
   measurementPolicy: MEASUREMENT_POLICY,
   thresholds: CONTINUITY_THRESHOLDS,
+  motionGates: MOTION_GATES,
   runtimeModel: runtimeModel(),
   metricDefinitions: metricDefinitions(),
   themes: Object.fromEntries(reports.map((report) => [report.theme, report])),
@@ -110,15 +122,16 @@ async function analyzeVariant(variant) {
   const previews = await buildRuntimePreviews(previewDirectory, cellAt);
   const transitions = flattenTransitions(rowReports);
   const summary = summarizeTransitionSet(transitions);
-  const validation = validateTheme(summary);
+  const validation = validateTheme(summary, rowReports);
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     kind: "codex-pet-runtime-continuity-theme",
     theme: variant.theme,
     ok: validation.ok,
     measurementPolicy: MEASUREMENT_POLICY,
     thresholds: CONTINUITY_THRESHOLDS,
+    motionGates: MOTION_GATES,
     atlas: {
       path: relativePath(variant.atlasPath),
       width,
@@ -136,7 +149,7 @@ async function analyzeVariant(variant) {
   };
 }
 
-function validateTheme(summary) {
+function validateTheme(summary, rows) {
   const all = summary.allTransitions;
   const checks = [
     thresholdCheck("transition-count", all.transitionCount, CONTINUITY_THRESHOLDS.requiredTransitionCount, "equal"),
@@ -144,6 +157,13 @@ function validateTheme(summary) {
     thresholdCheck("composited-rgb-difference", all.normalizedCompositedRgbDifference.max.value, CONTINUITY_THRESHOLDS.maximumNormalizedCompositedRgbDifference),
     thresholdCheck("changed-pixel-fraction", all.changedPixelFraction.max.value, CONTINUITY_THRESHOLDS.maximumChangedPixelFraction),
     thresholdCheck("alpha-area-ratio-symmetric", all.alphaAreaRatioSymmetric.max.value, CONTINUITY_THRESHOLDS.maximumAlphaAreaRatioSymmetric),
+    ...rows.map((row) => ({
+      id: `row-${row.row}-${row.id}-motion-gate`,
+      actual: row.motionGateValidation.ok,
+      expected: true,
+      operator: "equal",
+      pass: row.motionGateValidation.ok,
+    })),
   ];
   return { ok: checks.every((check) => check.pass), checks };
 }
@@ -176,7 +196,7 @@ function thresholdCheck(id, actual, expected, operator = "maximum") {
 }
 
 function analyzeRow(row, cellAt, stageBackground) {
-  const expectedFrameCount = row.index === 0 ? row.durations.length + 1 : row.durations.length;
+  const expectedFrameCount = row.durations.length;
   if (row.frames.length !== expectedFrameCount) {
     throw new Error(
       `Timed row ${row.index} (${row.id}) has ${row.durations.length} durations and `
@@ -223,7 +243,6 @@ function analyzeRow(row, cellAt, stageBackground) {
       ...base,
       runtimeRole: "slow-idle-loop",
       durationMultiplier: IDLE_DURATION_MULTIPLIER,
-      excludedFromTiming: [{ row: 0, column: 6, frame: row.frames[6]?.name ?? "neutral-look", reason: "reserved neutralLookFrame" }],
       idleLoop: transition({
         id: "r00-idle-c5-to-c0",
         kind: "idle-loop",
@@ -321,12 +340,37 @@ function comparePixels(fromPixels, toPixels, stageBackground) {
   let rgbaAbsoluteDifference = 0;
   let compositedRgbAbsoluteDifference = 0;
   let changedCompositedPixels = 0;
+  let fromSilhouetteArea = 0;
+  let toSilhouetteArea = 0;
+  let silhouetteIntersection = 0;
+  let silhouetteUnion = 0;
+  let fromSilhouetteX = 0;
+  let fromSilhouetteY = 0;
+  let toSilhouetteX = 0;
+  let toSilhouetteY = 0;
   for (let index = 0; index < from.length; index += 1) {
     const delta = Math.abs(to[index] - from[index]);
     absoluteDifference += delta;
     if (delta !== 0) changedPixels += 1;
     fromAlpha += from[index];
     toAlpha += to[index];
+
+    const x = index % CELL_WIDTH;
+    const y = Math.floor(index / CELL_WIDTH);
+    const fromVisible = from[index] >= 128;
+    const toVisible = to[index] >= 128;
+    if (fromVisible) {
+      fromSilhouetteArea += 1;
+      fromSilhouetteX += x;
+      fromSilhouetteY += y;
+    }
+    if (toVisible) {
+      toSilhouetteArea += 1;
+      toSilhouetteX += x;
+      toSilhouetteY += y;
+    }
+    if (fromVisible && toVisible) silhouetteIntersection += 1;
+    if (fromVisible || toVisible) silhouetteUnion += 1;
 
     const rgbaOffset = index * 4;
     let compositedPixelChanged = false;
@@ -357,6 +401,13 @@ function comparePixels(fromPixels, toPixels, stageBackground) {
   const directionalRatio = fromArea === 0 ? null : toArea / fromArea;
   const smallerArea = Math.min(fromArea, toArea);
   const symmetricRatio = smallerArea === 0 ? null : Math.max(fromArea, toArea) / smallerArea;
+  const silhouetteAreaMaximum = Math.max(fromSilhouetteArea, toSilhouetteArea);
+  const fromCentroid = fromSilhouetteArea === 0
+    ? null
+    : [fromSilhouetteX / fromSilhouetteArea, fromSilhouetteY / fromSilhouetteArea];
+  const toCentroid = toSilhouetteArea === 0
+    ? null
+    : [toSilhouetteX / toSilhouetteArea, toSilhouetteY / toSilhouetteArea];
 
   return {
     normalizedAlphaDifference: rounded(absoluteDifference / (255 * CELL_PIXEL_COUNT)),
@@ -373,6 +424,13 @@ function comparePixels(fromPixels, toPixels, stageBackground) {
     toAlphaAreaFraction: rounded(toArea / CELL_PIXEL_COUNT),
     alphaAreaRatio: directionalRatio == null ? null : rounded(directionalRatio),
     alphaAreaRatioSymmetric: symmetricRatio == null ? null : rounded(symmetricRatio),
+    silhouetteIou: silhouetteUnion === 0 ? null : rounded(silhouetteIntersection / silhouetteUnion),
+    silhouetteAreaStepFraction: silhouetteAreaMaximum === 0
+      ? null
+      : rounded(Math.abs(toSilhouetteArea - fromSilhouetteArea) / silhouetteAreaMaximum),
+    silhouetteCentroidStepPx: fromCentroid == null || toCentroid == null
+      ? null
+      : rounded(Math.hypot(toCentroid[0] - fromCentroid[0], toCentroid[1] - fromCentroid[1])),
   };
 }
 
@@ -499,7 +557,43 @@ function rowTransitions(row) {
 }
 
 function withRowSummary(row) {
-  return { ...row, summary: summarizeMetrics(rowTransitions(row)) };
+  const cycleTransitions = [
+    ...row.adjacent,
+    ...(row.idleLoop ? [row.idleLoop] : []),
+    ...(row.repeatBoundary ? [row.repeatBoundary] : []),
+  ];
+  const cycleMotionSummary = summarizeMetrics(cycleTransitions);
+  return {
+    ...row,
+    summary: summarizeMetrics(rowTransitions(row)),
+    cycleMotionSummary,
+    motionGateValidation: validateRowMotion(row.id, cycleMotionSummary),
+  };
+}
+
+function validateRowMotion(rowId, summary) {
+  const gate = MOTION_GATES[rowId];
+  if (!gate) throw new Error(`Missing motion gate for runtime row ${rowId}`);
+  const checks = [
+    {
+      id: "mean-silhouette-iou",
+      actual: summary.silhouetteIou.mean,
+      minimum: gate.minimumMeanSilhouetteIou,
+      operator: "minimum",
+      pass: summary.silhouetteIou.mean >= gate.minimumMeanSilhouetteIou,
+    },
+    thresholdCheck(
+      "mean-silhouette-area-step",
+      summary.silhouetteAreaStepFraction.mean,
+      gate.maximumMeanSilhouetteAreaStepFraction,
+    ),
+    thresholdCheck(
+      "mean-silhouette-centroid-step",
+      summary.silhouetteCentroidStepPx.mean,
+      gate.maximumMeanSilhouetteCentroidStepPx,
+    ),
+  ];
+  return { ok: checks.every((check) => check.pass), gate, checks };
 }
 
 function summarizeTransitionSet(transitions) {
@@ -524,6 +618,9 @@ function summarizeMetrics(transitions) {
     changedPixelFraction: distribution(transitions, "changedPixelFraction"),
     changedCompositedPixelFraction: distribution(transitions, "changedCompositedPixelFraction"),
     alphaAreaRatioSymmetric: distribution(transitions, "alphaAreaRatioSymmetric"),
+    silhouetteIou: distribution(transitions, "silhouetteIou"),
+    silhouetteAreaStepFraction: distribution(transitions, "silhouetteAreaStepFraction"),
+    silhouetteCentroidStepPx: distribution(transitions, "silhouetteCentroidStepPx"),
   };
 }
 
@@ -555,7 +652,7 @@ function compareThemeMetrics(themeReports) {
       const expected = reference.get(candidate.id);
       if (!expected) throw new Error(`Theme ${report.theme} contains unexpected transition ${candidate.id}`);
       comparedTransitions += 1;
-      for (const key of ["normalizedAlphaDifference", "changedPixelFraction", "alphaAreaRatio", "alphaAreaRatioSymmetric"]) {
+      for (const key of ["normalizedAlphaDifference", "changedPixelFraction", "alphaAreaRatio", "alphaAreaRatioSymmetric", "silhouetteIou", "silhouetteAreaStepFraction", "silhouetteCentroidStepPx"]) {
         const left = expected.metrics[key];
         const right = candidate.metrics[key];
         const delta = left == null || right == null ? (left === right ? 0 : Number.POSITIVE_INFINITY) : Math.abs(left - right);
@@ -570,7 +667,7 @@ function compareThemeMetrics(themeReports) {
   return {
     referenceTheme: first.theme,
     comparedTransitions,
-    comparedAlphaMetricsPerTransition: 4,
+    comparedAlphaMetricsPerTransition: 7,
     exactMetricMismatches,
     maximumAbsoluteDelta: Number.isFinite(maximumAbsoluteDelta) ? rounded(maximumAbsoluteDelta) : "infinity",
     maximumDeltaTransitionId,
@@ -593,8 +690,7 @@ function runtimeModel() {
   return {
     atlasVersion: 2,
     timedRows: "rows 0 through 8",
-    neutralLookFrame: { row: 0, column: 6, timed: false },
-    transparentIdleCell: { row: 0, column: 7 },
+    transparentIdleCells: [{ row: 0, column: 6 }, { row: 0, column: 7 }],
     idle: {
       timedColumns: [0, 1, 2, 3, 4, 5],
       durationMultiplier: IDLE_DURATION_MULTIPLIER,
@@ -621,6 +717,9 @@ function metricDefinitions() {
     alphaAreaEquivalentPixels: "sum(alpha) / 255",
     alphaAreaRatio: "toAlphaAreaEquivalentPixels / fromAlphaAreaEquivalentPixels; directional",
     alphaAreaRatioSymmetric: "max(fromAlphaArea,toAlphaArea) / min(fromAlphaArea,toAlphaArea); always >= 1",
+    silhouetteIou: "intersection / union of source-cell pixels whose alpha is at least 128",
+    silhouetteAreaStepFraction: "abs(toArea-fromArea) / max(toArea,fromArea) for alpha-at-least-128 silhouettes",
+    silhouetteCentroidStepPx: "Euclidean distance between alpha-at-least-128 silhouette centroids in source-cell pixels",
   };
 }
 

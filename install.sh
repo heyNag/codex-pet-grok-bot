@@ -13,6 +13,7 @@ LOCK_OWNER_NAME="owner"
 RECOVERY_CLAIM_NAME="recovery-claim"
 STAGE_MARKER_NAME=".codex-pet-grok-bot-stage"
 BACKUP_MARKER_NAME=".codex-pet-grok-bot-backup"
+REMOVE_MARKER_NAME=".codex-pet-grok-bot-remove"
 
 action="sync"
 selection=""
@@ -33,6 +34,8 @@ transaction_token=""
 transaction_active="0"
 commit_publication_started="0"
 rollback_failed="0"
+remove_root=""
+remove_owned="0"
 
 dark_state=""
 dark_result=""
@@ -45,11 +48,12 @@ light_backup=""
 
 usage() {
   cat <<'USAGE'
-Install or update Grok Bot for Codex.
+Install, update, or remove Grok Bot for Codex.
 
 Usage:
   install.sh dark|light|both
   install.sh update dark|light|both
+  install.sh remove dark|light|both
 
 Examples:
   curl -fsSL --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/heyNag/codex-pet-grok-bot/main/install.sh | sh -s -- dark
@@ -58,6 +62,8 @@ Examples:
 The one-argument form installs a missing pet, updates an unmodified pet
 previously managed by this installer, or makes no changes when it is current.
 The explicit update form requires the selected pet to be installed already.
+The remove form deletes only an unmodified pet owned by this installer. A
+missing selected pet is already removed and is left unchanged.
 
 CODEX_HOME is honored when set; otherwise the destination is ~/.codex.
 USAGE
@@ -431,6 +437,24 @@ inspect_variant() {
   inspected_state="update"
 }
 
+inspect_remove_variant() {
+  inspect_variant_name="$1"
+  set_variant_metadata "$inspect_variant_name"
+  inspect_target="$pets_root/$meta_id"
+  inspected_state=""
+
+  if [ -L "$inspect_target" ]; then
+    fail "refusing to remove symlinked target: $inspect_target"
+  fi
+  if [ ! -e "$inspect_target" ]; then
+    inspected_state="absent"
+    return
+  fi
+  [ -d "$inspect_target" ] || fail "destination exists but is not a directory: $inspect_target"
+  target_is_unmodified_managed_copy "$inspect_target" "$inspect_variant_name" "$meta_id" || fail "$inspect_target is unmanaged, locally modified, or contains unexpected files; nothing was removed"
+  inspected_state="remove"
+}
+
 state_for_variant() {
   case "$1" in
     dark) current_state="$dark_state" ;;
@@ -681,6 +705,10 @@ owned_directory_transaction_token() {
     "$BACKUP_MARKER_NAME")
       path_is_exact_child_with_prefix "$token_directory" "$backup_root" ".grok-bot-transaction-" || return 1
       marker_transaction_token="${token_basename#.grok-bot-transaction-}"
+      ;;
+    "$REMOVE_MARKER_NAME")
+      path_is_exact_child_with_prefix "$token_directory" "$codex_root" ".codex-pet-grok-bot.remove." || return 1
+      marker_transaction_token="${token_basename#.codex-pet-grok-bot.remove.}"
       ;;
     *) return 1 ;;
   esac
@@ -1132,6 +1160,22 @@ rollback_variant() {
         rollback_failed="1"
       fi
       ;;
+    remove)
+      if [ ! -e "$current_backup" ] && [ ! -L "$current_backup" ]; then
+        return 0
+      fi
+      if ! target_is_unmodified_managed_copy "$current_backup" "$rollback_variant_name" "$meta_id"; then
+        printf 'Grok Bot installer: refusing an invalid removal quarantine at %s\n' "$current_backup" >&2
+        rollback_failed="1"
+        return 0
+      fi
+      if [ -e "$rollback_target" ] || [ -L "$rollback_target" ]; then
+        printf 'Grok Bot installer: could not restore removed pet because its active path is occupied: %s\n' "$rollback_target" >&2
+        rollback_failed="1"
+        return 0
+      fi
+      restore_previous_bundle "$current_backup" "$rollback_target" "$rollback_variant_name" || rollback_failed="1"
+      ;;
   esac
 }
 
@@ -1141,7 +1185,11 @@ rollback_transaction() {
   rollback_variant dark
 
   if [ "$rollback_failed" = "1" ]; then
-    printf 'Grok Bot installer: automatic rollback was incomplete; preserved backups were not deleted\n' >&2
+    if [ "$action" = "remove" ]; then
+      printf 'Grok Bot installer: automatic removal rollback was incomplete; the quarantine was preserved\n' >&2
+    else
+      printf 'Grok Bot installer: automatic rollback was incomplete; preserved backups were not deleted\n' >&2
+    fi
   fi
 }
 
@@ -1205,6 +1253,45 @@ cleanup_backup() {
   return 0
 }
 
+remove_quarantined_variant() {
+  remove_variant_name="$1"
+  set_variant_metadata "$remove_variant_name"
+  remove_quarantined="$remove_root/$meta_id"
+  if [ ! -e "$remove_quarantined" ] && [ ! -L "$remove_quarantined" ]; then
+    return 0
+  fi
+  [ "$(dirname "$remove_quarantined")" = "$remove_root" ] || return 1
+  [ "$(basename "$remove_quarantined")" = "$meta_id" ] || return 1
+  target_is_unmodified_managed_copy "$remove_quarantined" "$remove_variant_name" "$meta_id" || return 1
+  rm -f "$remove_quarantined/spritesheet.webp" || return 1
+  rm -f "$remove_quarantined/pet.json" || return 1
+  rm -f "$remove_quarantined/$RECEIPT_NAME" || return 1
+  rmdir "$remove_quarantined"
+}
+
+cleanup_remove_root() {
+  [ -n "$remove_root" ] || return 0
+  [ "$remove_owned" = "1" ] || return 0
+  path_is_exact_child_with_prefix "$remove_root" "$codex_root" ".codex-pet-grok-bot.remove." || return 1
+  owned_directory_marker_is_valid "$remove_root" "$REMOVE_MARKER_NAME" || return 1
+  directory_has_only_named_entries "$remove_root" "$REMOVE_MARKER_NAME" "grok-bot-dark" "grok-bot-light" || return 1
+
+  for remove_variant_name in dark light; do
+    set_variant_metadata "$remove_variant_name"
+    remove_quarantined="$remove_root/$meta_id"
+    if [ -e "$remove_quarantined" ] || [ -L "$remove_quarantined" ]; then
+      target_is_unmodified_managed_copy "$remove_quarantined" "$remove_variant_name" "$meta_id" || return 1
+    fi
+  done
+  remove_quarantined_variant dark || return 1
+  remove_quarantined_variant light || return 1
+  rm -f "$remove_root/$REMOVE_MARKER_NAME" || return 1
+  rmdir "$remove_root" || return 1
+  remove_root=""
+  remove_owned="0"
+  return 0
+}
+
 on_exit() {
   exit_status="$?"
   trap - EXIT HUP INT TERM
@@ -1225,6 +1312,7 @@ on_exit() {
   if [ "$preserve_transaction" = "0" ]; then
     cleanup_stage || preserve_transaction="1"
     cleanup_backup || preserve_transaction="1"
+    cleanup_remove_root || preserve_transaction="1"
     if [ "$preserve_transaction" = "0" ] \
       && [ "$lock_owned" = "1" ] \
       && [ -f "$lock_path/$JOURNAL_NAME" ]; then
@@ -1232,7 +1320,11 @@ on_exit() {
     fi
   fi
   if [ "$preserve_transaction" = "1" ]; then
-    printf 'Grok Bot installer: preserved transaction state for automatic recovery on the next run\n' >&2
+    if [ "$action" = "remove" ]; then
+      printf 'Grok Bot installer: preserved removal quarantine for inspection at %s\n' "$remove_root" >&2
+    else
+      printf 'Grok Bot installer: preserved transaction state for automatic recovery on the next run\n' >&2
+    fi
     exit_status="1"
   elif ! release_lock; then
     printf 'Grok Bot installer: could not remove its lock cleanly at %s\n' "$lock_path" >&2
@@ -1251,6 +1343,37 @@ trap on_exit EXIT
 trap 'exit 129' HUP
 trap 'exit 130' INT
 trap 'exit 143' TERM
+
+apply_remove_variant() {
+  apply_variant_name="$1"
+  state_for_variant "$apply_variant_name"
+  set_variant_metadata "$apply_variant_name"
+  apply_target="$pets_root/$meta_id"
+
+  if [ "$current_state" = "absent" ]; then
+    set_result_for_variant "$apply_variant_name" "absent"
+    return 0
+  fi
+  [ "$current_state" = "remove" ] || fail "unexpected removal state for $apply_variant_name"
+  apply_quarantine="$remove_root/$meta_id"
+  [ ! -e "$apply_quarantine" ] && [ ! -L "$apply_quarantine" ] || fail "removal quarantine already exists: $apply_quarantine"
+  mark_applied "$apply_variant_name" "remove" "$apply_quarantine"
+  preserve_previous_bundle "$apply_target" "$apply_quarantine" "$apply_variant_name" || fail "could not quarantine $meta_name for removal"
+  set_result_for_variant "$apply_variant_name" "removed"
+}
+
+print_remove_result() {
+  result_variant="$1"
+  set_variant_metadata "$result_variant"
+  case "$result_variant" in
+    dark) result_value="$dark_result" ;;
+    light) result_value="$light_result" ;;
+  esac
+  case "$result_value" in
+    removed) printf 'Removed %s from %s\n' "$meta_name" "$pets_root/$meta_id" ;;
+    absent) printf '%s is already absent from %s\n' "$meta_name" "$pets_root/$meta_id" ;;
+  esac
+}
 
 stage_variant() {
   stage_variant_name="$1"
@@ -1572,6 +1695,14 @@ main() {
       action="update"
       selection="$2"
       ;;
+    remove)
+      [ "$#" -eq 2 ] || {
+        usage >&2
+        fail "remove requires exactly one of: dark, light, both"
+      }
+      action="remove"
+      selection="$2"
+      ;;
     dark|light|both)
       [ "$#" -eq 1 ] || {
         usage >&2
@@ -1599,7 +1730,9 @@ main() {
       ;;
   esac
 
-  command -v curl >/dev/null 2>&1 || fail "curl is required"
+  if [ "$action" != "remove" ]; then
+    command -v curl >/dev/null 2>&1 || fail "curl is required"
+  fi
   command -v sync >/dev/null 2>&1 || fail "sync is required for crash-safe installation"
   if command -v sha256sum >/dev/null 2>&1; then
     hash_tool="sha256sum"
@@ -1641,13 +1774,15 @@ main() {
   pets_root="$codex_root/pets"
   backup_root="$codex_root/pet-backups"
   lock_path="$codex_root/.codex-pet-grok-bot.lock"
-  source_base="${GROK_BOT_INSTALL_SOURCE_BASE:-$DEFAULT_SOURCE_BASE}"
-  source_base="${source_base%/}"
+  if [ "$action" != "remove" ]; then
+    source_base="${GROK_BOT_INSTALL_SOURCE_BASE:-$DEFAULT_SOURCE_BASE}"
+    source_base="${source_base%/}"
 
-  case "$source_base" in
-    https://*|file://*) ;;
-    *) fail "installer source must use https:// or file://" ;;
-  esac
+    case "$source_base" in
+      https://*|file://*) ;;
+      *) fail "installer source must use https:// or file://" ;;
+    esac
+  fi
 
   [ ! -L "$pets_root" ] || fail "refusing to use a symlinked pets directory: $pets_root"
   mkdir -p "$pets_root" || fail "could not create pets directory: $pets_root"
@@ -1655,6 +1790,50 @@ main() {
     || fail "pets path is not a regular directory: $pets_root"
 
   acquire_install_lock
+
+  if [ "$action" = "remove" ]; then
+    needs_remove="0"
+    for variant in $variants; do
+      inspect_remove_variant "$variant"
+      set_state_for_variant "$variant" "$inspected_state"
+      [ "$inspected_state" = "remove" ] && needs_remove="1"
+    done
+
+    if [ "$needs_remove" = "1" ]; then
+      transaction_base="$(date -u +%Y%m%dT%H%M%SZ)-$$"
+      transaction_token="$transaction_base"
+      transaction_suffix="0"
+      while :; do
+        remove_root="$codex_root/.codex-pet-grok-bot.remove.$transaction_token"
+        if [ ! -e "$remove_root" ] && [ ! -L "$remove_root" ]; then
+          break
+        fi
+        transaction_suffix=$((transaction_suffix + 1))
+        transaction_token="$transaction_base-$transaction_suffix"
+      done
+      mkdir "$remove_root" || fail "could not create removal quarantine: $remove_root"
+      remove_owned="1"
+      write_owned_directory_marker "$remove_root" "$REMOVE_MARKER_NAME" || fail "could not mark removal quarantine ownership"
+      durability_barrier || fail "could not make removal quarantine durable"
+      transaction_active="1"
+    fi
+
+    for variant in $variants; do
+      apply_remove_variant "$variant"
+    done
+    if [ "$needs_remove" = "1" ]; then
+      durability_barrier || fail "could not make removal renames durable"
+      transaction_active="0"
+      cleanup_remove_root || fail "could not clean the verified removal quarantine safely"
+      durability_barrier || fail "could not make removal cleanup durable"
+    fi
+    release_lock || fail "could not remove the installer lock cleanly"
+    for variant in $variants; do
+      print_remove_result "$variant"
+    done
+    printf '\nDone. Open Settings > Pets and select Refresh.\n'
+    return 0
+  fi
 
   for variant in $variants; do
     inspect_variant "$variant"

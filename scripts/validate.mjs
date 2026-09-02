@@ -12,7 +12,7 @@ export const ATLAS = Object.freeze({
   cellWidth: 192,
   cellHeight: 208,
   maxBytes: 20 * 1024 * 1024,
-  populated: Object.freeze([7, 8, 8, 4, 5, 8, 6, 6, 6, 8, 8]),
+  populated: Object.freeze([6, 8, 8, 4, 5, 8, 6, 6, 6, 8, 8]),
 });
 
 export const PET_VARIANTS = Object.freeze({
@@ -134,6 +134,10 @@ export async function validatePet({
   let metadata = {};
   let info = {};
   let cells = [];
+  let authoringAtlasSha256 = null;
+  let authoringMetadata = {};
+  let authoringInfo = {};
+  let authoringCells = [];
 
   try {
     manifest = JSON.parse(await readFile(manifestPath, "utf8"));
@@ -212,9 +216,39 @@ export async function validatePet({
     }
   }
 
-  for (let row = 0; row <= 8 && cells.length > 0; row += 1) {
-    const authoredCount = row === 0 ? 6 : ATLAS.populated[row];
-    const hashes = cells
+  const authoringPath = path.join(root, "qa", `authoring-atlas-${variant}.webp`);
+  try {
+    const authoringBytes = await readFile(authoringPath);
+    authoringAtlasSha256 = createHash("sha256").update(authoringBytes).digest("hex");
+    const authoringImage = sharp(authoringBytes, { failOn: "error" });
+    authoringMetadata = await authoringImage.metadata();
+    if (authoringMetadata.format !== "webp") errors.push("authoring atlas must be WebP");
+    if (authoringMetadata.width !== ATLAS.width || authoringMetadata.height !== ATLAS.height) {
+      errors.push(`authoring atlas must be ${ATLAS.width}x${ATLAS.height}`);
+    }
+    if ((authoringMetadata.pages ?? 1) !== 1) errors.push("authoring atlas must contain exactly one static page");
+    if (!authoringMetadata.hasAlpha) errors.push("authoring atlas must have an alpha channel");
+    if (authoringMetadata.width === ATLAS.width && authoringMetadata.height === ATLAS.height) {
+      const decoded = await authoringImage.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      authoringInfo = decoded.info;
+      for (let row = 0; row < ATLAS.rows; row += 1) {
+        for (let column = 0; column < ATLAS.columns; column += 1) {
+          const cell = inspectCell(decoded.data, decoded.info, column, row, variant === "light" ? "light" : "dark");
+          const shouldBeVisible = column < ATLAS.populated[row];
+          if (shouldBeVisible && cell.visiblePixels === 0) errors.push(`authoring atlas required cell r${row}c${column} is blank`);
+          if (!shouldBeVisible && cell.visiblePixels !== 0) errors.push(`authoring atlas unused cell r${row}c${column} is not transparent`);
+          if (!shouldBeVisible && cell.hiddenRgbPixels !== 0) errors.push(`authoring atlas unused cell r${row}c${column} has hidden RGB residue`);
+          authoringCells.push(cell);
+        }
+      }
+    }
+  } catch (error) {
+    errors.push(`authoring atlas is missing or unreadable: ${error.message}`);
+  }
+
+  for (let row = 0; row <= 8 && authoringCells.length > 0; row += 1) {
+    const authoredCount = ATLAS.populated[row];
+    const hashes = authoringCells
       .filter((cell) => cell.row === row && cell.column < authoredCount)
       .map((cell) => cell.sha256);
     if (new Set(hashes).size !== authoredCount) {
@@ -232,9 +266,8 @@ export async function validatePet({
     if (new Set(gazeHashes).size !== 16) {
       errors.push("all 16 gaze cells must be visually distinct");
     }
-    const neutral = cells.find((cell) => cell.row === 0 && cell.column === 6);
-    if (!neutral?.featureCenter || neutral.faceFeaturePixels < 120 || gazeCells.some((cell) => !cell.featureCenter || cell.faceFeaturePixels < 120)) {
-      errors.push(`neutral and gaze cells must expose readable ${variant === "light" ? "light" : "dark"} eye features`);
+    if (gazeCells.some((cell) => !cell.featureCenter || cell.faceFeaturePixels < 120)) {
+      errors.push(`gaze cells must expose readable ${variant === "light" ? "light" : "dark"} eye features`);
     } else {
       const gazeCenter = {
         x: gazeCells.reduce((sum, cell) => sum + cell.featureCenter.x, 0) / gazeCells.length,
@@ -299,6 +332,15 @@ export async function validatePet({
       expectedPopulatedCells: ATLAS.populated.reduce((total, count) => total + count, 0),
       expectedUnusedCells: ATLAS.columns * ATLAS.rows - ATLAS.populated.reduce((total, count) => total + count, 0),
       hiddenRgbPixels,
+    },
+    authoringAtlas: {
+      path: path.relative(root, authoringPath),
+      sha256: authoringAtlasSha256,
+      format: authoringMetadata.format ?? null,
+      width: authoringMetadata.width ?? null,
+      height: authoringMetadata.height ?? null,
+      channels: authoringInfo.channels ?? authoringMetadata.channels ?? null,
+      hasAlpha: authoringMetadata.hasAlpha ?? false,
     },
     errors,
     warnings,

@@ -7,6 +7,10 @@ to Codex settings. Local Codex activation is a separate, explicit step.
 
 ## 1. Run the portable browser preview
 
+For experimental motion and edge comparisons, see the separate
+[quality study](QUALITY-STUDY.md). Its candidates do not replace the shipping
+bundles or install anything.
+
 The preview uses the repository's built-in Node server through its `npm` script.
 
 From the repository root:
@@ -51,6 +55,34 @@ effect, and atlas control updates both panes together. This makes shape, timing,
 alpha, and inverse-color differences easier to spot without trying to
 synchronize two browser tabs by hand.
 
+**Inspect frame** pauses the host-cell controller and swaps only the preview
+pane to the static authoring atlas, so Previous/Next can inspect the exact key
+poses. **Play fluid** restores the real animated shipping atlas. This inspection
+swap is a preview tool; neither static authoring atlas is installed as a
+fallback.
+
+The renderer panel starts at the pixelated `7.04rem` host fallback, measured as
+a `225 x 244` device-pixel footprint at DPR2. The preview keeps each visible
+pet on an integer CSS origin while panes, sizes, and the viewport change so the
+pixelated sample phase stays aligned with the host, including during scrolling.
+Choose **96 px · native 1:1** only when source detail needs to be inspected
+without resampling.
+
+Use the **Pet size** control for the full scale review:
+
+- `80 px`, `112 px`, `144 px`, and `224 px` exercise the optional integer-size
+  range; none is an exact substitute for the `7.04rem` fallback;
+- `96 px · native 1:1` is the source-detail reference, where one `192 px`
+  source-cell width maps exactly to `192` physical display pixels; and
+- **Smooth inspection** changes only the browser's filtering. It helps inspect
+  the authored curves and edge treatment, but it does not represent the current
+  Codex renderer and must be off for the host-faithful sign-off pass.
+
+At the `7.04rem` fallback, watch the whole loop and its repeat boundary—not
+just a paused frame. Confirm that the silhouette stays coherent, eye shapes
+morph without popping, attached gestures remain connected, and neither theme
+shows a different cadence or occupied area.
+
 ## 2. Test this checkout in the actual Codex desktop pet runtime
 
 This step installs local copies of both pet bundles. Complete the browser
@@ -88,7 +120,8 @@ without replacing one another.
    select **Refresh**.
 6. Choose **Grok Bot Dark** while Codex is using its dark theme, then enter
    `/pet` to wake it.
-7. Exercise the states below and inspect the matching animation.
+7. At DPR2, leave the pet on its `7.04rem` fallback for the final runtime
+   review. Use `96 px` only as the one-to-one source-detail comparison.
 8. Repeat with **Grok Bot Light** while Codex is using its light theme.
 
 Codex desktop reports these activity states:
@@ -103,6 +136,12 @@ Codex desktop reports these activity states:
 The current [official Pets documentation](https://learn.chatgpt.com/docs/pets)
 describes choosing and waking a pet, custom-pet creation, and the desktop status
 meanings.
+
+The actual Codex pass is the final rendering decision. The local preview can
+faithfully reproduce the known size, filtering, cadence, and frame handoffs,
+but only the desktop runtime verifies the complete compositor and the selected
+machine's display scaling. Do not sign off an art change using only **Smooth
+inspection** or only a paused Character Lab frame.
 
 For the shorter public installation guide, including Codex CLI selection and
 updating one theme without replacing the other, see [INSTALL.md](INSTALL.md).

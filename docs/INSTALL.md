@@ -171,5 +171,27 @@ For interactive inspection and the full pre-commit workflow, see
 ## Stop using or remove a pet
 
 Choose another pet, enter `/pet` again, or select **Tuck Away Pet** to stop
-showing the current pet. The installer intentionally has no destructive remove
-mode; deleting local pet data remains a separate, explicit action.
+showing the current pet without deleting it.
+
+To remove both installer-managed editions:
+
+```sh
+curl -fsSL --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/heyNag/codex-pet-grok-bot/main/install.sh | sh -s -- remove both
+```
+
+Replace `both` with `dark` or `light` to remove one edition. A selected pet
+that is already absent is reported and left unchanged.
+
+Removal preflights every selected active directory before moving anything. It
+accepts only the exact `grok-bot-dark` and `grok-bot-light` paths with valid
+ownership receipts and unmodified receipt-bound files. Symlinks, unmanaged
+directories, local edits, extra files, and non-directory collisions are refused
+without deletion.
+
+Owned pets are first renamed into a uniquely named quarantine directly under
+`CODEX_HOME`, outside the `pets` directory. If a selected rename fails, pets
+already moved during that command are restored to their exact active paths.
+After all selected renames succeed, the installer revalidates each quarantined
+bundle, removes only its exact three owned files, and removes the empty
+quarantine. It does not inspect or delete other pet IDs, existing
+`pet-backups`, or ambiguous artifacts.

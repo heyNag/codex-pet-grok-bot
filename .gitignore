@@ -4,4 +4,6 @@ node_modules/
 .cache/
 .tmp/
 coverage/
-
+__pycache__/
+*.py[cod]
+preview/quality-lab/generated/

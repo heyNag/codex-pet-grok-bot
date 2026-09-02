@@ -1,95 +1,95 @@
 {
   "schemaVersion": 1,
-  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "stimulusSha256": "86f50e4a7157b185a1e6b4bc2be774b3add46b20f7d0b22bdc39357509cf9e78",
   "reviewer": {
     "kind": "independent-blind-agent",
-    "id": "agent:/root/blind_verdict_2"
+    "id": "blind-reviewer-2"
   },
-  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "method": "Reviewed only qa/direction-blind-pairs.png at original detail and classified each labeled A/B stimulus from its visible eye placement; no answer key, consensus, validation, other verdict, source atlas, or prior review was read.",
   "pairs": [
     {
       "pair": "horizontal-1",
       "A": "screen-right",
       "B": "screen-left",
-      "reason": "A's eye cluster is farther toward the circle's right edge; B's is shifted left toward center."
+      "reason": "A's eye group sits distinctly farther toward screen-right than B's."
     },
     {
       "pair": "horizontal-2",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's eyes sit noticeably farther right within the face, while B's sit farther left."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "B's eye group is clearly displaced toward screen-right relative to A's."
     },
     {
       "pair": "horizontal-3",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eye cluster is left-shifted toward center; B's is close to the right edge."
+      "reason": "The paired eye placement shifts clearly from screen-left in A to screen-right in B."
     },
     {
       "pair": "horizontal-4",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A's eyes occupy the more central-left position, and B's are displaced rightward."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eye group is visibly farther toward screen-right, while B's sits toward screen-left."
     },
     {
       "pair": "horizontal-5",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A's eye cluster is visibly farther left in the circle; B's is near the right rim."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "The eye-group displacement is strongly screen-right in A and screen-left in B."
     },
     {
       "pair": "horizontal-6",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's eyes are shifted toward the right rim, whereas B's are shifted back toward center-left."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "B's eyes occupy the screen-right position and A's occupy the screen-left position."
     },
     {
       "pair": "horizontal-7",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eyes sit more centrally and leftward; B's sit distinctly farther right."
+      "reason": "The visible eye centers shift from screen-left in A to screen-right in B."
     },
     {
       "pair": "vertical-1",
-      "A": "down",
-      "B": "up",
-      "reason": "A's eyes are lower in the circle, while B's are visibly closer to the top."
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye group is clearly higher and B's is clearly lower."
     },
     {
       "pair": "vertical-2",
-      "A": "down",
-      "B": "up",
-      "reason": "A's eye cluster is displaced downward; B's cluster is raised toward the top rim."
+      "A": "up",
+      "B": "down",
+      "reason": "The eye placement moves visibly downward from A to B."
     },
     {
       "pair": "vertical-3",
       "A": "down",
       "B": "up",
-      "reason": "A's eyes occupy the lower position and B's the higher position within their circles."
+      "reason": "A's eyes are in the lower position and B's are in the higher position."
     },
     {
       "pair": "vertical-4",
-      "A": "up",
-      "B": "down",
-      "reason": "A's eyes sit near the top of the circle; B's are shifted distinctly downward."
+      "A": "down",
+      "B": "up",
+      "reason": "Despite a smaller separation, A's eye group is visibly lower than B's."
     },
     {
       "pair": "vertical-5",
       "A": "up",
       "B": "down",
-      "reason": "A's eye cluster is higher, while B's is lower and farther from the top rim."
+      "reason": "A's eyes occupy the higher position and B's occupy the lower position."
     },
     {
       "pair": "vertical-6",
       "A": "up",
       "B": "down",
-      "reason": "A's eyes are visibly raised and B's are visibly lowered within the face."
+      "reason": "The pair shows a clear high eye placement in A and low placement in B."
     },
     {
       "pair": "vertical-7",
       "A": "down",
       "B": "up",
-      "reason": "A's eyes sit lower in the circle, whereas B's sit closer to the top edge."
+      "reason": "The smaller but readable vertical shift places A's eyes lower and B's higher."
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 The character treatment uses exact monochrome opposites according to surface
 theme and one six-color accent palette for motion. The Codex v2 asset is a
-static WebP, so this repository emits two deterministic pet IDs instead of
+lossless animated WebP, so this repository emits two deterministic pet IDs instead of
 attempting runtime theme detection.
 
 ## Theme variants
@@ -26,7 +26,7 @@ change its pixels after Codex loads it.
 
 ## Exact accent palette
 
-| Repository label | Hex | Use in this adaptation |
+| Repository label | Hex | Use in this implementation |
 | --- | --- | --- |
 | Coral | `#F9705C` | warm whirl/ribbon, fleck, and impact phases |
 | Blue | `#5B95F0` | cool whirl/ribbon and directional phases |
@@ -57,16 +57,16 @@ introduced. The build-time palette is defined in
    `(0, 0, 0, 0)`; no colored RGB residue is hidden under zero alpha.
 6. **`orbit` stays monochrome.** The `orbit` effect is five body-color dots
    with depth conveyed by size and opacity. It is not a six-color satellite
-   ring. The opposed two-satellite ambient track is the separate `humming`
-   choreography.
+   ring. The Character Lab's opposed two-satellite track is the separate
+   `humming` choreography.
 
 ## Motion palette usage
 
 The presence of six accent colors does not mean every effect uses every color.
 In particular, `orbit` remains monochrome. Celebration can build from sparse
-flecks into thick multi-angle rainbow ribbons with rear/front occlusion. The
-paired opposed ambient satellites stay monochrome. Neither treatment changes
-the palette or the 14-mode morph registry.
+flecks into thick multi-angle rainbow ribbons with rear/front occlusion. In the
+Character Lab, the paired opposed ambient satellites stay monochrome. Neither
+treatment changes the palette or the 14-mode morph registry.
 
 See [CHARACTER-SPEC.md](CHARACTER-SPEC.md) for the effect model and
 [DESIGN.md](DESIGN.md) for the acting/effect boundary.

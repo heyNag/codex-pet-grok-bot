@@ -1,0 +1,3452 @@
+{
+  "schemaVersion": 1,
+  "kind": "arbitrary-decoder-phase-browser-host-qa",
+  "contract": {
+    "phaseDomain": "every ordered p->q decoder-phase pair; p!=q within one cell and all p,q across state-switch cells",
+    "longSkipPolicy": "full-cycle topology and intended-surface perceptual bounds only; no adjacent-step, local-energy, acceleration, or frame-drop ratio is applied to a long skip",
+    "withinReachableCellCount": 73,
+    "orderedPairCountsPerTheme": {
+      "source": {
+        "within": 258420,
+        "stateSwitch": 6526800,
+        "total": 6785220
+      },
+      "codexDefaultDpr2": {
+        "within": 258420,
+        "stateSwitch": 6526800,
+        "total": 6785220
+      }
+    },
+    "renderedPixelCountsPerTheme": {
+      "source": 174919680,
+      "codexDefaultDpr2": 240462000
+    },
+    "hostGraph": {
+      "renderedFramesPerThemePerPath": 4380,
+      "uniqueChangedCellEdgesPerPath": 1813,
+      "rawTimedEffectiveResetMembership": 461,
+      "timedAdvanceMembership": 57,
+      "overlapAssignedOnlyToTimedAdvance": "r0c5->r0c0",
+      "disjointTimedEffectiveResetTraceCount": 460,
+      "timedToGazeEdges": 912,
+      "gazeToTimedEdges": 144,
+      "gazeToDifferentGazeEdges": 240
+    },
+    "paths": {
+      "source": {
+        "width": 192,
+        "height": 208
+      },
+      "codexDefaultDpr2": {
+        "width": 225,
+        "height": 244,
+        "cssWidthExpression": "7.04rem",
+        "devicePixelRatio": 2
+      }
+    }
+  },
+  "thresholdPolicy": {
+    "upperBounds": "4% headroom on the measured authored excursion from identity",
+    "materialityLowerBounds": "96% of the measured minimum full-cycle perceptual diameter",
+    "calibrationMode": false,
+    "authoredProfileBaseline": {
+      "path": "qa/arbitrary-phase-baselines.json.gz",
+      "sha256": "c4c4552f34a427a09293ebb39a5f1a8a0c9b12d5c276e81baedbe24800b371f1",
+      "uncompressedJsonSha256": "6b6a16a25b4325b9b447ba62befa7684ac4a0f2f39ed79486de421a5c0dba082",
+      "retainedExcursionFactor": 0.96,
+      "maximumExcursionFactor": 1.04,
+      "generationMode": false,
+      "reviewedReplacementMode": false,
+      "exactTracePolicy": "zero tolerance; any rounded ordered metric-trace change requires explicit reviewed regeneration",
+      "envelopeRole": "diagnoses the direction and magnitude of a local change; it is not an exception to the exact trace seal"
+    }
+  },
+  "browserOracle": {
+    "reportSha256": "f3a69deb679cd3f72e90ff8e5771c69d849da6710a27392a3cbb696bc4437c63",
+    "compressedMapSha256": "e1a1c63baecaa9315391237391d6d4e7858f4d8bee7f0565da956dc9981f4d00",
+    "rawRoundTripSha256": "117152a05f7b50c6aa8b9be0ede70103bb7b1f4a41380768524646b3a542d7dd",
+    "renderer": {
+      "browser": "Chrome/151.0.7922.174",
+      "protocolVersion": "1.3",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+      "v8Version": "15.1.206.23",
+      "webkitVersion": "537.36 (@39c51c70dd5feca6b6aba5bb7997b595011c553d)",
+      "mainExecutableSha256": "228fb899e6a7c27ae43151857616f0ba2b926de67cfc119a370038fdd16f407e",
+      "frameworkSha256": "89738f94b75f1946dff8c7848c6798d53ff19c15d39979ef5bc51a7a86701539",
+      "applicationResourcesSha256": "f56ac8d5254a10fc4a04e7417fa787d135c3bbca49bad7d668d4ae65833d40c7"
+    },
+    "pythonLoaderOutOfRangeRedPath": "rejected source x=192 before any atlas indexing"
+  },
+  "paths": {
+    "source": {
+      "gates": {
+        "withinRows": {
+          "0": [
+            0.985844715,
+            0.685494087,
+            1.001965773,
+            19.423896735
+          ],
+          "1": [
+            0.961010204,
+            2.507291564,
+            1.002015947,
+            14.290606664
+          ],
+          "2": [
+            0.961106238,
+            2.49942484,
+            1.002018057,
+            14.294982915
+          ],
+          "3": [
+            0.957378969,
+            2.473418879,
+            1.013101354,
+            15.017137725
+          ],
+          "4": [
+            0.745531915,
+            17.961465723,
+            1.003779042,
+            41.848738267
+          ],
+          "5": [
+            0.942550114,
+            3.643417828,
+            1.002662904,
+            22.644768464
+          ],
+          "6": [
+            0.978083002,
+            1.21543086,
+            1.006546872,
+            24.867107528
+          ],
+          "7": [
+            0.981561144,
+            1.218904382,
+            1.001581983,
+            25.773522855
+          ],
+          "8": [
+            0.949078721,
+            1.600405223,
+            1.016134498,
+            32.779510063
+          ],
+          "9": [
+            0.992089249,
+            0.289019138,
+            1.0027945,
+            3.992507078
+          ],
+          "10": [
+            0.992279602,
+            0.284306355,
+            1.002797687,
+            3.9286721
+          ]
+        },
+        "families": {
+          "timedCellAdvance": [
+            0.745531915,
+            17.961465723,
+            1.016134498,
+            41.848738267,
+            13.037791915
+          ],
+          "timedEffectiveReset": [
+            0.822323258,
+            12.807775368,
+            1.033751994,
+            41.445106151,
+            17.90453766
+          ],
+          "timedToGaze": [
+            0.794113892,
+            15.056671466,
+            1.02656883,
+            38.482387204,
+            19.969264957
+          ],
+          "gazeToTimed": [
+            0.794113892,
+            15.056671466,
+            1.02656883,
+            38.482387204,
+            19.969264957
+          ],
+          "adjacentGaze": [
+            0.932523364,
+            4.382021969,
+            1.010322754,
+            24.567582267,
+            7.492826351
+          ],
+          "nonNeighborGaze": [
+            0.802229366,
+            13.961741606,
+            1.014787707,
+            35.910801087,
+            12.870129815
+          ]
+        },
+        "minimumCellFullCyclePerceptualDiameterRms": 3.178426855
+      },
+      "themes": {
+        "dark": {
+          "atlas": {
+            "path": "pet/grok-bot-dark/spritesheet.webp",
+            "fileSha256": "1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f",
+            "decodedFullPageStackSha256": "367db70affd4708124d300bde23145c81486d1d1e78852dd2db434af9b471db1",
+            "decodedAlphaStackSha256": "1f9b459c0ad2a2b8f70e4d4abb26f7c2fe9314f958aae6205027d5e74cf19a66",
+            "phaseCount": 60
+          },
+          "reachableAlphaSha256": "32aca3cd253bc57cb614265e99978bd9250c2142aa0b1cec46d9f7b8daa7e1bf",
+          "within": {
+            "allReachableCells": {
+              "count": 258420,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "d759cfa305c660051a2975991ab336b54df9fc316d6d6912a518cbbf19bf38e3",
+              "minimumSilhouetteIou": {
+                "value": 0.755319149,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 17.270640118,
+                "id": "r4c0:p20->p47"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.01551394,
+                "id": "r8c0:p27->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 40.23917141,
+                "id": "r4c0:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r9c0:p0->p30"
+              }
+            },
+            "byRow": {
+              "0": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "cec1aeaf9878c5442075d15366f8c7d627d7e4755171a55dd9d2e10884e34356",
+                "minimumSilhouetteIou": {
+                  "value": 0.986389149,
+                  "id": "r0c0:p2->p26"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.65912893,
+                  "id": "r0c0:p26->p57"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001890166,
+                  "id": "r0c0:p5->p27"
+                },
+                "maximumPerceptualRms": {
+                  "value": 18.676823783,
+                  "id": "r0c0:p24->p57"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.115792959,
+                  "id": "r0c0:p0->p59"
+                }
+              },
+              "1": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "426f3221f0a0109a360620b0123984237c2ef8c8c82c0d9ace3cfdc65dd4d766",
+                "minimumSilhouetteIou": {
+                  "value": 0.962509811,
+                  "id": "r1c0:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.410857273,
+                  "id": "r1c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00193841,
+                  "id": "r1c0:p14->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.740967946,
+                  "id": "r1c0:p1->p41"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.066948953,
+                  "id": "r1c0:p13->p14"
+                }
+              },
+              "2": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "903c354d2944d5e402d8960ab44b3e648073c55e6a95071f548a31d0f086c98a",
+                "minimumSilhouetteIou": {
+                  "value": 0.962602152,
+                  "id": "r2c0:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.403293116,
+                  "id": "r2c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00194044,
+                  "id": "r2c0:p14->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.74517588,
+                  "id": "r2c0:p14->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.070231924,
+                  "id": "r2c0:p13->p14"
+                }
+              },
+              "3": {
+                "count": 14160,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "a8f6773066a5ee05189ea56b49c937ee6fbf7c42a14e116289177517ff839284",
+                "minimumSilhouetteIou": {
+                  "value": 0.959018239,
+                  "id": "r3c0:p12->p42"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.378287384,
+                  "id": "r3c0:p12->p50"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.012597455,
+                  "id": "r3c0:p12->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 14.439555505,
+                  "id": "r3c0:p12->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.273321258,
+                  "id": "r3c0:p38->p39"
+                }
+              },
+              "4": {
+                "count": 17700,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "5986a501ebd7ea6599b127250b7365320fc716e0cb8c0c903551fbf8afd64871",
+                "minimumSilhouetteIou": {
+                  "value": 0.755319149,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 17.270640118,
+                  "id": "r4c0:p20->p47"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.003633694,
+                  "id": "r4c0:p31->p45"
+                },
+                "maximumPerceptualRms": {
+                  "value": 40.23917141,
+                  "id": "r4c0:p20->p47"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.24736382,
+                  "id": "r4c0:p19->p21"
+                }
+              },
+              "5": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "66b9f4a400464cb35df98780a92d923a0f4abce66aade1e55a3898b3a7623e15",
+                "minimumSilhouetteIou": {
+                  "value": 0.944759725,
+                  "id": "r5c0:p14->p38"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 3.503286373,
+                  "id": "r5c0:p14->p38"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002560484,
+                  "id": "r5c0:p19->p23"
+                },
+                "maximumPerceptualRms": {
+                  "value": 21.77381583,
+                  "id": "r5c0:p18->p42"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.415912349,
+                  "id": "r5c0:p52->p53"
+                }
+              },
+              "6": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "ca2befdfa2d9313a883920a3f3a7e212f2ec2e80b037b89fbee275d713f3821d",
+                "minimumSilhouetteIou": {
+                  "value": 0.978925964,
+                  "id": "r6c0:p11->p27"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.16868352,
+                  "id": "r6c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.006295069,
+                  "id": "r6c0:p17->p44"
+                },
+                "maximumPerceptualRms": {
+                  "value": 23.910680315,
+                  "id": "r6c0:p15->p51"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.363082621,
+                  "id": "r6c0:p51->p52"
+                }
+              },
+              "7": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "b290e95494556616347de8d615702a88a56281a79c0fcb38e5c8b8209bbe5457",
+                "minimumSilhouetteIou": {
+                  "value": 0.982270331,
+                  "id": "r7c0:p11->p28"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.172023444,
+                  "id": "r7c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001521137,
+                  "id": "r7c0:p1->p7"
+                },
+                "maximumPerceptualRms": {
+                  "value": 24.782233514,
+                  "id": "r7c0:p6->p26"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.209317954,
+                  "id": "r7c0:p50->p52"
+                }
+              },
+              "8": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "73c678db6f7d3ca2610fe2f31a2493d81c395aed554dfccf822c9333a76d0a30",
+                "minimumSilhouetteIou": {
+                  "value": 0.951037232,
+                  "id": "r8c0:p21->p55"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.538851176,
+                  "id": "r8c0:p17->p55"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.01551394,
+                  "id": "r8c0:p27->p55"
+                },
+                "maximumPerceptualRms": {
+                  "value": 31.518759676,
+                  "id": "r8c0:p26->p35"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.235091524,
+                  "id": "r8c0:p51->p52"
+                }
+              },
+              "9": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "1d561dc09607ec4aebca113094dac03e08bd32e961bb8c6c3c5a05890b2f69d7",
+                "minimumSilhouetteIou": {
+                  "value": 0.992393509,
+                  "id": "r9c1:p10->p45"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.277903017,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00268702,
+                  "id": "r9c2:p14->p23"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.838949113,
+                  "id": "r9c2:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r9c0:p0->p30"
+                }
+              },
+              "10": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "38fa67a290cdb074c570bdf089e33b82ec26fa1a3c1a17fb6ab4cd8662dc47ea",
+                "minimumSilhouetteIou": {
+                  "value": 0.99257654,
+                  "id": "r10c1:p12->p49"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.273371495,
+                  "id": "r10c5:p14->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002690084,
+                  "id": "r10c1:p2->p7"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.777569327,
+                  "id": "r10c7:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r10c0:p0->p30"
+                }
+              }
+            },
+            "fullCycleMateriality": {
+              "minimumCellPerceptualDiameterRms": {
+                "value": 3.346677124,
+                "id": "r9c5"
+              },
+              "maximumCellPerceptualDiameterRms": {
+                "value": 40.23917141,
+                "id": "r4c4"
+              },
+              "minimumRequiredPerceptualDiameterRms": 3.178426855,
+              "failingCellCount": 0,
+              "failingCellIds": [],
+              "authoredPerCellBaseline": {
+                "comparedCellCount": 73,
+                "failingCellCount": 0,
+                "failingCells": [],
+                "orderedProfileTraceSha256": "e0d10c58f7758382b7d8a454624a8e8df4e7c0aa5a281e5a29991f702d7182ff",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04
+              }
+            }
+          },
+          "stateSwitchFamilies": {
+            "timedCellAdvance": {
+              "count": 205200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "f610aa472f16545c685e0d6f6244325bf17a486cc8048fc12f1bab6d81dc9e2a",
+              "minimumSilhouetteIou": {
+                "value": 0.755319149,
+                "id": "r4c0->r4c1:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 17.270640118,
+                "id": "r4c0->r4c1:p20->p47"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.01551394,
+                "id": "r8c0->r8c1:p27->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 40.23917141,
+                "id": "r4c0->r4c1:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 4.0425e-05,
+                "id": "r3c0->r3c1:p47->p47"
+              },
+              "statePairCount": 57,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.740967946,
+                  "id": "r1c0->r1c1"
+                },
+                "minimumRequiredPerceptualRms": 13.037791915,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 57,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "b05d8c53bbea0464b5ddcdd42090c5fecbcef21d48d1ee4961fc5569678a012b",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 57,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 0
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedEffectiveReset": {
+              "count": 1656000,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "4dffd3c1ce126eee6a423e903c4386144c219f19f60c09f2d7d8434c341c11d4",
+              "minimumSilhouetteIou": {
+                "value": 0.829156979,
+                "id": "r4c0->r5c0:p20->p14"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 12.315168623,
+                "id": "r4c0->r5c0:p20->p14"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.032453841,
+                "id": "r3c0->r4c0:p12->p45"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.851063607,
+                "id": "r3c0->r4c0:p27->p20"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 4.4013e-05,
+                "id": "r0c1->r0c0:p28->p28"
+              },
+              "statePairCount": 460,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 18.676823783,
+                  "id": "r0c1->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 17.90453766,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 460,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "69da64ec51b7f154dafdd95663bfb30698166a1ed5d12bfb54145f45d1c13e9f",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 4,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 456
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedToGaze": {
+              "count": 3283200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "9b67df8160738b690081e73afea00c54e6fb63da0eb80ca0e40504a6d3437831",
+              "minimumSilhouetteIou": {
+                "value": 0.802032589,
+                "id": "r4c0->r10c2:p20->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.477568717,
+                "id": "r4c0->r10c2:p20->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025546952,
+                "id": "r4c0->r9c6:p45->p2"
+              },
+              "maximumPerceptualRms": {
+                "value": 37.002295388,
+                "id": "r3c0->r10c2:p12->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.493693352,
+                "id": "r6c0->r10c0:p29->p11"
+              },
+              "statePairCount": 912,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.88679165,
+                  "id": "r0c0->r10c0"
+                },
+                "minimumRequiredPerceptualRms": 19.969264957,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 912,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "17b8e51bbd82bd0c1b50bdb2f3b79c85c5d487c135785c2eb183ff35e7ec41c7",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 912
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "gazeToTimed": {
+              "count": 518400,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "3f3af6f2ddc98f947862224ea01277921b19931aefc2055d23f63c2649b3976b",
+              "minimumSilhouetteIou": {
+                "value": 0.802032589,
+                "id": "r10c2->r4c0:p43->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.477568717,
+                "id": "r10c2->r4c0:p43->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025546952,
+                "id": "r9c6->r4c0:p2->p45"
+              },
+              "maximumPerceptualRms": {
+                "value": 37.002295388,
+                "id": "r10c2->r3c0:p45->p12"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.493693352,
+                "id": "r10c0->r6c0:p11->p29"
+              },
+              "statePairCount": 144,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.88679165,
+                  "id": "r10c0->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 19.969264957,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 144,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "fb6152fe2fcb4265e8c0a8a2e023a4b1d54f3b2efa8f48083029165d98221dab",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 144
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "adjacentGaze": {
+              "count": 115200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "68bf074482e3266cfeed29d432193a025793573b1f2d9cf38552f5b2e141d844",
+              "minimumSilhouetteIou": {
+                "value": 0.93511862,
+                "id": "r9c0->r9c1:p43->p15"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 4.213482663,
+                "id": "r9c0->r9c1:p43->p15"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.009925725,
+                "id": "r10c0->r10c1:p22->p2"
+              },
+              "maximumPerceptualRms": {
+                "value": 23.622675257,
+                "id": "r10c0->r10c1:p14->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 6.447514292,
+                "id": "r9c5->r9c6:p57->p8"
+              },
+              "statePairCount": 32,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 7.859127214,
+                  "id": "r9c5->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 7.492826351,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 32,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "11ccb8b292156f6852ea40ff92e036061f2313226c85d89c155f53e3078101d6",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 32
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "nonNeighborGaze": {
+              "count": 748800,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "a0789c8afb32e0579a84745758fae973d4e036b1afe61c47d1c1666e9c37c142",
+              "minimumSilhouetteIou": {
+                "value": 0.809835929,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 13.424751544,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.014218949,
+                "id": "r9c6->r10c0:p2->p22"
+              },
+              "maximumPerceptualRms": {
+                "value": 34.52961643,
+                "id": "r9c6->r10c6:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 12.848352703,
+                "id": "r9c4->r9c6:p51->p8"
+              },
+              "statePairCount": 208,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.495301548,
+                  "id": "r9c4->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 12.870129815,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 208,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "6bbf34ff419ccff23191de1ab8b1a770c1baa1bf4f39addbb096ed96eae98b03",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 208
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            }
+          },
+          "timedColumnEquivalence": {
+            "path": "source",
+            "allTimedColumnsEqualToC0": true,
+            "orderedTraceSha256": "7b35ebc0bce3d58f2bebe72817a5436cd8b5a02968a37b709990e277afac4e42",
+            "rows": {
+              "0": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c",
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c",
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c",
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c",
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c",
+                  "2c9bd6822ba1cef264a40ce4831082cd38311e805a4fcf74cc98dc0f6ce04d5c"
+                ]
+              },
+              "1": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9",
+                  "4d6a5ddd2c2c85f452cc4a7bd2334a41bca035f7e809aa85ad64104dc2a1e3a9"
+                ]
+              },
+              "2": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52",
+                  "7dc8b2c9eded2faa4e17367940cb95ad153ffe5347533be0fdb286556723fa52"
+                ]
+              },
+              "3": {
+                "columnCount": 4,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "711dd823577a406d8fb4e2cd0558e5179c2023c8db293c207b838b2cf2847845",
+                  "711dd823577a406d8fb4e2cd0558e5179c2023c8db293c207b838b2cf2847845",
+                  "711dd823577a406d8fb4e2cd0558e5179c2023c8db293c207b838b2cf2847845",
+                  "711dd823577a406d8fb4e2cd0558e5179c2023c8db293c207b838b2cf2847845"
+                ]
+              },
+              "4": {
+                "columnCount": 5,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "3fc0ec2bddbe5fdef237dca00bc8f5597b911358534f6347c5a31f7e443ea52d",
+                  "3fc0ec2bddbe5fdef237dca00bc8f5597b911358534f6347c5a31f7e443ea52d",
+                  "3fc0ec2bddbe5fdef237dca00bc8f5597b911358534f6347c5a31f7e443ea52d",
+                  "3fc0ec2bddbe5fdef237dca00bc8f5597b911358534f6347c5a31f7e443ea52d",
+                  "3fc0ec2bddbe5fdef237dca00bc8f5597b911358534f6347c5a31f7e443ea52d"
+                ]
+              },
+              "5": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8",
+                  "f93c1f7a0de0eaf7c36da4c259b75820a37089178c212d34f94895746d0c20f8"
+                ]
+              },
+              "6": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e",
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e",
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e",
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e",
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e",
+                  "151cfcd4a2c05bba10e9420086fd3c8c5a0de20dd4cddb9063f000ac54acc69e"
+                ]
+              },
+              "7": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d",
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d",
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d",
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d",
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d",
+                  "a71ec77af4cda348ec1b6ec215daade58a8f8902587ae95e63bec069f59b656d"
+                ]
+              },
+              "8": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7",
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7",
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7",
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7",
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7",
+                  "7a21bef89b750086568155212977ba3320f134ba0bd830aef039a905778719e7"
+                ]
+              }
+            }
+          }
+        },
+        "light": {
+          "atlas": {
+            "path": "pet/grok-bot-light/spritesheet.webp",
+            "fileSha256": "58824abc00ae809965f339761d72acc23ddfe34aef031a0df5b0dba13cfe4b11",
+            "decodedFullPageStackSha256": "9988349e836f2014f7f0dfcf3ab2a01401e923bb02f7faa7c31a09d5c18be881",
+            "decodedAlphaStackSha256": "1f9b459c0ad2a2b8f70e4d4abb26f7c2fe9314f958aae6205027d5e74cf19a66",
+            "phaseCount": 60
+          },
+          "reachableAlphaSha256": "32aca3cd253bc57cb614265e99978bd9250c2142aa0b1cec46d9f7b8daa7e1bf",
+          "within": {
+            "allReachableCells": {
+              "count": 258420,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "209f4cd3a0c01b82f3f30dcfe35fced3ef58a3a81a7d9bbf63875bb98172396f",
+              "minimumSilhouetteIou": {
+                "value": 0.755319149,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 17.270640118,
+                "id": "r4c0:p20->p47"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.01551394,
+                "id": "r8c0:p27->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.741191194,
+                "id": "r4c0:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r9c0:p0->p30"
+              }
+            },
+            "byRow": {
+              "0": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "2b940b8c4a37ef65a9b4715f108ad972f83966053d91dd5856fb22acd0de7bfb",
+                "minimumSilhouetteIou": {
+                  "value": 0.986389149,
+                  "id": "r0c0:p2->p26"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.65912893,
+                  "id": "r0c0:p26->p57"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001890166,
+                  "id": "r0c0:p5->p27"
+                },
+                "maximumPerceptualRms": {
+                  "value": 18.650560062,
+                  "id": "r0c0:p24->p57"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.115948848,
+                  "id": "r0c0:p0->p59"
+                }
+              },
+              "1": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "6d0147cf5a19105d6b28d1e0ed6602d127c4042c34577fb6b27d910e57a7cf28",
+                "minimumSilhouetteIou": {
+                  "value": 0.962509811,
+                  "id": "r1c0:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.410857273,
+                  "id": "r1c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00193841,
+                  "id": "r1c0:p14->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.581033245,
+                  "id": "r1c0:p14->p41"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.066697315,
+                  "id": "r1c0:p13->p14"
+                }
+              },
+              "2": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "69441d4ae59a0a3ef69b9341ab70816f5c9d2220fb9f4f97d1299b821570ef11",
+                "minimumSilhouetteIou": {
+                  "value": 0.962602152,
+                  "id": "r2c0:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.403293116,
+                  "id": "r2c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00194044,
+                  "id": "r2c0:p14->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.625238657,
+                  "id": "r2c0:p14->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.069265268,
+                  "id": "r2c0:p13->p14"
+                }
+              },
+              "3": {
+                "count": 14160,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "ee72f5be61a0bb1876589674e881e2d3518285665e1c4e2272a036cac34e37da",
+                "minimumSilhouetteIou": {
+                  "value": 0.959018239,
+                  "id": "r3c0:p12->p42"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.378287384,
+                  "id": "r3c0:p12->p50"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.012597455,
+                  "id": "r3c0:p12->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 14.265129829,
+                  "id": "r3c0:p12->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.270074887,
+                  "id": "r3c0:p38->p39"
+                }
+              },
+              "4": {
+                "count": 17700,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "a3bbeeb802b56d29631011d086b7da01b061556490ff98a919cf0625d6b29054",
+                "minimumSilhouetteIou": {
+                  "value": 0.755319149,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 17.270640118,
+                  "id": "r4c0:p20->p47"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.003633694,
+                  "id": "r4c0:p31->p45"
+                },
+                "maximumPerceptualRms": {
+                  "value": 39.741191194,
+                  "id": "r4c0:p20->p47"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.246839217,
+                  "id": "r4c0:p19->p21"
+                }
+              },
+              "5": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "9fb584a4cfacbb089d91a0acd26fb157a0392228af3290b3ab207372f655a5b3",
+                "minimumSilhouetteIou": {
+                  "value": 0.944759725,
+                  "id": "r5c0:p14->p38"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 3.503286373,
+                  "id": "r5c0:p14->p38"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002560484,
+                  "id": "r5c0:p19->p23"
+                },
+                "maximumPerceptualRms": {
+                  "value": 21.634808224,
+                  "id": "r5c0:p18->p42"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.415096878,
+                  "id": "r5c0:p52->p53"
+                }
+              },
+              "6": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "8f997a7ff28ddbbb272690473daf2e4398401f5f5caf555313b3d304cceb5e32",
+                "minimumSilhouetteIou": {
+                  "value": 0.978925964,
+                  "id": "r6c0:p11->p27"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.16868352,
+                  "id": "r6c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.006295069,
+                  "id": "r6c0:p17->p44"
+                },
+                "maximumPerceptualRms": {
+                  "value": 23.878187635,
+                  "id": "r6c0:p15->p51"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.357976745,
+                  "id": "r6c0:p51->p52"
+                }
+              },
+              "7": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "0c1dee4777626f2395dd66f80ca77a8ce15b6689e2e900bbded589dca1217eb8",
+                "minimumSilhouetteIou": {
+                  "value": 0.982270331,
+                  "id": "r7c0:p11->p28"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.172023444,
+                  "id": "r7c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001521137,
+                  "id": "r7c0:p1->p7"
+                },
+                "maximumPerceptualRms": {
+                  "value": 24.758585607,
+                  "id": "r7c0:p6->p26"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.208277699,
+                  "id": "r7c0:p50->p52"
+                }
+              },
+              "8": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "34cc08db538e1235903163e9c39de1a1908b64adc0b0aee91ac1e247097f5ca7",
+                "minimumSilhouetteIou": {
+                  "value": 0.951037232,
+                  "id": "r8c0:p21->p55"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.538851176,
+                  "id": "r8c0:p17->p55"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.01551394,
+                  "id": "r8c0:p27->p55"
+                },
+                "maximumPerceptualRms": {
+                  "value": 31.448687532,
+                  "id": "r8c0:p26->p35"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.211032577,
+                  "id": "r8c0:p51->p52"
+                }
+              },
+              "9": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "adfb06b8b8bbfb46ea3cc8dccd57eb23ad3ad036269b8cf1f1812461e436eb56",
+                "minimumSilhouetteIou": {
+                  "value": 0.992393509,
+                  "id": "r9c1:p10->p45"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.277903017,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.00268702,
+                  "id": "r9c2:p14->p23"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.795859189,
+                  "id": "r9c2:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r9c0:p0->p30"
+                }
+              },
+              "10": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "def5140bd13e885b2270fa73ddeedb59d5523955fda0288f24aa4fb058a53d3b",
+                "minimumSilhouetteIou": {
+                  "value": 0.99257654,
+                  "id": "r10c1:p12->p49"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.273371495,
+                  "id": "r10c5:p14->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002690084,
+                  "id": "r10c1:p2->p7"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.732105484,
+                  "id": "r10c7:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r10c1:p0->p30"
+                }
+              }
+            },
+            "fullCycleMateriality": {
+              "minimumCellPerceptualDiameterRms": {
+                "value": 3.310861307,
+                "id": "r9c5"
+              },
+              "maximumCellPerceptualDiameterRms": {
+                "value": 39.741191194,
+                "id": "r4c4"
+              },
+              "minimumRequiredPerceptualDiameterRms": 3.178426855,
+              "failingCellCount": 0,
+              "failingCellIds": [],
+              "authoredPerCellBaseline": {
+                "comparedCellCount": 73,
+                "failingCellCount": 0,
+                "failingCells": [],
+                "orderedProfileTraceSha256": "46cf5567ce774d881d0f0cc64e7943ae085eff4a003f7b17f596ba5e5aaa6391",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04
+              }
+            }
+          },
+          "stateSwitchFamilies": {
+            "timedCellAdvance": {
+              "count": 205200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "1d5f5af4de491a8be5026bae38cad1fa60a88b5a2b1d8e56fba4ba1953bdd4e0",
+              "minimumSilhouetteIou": {
+                "value": 0.755319149,
+                "id": "r4c0->r4c1:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 17.270640118,
+                "id": "r4c0->r4c1:p20->p47"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.01551394,
+                "id": "r8c0->r8c1:p27->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.741191194,
+                "id": "r4c0->r4c1:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r0c0->r0c1:p0->p0"
+              },
+              "statePairCount": 57,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.581033245,
+                  "id": "r1c0->r1c1"
+                },
+                "minimumRequiredPerceptualRms": 13.037791915,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 57,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "bfb781797fb8b4de270b86a17cb437c10a8fb485a76fa32b381e94fe8451d5ec",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 57,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 0
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedEffectiveReset": {
+              "count": 1656000,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "9a3ea47f17710db41d5477d8c482eadf47e05527ce229a6ca2f3fc4df3c68da6",
+              "minimumSilhouetteIou": {
+                "value": 0.829156979,
+                "id": "r4c0->r5c0:p20->p14"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 12.315168623,
+                "id": "r4c0->r5c0:p20->p14"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.032453841,
+                "id": "r3c0->r4c0:p12->p45"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.523416179,
+                "id": "r3c0->r4c0:p27->p20"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r0c1->r0c0:p0->p0"
+              },
+              "statePairCount": 460,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 18.650560062,
+                  "id": "r0c1->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 17.90453766,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 460,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "8722848c57fb65deb20a4a7df496f163a77f8ea09bbbf3f37bd3eb6be63a18a6",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 4,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 456
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedToGaze": {
+              "count": 3283200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "6d931bea99333caf1fd9dcbb783950fcd5bca653694dfa6a00ef12e353ae9fef",
+              "minimumSilhouetteIou": {
+                "value": 0.802032589,
+                "id": "r4c0->r10c2:p20->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.477568717,
+                "id": "r4c0->r10c2:p20->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025546952,
+                "id": "r4c0->r9c6:p45->p2"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.74170597,
+                "id": "r3c0->r10c2:p12->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.390705815,
+                "id": "r6c0->r10c0:p29->p11"
+              },
+              "statePairCount": 912,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.801317663,
+                  "id": "r0c0->r10c0"
+                },
+                "minimumRequiredPerceptualRms": 19.969264957,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 912,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "98f91d63f6a417e01d1f6c9451d3e208722c55bc557dd7cff00d97fe52529255",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 912
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "gazeToTimed": {
+              "count": 518400,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "a98e077f3e7f4685d94424745e9a6c8949df7195f52482c745a44eaf084f3e1b",
+              "minimumSilhouetteIou": {
+                "value": 0.802032589,
+                "id": "r10c2->r4c0:p43->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.477568717,
+                "id": "r10c2->r4c0:p43->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025546952,
+                "id": "r9c6->r4c0:p2->p45"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.74170597,
+                "id": "r10c2->r3c0:p45->p12"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.390705815,
+                "id": "r10c0->r6c0:p11->p29"
+              },
+              "statePairCount": 144,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.801317663,
+                  "id": "r10c0->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 19.969264957,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 144,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "334c3e8913a5c1f08eefd9884354466a41487b3b6ac053aa068753dac941c345",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 144
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "adjacentGaze": {
+              "count": 115200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "8383e496cb0fa34571121db3b5f1513996b3661e07f5b5f8b1797e93fd8c9bd1",
+              "minimumSilhouetteIou": {
+                "value": 0.93511862,
+                "id": "r9c0->r9c1:p43->p15"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 4.213482663,
+                "id": "r9c0->r9c1:p43->p15"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.009925725,
+                "id": "r10c0->r10c1:p22->p2"
+              },
+              "maximumPerceptualRms": {
+                "value": 23.436056337,
+                "id": "r10c0->r10c1:p14->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 6.426943243,
+                "id": "r9c5->r9c6:p57->p8"
+              },
+              "statePairCount": 32,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 7.805027449,
+                  "id": "r9c5->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 7.492826351,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 32,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "121bed580af548cfdca46a150917ee328d66c75fe50761e0ceec4de0924a84ca",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 32
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "nonNeighborGaze": {
+              "count": 748800,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "3829e98c5452d15e69f044b13ac21c5da9ba2270a00b5005d3878c4dd15de188",
+              "minimumSilhouetteIou": {
+                "value": 0.809835929,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 13.424751544,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.014218949,
+                "id": "r9c6->r10c0:p2->p22"
+              },
+              "maximumPerceptualRms": {
+                "value": 34.115273902,
+                "id": "r9c6->r10c6:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 12.77871979,
+                "id": "r9c4->r9c6:p51->p8"
+              },
+              "statePairCount": 208,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.406385224,
+                  "id": "r9c4->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 12.870129815,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 208,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "c2ffeef1275601096a02b7f139890e2ef5080bea1f2722d6373cc258eeaaabf7",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 208
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            }
+          },
+          "timedColumnEquivalence": {
+            "path": "source",
+            "allTimedColumnsEqualToC0": true,
+            "orderedTraceSha256": "c68a249d025a99727bcdd2ae6bd91aed95814cbad6b4062ad86fa95ad40fe1b6",
+            "rows": {
+              "0": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e",
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e",
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e",
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e",
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e",
+                  "20832a73bd6baf4d5d2e533d27ad662167498f57d743199c70be68521379da0e"
+                ]
+              },
+              "1": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199",
+                  "879ab63982bf093882c78a6fd78035a7e7626ed7d47c9b4adb8192adc1ce7199"
+                ]
+              },
+              "2": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074",
+                  "56187b22f39a72911a27b9f24a1dd8ed4272a8bd415a777d4e5bdbad5e817074"
+                ]
+              },
+              "3": {
+                "columnCount": 4,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "be2fb7939d6b9d78faa52e29bb273f3e971cdbc9e571340e55f74324fbe10913",
+                  "be2fb7939d6b9d78faa52e29bb273f3e971cdbc9e571340e55f74324fbe10913",
+                  "be2fb7939d6b9d78faa52e29bb273f3e971cdbc9e571340e55f74324fbe10913",
+                  "be2fb7939d6b9d78faa52e29bb273f3e971cdbc9e571340e55f74324fbe10913"
+                ]
+              },
+              "4": {
+                "columnCount": 5,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "5f3ee0eb43f42816569a3014c8774adc0119454af4ba89273aa95d6d9c733ed6",
+                  "5f3ee0eb43f42816569a3014c8774adc0119454af4ba89273aa95d6d9c733ed6",
+                  "5f3ee0eb43f42816569a3014c8774adc0119454af4ba89273aa95d6d9c733ed6",
+                  "5f3ee0eb43f42816569a3014c8774adc0119454af4ba89273aa95d6d9c733ed6",
+                  "5f3ee0eb43f42816569a3014c8774adc0119454af4ba89273aa95d6d9c733ed6"
+                ]
+              },
+              "5": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5",
+                  "4978d8c7d1ad08ed10e5f4610fd0c9803dc6594dc30f074ab82cab3aa7d62aa5"
+                ]
+              },
+              "6": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca",
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca",
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca",
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca",
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca",
+                  "d4ff8b51d92074f157b908e281f1fc0ca5aca223d4dd47bfcda12a7d113769ca"
+                ]
+              },
+              "7": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256",
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256",
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256",
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256",
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256",
+                  "d973fb2b8849b5444f93d65fbe2f8eba8f8c29f0d2ef0f4cc14dd55212a5d256"
+                ]
+              },
+              "8": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 1,
+                "allColumnsEqualToC0": true,
+                "orderedSequenceSha256": [
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec",
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec",
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec",
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec",
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec",
+                  "1c82419b5251b01b6cd42af05670a6fbb41f394d8d3235a07dae1f326104e7ec"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "crossThemeAlphaParity": true
+    },
+    "codexDefaultDpr2": {
+      "gates": {
+        "withinRows": {
+          "0": [
+            0.985639072,
+            0.855803722,
+            1.001801137,
+            19.514547317
+          ],
+          "1": [
+            0.960177193,
+            2.99796415,
+            1.002315977,
+            14.31260824
+          ],
+          "2": [
+            0.960387932,
+            2.982515773,
+            1.002296177,
+            14.343070436
+          ],
+          "3": [
+            0.957715821,
+            2.933628508,
+            1.013656472,
+            14.993654962
+          ],
+          "4": [
+            0.74515146,
+            21.079990557,
+            1.004509068,
+            41.864182349
+          ],
+          "5": [
+            0.942828222,
+            4.315515097,
+            1.003277182,
+            22.658609949
+          ],
+          "6": [
+            0.978766944,
+            1.359735239,
+            1.006147151,
+            24.874974171
+          ],
+          "7": [
+            0.982166989,
+            1.379547737,
+            1.001526874,
+            25.768559596
+          ],
+          "8": [
+            0.948414465,
+            1.942740657,
+            1.015982883,
+            32.860282476
+          ],
+          "9": [
+            0.991531115,
+            0.371156326,
+            1.003014138,
+            4.07383745
+          ],
+          "10": [
+            0.9917369,
+            0.36297782,
+            1.003032533,
+            4.075557483
+          ]
+        },
+        "families": {
+          "timedCellAdvance": [
+            0.74515146,
+            21.079994434,
+            1.016084333,
+            41.872551369,
+            13.10594018
+          ],
+          "timedEffectiveReset": [
+            0.822950984,
+            15.011796337,
+            1.034030574,
+            41.463109261,
+            17.986984919
+          ],
+          "timedToGaze": [
+            0.794841391,
+            17.587192535,
+            1.026074161,
+            38.458990167,
+            20.033734223
+          ],
+          "gazeToTimed": [
+            0.794841391,
+            17.583436584,
+            1.026074018,
+            38.458990167,
+            20.048807124
+          ],
+          "adjacentGaze": [
+            0.932430435,
+            5.11651301,
+            1.011061491,
+            24.564424854,
+            7.475555475
+          ],
+          "nonNeighborGaze": [
+            0.802431611,
+            16.287155749,
+            1.014798694,
+            35.916528831,
+            12.783343457
+          ]
+        },
+        "minimumCellFullCyclePerceptualDiameterRms": 3.178538901
+      },
+      "themes": {
+        "dark": {
+          "atlas": {
+            "path": "pet/grok-bot-dark/spritesheet.webp",
+            "fileSha256": "1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f",
+            "decodedFullPageStackSha256": "367db70affd4708124d300bde23145c81486d1d1e78852dd2db434af9b471db1",
+            "decodedAlphaStackSha256": "1f9b459c0ad2a2b8f70e4d4abb26f7c2fe9314f958aae6205027d5e74cf19a66",
+            "phaseCount": 60
+          },
+          "reachableAlphaSha256": "f694f980003790d9ea7b0fba49fd064d67636c30902385ddc8069ce347de0f2d",
+          "within": {
+            "allReachableCells": {
+              "count": 258420,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "8114cc97226706d8f1d9b9992ab9d3bf7d7c2d885d4a8bd1bf828742afb4aab0",
+              "minimumSilhouetteIou": {
+                "value": 0.754953327,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 20.26922169,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.015368157,
+                "id": "r8c1:p29->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 40.254021489,
+                "id": "r4c2:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r9c0:p0->p30"
+              }
+            },
+            "byRow": {
+              "0": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "8a84ce6d556e2b8fcc9cedd3070dc57520840e1d8d129a215a8627cd6faa33f8",
+                "minimumSilhouetteIou": {
+                  "value": 0.986191416,
+                  "id": "r0c0:p2->p26"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.822888194,
+                  "id": "r0c0:p26->p57"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001731863,
+                  "id": "r0c2:p1->p29"
+                },
+                "maximumPerceptualRms": {
+                  "value": 18.763987805,
+                  "id": "r0c0:p24->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.112188672,
+                  "id": "r0c1:p0->p59"
+                }
+              },
+              "1": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "c8447e9ef599642848aa5186c8820a7a9b089906a918908c1d6019dcfad7f518",
+                "minimumSilhouetteIou": {
+                  "value": 0.96170884,
+                  "id": "r1c2:p14->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.882657836,
+                  "id": "r1c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002226901,
+                  "id": "r1c1:p1->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.762123307,
+                  "id": "r1c6:p14->p41"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.067785125,
+                  "id": "r1c2:p13->p14"
+                }
+              },
+              "2": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "4fc2dfbf40042626da934240d79f1e61d6b2e1880cf7c82050a2bb37eca226b3",
+                "minimumSilhouetteIou": {
+                  "value": 0.961911474,
+                  "id": "r2c2:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.867803628,
+                  "id": "r2c2:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002207863,
+                  "id": "r2c6:p1->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.791413881,
+                  "id": "r2c0:p14->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.071176162,
+                  "id": "r2c0:p13->p14"
+                }
+              },
+              "3": {
+                "count": 14160,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "6ecf0eef93c1b78577a024665d85a4c34eff45350f8c780ae9a0656eb32f2421",
+                "minimumSilhouetteIou": {
+                  "value": 0.959342135,
+                  "id": "r3c0:p12->p42"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.820796642,
+                  "id": "r3c2:p12->p50"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.013131223,
+                  "id": "r3c2:p12->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 14.416975925,
+                  "id": "r3c0:p12->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.26125054,
+                  "id": "r3c2:p38->p39"
+                }
+              },
+              "4": {
+                "count": 17700,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "5e589226c2bb59c5c4dc71cdc941552d8f3aa24b10004c5620806fa5c663d6c5",
+                "minimumSilhouetteIou": {
+                  "value": 0.754953327,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 20.26922169,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.004335643,
+                  "id": "r4c2:p31->p46"
+                },
+                "maximumPerceptualRms": {
+                  "value": 40.254021489,
+                  "id": "r4c2:p20->p47"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.254036254,
+                  "id": "r4c2:p19->p21"
+                }
+              },
+              "5": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "8b5f51e197167d36fa67fc13da3a5b0763763d209ae0f2d94a6321d7c7b59e7d",
+                "minimumSilhouetteIou": {
+                  "value": 0.945027137,
+                  "id": "r5c6:p14->p38"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 4.149533747,
+                  "id": "r5c6:p14->p38"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.003151137,
+                  "id": "r5c6:p19->p48"
+                },
+                "maximumPerceptualRms": {
+                  "value": 21.787124951,
+                  "id": "r5c6:p18->p42"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.408868436,
+                  "id": "r5c2:p52->p53"
+                }
+              },
+              "6": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "cc5f6b22dcc0b57eaf70da78ccfa3e55eec1a8c5f9851ece1ca829f1681d0dab",
+                "minimumSilhouetteIou": {
+                  "value": 0.9795836,
+                  "id": "r6c0:p11->p27"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.30743773,
+                  "id": "r6c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.005910722,
+                  "id": "r6c1:p16->p44"
+                },
+                "maximumPerceptualRms": {
+                  "value": 23.918244395,
+                  "id": "r6c1:p15->p51"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.363322258,
+                  "id": "r6c2:p51->p52"
+                }
+              },
+              "7": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "8f26bf633c9b7b2b960b4c8710cdbb3097a4d3470956527c08da4245b47440f8",
+                "minimumSilhouetteIou": {
+                  "value": 0.982852874,
+                  "id": "r7c0:p10->p28"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.326488208,
+                  "id": "r7c0:p10->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001468148,
+                  "id": "r7c2:p6->p37"
+                },
+                "maximumPerceptualRms": {
+                  "value": 24.77746115,
+                  "id": "r7c0:p6->p27"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.209544427,
+                  "id": "r7c0:p50->p52"
+                }
+              },
+              "8": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "81f9dd6cba60a71fd7ec4c8800e7d14ca131312f63b8c3954b9e819b3ae98231",
+                "minimumSilhouetteIou": {
+                  "value": 0.950398524,
+                  "id": "r8c0:p21->p55"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.868019862,
+                  "id": "r8c2:p17->p55"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.015368157,
+                  "id": "r8c1:p29->p55"
+                },
+                "maximumPerceptualRms": {
+                  "value": 31.596425458,
+                  "id": "r8c0:p26->p35"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.233807869,
+                  "id": "r8c2:p51->p52"
+                }
+              },
+              "9": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "4ae871f4f66d08a53d378431dfa3df716587728892cebd958a3606e65db1a8b2",
+                "minimumSilhouetteIou": {
+                  "value": 0.991856841,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.356881083,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002898209,
+                  "id": "r9c0:p8->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.917151394,
+                  "id": "r9c2:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r9c0:p0->p30"
+                }
+              },
+              "10": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "8a3d8f0285f2512de048f0532c9859e2c1f54d798f3bef01da3c43c3ccfa777e",
+                "minimumSilhouetteIou": {
+                  "value": 0.992054712,
+                  "id": "r10c7:p8->p48"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.349017135,
+                  "id": "r10c7:p14->p46"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002915897,
+                  "id": "r10c6:p14->p46"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.918805272,
+                  "id": "r10c7:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r10c0:p0->p30"
+                }
+              }
+            },
+            "fullCycleMateriality": {
+              "minimumCellPerceptualDiameterRms": {
+                "value": 3.348945997,
+                "id": "r10c3"
+              },
+              "maximumCellPerceptualDiameterRms": {
+                "value": 40.254021489,
+                "id": "r4c4"
+              },
+              "minimumRequiredPerceptualDiameterRms": 3.178538901,
+              "failingCellCount": 0,
+              "failingCellIds": [],
+              "authoredPerCellBaseline": {
+                "comparedCellCount": 73,
+                "failingCellCount": 0,
+                "failingCells": [],
+                "orderedProfileTraceSha256": "454b2bbd19255e4a6b9c542beff795d4a9468dbfe7e0ee7b59101dbe9c53e1ab",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04
+              }
+            }
+          },
+          "stateSwitchFamilies": {
+            "timedCellAdvance": {
+              "count": 205200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "04cb6603e496dfbf8d1493347878ad903ed5ea410f5c30fbcb26a00b676969bc",
+              "minimumSilhouetteIou": {
+                "value": 0.754953327,
+                "id": "r4c0->r4c1:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 20.269225417,
+                "id": "r4c1->r4c2:p46->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.015465705,
+                "id": "r8c1->r8c2:p55->p29"
+              },
+              "maximumPerceptualRms": {
+                "value": 40.262068624,
+                "id": "r4c4->r4c0:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 4.6026e-05,
+                "id": "r4c2->r4c3:p47->p47"
+              },
+              "statePairCount": 57,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.756379639,
+                  "id": "r1c0->r1c1"
+                },
+                "minimumRequiredPerceptualRms": 13.10594018,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 57,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "56921a8a9c05586914d569dfc815f6feb9e1bf442c529bef143c6d195121f6ad",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 57,
+                  "semanticDistinction": 0
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedEffectiveReset": {
+              "count": 1656000,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "c95d711f6c72e8ebfcd7d32c71b86285203225e6bf1ed4de3e550f3b69076ace",
+              "minimumSilhouetteIou": {
+                "value": 0.829760562,
+                "id": "r5c6->r4c0:p14->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.434419555,
+                "id": "r5c6->r4c0:p14->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.032721705,
+                "id": "r3c2->r4c0:p12->p46"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.86837429,
+                "id": "r3c0->r4c0:p27->p20"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 4.9508e-05,
+                "id": "r0c1->r0c0:p49->p49"
+              },
+              "statePairCount": 460,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 18.763925873,
+                  "id": "r0c1->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 17.986984919,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 460,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "dc1020dd02817bbfb81b574b111db0b944de82d6d7469fe4d584fa70da64d17e",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 4,
+                  "semanticDistinction": 456
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedToGaze": {
+              "count": 3283200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "6927999f45bea81a0e2a46d227b291c6f03b687a32f8e053a42509b7f2611e6e",
+              "minimumSilhouetteIou": {
+                "value": 0.802732107,
+                "id": "r4c0->r10c2:p20->p50"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 16.910762053,
+                "id": "r4c2->r10c2:p20->p49"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025071309,
+                "id": "r4c1->r9c2:p46->p49"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.979798237,
+                "id": "r3c0->r10c2:p12->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.507133545,
+                "id": "r6c0->r10c0:p29->p11"
+              },
+              "statePairCount": 912,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.953796345,
+                  "id": "r0c1->r10c0"
+                },
+                "minimumRequiredPerceptualRms": 20.033734223,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 912,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "322a41d136900c1e4d73caa932d796510427adfaa00a1167e71a6687d6046d04",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 912
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "gazeToTimed": {
+              "count": 518400,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "8be82dd0dfa7a9f85ea1e07e5fa82532a673a153c0c69e43ab580de568b3faa2",
+              "minimumSilhouetteIou": {
+                "value": 0.802732107,
+                "id": "r10c2->r4c0:p50->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 16.907150561,
+                "id": "r9c6->r4c0:p54->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025071171,
+                "id": "r9c2->r4c0:p49->p46"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.979798237,
+                "id": "r10c2->r3c0:p45->p12"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.507133545,
+                "id": "r10c0->r6c0:p11->p29"
+              },
+              "statePairCount": 144,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.969432986,
+                  "id": "r10c0->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 20.048807124,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 144,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "d80b7ceeb75984d3cb8b257a2d675783a1cb96c76abf4f567d065e6172303537",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 144
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "adjacentGaze": {
+              "count": 115200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "af599d934160cc5070351850f50ecb566bc1e50edbb2c2115819403cf5bcd308",
+              "minimumSilhouetteIou": {
+                "value": 0.935029265,
+                "id": "r9c0->r10c7:p14->p44"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 4.919724048,
+                "id": "r9c0->r9c1:p45->p15"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.010636049,
+                "id": "r9c0->r9c1:p8->p40"
+              },
+              "maximumPerceptualRms": {
+                "value": 23.619639283,
+                "id": "r10c0->r10c1:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 6.516240701,
+                "id": "r9c5->r9c6:p57->p8"
+              },
+              "statePairCount": 32,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 7.839827086,
+                  "id": "r9c5->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 7.475555475,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 32,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "27eb6683eb091a0ec893a18cfab6caaf1f4273af6e7d06621f58bbfdcc0c7b4e",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 32
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "nonNeighborGaze": {
+              "count": 748800,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "f1ebcb10f0aacccb770379e696fd8fd11045ac990807e39357090c5faacfc6f1",
+              "minimumSilhouetteIou": {
+                "value": 0.810030395,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 15.660726682,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.014229514,
+                "id": "r9c2->r10c0:p49->p22"
+              },
+              "maximumPerceptualRms": {
+                "value": 34.535123876,
+                "id": "r9c6->r10c6:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 12.749603342,
+                "id": "r9c4->r9c6:p51->p8"
+              },
+              "statePairCount": 208,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.403260706,
+                  "id": "r9c4->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 12.783343457,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 208,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "e44b909fdbabe9186a34747829abb0733169571f6dfd289701cd1f536780d050",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 208
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            }
+          },
+          "timedColumnEquivalence": {
+            "path": "codexDefaultDpr2",
+            "allTimedColumnsEqualToC0": false,
+            "orderedTraceSha256": "a5971f893ea3ef66f381318547e14b8a2dea9f987eae16954c097bb16264598b",
+            "rows": {
+              "0": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "52d2de06c1f204b9c8c6e14b10f293b071d5baa80a7237ee95534f1aff80a91f",
+                  "cecd2ec7516e90fc76cc4bd680552c3f754a354978df0946a65d553e851807ae",
+                  "865f38ea41d0e83e4e72ef4afca7eda5632f9ba46b5de07a4374145c23fa3cd1",
+                  "865f38ea41d0e83e4e72ef4afca7eda5632f9ba46b5de07a4374145c23fa3cd1",
+                  "865f38ea41d0e83e4e72ef4afca7eda5632f9ba46b5de07a4374145c23fa3cd1",
+                  "cecd2ec7516e90fc76cc4bd680552c3f754a354978df0946a65d553e851807ae"
+                ]
+              },
+              "1": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 4,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "e80112d3fc9e82d7bb080bee194fb5bc4b9f330b7d444f3301cab471f044605b",
+                  "484f1f667ea1b851435283d0b6993d3e75c071b359a4309e3cdd98d0cf2418b3",
+                  "d67cc8d0d6f6988e937e8dfaf87b4c4308bf1c7d6c857141d38ea395a7f5ea32",
+                  "d67cc8d0d6f6988e937e8dfaf87b4c4308bf1c7d6c857141d38ea395a7f5ea32",
+                  "d67cc8d0d6f6988e937e8dfaf87b4c4308bf1c7d6c857141d38ea395a7f5ea32",
+                  "484f1f667ea1b851435283d0b6993d3e75c071b359a4309e3cdd98d0cf2418b3",
+                  "c77e45d1487ecb8c0ceb19712a1fa068ea3e75b7449e928f3f6f80c48c19d093",
+                  "c77e45d1487ecb8c0ceb19712a1fa068ea3e75b7449e928f3f6f80c48c19d093"
+                ]
+              },
+              "2": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 5,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "c4383d2f83c836c8b432055c6f632fa42555018d26f5f50a627b42201bcbc6c5",
+                  "eff94eb91e9d0b3bc3aba0102b889d6d3e4f30aa8ff8ef1d149c397395f76bfa",
+                  "4b5b8461bdf8bfa80b2ad50345ab022aea9bb99516bbfa293699e6b5f2947282",
+                  "e303519573a72947a33ac58d39d17c7e66a4a88353853adffd25a4a0aa9e5164",
+                  "4b5b8461bdf8bfa80b2ad50345ab022aea9bb99516bbfa293699e6b5f2947282",
+                  "eff94eb91e9d0b3bc3aba0102b889d6d3e4f30aa8ff8ef1d149c397395f76bfa",
+                  "03174b717397f72eff7875043215915bdc783113191bc823fc68346e16d899bd",
+                  "03174b717397f72eff7875043215915bdc783113191bc823fc68346e16d899bd"
+                ]
+              },
+              "3": {
+                "columnCount": 4,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "984f41460ea770a0c226b03d5c880fe368a52985d5e0e0ee2c4da537afdd7d36",
+                  "2e5f29e20e6ca0d19b63152e60c1a5cc8707b43f9cc551604010da148ffdd18e",
+                  "7c0991715c1ae7c5516e921e83d7fe7dfe15b842def05ac096587ba0f55c17d1",
+                  "7c0991715c1ae7c5516e921e83d7fe7dfe15b842def05ac096587ba0f55c17d1"
+                ]
+              },
+              "4": {
+                "columnCount": 5,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "42d42f2e71c4e92f1627174ff872c3e7edabce250b0c40236d22a8af721172a5",
+                  "82ee847b691887fc8ff24a44f570f4e94d9f3b8f14064206ffa5bba06bfecd94",
+                  "43e8a14eafe088b78a9d2a2d8a8d93d7b2b4a9babbb716ffeb6ede588035ab30",
+                  "43e8a14eafe088b78a9d2a2d8a8d93d7b2b4a9babbb716ffeb6ede588035ab30",
+                  "43e8a14eafe088b78a9d2a2d8a8d93d7b2b4a9babbb716ffeb6ede588035ab30"
+                ]
+              },
+              "5": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 4,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "0ffa928b7a3abde66442ca634edc0276b455992defcfec269e90313a740c5ec4",
+                  "4162a46a50106af4c949d8136426ed745551304e608ef16914c442c307d537e2",
+                  "2e2b8c4c70ca35e08f38039406401a4eac5f7af8e5cc3e7c65cf9ae58188af13",
+                  "2e2b8c4c70ca35e08f38039406401a4eac5f7af8e5cc3e7c65cf9ae58188af13",
+                  "2e2b8c4c70ca35e08f38039406401a4eac5f7af8e5cc3e7c65cf9ae58188af13",
+                  "4162a46a50106af4c949d8136426ed745551304e608ef16914c442c307d537e2",
+                  "3adea4212865779741754d7e067d7e2df6c90f43013ae736592d8dfc9600da42",
+                  "3adea4212865779741754d7e067d7e2df6c90f43013ae736592d8dfc9600da42"
+                ]
+              },
+              "6": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "760ec625af2c1833df796716eff60685129f3fa1d9245c238de7a663362fd149",
+                  "dc6d7f068ef7864d0eb9e46dece3c9a3ccf9457d7aa2e5b9e1a334f0622a4b10",
+                  "7af5fbd5ae4b1a21aa5a48c571be14e0a279cc084a5a964a9d6b440302279c36",
+                  "7af5fbd5ae4b1a21aa5a48c571be14e0a279cc084a5a964a9d6b440302279c36",
+                  "7af5fbd5ae4b1a21aa5a48c571be14e0a279cc084a5a964a9d6b440302279c36",
+                  "dc6d7f068ef7864d0eb9e46dece3c9a3ccf9457d7aa2e5b9e1a334f0622a4b10"
+                ]
+              },
+              "7": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "487045928e9984b266b7ec64e0794ad43562cde33ecfa97a3558d90cf4b2a5d4",
+                  "57d2c0af4437614bf670e9fc2a91b3db5f1d356525d6ec6afddc44a7d6bc47e5",
+                  "b3863c06cd8c301ef7e89cab0cd853dc5769ac3bb741e464e325f8ba320f3d74",
+                  "b3863c06cd8c301ef7e89cab0cd853dc5769ac3bb741e464e325f8ba320f3d74",
+                  "b3863c06cd8c301ef7e89cab0cd853dc5769ac3bb741e464e325f8ba320f3d74",
+                  "57d2c0af4437614bf670e9fc2a91b3db5f1d356525d6ec6afddc44a7d6bc47e5"
+                ]
+              },
+              "8": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "dcf5b0536819f0cb56c885aba09677baedae2d474591bf1b4c89c639f28d8cc5",
+                  "0fc962956169029fcd09bb36752cfa340d15cbb70b788abbf2c400639fba18ed",
+                  "521b5c7e99ff05090cd52b41629da670c7af864cedad54d1d64e8e0ac06b2147",
+                  "521b5c7e99ff05090cd52b41629da670c7af864cedad54d1d64e8e0ac06b2147",
+                  "521b5c7e99ff05090cd52b41629da670c7af864cedad54d1d64e8e0ac06b2147",
+                  "0fc962956169029fcd09bb36752cfa340d15cbb70b788abbf2c400639fba18ed"
+                ]
+              }
+            }
+          }
+        },
+        "light": {
+          "atlas": {
+            "path": "pet/grok-bot-light/spritesheet.webp",
+            "fileSha256": "58824abc00ae809965f339761d72acc23ddfe34aef031a0df5b0dba13cfe4b11",
+            "decodedFullPageStackSha256": "9988349e836f2014f7f0dfcf3ab2a01401e923bb02f7faa7c31a09d5c18be881",
+            "decodedAlphaStackSha256": "1f9b459c0ad2a2b8f70e4d4abb26f7c2fe9314f958aae6205027d5e74cf19a66",
+            "phaseCount": 60
+          },
+          "reachableAlphaSha256": "f694f980003790d9ea7b0fba49fd064d67636c30902385ddc8069ce347de0f2d",
+          "within": {
+            "allReachableCells": {
+              "count": 258420,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "3a5b76c5b6a13b1b5c4f19ec022509bc712fdc67701f4306e2b14124e6fe8f2d",
+              "minimumSilhouetteIou": {
+                "value": 0.754953327,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 20.26922169,
+                "id": "r4c0:p20->p46"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.015368157,
+                "id": "r8c1:p29->p55"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.75547762,
+                "id": "r4c2:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r9c2:p0->p30"
+              }
+            },
+            "byRow": {
+              "0": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "ad4de9a826bc77f42aa4ab4e8cfeb975daecee8dc359293abe01f568d8799098",
+                "minimumSilhouetteIou": {
+                  "value": 0.986191416,
+                  "id": "r0c0:p2->p26"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.822888194,
+                  "id": "r0c0:p26->p57"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001731863,
+                  "id": "r0c2:p1->p29"
+                },
+                "maximumPerceptualRms": {
+                  "value": 18.73650278,
+                  "id": "r0c0:p24->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.112334948,
+                  "id": "r0c1:p0->p59"
+                }
+              },
+              "1": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "7ba0da86ce30870e312b01804a2d32c9e89dc08a768baa8bd6e2f62960525be4",
+                "minimumSilhouetteIou": {
+                  "value": 0.96170884,
+                  "id": "r1c2:p14->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.882657836,
+                  "id": "r1c0:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002226901,
+                  "id": "r1c1:p1->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.657634381,
+                  "id": "r1c6:p14->p41"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.067451813,
+                  "id": "r1c2:p13->p14"
+                }
+              },
+              "2": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "fb8b27750c517b8ab8309b91a2e28fa077ee33f966d12e69a2f54b1698f3ae49",
+                "minimumSilhouetteIou": {
+                  "value": 0.961911474,
+                  "id": "r2c2:p0->p41"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.867803628,
+                  "id": "r2c2:p1->p41"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002207863,
+                  "id": "r2c6:p1->p34"
+                },
+                "maximumPerceptualRms": {
+                  "value": 13.669831153,
+                  "id": "r2c0:p14->p59"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.070229985,
+                  "id": "r2c0:p13->p14"
+                }
+              },
+              "3": {
+                "count": 14160,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "94533befeb0e6c3830698c3500208b61475ef7264981f0cd8229a9aeaffb55ae",
+                "minimumSilhouetteIou": {
+                  "value": 0.959342135,
+                  "id": "r3c0:p12->p42"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 2.820796642,
+                  "id": "r3c2:p12->p50"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.013131223,
+                  "id": "r3c2:p12->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 14.242610259,
+                  "id": "r3c0:p12->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.258237561,
+                  "id": "r3c2:p38->p39"
+                }
+              },
+              "4": {
+                "count": 17700,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "5b925bacb79a426c810039edb13f3dfa2c2529bd880d7f19a0043d9916a8276f",
+                "minimumSilhouetteIou": {
+                  "value": 0.754953327,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 20.26922169,
+                  "id": "r4c0:p20->p46"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.004335643,
+                  "id": "r4c2:p31->p46"
+                },
+                "maximumPerceptualRms": {
+                  "value": 39.75547762,
+                  "id": "r4c2:p20->p47"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.253488521,
+                  "id": "r4c2:p19->p21"
+                }
+              },
+              "5": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "f5d8feb9234dbb7efc399f2f9cad190e939df01a4691d67e492450b7d2f3f23d",
+                "minimumSilhouetteIou": {
+                  "value": 0.945027137,
+                  "id": "r5c6:p14->p38"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 4.149533747,
+                  "id": "r5c6:p14->p38"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.003151137,
+                  "id": "r5c6:p19->p48"
+                },
+                "maximumPerceptualRms": {
+                  "value": 21.647885921,
+                  "id": "r5c6:p18->p42"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.408313504,
+                  "id": "r5c2:p52->p53"
+                }
+              },
+              "6": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "b9d968e4e349750b0f7fff5a7c16fa9a6dc53bca0a205b63a66801eb303c6d46",
+                "minimumSilhouetteIou": {
+                  "value": 0.9795836,
+                  "id": "r6c0:p11->p27"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.30743773,
+                  "id": "r6c0:p11->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.005910722,
+                  "id": "r6c1:p16->p44"
+                },
+                "maximumPerceptualRms": {
+                  "value": 23.886459882,
+                  "id": "r6c1:p15->p51"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.358116613,
+                  "id": "r6c0:p51->p52"
+                }
+              },
+              "7": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "fadc476dca055aed62b713cdc64927dbb371d07470d639821e583e60b43e0430",
+                "minimumSilhouetteIou": {
+                  "value": 0.982852874,
+                  "id": "r7c0:p10->p28"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.326488208,
+                  "id": "r7c0:p10->p28"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.001468148,
+                  "id": "r7c2:p6->p37"
+                },
+                "maximumPerceptualRms": {
+                  "value": 24.753483592,
+                  "id": "r7c0:p6->p27"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.208560718,
+                  "id": "r7c0:p50->p52"
+                }
+              },
+              "8": {
+                "count": 21240,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "c55de0205d6ad7a82a22f0970589467642544c8404a0c0700cd16ee8c302490e",
+                "minimumSilhouetteIou": {
+                  "value": 0.950398524,
+                  "id": "r8c0:p21->p55"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 1.868019862,
+                  "id": "r8c2:p17->p55"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.015368157,
+                  "id": "r8c1:p29->p55"
+                },
+                "maximumPerceptualRms": {
+                  "value": 31.525675085,
+                  "id": "r8c0:p26->p35"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.205628017,
+                  "id": "r8c2:p51->p52"
+                }
+              },
+              "9": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "761a0ea3cee8ad1c03efa3c9f7ffd546405643b760b032d8ccfd0f3fd7a5095d",
+                "minimumSilhouetteIou": {
+                  "value": 0.991856841,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.356881083,
+                  "id": "r9c1:p12->p45"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002898209,
+                  "id": "r9c0:p8->p49"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.872072192,
+                  "id": "r9c2:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r9c2:p0->p30"
+                }
+              },
+              "10": {
+                "count": 28320,
+                "failingPairCount": 0,
+                "orderedMetricTraceSha256": "dfa421c8edf8a106cef657a7e80eea33b49f5900545e4ecb1fc077fb1eaa0cf6",
+                "minimumSilhouetteIou": {
+                  "value": 0.992054712,
+                  "id": "r10c7:p8->p48"
+                },
+                "maximumSilhouetteCentroidDistancePx": {
+                  "value": 0.349017135,
+                  "id": "r10c7:p14->p46"
+                },
+                "maximumAlphaAreaRatioSymmetric": {
+                  "value": 1.002915897,
+                  "id": "r10c6:p14->p46"
+                },
+                "maximumPerceptualRms": {
+                  "value": 3.871140452,
+                  "id": "r10c7:p13->p45"
+                },
+                "minimumPerceptualRmsObserved": {
+                  "value": 0.0,
+                  "id": "r10c4:p0->p30"
+                }
+              }
+            },
+            "fullCycleMateriality": {
+              "minimumCellPerceptualDiameterRms": {
+                "value": 3.310978021,
+                "id": "r10c3"
+              },
+              "maximumCellPerceptualDiameterRms": {
+                "value": 39.75547762,
+                "id": "r4c4"
+              },
+              "minimumRequiredPerceptualDiameterRms": 3.178538901,
+              "failingCellCount": 0,
+              "failingCellIds": [],
+              "authoredPerCellBaseline": {
+                "comparedCellCount": 73,
+                "failingCellCount": 0,
+                "failingCells": [],
+                "orderedProfileTraceSha256": "ce395df25a49595b22cf1962b009ec8c6989eaaf7e6bd8456d8ac7e43e1602cf",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04
+              }
+            }
+          },
+          "stateSwitchFamilies": {
+            "timedCellAdvance": {
+              "count": 205200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "ea30238df1c0c508b9c3942a05aba8b1e3cc86163c454ad6b24be772cfd24062",
+              "minimumSilhouetteIou": {
+                "value": 0.754953327,
+                "id": "r4c0->r4c1:p20->p46"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 20.269225417,
+                "id": "r4c1->r4c2:p46->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.015465705,
+                "id": "r8c1->r8c2:p55->p29"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.763626957,
+                "id": "r4c4->r4c0:p20->p47"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r0c0->r0c1:p0->p0"
+              },
+              "statePairCount": 57,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.652021021,
+                  "id": "r1c0->r1c1"
+                },
+                "minimumRequiredPerceptualRms": 13.10594018,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 57,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "4a022f4750344c0bb10d17e3e9413cdebb133a792d076a2d6b2fa61c27fa2c6e",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 57,
+                  "semanticDistinction": 0
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedEffectiveReset": {
+              "count": 1656000,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "2d6f91288febb5d9141cf9e2767029a15bafce23a8214046efefcdb916003af9",
+              "minimumSilhouetteIou": {
+                "value": 0.829760562,
+                "id": "r5c6->r4c0:p14->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 14.434419555,
+                "id": "r5c6->r4c0:p14->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.032721705,
+                "id": "r3c2->r4c0:p12->p46"
+              },
+              "maximumPerceptualRms": {
+                "value": 39.540696686,
+                "id": "r3c0->r4c0:p27->p20"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 0.0,
+                "id": "r0c1->r0c0:p0->p0"
+              },
+              "statePairCount": 460,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 18.736442624,
+                  "id": "r0c1->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 17.986984919,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 460,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "603b6ab602a5f9a6d8a01805bd1299411bfdf5b935f9378ae35ed3d3b8b806fc",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 4,
+                  "semanticDistinction": 456
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "timedToGaze": {
+              "count": 3283200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "8e9a0579f64fb301650448b071a499dab3eb7515f25b598ea542c0a9cd66215a",
+              "minimumSilhouetteIou": {
+                "value": 0.802732107,
+                "id": "r4c0->r10c2:p20->p50"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 16.910762053,
+                "id": "r4c2->r10c2:p20->p49"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025071309,
+                "id": "r4c1->r9c2:p46->p49"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.720100582,
+                "id": "r3c0->r10c2:p12->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.403829605,
+                "id": "r6c0->r10c0:p29->p11"
+              },
+              "statePairCount": 912,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.868473149,
+                  "id": "r0c1->r10c0"
+                },
+                "minimumRequiredPerceptualRms": 20.033734223,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 912,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "207e80738956313d0e521be4ff51e134a4b6f22dfd38e8f92ec1f84b64fbcda2",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 912
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "gazeToTimed": {
+              "count": 518400,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "14373d6de7cc638302a1f3bd1a44e4254c35852934ec582d84a019698b551f73",
+              "minimumSilhouetteIou": {
+                "value": 0.802732107,
+                "id": "r10c2->r4c0:p50->p20"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 16.907150561,
+                "id": "r9c6->r4c0:p54->p20"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.025071171,
+                "id": "r9c2->r4c0:p49->p46"
+              },
+              "maximumPerceptualRms": {
+                "value": 36.720100582,
+                "id": "r10c2->r3c0:p45->p12"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 11.403829605,
+                "id": "r10c0->r6c0:p11->p29"
+              },
+              "statePairCount": 144,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 20.884174088,
+                  "id": "r10c0->r0c0"
+                },
+                "minimumRequiredPerceptualRms": 20.048807124,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 144,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "985044ef7c9623d7d74f18ecdf98a7bb33a269905e910887a4e25cb85d5aacce",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 144
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "adjacentGaze": {
+              "count": 115200,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "fbc59a7a73fb4c3921fa91c28b4fb868d646916ff8daa103b7ece6c230fd4d40",
+              "minimumSilhouetteIou": {
+                "value": 0.935029265,
+                "id": "r9c0->r10c7:p14->p44"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 4.919724048,
+                "id": "r9c0->r9c1:p45->p15"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.010636049,
+                "id": "r9c0->r9c1:p8->p40"
+              },
+              "maximumPerceptualRms": {
+                "value": 23.434091469,
+                "id": "r10c0->r10c1:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 6.495536775,
+                "id": "r9c5->r9c6:p57->p8"
+              },
+              "statePairCount": 32,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 7.787036953,
+                  "id": "r9c5->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 7.475555475,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 32,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "1e8e64ed44c76372e8139d2f38cf1cb840c9ad1eb4cfd166cecb8391ed207a53",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 32
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            },
+            "nonNeighborGaze": {
+              "count": 748800,
+              "failingPairCount": 0,
+              "orderedMetricTraceSha256": "23a3884f5174ec9dd39864c55fa4cd06bbeafaaad442848a5d94edc3cbd2b788",
+              "minimumSilhouetteIou": {
+                "value": 0.810030395,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumSilhouetteCentroidDistancePx": {
+                "value": 15.660726682,
+                "id": "r9c2->r10c2:p14->p43"
+              },
+              "maximumAlphaAreaRatioSymmetric": {
+                "value": 1.014229514,
+                "id": "r9c2->r10c0:p49->p22"
+              },
+              "maximumPerceptualRms": {
+                "value": 34.121148407,
+                "id": "r9c6->r10c6:p15->p45"
+              },
+              "minimumPerceptualRmsObserved": {
+                "value": 12.68119529,
+                "id": "r9c4->r9c6:p51->p8"
+              },
+              "statePairCount": 208,
+              "fullCycleMateriality": {
+                "minimumStatePairMaximumPerceptualRms": {
+                  "value": 13.315982767,
+                  "id": "r9c4->r9c6"
+                },
+                "minimumRequiredPerceptualRms": 12.783343457,
+                "failingStatePairCount": 0
+              },
+              "authoredPerEdgeBaseline": {
+                "comparedEdgeCount": 208,
+                "failingEdgeCount": 0,
+                "failingEdges": [],
+                "orderedProfileTraceSha256": "a43097fd9dc6b6c02dd2c24cbe2571bbf80c535c391d8a91771545b0f76733db",
+                "retainedExcursionFactor": 0.96,
+                "maximumExcursionFactor": 1.04,
+                "samePhaseSemanticMetric": "samePhasePerceptualRms",
+                "policyCounts": {
+                  "continuityAlias": 0,
+                  "sampledContinuity": 0,
+                  "semanticDistinction": 208
+                },
+                "policy": {
+                  "continuityAlias": "source same-phase decoded bytes must remain identical",
+                  "sampledContinuity": "exact browser-sampled same-phase seam metrics and every all-phase metric trace are sealed per edge",
+                  "semanticDistinction": "every authored nonzero same-phase perceptual distance and aggregate same-phase energy retain at least 96%"
+                }
+              }
+            }
+          },
+          "timedColumnEquivalence": {
+            "path": "codexDefaultDpr2",
+            "allTimedColumnsEqualToC0": false,
+            "orderedTraceSha256": "9690398fa7300b80a260d2deff5a295e70703c647e478db6e90074565929a106",
+            "rows": {
+              "0": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "be27ab55038704d353c6f403fa9b0a71c9933a7a4c1d25343b764f0072acdf84",
+                  "d3b0981c92875b96960b5bc798222df64e8828f3b974e83f71f90febc37db447",
+                  "dddecdcf7c90d64f65841f186ab61d71542f2bba9129d3f13aa90e4b379aeb35",
+                  "dddecdcf7c90d64f65841f186ab61d71542f2bba9129d3f13aa90e4b379aeb35",
+                  "dddecdcf7c90d64f65841f186ab61d71542f2bba9129d3f13aa90e4b379aeb35",
+                  "d3b0981c92875b96960b5bc798222df64e8828f3b974e83f71f90febc37db447"
+                ]
+              },
+              "1": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 4,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "c68e5aab7d21cb5c11f0f122aad319284d8d51bb605b88055703d5c2ace0c369",
+                  "8ba8b68ac8c453d930bff1722bb43fd5b667b62e66e13f28131bdef56d026a6a",
+                  "fe18e860509545765f5a01295cb2b39fcdd80119fa55db5049e40d9f1756cdbe",
+                  "fe18e860509545765f5a01295cb2b39fcdd80119fa55db5049e40d9f1756cdbe",
+                  "fe18e860509545765f5a01295cb2b39fcdd80119fa55db5049e40d9f1756cdbe",
+                  "8ba8b68ac8c453d930bff1722bb43fd5b667b62e66e13f28131bdef56d026a6a",
+                  "aef922a8dc48c21f78568b9778e3fc8d042a05325f0fefac3aa36d824b2ced3e",
+                  "aef922a8dc48c21f78568b9778e3fc8d042a05325f0fefac3aa36d824b2ced3e"
+                ]
+              },
+              "2": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 5,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "69035bd0226c9077f82f0ad99724bafc138619cba0723fd34d8afdae5b7cb29a",
+                  "90eb6bdec1f2fdf901b477f7e3bad7aac4a40dd40d2e11ad3ad405952da563c0",
+                  "cb85d42cab8d99753b6811ee46ccaced8f14ed7969d2b9639eaefec5dca68216",
+                  "7dfce6ea03e4af642c9e5add6eaa41f6fc2844fc8bf9fbbb91ec71a16c0b1e9f",
+                  "cb85d42cab8d99753b6811ee46ccaced8f14ed7969d2b9639eaefec5dca68216",
+                  "90eb6bdec1f2fdf901b477f7e3bad7aac4a40dd40d2e11ad3ad405952da563c0",
+                  "0b7c1a67255c177db4932e6809138ef5d53093d25f88585428f35756ce5bb7db",
+                  "0b7c1a67255c177db4932e6809138ef5d53093d25f88585428f35756ce5bb7db"
+                ]
+              },
+              "3": {
+                "columnCount": 4,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "d7a526062b8df4815110afbba40f313905a73ba835310b4caf1451cb0b16f9c1",
+                  "6db056d548f62cc6bf7c65ec315266f67b7d1f7f29f0f4a2239750e5b1db117f",
+                  "b816099baebcf973c6a88f08126eb02e8780da1f5f20fd4c4d8bbfd3ebeb69f7",
+                  "b816099baebcf973c6a88f08126eb02e8780da1f5f20fd4c4d8bbfd3ebeb69f7"
+                ]
+              },
+              "4": {
+                "columnCount": 5,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "53eee90dc354a77f3410377f60ab1d5e39531c71dd705bfafaf18e79cf37e9aa",
+                  "b02f9992ce3ded207c418fd089189ba6dbc6e7398be93f89dc140262ff61bf18",
+                  "03f951a1c458e8597e407c9ad196b6855f12c41649830f4854c7a5756f7966cd",
+                  "03f951a1c458e8597e407c9ad196b6855f12c41649830f4854c7a5756f7966cd",
+                  "03f951a1c458e8597e407c9ad196b6855f12c41649830f4854c7a5756f7966cd"
+                ]
+              },
+              "5": {
+                "columnCount": 8,
+                "uniqueRenderedSequenceCount": 4,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "761777b3217675b091259204da2ca50ee7c971a63ea7f24aa18c76f6a2cad5e8",
+                  "bed8b0d7f8a27f5e4da3b4a8d23a5653a33e2a2264d054213cccce6ec071668b",
+                  "11b5e7f9c7a3e1b8078787e4412c052038dc1582b300a6e5ce3fd1d02bddc036",
+                  "11b5e7f9c7a3e1b8078787e4412c052038dc1582b300a6e5ce3fd1d02bddc036",
+                  "11b5e7f9c7a3e1b8078787e4412c052038dc1582b300a6e5ce3fd1d02bddc036",
+                  "bed8b0d7f8a27f5e4da3b4a8d23a5653a33e2a2264d054213cccce6ec071668b",
+                  "164f6ecdf1694c4124673575c5acaf74fc19621b1adc66bde36f7b92858c6b5e",
+                  "164f6ecdf1694c4124673575c5acaf74fc19621b1adc66bde36f7b92858c6b5e"
+                ]
+              },
+              "6": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "f04aaff44dd7a7b9d0c17a0249cf117184083f88b197dab98d568845ed6626dc",
+                  "a71c8bc1bcb6add26387214f3ea3748737681a90973f5e3b7b678a26b2333c6b",
+                  "5a797e5981a924180c576717861a8509f55f13024ee650d36ff05f1386ac7c71",
+                  "5a797e5981a924180c576717861a8509f55f13024ee650d36ff05f1386ac7c71",
+                  "5a797e5981a924180c576717861a8509f55f13024ee650d36ff05f1386ac7c71",
+                  "a71c8bc1bcb6add26387214f3ea3748737681a90973f5e3b7b678a26b2333c6b"
+                ]
+              },
+              "7": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "546d620b955f98b1e356ec2e0ec761861d3f1eb3851008764d7bbf63a757d485",
+                  "32a685d74d46e0f7fa89ec88ee448242d4360181e3ba623b69b866e725f68d88",
+                  "dca9cb4f921ef0881349265584628b44e039d14f9b0bc3ad01afc757ef14f0a2",
+                  "dca9cb4f921ef0881349265584628b44e039d14f9b0bc3ad01afc757ef14f0a2",
+                  "dca9cb4f921ef0881349265584628b44e039d14f9b0bc3ad01afc757ef14f0a2",
+                  "32a685d74d46e0f7fa89ec88ee448242d4360181e3ba623b69b866e725f68d88"
+                ]
+              },
+              "8": {
+                "columnCount": 6,
+                "uniqueRenderedSequenceCount": 3,
+                "allColumnsEqualToC0": false,
+                "orderedSequenceSha256": [
+                  "588e569ba82589bf0d3f6e3d43a527f55324580f3158c8b0aedce49cac62758a",
+                  "bc0d20e56ea711c132a3d758ac5950975c9faa5ace1ede952e7960c58f133d44",
+                  "6ab446ac0d70786004358c9beb25f147039d19dc1c718e92599bd6c1c947df7d",
+                  "6ab446ac0d70786004358c9beb25f147039d19dc1c718e92599bd6c1c947df7d",
+                  "6ab446ac0d70786004358c9beb25f147039d19dc1c718e92599bd6c1c947df7d",
+                  "bc0d20e56ea711c132a3d758ac5950975c9faa5ace1ede952e7960c58f133d44"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "crossThemeAlphaParity": true
+    }
+  },
+  "errors": [],
+  "ok": true
+}

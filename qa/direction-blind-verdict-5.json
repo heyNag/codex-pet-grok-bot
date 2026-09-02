@@ -1,95 +1,95 @@
 {
   "schemaVersion": 1,
-  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "stimulusSha256": "86f50e4a7157b185a1e6b4bc2be774b3add46b20f7d0b22bdc39357509cf9e78",
   "reviewer": {
     "kind": "independent-blind-agent",
-    "id": "agent:/root/blind_verdict_5"
+    "id": "blind-reviewer-5"
   },
-  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "method": "Inspected only qa/direction-blind-pairs.png at original detail and independently classified each labeled A/B stimulus from its visible eye-cluster placement; did not inspect an answer key, consensus, validation output, source atlas, repository code, or prior review.",
   "pairs": [
     {
       "pair": "horizontal-1",
       "A": "screen-right",
       "B": "screen-left",
-      "reason": "A's eye group leads toward the right rim with the small outer eye ahead; B's group sits more inward and reads leftward."
+      "reason": "A's eye cluster reads farther toward the orb's screen-right side than B's, though the displacement is subtle."
     },
     {
       "pair": "horizontal-2",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's eyes and diagonal axis project toward the right edge; B's larger eye is pulled inward and the face reads left."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye cluster sits visibly nearer the screen-left side relative to B's clearly right-shifted cluster."
     },
     {
       "pair": "horizontal-3",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eye cluster is centered inward with a left-leading stance; B's cluster crowds the right contour and leads right."
+      "reason": "The paired eye placement is distinctly more screen-left in A and more screen-right in B."
     },
     {
       "pair": "horizontal-4",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A's near eye and pair tilt pull the gaze inward-left; B's unequal eyes extend toward the right silhouette."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eyes occupy the more screen-right position within the orb, while B's cluster is shifted inward toward screen-left."
     },
     {
       "pair": "horizontal-5",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A's eye group sits inward and its diagonal reads left; B's small outer eye nearly reaches the right rim, leading right."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A reads screen-right from its farther-right eye placement; B's eye cluster is visibly more screen-left."
     },
     {
       "pair": "horizontal-6",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's eyes are carried toward the right boundary with an outward-leading tilt; B's group is set inward and reads left."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eye cluster is centered farther screen-left, whereas B's cluster is close to the orb's screen-right edge."
     },
     {
       "pair": "horizontal-7",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eye placement and near-eye weight pull toward the interior-left; B's cluster projects to the right edge."
+      "reason": "The eyes are clearly more screen-left in A and more screen-right in B."
     },
     {
       "pair": "vertical-1",
-      "A": "down",
-      "B": "up",
-      "reason": "A's eyes sit lower toward the face center; B's pair is lifted close to the top contour and reads upward."
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye cluster is visibly higher within the orb than B's lower cluster."
     },
     {
       "pair": "vertical-2",
-      "A": "down",
-      "B": "up",
-      "reason": "A's eye cluster drops inward with a lower diagonal; B's cluster rides high against the upper silhouette."
+      "A": "up",
+      "B": "down",
+      "reason": "A places both eyes nearer the orb's top; B shifts them distinctly downward."
     },
     {
       "pair": "vertical-3",
       "A": "down",
       "B": "up",
-      "reason": "A's eyes are visibly low and centerward; B's eyes are elevated and their tilt leads toward the top."
+      "reason": "A's eyes sit lower in the orb, while B's eye cluster is clearly nearer the top."
     },
     {
       "pair": "vertical-4",
-      "A": "up",
-      "B": "down",
-      "reason": "A's eye pair is raised toward the crown; B's heavier eye sits lower and gives the face a downward gaze."
+      "A": "down",
+      "B": "up",
+      "reason": "The eye cluster reads lower in A and higher in B despite minor topology variation."
     },
     {
       "pair": "vertical-5",
       "A": "up",
       "B": "down",
-      "reason": "A's eyes and slanted axis sit higher in the silhouette; B's cluster is dropped toward the center and reads down."
+      "reason": "A's eye cluster is placed higher than B's visibly lowered cluster."
     },
     {
       "pair": "vertical-6",
       "A": "up",
       "B": "down",
-      "reason": "A's eye group is lifted and top-leading; B's larger eye falls lower, making the gaze appear downward."
+      "reason": "A's eyes are clearly nearer the orb's top, while B's are shifted downward."
     },
     {
       "pair": "vertical-7",
       "A": "down",
       "B": "up",
-      "reason": "A's eyes sit low and inward within the circle; B's eyes are raised toward the upper contour and read up."
+      "reason": "A's eye cluster appears slightly lower than B's; this is the most subtle vertical distinction."
     }
   ]
 }

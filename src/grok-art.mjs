@@ -18,8 +18,7 @@ const accents = Object.freeze({
 });
 
 // Grok Bot uses exact opposites: #000000 on a light surface and #FFFFFF on a
-// dark surface. A static WebP cannot evaluate the host theme, so the build
-// emits both deterministic variants.
+// dark surface. Each package carries one deterministic surface variant.
 export const THEME_PALETTES = Object.freeze({
   "dark-codex": Object.freeze({
     ...accents,
@@ -380,6 +379,12 @@ const SOURCE_BANG_PATH = `M${CENTER - 15} ${CENTER - 33}A15 15 0 0 1 ${CENTER + 
 
 const SOURCE_EFFECT_ACTIVATION = 0.62;
 const SOURCE_STANDBY_ACTIVATION = 0.50;
+export const SOURCE_EFFECT_EYE_ENVELOPE = Object.freeze({
+  visibleThroughActivation: 0.36,
+  midpointActivation: 0.50,
+  hiddenFromActivation: 0.64,
+  hiddenScale: 0.84,
+});
 const SOURCE_MORPH_EFFECTS = Object.freeze([
   "dots",
   "orbit",
@@ -419,6 +424,36 @@ const sourceBackOut = (value) => 1 + 2.70158 * (value - 1) ** 3 + 1.70158 * (val
 const sourceSmoothStep = (value) => value ** 2 * (3 - 2 * value);
 const sourceCubicInOut = (value) => value < 0.5 ? 4 * value ** 3 : 1 - (-2 * value + 2) ** 3 / 2;
 const sourceRepresentativeTime = (phase = 0) => 520 + Math.max(0, phase) * 233;
+
+export function sourceEffectEyeEnvelope(activation) {
+  if (!Number.isFinite(activation)) {
+    throw new TypeError("source effect eye activation must be finite");
+  }
+  const {
+    visibleThroughActivation,
+    hiddenFromActivation,
+    hiddenScale,
+  } = SOURCE_EFFECT_EYE_ENVELOPE;
+  const progress = clamp(
+    (activation - visibleThroughActivation)
+      / (hiddenFromActivation - visibleThroughActivation),
+    0,
+    1,
+  );
+  const eased = sourceSmoothStep(progress);
+  return {
+    opacity: 1 - eased,
+    scale: 1 - (1 - hiddenScale) * eased,
+    fullyHidden: progress === 1,
+  };
+}
+
+function sourceMotionCycle(pose, durationMs, offsetMs = 0) {
+  if (!Number.isFinite(pose.sourceMotionTimeMs)) return null;
+  const cycleMs = ((pose.sourceMotionTimeMs + offsetMs) % durationMs + durationMs) % durationMs;
+  return cycleMs / durationMs;
+}
+
 function sourceEffectsForPose(pose) {
   return pose.sourceEffects ?? (pose.sourceEffect ? [pose.sourceEffect] : []);
 }
@@ -456,7 +491,10 @@ function sourcePulse(time, slot, weight = 1) {
   };
 }
 
-function sourcePencilPose(position) {
+function sourcePencilPose(position, continuous = false) {
+  const rotationWave = continuous
+    ? Math.sin(position * TAU)
+    : Math.sin(position * 2500 * 0.0006);
   if (position < 0.68) {
     const progress = position / 0.68;
     const travel = sourceSmoothStep(progress);
@@ -465,7 +503,7 @@ function sourcePencilPose(position) {
       x: -54 + 118 * travel,
       y: 26,
       wiggle: Math.sin(progress * 24) * 3.2 * envelope,
-      rotation: 17 + Math.sin(position * 2500 * 0.0006),
+      rotation: 17 + rotationWave,
       lifting: false,
     };
   }
@@ -474,7 +512,7 @@ function sourcePencilPose(position) {
     x: 64 - 118 * progress,
     y: 26 - 20 * Math.sin(progress * Math.PI),
     wiggle: 0,
-    rotation: 17 - 2 * Math.sin(progress * Math.PI) + Math.sin(position * 2500 * 0.0006),
+    rotation: 17 - 2 * Math.sin(progress * Math.PI) + rotationWave,
     lifting: true,
   };
 }
@@ -484,10 +522,39 @@ function sourcePencilCycle(phase = 0) {
   return cycles[clamp(Math.round(phase), 0, cycles.length - 1)];
 }
 
+function sourcePencilSample(pose, phase = 0) {
+  const continuousCycle = sourceMotionCycle(pose, 1600);
+  return continuousCycle == null
+    ? { cycle: sourcePencilCycle(phase), continuous: false }
+    : { cycle: continuousCycle, continuous: true };
+}
+
+function sourceBangSample(pose, timeMs) {
+  const cycle = sourceMotionCycle(pose, 720);
+  if (cycle == null) {
+    const timeSeconds = timeMs / 1000;
+    const impulse = Math.exp(-(timeSeconds % 2.2) * 5.5);
+    return {
+      impulse,
+      wiggle: Math.sin(timeSeconds * 42) * 2.2 * impulse,
+    };
+  }
+
+  const impulse = Math.sin(Math.PI * cycle) * Math.exp(-cycle * 2.8);
+  return {
+    impulse,
+    wiggle: 1.6 * Math.sin(cycle * TAU)
+      + 3.2 * Math.sin(cycle * TAU * 3) * impulse,
+  };
+}
+
 function transformFor(pose) {
-  const scaleX = pose.scaleX ?? 0.615;
-  const scaleY = pose.scaleY ?? 0.625;
-  const anchorY = pose.anchorY ?? 187;
+  // Occupying more of the fixed cell keeps the simple silhouette substantial
+  // at compact display sizes. Pose values remain expressed around the source
+  // model's canonical base so the authored squash/stretch ratios stay intact.
+  const scaleX = (pose.scaleX ?? 0.615) * (0.70 / 0.615);
+  const scaleY = (pose.scaleY ?? 0.625) * (0.74 / 0.625);
+  const anchorY = (pose.anchorY ?? 187) + 9;
   const centerX = 96 + (pose.leanX ?? 0);
   const centerY = anchorY - CENTER * scaleY + (pose.leanY ?? 0);
   const rotation = pose.rotation ?? 0;
@@ -526,24 +593,25 @@ function sourceEffectBodySample(pose) {
     pulseScale *= beat.pop;
     opacity *= 1 - (1 - beat.tone) * activation;
   } else if (family === "send") {
-    const cycle = 0.40 + clamp(phase, 0, 4) * 0.02;
+    const cycle = sourceMotionCycle(pose, 1165) ?? (0.40 + clamp(phase, 0, 4) * 0.02);
     const compression = cycle < 0.18 ? -0.06 * Math.sin(cycle / 0.18 * Math.PI) : 0;
     const rebound = cycle >= 0.18 && cycle < 0.42 ? 0.05 * Math.sin((cycle - 0.18) / 0.24 * Math.PI) : 0;
     pulseScale *= 1 + (compression + rebound) * activation;
   } else if (family === "receive") {
-    const cycle = 0.48 + clamp(phase, 0, 4) * 0.07;
+    const cycle = sourceMotionCycle(pose, 1165) ?? (0.48 + clamp(phase, 0, 4) * 0.07);
     const arrival = clamp((cycle - 0.58) / 0.34, 0, 1);
     pulseScale *= 1 + 0.11 * Math.sin(arrival * Math.PI) * activation;
   } else if (family === "pencil") {
-    const pencil = sourcePencilPose(sourcePencilCycle(phase));
+    const pencilSample = sourcePencilSample(pose, phase);
+    const pencil = sourcePencilPose(pencilSample.cycle, pencilSample.continuous);
     motionX += pencil.x * activation ** 2;
     motionY += (pencil.y + pencil.wiggle * 0.5) * activation ** 2;
     rotation += pencil.rotation * activation ** 2;
   } else if (family === "bang") {
-    const timeSeconds = time / 1000;
-    const impulse = Math.exp(-(timeSeconds % 2.2) * 5.5);
+    const bang = sourceBangSample(pose, time);
     motionY += 58 * activation ** 2;
-    pulseScale *= 1 + 0.04 * impulse * activation;
+    pulseScale *= 1 + (0.018 * Math.sin((sourceMotionCycle(pose, 720) ?? 0) * TAU)
+      + 0.04 * bang.impulse) * activation;
   } else if (family === "ball") {
     const timeSeconds = time / 1000;
     const period = 0.62;
@@ -567,10 +635,13 @@ function sourceEffectBodySample(pose) {
 
   const bodyRadius = SOURCE_EFFECT_BODY_RADIUS[family];
   const scale = 1 - activation + bodyRadius / CENTER * pulseScale * activation;
+  const eyeEnvelope = sourceEffectEyeEnvelope(activation);
   return {
     activation,
+    eyeOpacity: eyeEnvelope.opacity,
+    eyeScale: eyeEnvelope.scale,
+    eyesFullyHidden: eyeEnvelope.fullyHidden,
     family,
-    hideEyes: activation >= 0.5,
     opacity,
     path: sourceEffectBodyPath(family, activation),
     transform: `translate(${n(CENTER + motionX)} ${n(CENTER + motionY)}) rotate(${n(rotation)}) scale(${n(scale)}) translate(${-CENTER} ${-CENTER})`,
@@ -583,6 +654,10 @@ function orbitMarkup(pose, transform, palette) {
   if (!effect && sourceEffects.size === 0) return { rear: "", front: "" };
   const { centerX: x, centerY: y, radiusX: rx, radiusY: ry } = transform;
   const phase = pose.effectPhase ?? 0;
+  const discretePhase = Math.round(phase);
+  const fluidAngle = finitePhaseAngle(pose.fluidMotionPhase);
+  const fluidWave = Math.sin(fluidAngle);
+  const fluidCounterWave = Math.sin(fluidAngle * 2);
   const orbitalEffects = ["orbit", "celebrate", "celebrate-storm", "spawn"];
   const isOrbital = orbitalEffects.includes(effect);
   const isStorm = effect === "celebrate-storm";
@@ -594,12 +669,16 @@ function orbitMarkup(pose, transform, palette) {
     { angle: -44, scale: 0.86 },
     { angle: 82, scale: 0.8 },
   ];
-  const orbitalTransform = orbitalTransforms[((phase % orbitalTransforms.length) + orbitalTransforms.length) % orbitalTransforms.length];
+  const baseOrbitalTransform = orbitalTransforms[((discretePhase % orbitalTransforms.length) + orbitalTransforms.length) % orbitalTransforms.length];
+  const orbitalTransform = {
+    angle: baseOrbitalTransform.angle + fluidWave * 4.5,
+    scale: baseOrbitalTransform.scale * (1 + fluidCounterWave * 0.008),
+  };
   const common = 'fill="none" stroke-linecap="round" stroke-linejoin="round"';
   const colorCycle = [palette.green, palette.violet, palette.gold, palette.coral, palette.blue, palette.teal];
-  const color = (index) => colorCycle[(index + phase + colorCycle.length) % colorCycle.length];
+  const color = (index) => colorCycle[(index + discretePhase + colorCycle.length) % colorCycle.length];
   const path = (d, stroke, width = 6, opacity = 1) => `<path d="${d}" ${common} stroke="${stroke}" stroke-width="${width}" opacity="${opacity}"/>`;
-  const satellite = (cx, cy, radius = 5) => `<circle cx="${n(cx)}" cy="${n(cy)}" r="${radius}" fill="${palette.body}" stroke="${palette.keyline}" stroke-opacity="0.13" stroke-width="1.4"/>`;
+  const satellite = (cx, cy, radius = 5) => `<circle cx="${n(cx)}" cy="${n(cy)}" r="${radius}" fill="${palette.body}"/>`;
   const disc = (cx, cy, radius, fill = palette.body, opacity = 1) => `<circle cx="${n(cx)}" cy="${n(cy)}" r="${radius}" fill="${fill}" opacity="${opacity}"/>`;
   const ring = (cx, cy, radius, stroke = palette.body, width = 2.6, opacity = 0.55, dash = "") => `<circle cx="${n(cx)}" cy="${n(cy)}" r="${n(radius)}" fill="none" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" opacity="${opacity}"${dash ? ` stroke-dasharray="${dash}"` : ""}/>`;
   const spark = (cx, cy, radius, fill) => `<path d="M${n(cx)} ${n(cy - radius)}L${n(cx + radius * 0.48)} ${n(cy - radius * 0.48)}L${n(cx + radius)} ${n(cy)}L${n(cx + radius * 0.48)} ${n(cy + radius * 0.48)}L${n(cx)} ${n(cy + radius)}L${n(cx - radius * 0.48)} ${n(cy + radius * 0.48)}L${n(cx - radius)} ${n(cy)}L${n(cx - radius * 0.48)} ${n(cy - radius * 0.48)}Z" fill="${fill}"/>`;
@@ -629,11 +708,19 @@ function orbitMarkup(pose, transform, palette) {
     }
     // Two small satellites orbit in opposition. They appear only on energetic
     // beats and invert with the body treatment.
-    const satelliteSide = phase % 2 === 0 ? -1 : 1;
-    rear.push(satellite(x + satelliteSide * rx * 1.04, y - ry * 0.12, 5));
+    const satelliteSide = discretePhase % 2 === 0 ? -1 : 1;
+    rear.push(satellite(
+      x + satelliteSide * rx * (1.04 - 0.035 * fluidCounterWave),
+      y - ry * 0.12 + ry * 0.075 * fluidWave,
+      5,
+    ));
     // The opposed satellite overlaps the silhouette and is deliberately in the
     // foreground. Across adjacent phases the pair trades depth as well as side.
-    front.push(satellite(x - satelliteSide * rx * 0.96, y + ry * 0.18, 3.5));
+    front.push(satellite(
+      x - satelliteSide * rx * (0.96 + 0.03 * fluidCounterWave),
+      y + ry * 0.18 - ry * 0.06 * fluidWave,
+      3.5,
+    ));
     // Short foreground pieces sell a real belt, not decorative rays.
     front.push(path(`M${n(x - rx * 0.84)} ${n(y + ry * 0.51)} Q${n(x - rx * 0.61)} ${n(y + ry * 0.76)} ${n(x - rx * 0.34)} ${n(y + ry * 0.84)}`, color(1), 6.5));
     front.push(path(`M${n(x - rx * 0.74)} ${n(y + ry * 0.61)} Q${n(x - rx * 0.5)} ${n(y + ry * 0.82)} ${n(x - rx * 0.21)} ${n(y + ry * 0.87)}`, color(3), 5.5));
@@ -649,7 +736,7 @@ function orbitMarkup(pose, transform, palette) {
   }
 
   // Static samples of the auxiliary-effect equations at the A=.62 morph
-  // boundary. Standby samples the earlier A=.50 eye-hidden boundary so its
+  // boundary. Standby samples the earlier A=.50 eye-dissolve midpoint so its
   // fading body remains legible in a single Codex cell.
   if (sourceEffects.has("dots")) {
     const glyphs = [CENTER - 62, CENTER + 62].map((sourceX, index) => {
@@ -695,17 +782,35 @@ function orbitMarkup(pose, transform, palette) {
   }
   if (sourceEffects.has("progress")) {
     const radius = 62 * sourceBackOut(effectWeight);
+    const continuousCycle = sourceMotionCycle(pose, 1165);
     const elapsed = 1250 + Math.max(0, phase) * 190;
-    const completion = clamp(clamp(elapsed / 2500, 0, 1) / 0.85, 0, 1);
+    const completion = continuousCycle == null
+      ? clamp(clamp(elapsed / 2500, 0, 1) / 0.85, 0, 1)
+      : 0.58 + 0.38 * (0.5 - 0.5 * Math.cos(continuousCycle * TAU));
+    const progressRotation = continuousCycle == null ? -90 : -90 + continuousCycle * 360;
     const circumference = TAU * radius;
     rear.push(sourceLayer(
       sourceRing(radius, 5, effectEase * 0.16) +
-      `<circle cx="${CENTER}" cy="${CENTER}" r="${n(radius)}" fill="none" stroke="${palette.body}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${n(circumference)}" stroke-dashoffset="${n(circumference * (1 - completion))}" transform="rotate(-90 ${CENTER} ${CENTER})" opacity="${n(effectEase)}"/>`,
+      `<circle cx="${CENTER}" cy="${CENTER}" r="${n(radius)}" fill="none" stroke="${palette.body}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${n(circumference)}" stroke-dashoffset="${n(circumference * (1 - completion))}" transform="rotate(${n(progressRotation)} ${CENTER} ${CENTER})" opacity="${n(effectEase)}"/>`,
     ));
   }
   if (sourceEffects.has("gather")) {
+    const continuousCycle = sourceMotionCycle(pose, 1400);
     const elapsed = 850 + Math.max(0, phase) * 150;
     const gather = Array.from({ length: 5 }, (_, index) => {
+      if (continuousCycle != null) {
+        const progress = ((continuousCycle - index * 0.14) % 1 + 1) % 1;
+        const travel = sourceCubicInOut(progress);
+        const envelope = Math.sin(progress * Math.PI) ** 0.7;
+        const angle = index * 2.4 + travel * 2.2;
+        const radius = 96 * (1 - travel);
+        return sourceCircle(
+          CENTER + radius * Math.cos(angle),
+          CENTER + radius * Math.sin(angle) * 0.8,
+          9 * (0.5 + 0.5 * travel) * effectEase,
+          effectEase * envelope,
+        );
+      }
       const progress = clamp((elapsed / 2000 - index * 0.09) / 0.62, 0, 1);
       if (progress >= 1) return "";
       const travel = 1 - (1 - progress) ** 3;
@@ -739,28 +844,51 @@ function orbitMarkup(pose, transform, palette) {
     rear.push(sourceLayer(waveGlyphs.join("")));
   }
   if (sourceEffects.has("send")) {
-    const cycle = 0.40 + clamp(phase, 0, 4) * 0.02;
-    const firstProgress = clamp((cycle - 0.18) / 0.55, 0, 1);
-    const firstTravel = firstProgress ** 2 * (0.4 + 0.6 * firstProgress);
-    const pieces = [];
-    if (firstProgress > 0 && firstProgress < 1) {
-      pieces.push(sourceCircle(CENTER + 0.74 * 108 * firstTravel, CENTER - 0.62 * 108 * firstTravel, 10 * (1 - firstTravel * 0.55) * effectEase, effectEase * (1 - firstTravel ** 2)));
+    const continuousCycle = sourceMotionCycle(pose, 1165);
+    const cycle = continuousCycle ?? (0.40 + clamp(phase, 0, 4) * 0.02);
+    if (continuousCycle != null) {
+      const pieces = [0, 0.18].map((offset, index) => {
+        const progress = ((cycle - offset) % 1 + 1) % 1;
+        const travel = sourceCubicInOut(progress);
+        const envelope = Math.sin(progress * Math.PI) ** 0.8;
+        return sourceCircle(
+          CENTER + 0.74 * 108 * travel,
+          CENTER - 0.62 * 108 * travel,
+          (index === 0 ? 10 : 5) * (1 - travel * 0.5) * effectEase,
+          effectEase * envelope * (index === 0 ? 1 : 0.55),
+        );
+      });
+      const shock = (cycle + 0.16) % 1;
+      pieces.push(sourceRing(
+        20 + 34 * sourceCubicOut(shock),
+        2.8 * (1 - shock),
+        effectEase * Math.sin(shock * Math.PI) * 0.45,
+      ));
+      rear.push(sourceLayer(pieces.join("")));
+    } else {
+      const firstProgress = clamp((cycle - 0.18) / 0.55, 0, 1);
+      const firstTravel = firstProgress ** 2 * (0.4 + 0.6 * firstProgress);
+      const pieces = [];
+      if (firstProgress > 0 && firstProgress < 1) {
+        pieces.push(sourceCircle(CENTER + 0.74 * 108 * firstTravel, CENTER - 0.62 * 108 * firstTravel, 10 * (1 - firstTravel * 0.55) * effectEase, effectEase * (1 - firstTravel ** 2)));
+      }
+      const secondProgress = clamp((cycle - 0.26) / 0.55, 0, 1);
+      const secondTravel = secondProgress ** 2 * (0.4 + 0.6 * secondProgress);
+      if (firstProgress > 0 && secondProgress > 0 && secondProgress < 1) {
+        pieces.push(sourceCircle(CENTER + 0.74 * 108 * secondTravel, CENTER - 0.62 * 108 * secondTravel, 5 * (1 - secondTravel * 0.6) * effectEase, effectEase * 0.3 * (1 - secondTravel)));
+      }
+      const shock = clamp((cycle - 0.18) / 0.3, 0, 1);
+      if (shock > 0 && shock < 1) pieces.push(sourceRing(20 + 34 * sourceCubicOut(shock), 2.8 * (1 - shock), effectEase * (1 - shock) * 0.8));
+      rear.push(sourceLayer(pieces.join("")));
     }
-    const secondProgress = clamp((cycle - 0.26) / 0.55, 0, 1);
-    const secondTravel = secondProgress ** 2 * (0.4 + 0.6 * secondProgress);
-    if (firstProgress > 0 && secondProgress > 0 && secondProgress < 1) {
-      pieces.push(sourceCircle(CENTER + 0.74 * 108 * secondTravel, CENTER - 0.62 * 108 * secondTravel, 5 * (1 - secondTravel * 0.6) * effectEase, effectEase * 0.3 * (1 - secondTravel)));
-    }
-    const shock = clamp((cycle - 0.18) / 0.3, 0, 1);
-    if (shock > 0 && shock < 1) pieces.push(sourceRing(20 + 34 * sourceCubicOut(shock), 2.8 * (1 - shock), effectEase * (1 - shock) * 0.8));
-    rear.push(sourceLayer(pieces.join("")));
   }
   if (sourceEffects.has("receive")) {
     // The motion model varies this angle once per cycle; effectPhase is the
     // stable atlas seed for the allowed [-1.25pi, .25pi] family.
     const angle = (-148 + phase * 29) * Math.PI / 180;
-    const cycle = 0.48 + clamp(phase, 0, 4) * 0.07;
-    const progress = clamp(cycle / 0.6, 0, 1);
+    const continuousCycle = sourceMotionCycle(pose, 1165);
+    const cycle = continuousCycle ?? (0.48 + clamp(phase, 0, 4) * 0.07);
+    const progress = continuousCycle == null ? clamp(cycle / 0.6, 0, 1) : cycle;
     const travel = 1 - (1 - progress) ** 3;
     const pieces = [];
     if (progress < 1) {
@@ -772,18 +900,29 @@ function orbitMarkup(pose, transform, palette) {
         CENTER + cosine * distance - sine * tangent,
         CENTER + sine * distance + cosine * tangent,
         (3.5 + 6.5 * travel) * effectEase,
-        effectEase * clamp(progress * 3.5, 0, 1) * (0.3 + 0.7 * travel),
+        effectEase * (continuousCycle == null
+          ? clamp(progress * 3.5, 0, 1) * (0.3 + 0.7 * travel)
+          : Math.sin(progress * Math.PI) ** 0.72),
       ));
     }
-    const ripple = clamp((cycle - 0.58) / 0.32, 0, 1);
-    if (ripple > 0 && ripple < 1) pieces.push(sourceRing(20 + 26 * sourceCubicOut(ripple), 2.8 * (1 - ripple), effectEase * (1 - ripple) * 0.8));
+    const ripple = continuousCycle == null
+      ? clamp((cycle - 0.58) / 0.32, 0, 1)
+      : ((cycle + 0.32) % 1);
+    if (ripple > 0 && ripple < 1) pieces.push(sourceRing(
+      20 + 26 * sourceCubicOut(ripple),
+      2.8 * (1 - ripple),
+      effectEase * (continuousCycle == null ? (1 - ripple) * 0.8 : Math.sin(ripple * Math.PI) * 0.45),
+    ));
     rear.push(sourceLayer(pieces.join("")));
   }
   if (sourceEffects.has("dock")) {
-    const elapsedSeconds = 0.75 + clamp(phase, 0, 4) * 0.35;
-    const time = elapsedSeconds * 1000;
+    const continuousCycle = sourceMotionCycle(pose, 1400);
+    const elapsedSeconds = continuousCycle == null ? 0.75 + clamp(phase, 0, 4) * 0.35 : continuousCycle * 1.4;
+    const time = continuousCycle == null ? elapsedSeconds * 1000 : representativeTime;
     const particles = Array.from({ length: 2 }, (_, index) => {
-      const progress = clamp((elapsedSeconds - (0.2 + index * 1.3)) / 0.9, 0, 1);
+      const progress = continuousCycle == null
+        ? clamp((elapsedSeconds - (0.2 + index * 1.3)) / 0.9, 0, 1)
+        : ((continuousCycle - index * 0.5) % 1 + 1) % 1;
       if (progress <= 0) return "";
       const travel = 1 - (1 - progress) ** 3;
       const angle = time * 0.001 * 1.1 + index * Math.PI;
@@ -795,7 +934,7 @@ function orbitMarkup(pose, transform, palette) {
         startX + (targetX - startX) * travel,
         startY + (targetY - startY) * travel,
         (7 + 3 * travel) * effectEase,
-        effectEase * clamp(progress * 4, 0, 1),
+        effectEase * (continuousCycle == null ? clamp(progress * 4, 0, 1) : Math.sin(progress * Math.PI) ** 0.7),
       );
     });
     rear.push(sourceLayer(particles.join("")));
@@ -817,8 +956,9 @@ function orbitMarkup(pose, transform, palette) {
     front.push(sourceLayer(`<g data-character-whirl="true" data-source-whirl-reveal="${n(ribbonReveal)}" fill="none" stroke-linecap="round" transform="rotate(${n(whirlAngle + 36)} ${CENTER} ${CENTER})">${belt(92, -58, -8, palette.coral, 7)}${belt(82, -49, -2, palette.violet, 5.5)}</g>`));
   }
   if (sourceEffects.has("pencil")) {
-    const cycle = sourcePencilCycle(phase);
-    const pencil = sourcePencilPose(cycle);
+    const pencilSample = sourcePencilSample(pose, phase);
+    const cycle = pencilSample.cycle;
+    const pencil = sourcePencilPose(cycle, pencilSample.continuous);
     const glyphAngle = (pencil.rotation - 90) * Math.PI / 180;
     const glyphX = CENTER + (pencil.x + Math.cos(glyphAngle) * 68) * effectWeight;
     const glyphY = CENTER + (pencil.y + pencil.wiggle * 0.15 + Math.sin(glyphAngle) * 68) * effectWeight;
@@ -826,7 +966,7 @@ function orbitMarkup(pose, transform, palette) {
     if (!pencil.lifting) {
       const trailPoints = Array.from({ length: 15 }, (_, index) => {
         const sampleCycle = Math.max(0.08, cycle - 0.34) + (cycle - Math.max(0.08, cycle - 0.34)) * index / 14;
-        const sample = sourcePencilPose(sampleCycle);
+        const sample = sourcePencilPose(sampleCycle, pencilSample.continuous);
         return [CENTER + sample.x, CENTER + sample.y + sample.wiggle + 19];
       });
       if (trailPoints.length > 1) {
@@ -838,7 +978,10 @@ function orbitMarkup(pose, transform, palette) {
           const afterNext = trailPoints[Math.min(index + 2, trailPoints.length - 1)];
           trailPath += `C${(current[0] + (next[0] - previous[0]) / 6).toFixed(1)} ${(current[1] + (next[1] - previous[1]) / 6).toFixed(1)} ${(next[0] - (afterNext[0] - current[0]) / 6).toFixed(1)} ${(next[1] - (afterNext[1] - current[1]) / 6).toFixed(1)} ${next[0].toFixed(1)} ${next[1].toFixed(1)}`;
         }
-        trail = `<path d="${trailPath}" fill="none" stroke="${palette.body}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="${n(clamp(effectWeight * 1.2, 0, 1))}"/>`;
+        const trailEnvelope = pencilSample.continuous
+          ? clamp(cycle / 0.08, 0, 1) * clamp((0.68 - cycle) / 0.08, 0, 1)
+          : 1;
+        trail = `<path d="${trailPath}" fill="none" stroke="${palette.body}" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="${n(clamp(effectWeight * 1.2, 0, 1) * trailEnvelope)}"/>`;
       }
     }
     rear.push(sourceLayer(
@@ -846,12 +989,10 @@ function orbitMarkup(pose, transform, palette) {
     ));
   }
   if (sourceEffects.has("bang")) {
-    const timeSeconds = representativeTime / 1000;
-    const impulse = Math.exp(-(timeSeconds % 2.2) * 5.5);
-    const wiggle = Math.sin(timeSeconds * 42) * 2.2 * impulse;
+    const bang = sourceBangSample(pose, representativeTime);
     const entry = sourceCubicOut(clamp(effectWeight * 1.1, 0, 1));
     const glyphScale = clamp(effectWeight * 1.2, 0, 1);
-    rear.push(sourceLayer(`<path d="${SOURCE_BANG_PATH}" fill="${palette.body}" opacity="${n(clamp(effectWeight * 1.5 - 0.2, 0, 1))}" transform="translate(0 ${n(-26 - (1 - entry) * 70)}) rotate(${n(wiggle)} ${CENTER} ${CENTER - 74}) translate(${CENTER} ${CENTER}) scale(${n(glyphScale)}) translate(${-CENTER} ${-CENTER})"/>`));
+    rear.push(sourceLayer(`<path d="${SOURCE_BANG_PATH}" fill="${palette.body}" opacity="${n(clamp(effectWeight * 1.5 - 0.2, 0, 1))}" transform="translate(0 ${n(-26 - (1 - entry) * 70)}) rotate(${n(bang.wiggle)} ${CENTER} ${CENTER - 74}) translate(${CENTER} ${CENTER}) scale(${n(glyphScale)}) translate(${-CENTER} ${-CENTER})"/>`));
   }
   if (sourceEffects.has("standby")) {
     const pulseAmount = 0.5 + 0.5 * Math.sin(representativeTime * 0.0016);
@@ -903,14 +1044,14 @@ function orbitMarkup(pose, transform, palette) {
 
   if (effect === "trail-right" || effect === "receive-right" || effect === "drag-right") {
     for (let index = 0; index < 4; index += 1) {
-      const offset = (index - 1.5) * 9;
-      const trailStart = Math.max(13, x - rx - 30 - index * 2);
+      const offset = (index - 1.5) * 9 + fluidWave * (1.2 + index * 0.18);
+      const trailStart = Math.max(13, x - rx - 30 - index * 2 - fluidCounterWave * 1.8);
       // Travel keeps the same wrapped-ribbon grammar as the hero orbit. The
       // ribbon enters with a shallow sweep, then curls behind the silhouette.
       rear.push(path(
         `M${n(trailStart)} ${n(y + offset * 0.5)} ` +
-        `C${n(x - rx - 24)} ${n(y + offset * 0.3 - 8)} ` +
-        `${n(x - rx - 5)} ${n(y + offset + 11)} ` +
+        `C${n(Math.max(9, x - rx - 24))} ${n(y + offset * 0.3 - 8)} ` +
+        `${n(Math.max(12, x - rx - 5))} ${n(y + offset + 11)} ` +
         `${n(x - rx * 0.68)} ${n(y + offset * 0.72)}`,
         color(index + 1),
         6.5 - index * 0.22,
@@ -919,12 +1060,12 @@ function orbitMarkup(pose, transform, palette) {
   }
   if (effect === "trail-left" || effect === "send-left" || effect === "drag-left") {
     for (let index = 0; index < 4; index += 1) {
-      const offset = (index - 1.5) * 9;
-      const trailStart = Math.min(CELL_WIDTH - 13, x + rx + 30 + index * 2);
+      const offset = (index - 1.5) * 9 + fluidWave * (1.2 + index * 0.18);
+      const trailStart = Math.min(CELL_WIDTH - 13, x + rx + 30 + index * 2 + fluidCounterWave * 1.8);
       rear.push(path(
         `M${n(trailStart)} ${n(y + offset * 0.5)} ` +
-        `C${n(x + rx + 24)} ${n(y + offset * 0.3 - 8)} ` +
-        `${n(x + rx + 5)} ${n(y + offset + 11)} ` +
+        `C${n(Math.min(CELL_WIDTH - 9, x + rx + 24))} ${n(y + offset * 0.3 - 8)} ` +
+        `${n(Math.min(CELL_WIDTH - 12, x + rx + 5))} ${n(y + offset + 11)} ` +
         `${n(x + rx * 0.68)} ${n(y + offset * 0.72)}`,
         color(index + 1),
         6.5 - index * 0.22,
@@ -954,7 +1095,12 @@ function orbitMarkup(pose, transform, palette) {
   };
 }
 
-function armMarkup(arm, transform, palette) {
+function finitePhaseAngle(phase) {
+  return Number.isFinite(phase) ? phase * TAU : 0;
+}
+
+function armMarkup(pose, transform, palette) {
+  const arm = pose.arm;
   if (!arm) return "";
   const { centerX: x, centerY: y, radiusX: rx, radiusY: ry } = transform;
   const right = x + rx * 0.7;
@@ -966,10 +1112,10 @@ function armMarkup(arm, transform, palette) {
     "right-pull": [right - 3, lower, right + 19, lower - 4, right + 25, lower - 19],
     "left-low": [left + 2, lower, left - 17, lower + 11, left - 27, lower + 1],
     "left-pull": [left + 3, lower, left - 19, lower - 4, left - 25, lower - 19],
-    "wave-rise": [right - 4, upper, right + 27, upper - 27, right + 21, upper - 49],
-    "wave-open": [right - 4, upper, right + 35, upper - 39, right + 25, upper - 57],
-    "wave-sweep": [right - 4, upper, right + 31, upper - 28, right + 33, upper - 47],
-    "wave-rest": [right - 4, upper, right + 25, upper - 31, right + 17, upper - 48],
+    "wave-rise": [right - 4, upper, right + 23, upper - 27, right + 18, upper - 49],
+    "wave-open": [right - 4, upper, right + 24, upper - 39, right + 18, upper - 57],
+    "wave-sweep": [right - 4, upper, right + 23, upper - 28, right + 19, upper - 47],
+    "wave-rest": [right - 4, upper, right + 22, upper - 31, right + 15, upper - 48],
   };
   const gestures = {
     "ask-open": [
@@ -977,17 +1123,44 @@ function armMarkup(arm, transform, palette) {
       [right - 3, lower - 3, right + 17, lower - 13, right + 28, lower - 26],
     ],
     "ask-soft": [
-      [left + 3, lower, left - 15, lower - 2, left - 25, lower - 13],
-      [right - 3, lower, right + 15, lower - 2, right + 25, lower - 13],
+      [left + 3, lower, left - 13, lower - 2, left - 20, lower - 13],
+      [right - 3, lower, right + 13, lower - 2, right + 20, lower - 13],
     ],
   };
-  const selections = gestures[arm] ?? (arms[arm] == null ? [] : [arms[arm]]);
+  const selectionsFor = (name) => gestures[name] ?? (arms[name] == null ? [] : [arms[name]]);
+  const baseSelections = selectionsFor(arm);
+  const fromSelections = selectionsFor(pose.fluidArmFrom);
+  const toSelections = selectionsFor(pose.fluidArmTo);
+  const fluidArmMix = clamp(pose.fluidArmMix ?? 0, 0, 1);
+  const canInterpolate = fromSelections.length > 0
+    && fromSelections.length === toSelections.length
+    && fromSelections.every((points, index) => points.length === toSelections[index].length);
+  const selections = canInterpolate
+    ? fromSelections.map((points, selectionIndex) => points.map((value, pointIndex) => (
+        value + (toSelections[selectionIndex][pointIndex] - value) * fluidArmMix
+      )))
+    : baseSelections;
   if (selections.length === 0) return "";
+  const fluidAngle = finitePhaseAngle(pose.fluidMotionPhase);
+  const fluidWave = Math.sin(fluidAngle);
+  const fluidCounterWave = Math.sin(fluidAngle * 2);
   const paths = selections.map((points) => {
-    const [startX, startY, controlX, controlY, endX, endY] = points;
+    let [startX, startY, controlX, controlY, endX, endY] = points;
+    if (arm.startsWith("wave-")) {
+      controlX += fluidWave * 2.2;
+      controlY -= fluidCounterWave * 1.8;
+      endX += fluidWave * 3;
+      endY -= fluidCounterWave * 2.4;
+    } else if (arm.startsWith("ask-")) {
+      const side = endX < x ? -1 : 1;
+      controlX += side * fluidWave * 1.2;
+      controlY -= fluidCounterWave * 1.2;
+      endX += side * fluidWave * 1.8;
+      endY -= fluidCounterWave * 1.8;
+    }
     return `M${n(startX)} ${n(startY)} Q${n(controlX)} ${n(controlY)} ${n(endX)} ${n(endY)}`;
   });
-  return `<g aria-hidden="true">${paths.map((d) => `<path d="${d}" fill="none" stroke="${palette.keyline}" stroke-linecap="round" stroke-opacity="0.18" stroke-width="20"/><path d="${d}" fill="none" stroke="${palette.body}" stroke-linecap="round" stroke-width="17"/>`).join("")}</g>`;
+  return `<g aria-hidden="true">${paths.map((d) => `<path d="${d}" fill="none" stroke="${palette.body}" stroke-linecap="round" stroke-width="17"/>`).join("")}</g>`;
 }
 
 function capsulePath(width = 16, height = 39, brush = 0.12) {
@@ -1275,8 +1448,27 @@ function meanPoint(points) {
 }
 
 function sourceTopologyMarkup(pose, palette) {
-  const topology = GROK_EYE_TOPOLOGIES[pose.topology];
-  if (!topology) throw new Error(`Unknown Grok Bot eye topology: ${pose.topology}`);
+  const topologyFrom = pose.fluidTopology ?? GROK_EYE_TOPOLOGIES[pose.topology];
+  if (!topologyFrom) throw new Error(`Unknown Grok Bot eye topology: ${pose.topology}`);
+  const topologyTo = pose.fluidTopology == null && Number.isInteger(pose.topologyTo)
+    ? GROK_EYE_TOPOLOGIES[pose.topologyTo]
+    : null;
+  if (Number.isInteger(pose.topologyTo) && !topologyTo) {
+    throw new Error(`Unknown Grok Bot eye topology target: ${pose.topologyTo}`);
+  }
+  const topologyMix = topologyTo == null ? 0 : clamp(pose.topologyMix ?? 0, 0, 1);
+  // Every authored topology has the same point ordering, so interpolating the
+  // 48 corresponding points produces genuine in-between eye shapes instead of
+  // a hard swap between expressions at Codex's low playback cadence.
+  const topology = topologyTo == null || topologyMix <= 0
+    ? topologyFrom
+    : topologyFrom.map((eye, eyeIndex) => eye.map(([x, y], pointIndex) => {
+      const [targetX, targetY] = topologyTo[eyeIndex][pointIndex];
+      return [
+        x + (targetX - x) * topologyMix,
+        y + (targetY - y) * topologyMix,
+      ];
+    }));
   const state = pose.sourceState ?? pose.states?.[0] ?? "idle";
   const tune = sourceTuneFor(state);
   const shapeId = pose.shape ?? "blob";
@@ -1329,7 +1521,11 @@ function sourceTopologyMarkup(pose, palette) {
     return `<path d="${pointsPath(points)}" fill="${palette.eye}" transform="translate(${n(targetX)} ${n(targetY)}) scale(${n(scaleX)} ${n(scaleY)}) translate(${n(-centerX)} ${n(-centerY)})"/>`;
   });
 
-  return `<g aria-hidden="true" data-eye-topology="${pose.topology}" data-source-state="${state}">${eyes.join("")}</g>`;
+  const morphData = topologyTo == null
+    ? ""
+    : ` data-eye-topology-to="${pose.topologyTo}" data-eye-topology-mix="${n(topologyMix)}"`;
+  const fluidData = pose.fluidTopology == null ? "" : ` data-eye-fluid="true"`;
+  return `<g aria-hidden="true" data-eye-topology="${pose.topology}"${morphData}${fluidData} data-source-state="${state}">${eyes.join("")}</g>`;
 }
 
 function eyesMarkup(pose, palette) {
@@ -1382,20 +1578,24 @@ export function renderFrameSvg(pose, options = {}) {
   const transform = transformFor(pose);
   const effectBody = sourceEffectBodySample(pose);
   const path = effectBody?.path ?? bodyPath(pose);
-  // Once an effect crosses its eye-hidden morph boundary, the transformed body
+  // Once an effect completes its eye-dissolve boundary, the transformed body
   // is the whole performance. Full-size Codex arms or decorative travel ribbons
   // would float around that smaller body and create an incoherent hybrid pose.
-  const suppressCodexAttachments = effectBody?.hideEyes === true;
+  const suppressCodexAttachments = effectBody?.eyesFullyHidden === true;
   const suppressGenericEffect = SOURCE_EFFECT_MODES.has(pose.sourceEffect);
   const attachmentPose = suppressGenericEffect ? { ...pose, effect: null } : pose;
   const orbit = orbitMarkup(attachmentPose, transform, palette);
-  const arm = suppressCodexAttachments ? "" : armMarkup(pose.arm, transform, palette);
+  const arm = suppressCodexAttachments ? "" : armMarkup(pose, transform, palette);
   const accessibilityTitle = String(title).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
   const bodyOpacity = (pose.bodyOpacity ?? 1) * (effectBody?.opacity ?? 1);
   const sourceEffectData = effectBody
-    ? ` data-source-effect-family="${effectBody.family}" data-source-effect-activation="${effectBody.activation}" data-source-eyes-hidden="${effectBody.hideEyes}"`
+    ? ` data-source-effect-family="${effectBody.family}" data-source-effect-activation="${effectBody.activation}" data-source-eye-opacity="${n(effectBody.eyeOpacity)}" data-source-eye-scale="${n(effectBody.eyeScale)}" data-source-eyes-hidden="${effectBody.eyesFullyHidden}"`
     : "";
   const innerTransform = effectBody ? ` transform="${effectBody.transform}"` : "";
+  const eyes = eyesMarkup(pose, palette);
+  const renderedEyes = effectBody
+    ? `<g data-source-effect-eyes="true" opacity="${n(effectBody.eyeOpacity)}" transform="translate(${CENTER} ${CENTER}) scale(${n(effectBody.eyeScale)}) translate(${-CENTER} ${-CENTER})">${eyes}</g>`
+    : eyes;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="${CELL_WIDTH}" height="${CELL_HEIGHT}" viewBox="0 0 ${CELL_WIDTH} ${CELL_HEIGHT}" role="img" aria-label="${accessibilityTitle}">
   <title>${accessibilityTitle}</title>
@@ -1403,8 +1603,8 @@ export function renderFrameSvg(pose, options = {}) {
   ${arm}
   <g transform="${transform.value}" opacity="${n(bodyOpacity)}"${sourceEffectData}>
     <g${innerTransform}>
-      <path d="${path}" fill="${palette.body}" stroke="${palette.keyline}" stroke-opacity="0.13" stroke-width="1.4"/>
-      ${effectBody?.hideEyes ? "" : eyesMarkup(pose, palette)}
+      <path d="${path}" fill="${palette.body}"/>
+      ${renderedEyes}
       ${frontDetailMarkup(pose, palette)}
     </g>
   </g>

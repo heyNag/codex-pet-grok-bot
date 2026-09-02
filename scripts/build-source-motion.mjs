@@ -7,18 +7,29 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { renderFrameSvg } from "../src/grok-art.mjs";
 import { ACTIVATION_SPRING, advanceActivationSpring } from "../src/grok-motion.mjs";
-import { CELL_HEIGHT, CELL_WIDTH, SOURCE_EFFECT_TRANSITIONS } from "../src/spec.mjs";
+import {
+  SOURCE_MOTION_ACTIVE_SECONDS,
+  SOURCE_MOTION_DISPLAY_WIDTH_CSS_PX,
+  SOURCE_MOTION_FRAME_HEIGHT,
+  SOURCE_MOTION_FRAME_RATE,
+  SOURCE_MOTION_FRAME_WIDTH,
+  SOURCE_MOTION_MAX_ACTIVE_HOLD_MS,
+  SOURCE_MOTION_RASTER_DENSITY,
+  SOURCE_MOTION_RASTER_SCALE,
+  SOURCE_MOTION_RELEASE_SECONDS,
+  maximumTimelineHoldOverlapMs,
+  sourceMotionFrameDelaysMs,
+} from "../src/source-motion-timing.mjs";
+import { SOURCE_EFFECT_TRANSITIONS } from "../src/spec.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputRoot = path.join(root, "preview", "source-lab", "motion");
-const frameRate = 60;
+const frameRate = SOURCE_MOTION_FRAME_RATE;
 const frameStepSeconds = 1 / frameRate;
-const activeSeconds = 1.8;
-const releaseSeconds = 0.8;
+const activeSeconds = SOURCE_MOTION_ACTIVE_SECONDS;
+const releaseSeconds = SOURCE_MOTION_RELEASE_SECONDS;
 const totalFrames = Math.round((activeSeconds + releaseSeconds) * frameRate);
-const frameDelaysMs = Object.freeze(Array.from({ length: totalFrames }, (_, frameIndex) => (
-  Math.round((frameIndex + 1) * 1000 / frameRate) - Math.round(frameIndex * 1000 / frameRate)
-)));
+const frameDelaysMs = Object.freeze(sourceMotionFrameDelaysMs());
 const presentationDurationMs = frameDelaysMs.reduce((total, delay) => total + delay, 0);
 const inputPaths = Object.freeze([
   ".node-version",
@@ -26,6 +37,7 @@ const inputPaths = Object.freeze([
   "src/grok-body-registry.mjs",
   "src/grok-eye-topologies.mjs",
   "src/grok-motion.mjs",
+  "src/source-motion-timing.mjs",
   "src/spec.mjs",
   "scripts/build-source-motion.mjs",
   "package.json",
@@ -36,12 +48,18 @@ const requiredEncoder = Object.freeze({
   sharp: "0.35.4",
   libvips: "8.18.6",
   webp: "1.6.0",
+  rsvg: "2.62.91",
+  cairo: "1.18.4",
+  pixman: "0.46.4",
 });
 const currentEncoder = Object.freeze({
   node: process.version,
   sharp: sharp.versions.sharp,
   libvips: sharp.versions.vips,
   webp: sharp.versions.webp,
+  rsvg: sharp.versions.rsvg,
+  cairo: sharp.versions.cairo,
+  pixman: sharp.versions.pixman,
 });
 const assetRecords = [];
 
@@ -79,14 +97,15 @@ for (const [suffix, theme] of themes) {
         name: `${transition.effect}-spring-${String(frameIndex).padStart(3, "0")}`,
         sourceEffectActivation: spring.position,
         sourceSampleTimeMs: elapsedSeconds * 1000,
-        effectPhase: Math.floor(elapsedSeconds * 1000 / 233) % 5,
+        sourceMotionTimeMs: elapsedSeconds * 1000,
+        effectPhase: (elapsedSeconds * 1000 / 233) % 5,
       };
       const svg = Buffer.from(renderFrameSvg(pose, {
         title: `Grok Bot ${transition.effect} spring motion`,
         theme,
       }));
-      rendered.push(await sharp(svg, { density: 144 })
-        .resize(CELL_WIDTH, CELL_HEIGHT, { fit: "fill" })
+      rendered.push(await sharp(svg, { density: SOURCE_MOTION_RASTER_DENSITY })
+        .resize(SOURCE_MOTION_FRAME_WIDTH, SOURCE_MOTION_FRAME_HEIGHT, { fit: "fill" })
         .ensureAlpha()
         .png({ compressionLevel: 9, palette: false })
         .toBuffer());
@@ -95,16 +114,16 @@ for (const [suffix, theme] of themes) {
 
     const pages = sharp({
       create: {
-        width: CELL_WIDTH,
-        height: CELL_HEIGHT * rendered.length,
-        pageHeight: CELL_HEIGHT,
+        width: SOURCE_MOTION_FRAME_WIDTH,
+        height: SOURCE_MOTION_FRAME_HEIGHT * rendered.length,
+        pageHeight: SOURCE_MOTION_FRAME_HEIGHT,
         channels: 4,
         background: { r: 0, g: 0, b: 0, alpha: 0 },
       },
     }).composite(rendered.map((input, index) => ({
       input,
       left: 0,
-      top: index * CELL_HEIGHT,
+      top: index * SOURCE_MOTION_FRAME_HEIGHT,
     })));
 
     const outputPath = path.join(themeRoot, `${transition.effect}.webp`);
@@ -119,6 +138,17 @@ for (const [suffix, theme] of themes) {
     }).toFile(outputPath);
     const bytes = await readFile(outputPath);
     const metadata = await sharp(bytes, { animated: true }).metadata();
+    const maximumActiveHoldMs = maximumTimelineHoldOverlapMs(
+      metadata.delay,
+      0,
+      activeSeconds * 1000,
+    );
+    if (maximumActiveHoldMs > SOURCE_MOTION_MAX_ACTIVE_HOLD_MS) {
+      throw new Error(
+        `${suffix}/${transition.effect}.webp contains a ${maximumActiveHoldMs}ms active hold; `
+          + `the maximum is ${SOURCE_MOTION_MAX_ACTIVE_HOLD_MS}ms`,
+      );
+    }
     assetRecords.push(Object.freeze({
       theme: suffix,
       state: transition.state,
@@ -129,6 +159,7 @@ for (const [suffix, theme] of themes) {
       pageHeight: metadata.pageHeight,
       loop: metadata.loop,
       durationMs: metadata.delay.reduce((total, delay) => total + delay, 0),
+      maximumActiveHoldMs,
     }));
     process.stdout.write(`Built ${suffix}/${transition.effect}.webp (${rendered.length} exact-spring samples)\n`);
   }
@@ -146,6 +177,11 @@ const manifest = {
   releaseSeconds,
   nominalFrameCount: totalFrames,
   presentationDurationMs,
+  maximumAllowedActiveHoldMs: SOURCE_MOTION_MAX_ACTIVE_HOLD_MS,
+  rasterScale: SOURCE_MOTION_RASTER_SCALE,
+  frameWidth: SOURCE_MOTION_FRAME_WIDTH,
+  frameHeight: SOURCE_MOTION_FRAME_HEIGHT,
+  displayWidthCssPx: SOURCE_MOTION_DISPLAY_WIDTH_CSS_PX,
   encoder: currentEncoder,
   spring: ACTIVATION_SPRING,
   inputs,

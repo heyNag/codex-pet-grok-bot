@@ -5,8 +5,10 @@
 The character is built around a stable silhouette, expressive eye topology,
 elastic body acting, attached effects, and clear motion at desktop-pet scale.
 The full design vocabulary includes 18 body shapes, 25 eye topologies, 39 named
-states, and 14 body-morph effects. The shipping Codex atlas keeps that richness
-while selecting short performances that fit the host's fixed row contract.
+states, and 14 body-morph effects. The shipping Codex atlas turns a focused
+selection of that vocabulary into stable, connected performances that fit the
+host's fixed row contract. The separate Character Lab preserves the full state
+and effect range for inspection.
 
 The geometry, state vocabulary, and motion equations are documented in
 [CHARACTER-SPEC.md](CHARACTER-SPEC.md).
@@ -14,7 +16,7 @@ The geometry, state vocabulary, and motion equations are documented in
 ## One character, two surface variants
 
 Grok Bot is a theme-inverting elastic character. This repository encodes that
-behavior as two static pets because a WebP atlas cannot read the host theme:
+behavior as two independent pets because an atlas cannot read the host theme:
 
 - `grok-bot-dark`: white body, black eyes, for dark Codex surfaces;
 - `grok-bot-light`: black body, white eyes, for light Codex surfaces.
@@ -86,25 +88,28 @@ ownership:
 
 Every one of these 14 modes morphs the canonical body toward its compact effect
 body; `ball` and `whirl` are included. Most target a small circle. `pencil`
-targets a rotated teardrop form. Eyes disappear when activation
-reaches `A = 0.50`, while the general shape morph reaches its exact target at
-`A = 0.62`. Effects stay attached to the character's action. They are not
+targets a rotated teardrop form. Eyes remain untouched through `A = 0.36`,
+then dissolve and draw inward continuously; `A = 0.50` is the midpoint, the
+general shape morph reaches its exact target at `A = 0.62`, and the eyes are
+fully invisible at `A = 0.64`. Effects stay attached to the character's action. They are not
 generic badges, floating UI status icons, floor shadows, or ambient scenery.
 
 ## Ambient and celebration motion
 
-Two treatments extend the core body acting:
+Two treatments extend the full character vocabulary:
 
 - two small satellites orbit in opposition during the long ambient `humming`
   read, exchanging side, depth, radius, opacity, and front/back order; and
 - celebration grows from sparse color flecks into thick rainbow ribbons at
   multiple angles, with rear and front layers wrapping the body.
 
-The idle sequence samples the humming equations across a full visible period,
-while the celebration treatment enriches a few high-energy Codex frames.
-Neither changes the 14-mode effect list, 18-shape registry, eye dataset, or
-39-state timing maps. `humming` remains distinct from the five-dot monochrome
-`orbit` effect.
+The Character Lab retains both treatments as part of its wider inspection
+range. The installed rows use only effects that can stay visually attached
+across the host's discrete frame changes: restrained directional trails,
+connected wave and asking gestures, and one celebration family that fades in
+and out around a stable body. `humming` remains distinct from the five-dot
+monochrome `orbit` effect, and neither changes the 14-mode effect list, 18-shape
+registry, eye dataset, or 39-state timing maps.
 
 ## Acting rules
 
@@ -125,22 +130,26 @@ Neither changes the 14-mode effect list, 18-shape registry, eye dataset, or
 ## Motion under the Codex atlas constraint
 
 Codex v2 is an `8 × 11` grid of fixed `192 × 208` cells: nine short behavior
-rows, two gaze rows, 74 populated frames, and 14 transparent cells. It cannot
-carry continuous procedural motion or expose all 39 character states as host
-events. The adaptation therefore selects clear
-anticipation, action, overshoot, recovery, and settle phases. Volume is
-approximately conserved: squash widens, stretch narrows, and tilt redistributes
-mass.
+rows, two gaze rows, 73 populated cells, and 15 transparent cells. It cannot
+run package code or expose all 39 character states as host events. The
+implementation therefore selects clear anticipation, action, overshoot, recovery,
+and settle phases, then renders them into a phase-safe animated WebP.
+Corresponding eye points interpolate between topologies to create continuous
+in-betweens. Body volume is conserved: squash widens, stretch narrows, and tilt
+redistributes mass.
 
 The shipping rows are deliberately coherent temporal performances rather than
-a museum grid of unrelated effects. Left and right travel share cadence
-but are separately authored. Receive/release drives right travel; the
-pencil/send/dock sequence drives left travel. Work progresses through gather,
-thought, radar, and whirl samples. Failure uses bang and standby as one readable
-alert-to-recovery arc. Review grows from surprise into the layered ribbon
-celebration. Gaze frames move the eyes most, face placement slightly,
-and body balance least. Celebration reserves the largest eye and ribbon
-contrast so ordinary work does not look constantly excited.
+a museum grid of unrelated effects. On each embedded animation page, every
+populated action column contains the same current pose, so the host's discrete
+column changes cannot stitch together mismatched poses. Every runtime row
+preserves a continuous silhouette and nearly constant visible mass. Mirrored travel rows combine
+directional gaze, a gentle gait, and a restrained attached trail. Greeting uses
+four connected arm poses. Jump reads as crouch, rise, apex, fall, and land.
+Failure, waiting, and active work rely on fluid eye-topology morphs with small
+supporting body changes instead of swapping in unrelated effect bodies. Review
+morphs from proud to happy while one attached celebration treatment fades in
+and out. Gaze frames move the eyes most, face placement slightly, and body
+balance least.
 
 The generated expression lab is the complementary inspection view:
 
@@ -149,28 +158,36 @@ The generated expression lab is the complementary inspection view:
 - [`../preview/source-lab/effect-transitions-dark.png`](../preview/source-lab/effect-transitions-dark.png)
   and its light counterpart show every effect at `A = 0.25, 0.50, 0.62, 0.90`.
 
-Those images are inspection artifacts, not installable Codex atlases. They keep
-the full character and effect vocabulary visible without damaging the temporal
-continuity required by the host.
+Those images are inspection artifacts, not installable Codex atlases. Together
+with the 60 fps effect studies, they keep the full 39-state and 14-effect
+vocabulary visible without damaging the temporal continuity required by the
+host.
 
 The desktop runtime slows idle c0–c5 by `6×`, repeats a non-idle row
-three times, and then hands off to idle c0. Idle c6 is a separate neutral-look
-cell. Consequently, c0 is a universal entry pose and every row must survive
-both its own repeat boundary and its third-cycle transition to idle.
+three times, and then hands off to idle c0. Idle c6–c7 are unused.
+The embedded image clock does not restart at those boundaries, so every row
+must survive both its own repeat and its third-cycle transition to idle at any
+animation phase. All populated columns in timed rows 0–8 therefore share the
+same pose at the same embedded phase; column semantics remain visible in the
+static authoring atlases used for inspection.
 
-By the project owner's explicit choice there is one authored choreography, not
-a second reduced-motion atlas or timing branch. This does not override the host:
-Codex may still freeze c0 when its reduced-motion setting is active.
+There is one authored choreography, not a second reduced-motion atlas or timing
+branch. This does not override the host:
+Codex may still freeze its cell selection on c0 when its reduced-motion setting
+is active, while the embedded WebP continues independently.
 
 ## Rendering and distribution boundary
 
-The build renders code-native vector poses to transparent `192 × 208` cells,
-normalizes hidden RGB under zero alpha, and composes deterministic lossless
-WebP atlases. Validation checks both variants against the same geometry,
-populated-cell, direction, continuity, manifest, and file-size contract.
+The build renders code-native vector poses at high density, downsamples them
+into transparent `192 × 208` cells with a narrow alpha fringe suited to the
+desktop renderer, normalizes hidden RGB under zero alpha, and composes both
+static authoring atlases and deterministic lossless animated shipping atlases.
+Validation checks every shipping page and both variants against the same
+geometry, populated-cell, direction, continuity, manifest, cadence,
+phase-safety, and file-size contract.
 
 The generated frames are a Codex-specific performance. The design vocabulary
 and equations can be preserved while finite frame selection, phase choice,
-compositing, and Codex transitions remain intentional adaptations. All artwork
+compositing, and Codex transitions remain intentional design decisions. All artwork
 in the shipped bundles is generated by project code; [NOTICE.md](../NOTICE.md)
 records the unofficial-project, rights, and redistribution boundary.

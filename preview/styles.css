@@ -17,18 +17,14 @@
   --cyan: var(--blue);
   --acid: var(--green);
   --stage-surface: #080b0c;
-  --stage-surface-soft: #172126;
   --stage-grid: rgba(225, 245, 247, 0.025);
   --stage-border: rgba(225, 245, 247, 0.08);
-  --stage-halo: rgba(189, 246, 228, 0.07);
-  --stage-halo-soft: rgba(189, 246, 228, 0.018);
-  --stage-floor: rgba(189, 246, 228, 0.14);
-  --sprite-shadow: rgba(0, 0, 0, 0.38);
   --atlas-checker-a: #111516;
   --atlas-checker-b: #161b1d;
   --atlas-grid-line: rgba(189, 246, 228, 0.13);
   --cell-width: 192px;
   --cell-height: 208px;
+  --runtime-pet-width: 7.04rem;
   font-family:
     Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-synthesis: none;
@@ -36,13 +32,8 @@
 
 [data-surface-theme="dark"] {
   --stage-surface: #080b0c;
-  --stage-surface-soft: #172126;
   --stage-grid: rgba(225, 245, 247, 0.025);
   --stage-border: rgba(225, 245, 247, 0.08);
-  --stage-halo: rgba(189, 246, 228, 0.07);
-  --stage-halo-soft: rgba(189, 246, 228, 0.018);
-  --stage-floor: rgba(189, 246, 228, 0.14);
-  --sprite-shadow: rgba(0, 0, 0, 0.38);
   --atlas-checker-a: #111516;
   --atlas-checker-b: #161b1d;
   --atlas-grid-line: rgba(189, 246, 228, 0.13);
@@ -53,13 +44,8 @@
 
 [data-surface-theme="light"] {
   --stage-surface: #f3f1e9;
-  --stage-surface-soft: #d7e1e4;
   --stage-grid: rgba(22, 31, 34, 0.055);
   --stage-border: rgba(22, 31, 34, 0.15);
-  --stage-halo: rgba(22, 31, 34, 0.1);
-  --stage-halo-soft: rgba(22, 31, 34, 0.028);
-  --stage-floor: rgba(22, 31, 34, 0.2);
-  --sprite-shadow: rgba(22, 31, 34, 0.24);
   --atlas-checker-a: #f3f1e9;
   --atlas-checker-b: #dedbd2;
   --atlas-grid-line: rgba(22, 31, 34, 0.18);
@@ -405,10 +391,9 @@ body[data-preview-mode="light"] .theme-panes {
 .source-motion-stage img {
   position: relative;
   z-index: 1;
-  width: min(72%, 300px);
+  width: min(288px, 100%);
   height: auto;
   image-rendering: auto;
-  filter: drop-shadow(0 20px 28px var(--sprite-shadow));
 }
 
 .source-motion-readout {
@@ -534,9 +519,8 @@ body[data-preview-mode="light"] .theme-panes {
   background-color: var(--stage-surface);
   background-image:
     linear-gradient(var(--stage-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--stage-grid) 1px, transparent 1px),
-    radial-gradient(circle at 50% 44%, var(--stage-surface-soft), transparent 42%);
-  background-size: 24px 24px, 24px 24px, auto;
+    linear-gradient(90deg, var(--stage-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .variant-badge {
@@ -564,43 +548,103 @@ body[data-preview-mode="light"] .theme-panes {
   font-size: 0.52rem;
 }
 
-.pet-stage::after {
-  position: absolute;
-  bottom: 17%;
-  width: 42%;
-  height: 1px;
-  content: "";
-  background: linear-gradient(90deg, transparent, var(--stage-floor), transparent);
-}
-
-.halo {
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  border: 1px solid var(--stage-halo);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 38px var(--stage-halo-soft),
-    0 0 0 92px color-mix(in srgb, var(--stage-halo-soft) 50%, transparent);
-}
-
 .sprite-wrap {
   position: relative;
   z-index: 1;
-  width: var(--cell-width);
-  height: var(--cell-height);
-  transform: scale(1.28);
-  transform-origin: center;
+  width: var(--runtime-pet-width);
+  aspect-ratio: 192 / 208;
+  transform: translate(
+    var(--runtime-snap-x, 0px),
+    var(--runtime-snap-y, 0px)
+  );
 }
 
 .pet-sprite {
-  width: var(--cell-width);
-  height: var(--cell-height);
+  width: 100%;
+  height: 100%;
   background-image: url("../pet/grok-bot-dark/spritesheet.webp");
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-size: 1536px 2288px;
-  filter: drop-shadow(0 18px 24px var(--sprite-shadow));
+  background-size: 800% 1100%;
+  image-rendering: pixelated;
+}
+
+body[data-renderer-filter="smooth"] .pet-sprite {
+  image-rendering: auto;
+}
+
+.runtime-renderer {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) auto auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.runtime-renderer > div {
+  display: grid;
+  gap: 3px;
+}
+
+.runtime-renderer strong {
+  font-size: 0.74rem;
+}
+
+.runtime-renderer label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.runtime-renderer select {
+  min-width: 142px;
+  height: 34px;
+  padding: 0 30px 0 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  background: var(--panel-strong);
+}
+
+.renderer-filter-toggle {
+  cursor: pointer;
+}
+
+.renderer-filter-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.renderer-filter-toggle > span {
+  position: relative;
+  width: 27px;
+  height: 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.renderer-filter-toggle > span::after {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  content: "";
+  background: var(--muted);
+  transition: transform 140ms ease, background 140ms ease;
+}
+
+.renderer-filter-toggle input:checked + span::after {
+  background: var(--mint);
+  transform: translateX(11px);
 }
 
 .build-message {
@@ -1450,8 +1494,8 @@ footer {
     min-height: 330px;
   }
 
-  .sprite-wrap {
-    transform: scale(1.08);
+  .runtime-renderer {
+    grid-template-columns: 1fr;
   }
 
   .settle-toggle {

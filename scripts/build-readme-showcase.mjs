@@ -5,6 +5,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import sharp from "sharp";
+import {
+  FLUID_ATLAS_FRAME_COUNT,
+  FLUID_ATLAS_LOOP_MS,
+  fluidAtlasDelays,
+} from "../src/fluid-atlas.mjs";
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -12,10 +17,16 @@ export const SHOWCASE_PATH = path.join(repositoryRoot, "preview", "readme-showca
 export const SHOWCASE_MANIFEST_PATH = path.join(repositoryRoot, "preview", "readme-showcase.json");
 export const SHOWCASE_WIDTH = 1200;
 export const SHOWCASE_HEIGHT = 480;
+export const SHOWCASE_SOURCE_FRAME_COUNT = FLUID_ATLAS_FRAME_COUNT;
+export const SHOWCASE_SOURCE_LOOP_MS = FLUID_ATLAS_LOOP_MS;
+export const SHOWCASE_SOURCE_DELAYS_MS = Object.freeze(fluidAtlasDelays());
 
 const CELL_WIDTH = 192;
 const CELL_HEIGHT = 208;
-const ATLAS_WIDTH = 1536;
+const COLUMNS = 8;
+const ROWS = 11;
+const ATLAS_WIDTH = CELL_WIDTH * COLUMNS;
+const ATLAS_HEIGHT = CELL_HEIGHT * ROWS;
 const PANEL_WIDTH = SHOWCASE_WIDTH / 2;
 const ART_WIDTH = CELL_WIDTH * 2;
 const ART_HEIGHT = CELL_HEIGHT * 2;
@@ -24,32 +35,49 @@ const DARK_ART_LEFT = Math.round((PANEL_WIDTH - ART_WIDTH) / 2);
 const LIGHT_ART_LEFT = PANEL_WIDTH + DARK_ART_LEFT;
 
 const variants = Object.freeze([
-  {
+  Object.freeze({
     name: "dark",
     atlasPath: path.join(repositoryRoot, "pet", "grok-bot-dark", "spritesheet.webp"),
-  },
-  {
+  }),
+  Object.freeze({
     name: "light",
     atlasPath: path.join(repositoryRoot, "pet", "grok-bot-light", "spritesheet.webp"),
-  },
+  }),
 ]);
 
-const series = (row, columns, delays) => columns.map((column, index) => ({
-  row,
-  column,
-  delay: delays[index],
-}));
-
-export const SHOWCASE_SEQUENCE = Object.freeze([
-  ...series(0, [0, 1, 2, 3, 4, 5], [900, 180, 180, 240, 240, 800]),
-  ...series(3, [0, 1, 2, 3], [350, 220, 220, 650]),
-  ...series(7, [0, 1, 2, 3, 4, 5], [240, 240, 240, 240, 240, 650]),
-  ...series(6, [0, 1, 2, 3, 4, 5], [300, 300, 300, 300, 300, 700]),
-  ...series(8, [0, 1, 2, 3, 4, 5], [300, 300, 300, 300, 300, 900]),
-  ...series(9, [0, 1, 2, 3, 4, 5, 6, 7], Array(8).fill(160)),
-  ...series(10, [0, 1, 2, 3, 4, 5, 6, 7], Array(8).fill(160)),
-  { row: 0, column: 0, delay: 1000 },
+// Every scene is one complete embedded atlas loop. Timed scenes keep a stable
+// semantic cell while their actual shipping WebP pages supply the performance.
+// The final scene walks all 16 gaze sectors while retaining the exact 60-phase
+// encoded clock used by the installed pet.
+export const SHOWCASE_SCENES = Object.freeze([
+  Object.freeze({ id: "idle", row: 0, column: 0 }),
+  Object.freeze({ id: "wave", row: 3, column: 0 }),
+  Object.freeze({ id: "jump", row: 4, column: 0 }),
+  Object.freeze({ id: "needs-attention", row: 5, column: 0 }),
+  Object.freeze({ id: "complete", row: 8, column: 0 }),
+  Object.freeze({ id: "gaze", gazeSweep: true }),
 ]);
+
+const gazeCellForFrame = (sourceFrame) => {
+  const sector = Math.floor((sourceFrame * 16) / SHOWCASE_SOURCE_FRAME_COUNT);
+  return {
+    row: sector < 8 ? 9 : 10,
+    column: sector % 8,
+    gazeSector: sector,
+  };
+};
+
+export const SHOWCASE_SEQUENCE = Object.freeze(SHOWCASE_SCENES.flatMap((scene) => (
+  Array.from({ length: SHOWCASE_SOURCE_FRAME_COUNT }, (_, sourceFrame) => Object.freeze({
+    scene: scene.id,
+    sourceFrame,
+    ...(scene.gazeSweep ? gazeCellForFrame(sourceFrame) : {
+      row: scene.row,
+      column: scene.column,
+    }),
+    delay: SHOWCASE_SOURCE_DELAYS_MS[sourceFrame],
+  }))
+)));
 
 const backgroundSvg = Buffer.from(`
   <svg xmlns="http://www.w3.org/2000/svg" width="${SHOWCASE_WIDTH}" height="${SHOWCASE_HEIGHT}" viewBox="0 0 ${SHOWCASE_WIDTH} ${SHOWCASE_HEIGHT}">
@@ -69,49 +97,57 @@ const backgroundSvg = Buffer.from(`
 `);
 
 export async function generateReadmeShowcase() {
-  const atlasEntries = await Promise.all(variants.map(async (variant) => {
+  const atlases = new Map();
+
+  // Decode one atlas at a time. Each decoded animation is large, so retaining
+  // only the small, lossless display cells keeps generation bounded.
+  for (const variant of variants) {
     const bytes = await readFile(variant.atlasPath);
-    const decoded = await sharp(bytes)
+    const metadata = await sharp(bytes, { animated: true }).metadata();
+    validateAtlasMetadata(variant.name, metadata);
+
+    const decoded = await sharp(bytes, { animated: true })
       .ensureAlpha()
       .raw()
       .toBuffer({ resolveWithObject: true });
-    if (decoded.info.width !== ATLAS_WIDTH || decoded.info.channels !== 4) {
-      throw new Error(`Unexpected ${variant.name} atlas metadata`);
+    if (decoded.info.width !== ATLAS_WIDTH
+      || decoded.info.height !== ATLAS_HEIGHT * SHOWCASE_SOURCE_FRAME_COUNT
+      || decoded.info.pageHeight !== ATLAS_HEIGHT
+      || decoded.info.pages !== SHOWCASE_SOURCE_FRAME_COUNT
+      || decoded.info.channels !== 4) {
+      throw new Error(`Unexpected ${variant.name} decoded atlas layout`);
     }
-    return [variant.name, {
-      bytes,
-      pixels: decoded.data,
-      path: path.relative(repositoryRoot, variant.atlasPath),
-    }];
-  }));
-  const atlases = new Map(atlasEntries);
 
-  const resizedCells = new Map();
+    const cells = [];
+    for (const pose of SHOWCASE_SEQUENCE) {
+      const rawCell = extractCell(decoded.data, pose.sourceFrame, pose.row, pose.column);
+      cells.push(await sharp(rawCell, {
+        raw: { width: CELL_WIDTH, height: CELL_HEIGHT, channels: 4 },
+      })
+        // This exact 2x nearest-neighbor presentation preserves the installed
+        // raster and its authored alpha edge instead of softening it again.
+        .resize(ART_WIDTH, ART_HEIGHT, { fit: "fill", kernel: sharp.kernel.nearest })
+        .png({ compressionLevel: 9, palette: false })
+        .toBuffer());
+    }
+
+    atlases.set(variant.name, {
+      bytes,
+      cells,
+      path: path.relative(repositoryRoot, variant.atlasPath),
+      metadata: {
+        width: metadata.width,
+        height: metadata.pageHeight,
+        frames: metadata.pages,
+        loop: metadata.loop,
+        delays: metadata.delay,
+      },
+    });
+  }
+
   const frames = [];
   const delays = [];
-
-  for (const pose of SHOWCASE_SEQUENCE) {
-    const composites = [{ input: backgroundSvg, left: 0, top: 0 }];
-    for (const variant of variants) {
-      const key = `${variant.name}:${pose.row}:${pose.column}`;
-      let cell = resizedCells.get(key);
-      if (!cell) {
-        const rawCell = extractCell(atlases.get(variant.name).pixels, pose.row, pose.column);
-        cell = await sharp(rawCell, {
-          raw: { width: CELL_WIDTH, height: CELL_HEIGHT, channels: 4 },
-        })
-          .resize(ART_WIDTH, ART_HEIGHT, { fit: "fill", kernel: sharp.kernel.lanczos3 })
-          .png({ compressionLevel: 9, palette: false })
-          .toBuffer();
-        resizedCells.set(key, cell);
-      }
-      composites.push({
-        input: cell,
-        left: variant.name === "dark" ? DARK_ART_LEFT : LIGHT_ART_LEFT,
-        top: ART_TOP,
-      });
-    }
-
+  for (let index = 0; index < SHOWCASE_SEQUENCE.length; index += 1) {
     frames.push(await sharp({
       create: {
         width: SHOWCASE_WIDTH,
@@ -119,8 +155,12 @@ export async function generateReadmeShowcase() {
         channels: 4,
         background: { r: 0, g: 0, b: 0, alpha: 1 },
       },
-    }).composite(composites).raw().toBuffer());
-    delays.push(pose.delay);
+    }).composite([
+      { input: backgroundSvg, left: 0, top: 0 },
+      { input: atlases.get("dark").cells[index], left: DARK_ART_LEFT, top: ART_TOP },
+      { input: atlases.get("light").cells[index], left: LIGHT_ART_LEFT, top: ART_TOP },
+    ]).raw().toBuffer());
+    delays.push(SHOWCASE_SEQUENCE[index].delay);
   }
 
   const image = await sharp(Buffer.concat(frames), {
@@ -135,27 +175,47 @@ export async function generateReadmeShowcase() {
     quality: 100,
     alphaQuality: 100,
     delay: delays,
-    effort: 3,
+    effort: 6,
     exact: true,
     loop: 0,
   }).toBuffer();
 
+  const sequence = SHOWCASE_SEQUENCE.map((frame) => ({
+    scene: frame.scene,
+    sourceFrame: frame.sourceFrame,
+    row: frame.row,
+    column: frame.column,
+    ...(Number.isInteger(frame.gazeSector) ? { gazeSector: frame.gazeSector } : {}),
+  }));
+
   return {
     image,
     manifest: {
-      schemaVersion: 1,
+      schemaVersion: 3,
       inputs: Object.fromEntries(variants.map((variant) => {
         const atlas = atlases.get(variant.name);
-        return [variant.name, { path: atlas.path, sha256: sha256(atlas.bytes) }];
+        return [variant.name, {
+          path: atlas.path,
+          sha256: sha256(atlas.bytes),
+          ...atlas.metadata,
+        }];
       })),
+      showcase: {
+        sourceFramesPerScene: SHOWCASE_SOURCE_FRAME_COUNT,
+        sourceLoopMsPerScene: SHOWCASE_SOURCE_LOOP_MS,
+        sourceDelaysMsPerScene: SHOWCASE_SOURCE_DELAYS_MS,
+        scenes: SHOWCASE_SCENES.map((scene) => scene.id),
+        sequenceSha256: sha256(Buffer.from(JSON.stringify(sequence))),
+      },
       output: {
         path: path.relative(repositoryRoot, SHOWCASE_PATH),
         sha256: sha256(image),
         width: SHOWCASE_WIDTH,
         height: SHOWCASE_HEIGHT,
         frames: SHOWCASE_SEQUENCE.length,
+        durationMs: delays.reduce((total, delay) => total + delay, 0),
         loop: 0,
-        delays: SHOWCASE_SEQUENCE.map((frame) => frame.delay),
+        delays,
       },
     },
   };
@@ -163,10 +223,32 @@ export async function generateReadmeShowcase() {
 
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
-function extractCell(atlas, row, column) {
+function validateAtlasMetadata(name, metadata) {
+  const expectedDelays = SHOWCASE_SOURCE_DELAYS_MS;
+  if (metadata.width !== ATLAS_WIDTH
+    || metadata.pageHeight !== ATLAS_HEIGHT
+    || metadata.height !== ATLAS_HEIGHT * SHOWCASE_SOURCE_FRAME_COUNT
+    || metadata.pages !== SHOWCASE_SOURCE_FRAME_COUNT
+    || metadata.loop !== 0
+    || JSON.stringify(metadata.delay) !== JSON.stringify(expectedDelays)) {
+    throw new Error(`${name} atlas must be a ${SHOWCASE_SOURCE_FRAME_COUNT}-phase, ${SHOWCASE_SOURCE_LOOP_MS} ms, infinite-loop animation with the exact cumulative delay schedule`);
+  }
+}
+
+function extractCell(atlas, sourceFrame, row, column) {
+  if (!Number.isInteger(sourceFrame) || sourceFrame < 0 || sourceFrame >= SHOWCASE_SOURCE_FRAME_COUNT) {
+    throw new RangeError(`Showcase source frame is out of range: ${sourceFrame}`);
+  }
+  if (!Number.isInteger(row) || row < 0 || row >= ROWS
+    || !Number.isInteger(column) || column < 0 || column >= COLUMNS) {
+    throw new RangeError(`Showcase atlas cell is out of range: ${row}:${column}`);
+  }
+
   const cell = Buffer.alloc(CELL_WIDTH * CELL_HEIGHT * 4);
+  const pageOffset = sourceFrame * ATLAS_WIDTH * ATLAS_HEIGHT * 4;
   for (let y = 0; y < CELL_HEIGHT; y += 1) {
-    const sourceStart = ((row * CELL_HEIGHT + y) * ATLAS_WIDTH + column * CELL_WIDTH) * 4;
+    const sourceStart = pageOffset
+      + ((row * CELL_HEIGHT + y) * ATLAS_WIDTH + column * CELL_WIDTH) * 4;
     const sourceEnd = sourceStart + CELL_WIDTH * 4;
     atlas.copy(cell, y * CELL_WIDTH * 4, sourceStart, sourceEnd);
   }

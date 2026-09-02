@@ -1,95 +1,95 @@
 {
   "schemaVersion": 1,
-  "stimulusSha256": "7bd67eae5bf8fe72fd42dae6876fc9eb7488089acf6fa59246fad94159ddaec4",
+  "stimulusSha256": "86f50e4a7157b185a1e6b4bc2be774b3add46b20f7d0b22bdc39357509cf9e78",
   "reviewer": {
     "kind": "independent-blind-agent",
-    "id": "agent:/root/blind_verdict_4"
+    "id": "blind-reviewer-4"
   },
-  "method": "Blind original-detail inspection of only the unlabeled A/B stimulus sheet; no answer key, atlas, source code, or other verdict was consulted.",
+  "method": "Reviewed only qa/direction-blind-pairs.png at original detail, including lossless original-resolution crops of that same stimulus for close visual inspection; no answer key, consensus, validation, source atlas, repository code, or prior reviews were consulted.",
   "pairs": [
     {
       "pair": "horizontal-1",
       "A": "screen-right",
       "B": "screen-left",
-      "reason": "A's paired eyes sit farther right across the round silhouette; B's cluster is left-shifted, while the similar eye slant keeps the lateral contrast dominant."
+      "reason": "A's eye cluster sits slightly farther toward screen-right relative to its circle than B's; 88% confidence because this offset is subtler than in most horizontal pairs."
     },
     {
       "pair": "horizontal-2",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's eye group is displaced rightward within the circular face, whereas B's is visibly more leftward with otherwise matching tilt and shape."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's two eyes are displaced toward screen-left relative to the circle, while B's are clearly displaced toward screen-right; 99% confidence with no material ambiguity."
     },
     {
       "pair": "horizontal-3",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eyes occupy the left side of the upper facial arc; B's sit nearer the right rim, with parallel slants reinforcing a clean lateral comparison."
+      "reason": "A's eye cluster is visibly farther toward screen-left and B's farther toward screen-right; 99% confidence with no material ambiguity."
     },
     {
       "pair": "horizontal-4",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A presents a left-set eye cluster against the round contour, while B's cluster is distinctly right-set and closer to the right silhouette."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's two eyes sit farther toward screen-right relative to the circle than B's, which sit toward screen-left; 99% confidence with no material ambiguity."
     },
     {
       "pair": "horizontal-5",
-      "A": "screen-left",
-      "B": "screen-right",
-      "reason": "A's eyes remain leftward on the face; B's matched, similarly tilted eyes shift toward the right edge, producing a rightward gaze."
+      "A": "screen-right",
+      "B": "screen-left",
+      "reason": "A's eye cluster is clearly shifted toward screen-right and B's toward screen-left; 99% confidence with no material ambiguity."
     },
     {
       "pair": "horizontal-6",
-      "A": "screen-right",
-      "B": "screen-left",
-      "reason": "A's two-eye silhouette is carried to the right, including the outer eye near the rim; B's corresponding cluster sits appreciably farther left."
+      "A": "screen-left",
+      "B": "screen-right",
+      "reason": "A's eyes are positioned toward screen-left relative to the circle, while B's are positioned toward screen-right; 99% confidence with no material ambiguity."
     },
     {
       "pair": "horizontal-7",
       "A": "screen-left",
       "B": "screen-right",
-      "reason": "A's eye pair is the more left-centered arrangement, while B's parallel tilted marks gather toward the right-hand facial outline."
+      "reason": "A's eye cluster sits farther toward screen-left and B's farther toward screen-right; 92% confidence because the separation is mildly smaller than in the clearest pairs."
     },
     {
       "pair": "vertical-1",
-      "A": "down",
-      "B": "up",
-      "reason": "A's paired eyes sit lower inside the circular silhouette; B's sit clearly higher, with nearly unchanged spacing and slant isolating the vertical cue."
+      "A": "up",
+      "B": "down",
+      "reason": "A's eyes sit higher within the circle and B's sit lower; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-2",
-      "A": "down",
-      "B": "up",
-      "reason": "A's eye cluster is lower on the round face, whereas B's similarly tilted cluster rises toward the upper contour."
+      "A": "up",
+      "B": "down",
+      "reason": "A's eye cluster is visibly higher relative to its circle than B's; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-3",
       "A": "down",
       "B": "up",
-      "reason": "A places both eyes lower relative to the circular outline; B raises the whole eye silhouette while retaining the same diagonal lean."
+      "reason": "A's eyes sit lower within the circle, while B's sit higher; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-4",
-      "A": "up",
-      "B": "down",
-      "reason": "A's eye pair rides higher along the upper facial arc, while B's matching eye shapes sit lower and read as a downward gaze."
+      "A": "down",
+      "B": "up",
+      "reason": "A's eye cluster is lower relative to the circle and B's is higher; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-5",
       "A": "up",
       "B": "down",
-      "reason": "A's eyes are grouped higher within the round silhouette; B shifts both tilted marks downward without a competing horizontal change."
+      "reason": "A's eyes are positioned higher within the circle than B's; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-6",
       "A": "up",
       "B": "down",
-      "reason": "A's eye silhouette sits near the upper contour, while B's otherwise similar pair is noticeably lower on the face."
+      "reason": "A's eye cluster sits higher relative to its circle, while B's sits lower; 99% confidence with no material ambiguity."
     },
     {
       "pair": "vertical-7",
       "A": "down",
       "B": "up",
-      "reason": "A's paired eyes occupy the lower of the two placements; B's parallel, similarly spaced marks shift upward against the circular outline."
+      "reason": "A's eyes sit lower within the circle and B's sit higher; 98% confidence with no material ambiguity."
     }
   ]
 }

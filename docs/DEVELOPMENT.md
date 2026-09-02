@@ -30,17 +30,57 @@ npm run qa
 npm run preview
 ```
 
-`npm run build` regenerates both static pet atlases and their inspection
-artifacts. `npm run qa` is the ordinary final verification command: it rebuilds
-the local artifacts, validates both bundles, checks exact theme parity,
+`npm run build` regenerates both animated shipping atlases, their static
+authoring atlases, and their code-native contact-sheet inspection artifacts.
+The separately pinned 60 fps studies use `npm run build:source-motion`.
+`npm run qa` is the ordinary
+final verification command: it rebuilds the local artifacts, validates both
+bundles and every embedded animation page, checks exact theme parity,
 regenerates the runtime-faithful lossless previews, runs the negative tests,
-and verifies the committed evidence seal. It does not rewrite that seal.
+and verifies the committed evidence seal. It does not rewrite that seal. The
+shared `npm run qa:prepare` prefix performs the same deterministic build and
+check chain without checking or writing the final visual-review and evidence
+seals.
 
 The browser preview opens both variants side by side, plays the desktop host
 cadence, exposes every supported behavior and gaze direction, and includes the
 39-state Character Lab plus all 14 effect studies. See
 [LOCAL-TESTING.md](LOCAL-TESTING.md) for the visual review checklist and actual
 desktop-runtime testing.
+
+The complete host state machine, timing, discovery, rendering, animated-raster,
+and performance contract is recorded in
+[CODEX-PET-RUNTIME.md](CODEX-PET-RUNTIME.md). Keep that reference synchronized
+with runtime-facing changes even when a detail is not needed in the README.
+
+The committed arbitrary-phase report is checked portably with
+`npm run qa:phases:check`; this path uses Node only and is part of `npm run qa`.
+Maintainers regenerating the complete 27,140,880-trace numeric report
+(6,785,220 per renderer path and theme) can run `npm run qa:phases` with
+Python 3, NumPy, and Pillow available. Set
+`ARBITRARY_PHASE_PYTHON` when that interpreter is not the default `python3`.
+Generation is intentionally separate from the portable sealed-report check.
+The compressed authored-profile baseline seals every cell and host edge, not
+only the weakest family-wide extrema. `--write-baselines` is deliberately only
+a reproducibility check: it compares against the current local profiles and
+refuses any replacement whose bytes differ from the existing seal. After an
+intentional visual change has been reviewed, the distinct
+`--replace-baselines-reviewed` mode creates a candidate replacement; review its
+per-cell/per-edge profiles, then update the two explicit baseline digests in
+the Python and Node checkers before regenerating the normal report. Both write
+modes are atomic, reject calibration mode, and refuse to replace the seal
+unless the ordinary non-calibration gates already pass.
+
+The runtime panes default to the pixelated `7.04rem` host fallback, measured at
+`112.6328125 x 122.015625` CSS px and `225 x 244` device px at DPR2. The size
+selector also includes a **96 px · native 1:1** source-detail reference and the
+wider supported range. The preview uses the atlas aspect ratio directly and
+snaps each visible runtime pane to an integer CSS origin after layout, theme,
+size, resize, or scroll changes so the default pixelated sampling phase matches the
+host contract. **Smooth inspection** is a diagnostic
+view of the authored curves and alpha edge, not a release-acceptance rendering
+mode. Switch it off before evaluating runtime continuity, then use the actual
+Codex desktop runtime as the final compositor and display-scaling check.
 
 ## README showcase
 
@@ -52,7 +92,7 @@ GitHub theme. Regenerate it after an intentional atlas change:
 node scripts/build-readme-showcase.mjs
 ```
 
-The generator writes `preview/readme-showcase.webp` and a small provenance
+The generator writes `preview/readme-showcase.webp` and a small verification
 manifest beside it. The test suite verifies the animation dimensions, frame
 timing, output hash, and both source-atlas hashes. For an exact regeneration
 check, run:
@@ -150,17 +190,29 @@ match the eight independently pinned hashes.
 
 The source-motion studies are review-sensitive rather than ordinary build
 products. Regenerate them only with the repository's pinned Node `v26.8.1`,
-Sharp `0.35.4`, libvips `8.18.6`, and WebP `1.6.0` stack:
+Sharp `0.35.4`, libvips `8.18.6`, WebP `1.6.0`, librsvg `2.62.91`,
+Cairo `1.18.4`, and Pixman `0.46.4` stack:
 
 ```sh
 npm run build:source-motion
+npm run qa:source-motion
 ```
 
 The generator checks that full encoder tuple before deleting or writing any
-motion artifact. The broader Node.js 22-or-newer requirement remains valid for
-the ordinary pet build, preview, validation, and tests.
+motion artifact. The source-motion QA then verifies all 14 effects in both
+themes, exact timing, dimensions, hashes, and the maximum active-frame hold.
+The broader Node.js 22-or-newer requirement remains valid for the ordinary pet
+build, preview, validation, and tests.
 
-Only after the required reviews genuinely pass should a maintainer run:
+For an intentional reviewed change, run the complete deterministic preparation
+before attesting the resulting artifacts:
+
+```sh
+npm run qa:prepare
+npm run qa:review -- --reviewed-at <completed-review-time-in-canonical-UTC>
+```
+
+Only after that review genuinely passes should a maintainer run:
 
 ```sh
 npm run qa:seal
@@ -169,9 +221,12 @@ npm run qa
 
 Do not use `qa:seal` merely to silence changed hashes. It records the reviewed
 artifacts, independent direction verdicts, motion-study metadata, and final
-human/agent visual attestation. CI rebuilds only the code-native shipping
-atlases; font-bearing contact sheets are audited, committed evidence rather
-than a cross-platform byte-reproducibility claim.
+human/agent visual attestation. Before writing the evidence file, `qa:seal`
+reruns the same full `qa:prepare` chain as `npm run qa` and requires the visual
+review to remain current. That makes a deterministic artifact or QA-code change
+fail before it can be sealed beside an older report. CI rebuilds only the
+code-native shipping atlases; font-bearing contact sheets are audited,
+committed evidence rather than a cross-platform byte-reproducibility claim.
 
 ## Before committing
 

@@ -108,7 +108,22 @@ For a clean onset from `A = 0`, `v = 0`, `T = 1`, the numerical landmarks are:
 | `0.62` | `149.89 ms` |
 | `0.90` | `277.84 ms` |
 
-Eyes are rendered only while `A < 0.50`; at exactly `A = 0.50` they are hidden.
+Eyes remain at full opacity and local scale through `A = 0.36`. Across the
+short interval from `A = 0.36` to `A = 0.64`, let
+`H = clamp((A - 0.36) / 0.28, 0, 1)` and apply smoothstep easing:
+
+```text
+D(H) = H^2(3 - 2H)
+eye opacity = 1 - D(H)
+eye local scale = 1 - 0.16D(H)
+```
+
+The eyes therefore dissolve symmetrically while drawing toward the body center:
+at `A = 0.50` opacity is `0.50` and local scale is `0.92`; at `A = 0.64`
+opacity is zero. The surrounding body transform continues its own shrink during
+the same interval, so the visible eye motion does not need a second aggressive
+scale collapse.
+
 For the body-ring morph, `G = clamp(A / 0.62, 0, 1)` and the ring interpolation
 uses cubic-in-out easing:
 
@@ -117,8 +132,8 @@ E(G) = 4G^3                              when G < 0.5
 E(G) = 1 - (-2G + 2)^3 / 2              otherwise
 ```
 
-Thus `A = 0.50` is the eye-hide crossover and `A = 0.62` is the general
-morph-complete snapshot. The target is a 96-point circle for every mode except
+Thus `A = 0.50` is the eye-dissolve midpoint, `A = 0.62` is the general
+morph-complete snapshot, and `A = 0.64` is the fully eye-hidden point. The target is a 96-point circle for every mode except
 `pencil`, which targets a pi-rotated teardrop ring. Target radii in character
 coordinate units are:
 
@@ -133,18 +148,20 @@ coordinate units are:
 | `bang` | `13` | `standby` | `13` |
 
 The generated transition sheets sample every effect at `A = 0.25`, `0.50`,
-`0.62`, and `0.90` so onset, eye disappearance, morph completion, and late
+`0.62`, and `0.90` so full eyes, the dissolve midpoint, morph completion, and late
 activation can be compared without forcing those 56 samples into the installed
 Codex row vocabulary. The separate 39-state library uses more informative
 landmarks for special cases: `ball` at first impact (`A = 0.893166`), `whirl`
-at ribbon emission (`A ~= 0.91518`), `standby` at the eye-hide crossover
+at ribbon emission (`A ~= 0.91518`), `standby` at the eye-dissolve midpoint
 (`A = 0.50`), and the other morph modes at completion (`A = 0.62`).
 
 The non-installable motion bench renders every effect at 60 fps through spring
 onset, a sustained interval, and spring release. Its 156 samples use
 cumulative-rounded 16/17 ms WebP delays for an exact `2600 ms` presentation
-instead of rounding every frame to `17 ms`. Finite or stochastic trails use
-deterministic sampling so the studies remain reproducible.
+instead of rounding every frame to `17 ms`. Each active effect receives a
+continuous clock; deterministic QA rejects any encoded active-frame hold above
+`34 ms`. Finite or stochastic trails use deterministic sampling so the studies
+remain reproducible.
 
 ## Ball, whirl, and humming motion
 
@@ -191,9 +208,10 @@ opacity = (0.3 + 0.7 depth) S
 
 The two satellites remain opposed and exchange side, depth, radius, opacity,
 and front/back order. Because an unlabeled opposed pair has a visible period of
-`pi`, the six timed idle cells sample that period at `pi / 6` increments. This
-makes c5 to c0 the same angular step as every internal transition and avoids a
-visually static identity swap.
+`pi`, inspection samples can advance it at `pi / 6` increments without a
+visually static identity swap. This track remains available in the Character
+Lab; the installed timed idle row instead uses subtle breathing, gaze, and eye
+in-betweens to protect its continuous silhouette under host playback.
 
 ## Expression and motion range
 
@@ -202,23 +220,28 @@ tiny opposed pills, tall lower-set brush forms, asymmetric surprise eyes, and
 directional gaze. Face placement shifts with topology so transitions feel
 acted rather than swapped.
 
-The ambient performance combines subtle body breathing, small gaze changes,
-and the opposed satellite exchange. High-energy completion grows from sparse
-color flecks into thick rainbow ribbons crossing at multiple angles, with rear
-and front layers wrapping the body before it returns to idle.
+The installed ambient performance combines subtle body breathing, small gaze
+changes, and interpolated eye shapes. The Character Lab retains the opposed
+satellite exchange as part of the wider expression range. High-energy
+completion grows from sparse color flecks into thick rainbow ribbons crossing
+at multiple angles, with rear and front layers wrapping the stable body before
+it returns to idle.
 
-## Codex adaptation boundary
+## Codex format boundary
 
 The Codex atlas is a fixed-format performance. It compresses continuous
-behavior into an `8 × 11` static grid with 74 populated cells, preserves one
-canonical blob identity, and emits separate dark/light packages.
+behavior into an `8 × 11` grid with 73 populated cells and a phase-safe
+animated timeline, preserves one canonical blob identity, and emits separate
+dark/light packages.
 
-The installed atlas prioritizes coherent actions and repeat boundaries. A
-separate, non-installable expression lab presents one snapshot for all 39
-states, four activation samples for all 14 morph modes, and full motion studies.
-Continuous timing, pointer interpolation, randomized pose choice, and every
-possible trail history cannot fit into a static sprite sheet, so phase
-selection and Codex-specific sequencing remain intentional adaptations.
+The installed atlas prioritizes coherent actions, stable visible mass, and
+repeat boundaries. Its runtime rows use interpolated eye topologies and
+attached gestures rather than the compact-body effect morphs. A separate,
+non-installable expression lab presents one snapshot for all 39 states, four
+activation samples for all 14 morph modes, and full motion studies. Continuous
+host-controlled timing, arbitrary event logic, randomized pose choice, and
+every possible trail history cannot fit into a sprite atlas, so phase selection
+and Codex-specific sequencing remain intentional design decisions.
 
 The repository contains project-authored code and generated Codex assets. See
 [NOTICE.md](../NOTICE.md) for the unofficial-project, rights, and redistribution

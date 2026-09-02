@@ -3,9 +3,9 @@
   "kind": "codex-pet-official-preview-frame-extraction",
   "variant": "dark",
   "atlas": {
-    "path": "pet/grok-bot-dark/spritesheet.webp",
-    "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
-    "decodedRgbaSha256": "0ee3df4953d77feae29f348fd71a6cb6913100f305edeb390dbf4b690ba9942d",
+    "path": "qa/authoring-atlas-dark.webp",
+    "sha256": "169d46e3ba27f583bcfaa5239bf4015eee1b27c26bdacc7013cb3c5329c14e41",
+    "decodedRgbaSha256": "5e78f1f9c4e310367b3a5a78000bd0d62a989d8f85ca4e1ebe7480a6c89ae569",
     "width": 1536,
     "height": 2288,
     "channels": 4
@@ -28,10 +28,6 @@
       "running",
       "review"
     ],
-    "idleNeutralLookCellExcluded": {
-      "row": 0,
-      "column": 6
-    },
     "verification": "every extracted PNG was decoded and compared byte-for-byte with its source atlas cell"
   },
   "frames": [
@@ -42,8 +38,8 @@
       "durationMs": 280,
       "atlasFrameName": "quiet-breath",
       "path": "qa/official-frames-dark/idle/00.png",
-      "pngSha256": "e7170d50c0dff244dc728978f59b18846655c23a5d1ecfdd68e4790e1b7b295c",
-      "rgbaSha256": "c9c3f6ec8223e46166934969f3d2a783cd21d4f725a66f20f586e750a98e6b37"
+      "pngSha256": "a781b8b8093fe99c6b3dc19925b5069463a2640e17cfe0a7e81cb6b29dc32b57",
+      "rgbaSha256": "2e54e6a87c009e47d932c57e5d9f63f6df50002343167dc5767c90c87332641f"
     },
     {
       "state": "idle",
@@ -52,8 +48,8 @@
       "durationMs": 110,
       "atlasFrameName": "ambient-orbit-a",
       "path": "qa/official-frames-dark/idle/01.png",
-      "pngSha256": "3dcdd65554b1c7be3143f1876ddc09b4b5def03c8a1b490f0b37a26bd2426ec5",
-      "rgbaSha256": "3dc8022de139e8c9a4cf13383dab5da0e7758d61b8266a78244b8bbc8869245d"
+      "pngSha256": "e8c59bf9185b66d476aaee7938c466d3dd689e3cb38e8bfbf27c2b3ce3f3a996",
+      "rgbaSha256": "66d30f47df2ab5348b4296db6d15834a68fa86ab541a8864bee45747d0d1fb0e"
     },
     {
       "state": "idle",
@@ -62,8 +58,8 @@
       "durationMs": 110,
       "atlasFrameName": "shy-glance",
       "path": "qa/official-frames-dark/idle/02.png",
-      "pngSha256": "480528781b3b9bfb0d6426ced913455528949352401cf7b7ab35abfe92d1fc15",
-      "rgbaSha256": "297926685301cb956f687b3cea5562141c510055cedce4939c87f5ff077e3f9d"
+      "pngSha256": "c614531642e5a47e16ff6f41880bec1a528a9ab252c5482dc6201a09264d8c4c",
+      "rgbaSha256": "ceb1bf64a28b795bf4484562ee860f75ddf76807b6ed0e335cfdf680ff12eb80"
     },
     {
       "state": "idle",
@@ -72,8 +68,8 @@
       "durationMs": 140,
       "atlasFrameName": "idle-blink",
       "path": "qa/official-frames-dark/idle/03.png",
-      "pngSha256": "d31b79bcc8c0502dc5fd07c7b1a0ee8a3b976f8c8523685f9e640aabe3f8afc9",
-      "rgbaSha256": "9fa63bba675b4e352ef9a4d41fd5f4af5c1c96cf586f5702db4ed69ad53b95d5"
+      "pngSha256": "020642275fd7ac9414d4c0a22944acf93c05427f9f91cec6ca489d692fff027b",
+      "rgbaSha256": "b6e6985985419e5d104507e729602eb029ba34534458c7dffa887258375992c4"
     },
     {
       "state": "idle",
@@ -82,8 +78,8 @@
       "durationMs": 140,
       "atlasFrameName": "ambient-orbit-b",
       "path": "qa/official-frames-dark/idle/04.png",
-      "pngSha256": "0a59a32e8fd39376e4441d10c6c63ae7c4532548951b2240c92e63cb45e01882",
-      "rgbaSha256": "b3c8b3f0288bfb598e7b8f824b1def3c26d78a1e06af660e13e1554f5d14b48d"
+      "pngSha256": "f5438c2d30c02e451469d739ca89aac2fa3884030a1ee25ba0852cf0d73dff7e",
+      "rgbaSha256": "fe258e8837435f16b65115d4e3489869d5521e71656421904d2234a1badfc16e"
     },
     {
       "state": "idle",
@@ -92,8 +88,8 @@
       "durationMs": 320,
       "atlasFrameName": "idle-reopen",
       "path": "qa/official-frames-dark/idle/05.png",
-      "pngSha256": "2c6cdb96bbb3520f0c096209f0cb1ce965a6671af36eea236acb77e386f4b574",
-      "rgbaSha256": "70ed57b8b323a4aa6bb9d6e1153ba88dcc8767952fc25e780a176a365012173c"
+      "pngSha256": "f046825ae164522c224e4ba9a52e87bcd029c5ce75b9f0ad04f5ec5ac05498d0",
+      "rgbaSha256": "930c5b72bfb6d9c68fdb1a4c12dbaff8a25f797f0896a48649b94631b388ce0a"
     },
     {
       "state": "running-right",
@@ -102,8 +98,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-search",
       "path": "qa/official-frames-dark/running-right/00.png",
-      "pngSha256": "753662db9390cbbf7ded039ca8e2e08897eaaa61148fef18c10cb31f383fcded",
-      "rgbaSha256": "74b4c0779ff8aeb289f92ccad680fd4571a5982f8b248c6569cbaac0204a81cf"
+      "pngSha256": "cd4d0022554fbbce9915b28ac42bd181d906333c13eedbbdcf47f595d4295ccc",
+      "rgbaSha256": "f60a81b86b2e263c6c242c22cd1de791f44d72f511fb0846298c13a253f87319"
     },
     {
       "state": "running-right",
@@ -112,8 +108,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-receive-entry",
       "path": "qa/official-frames-dark/running-right/01.png",
-      "pngSha256": "7a3e3222a91560f5a34214814aa94944c3f0db8c62a44536f5781c0855e201ec",
-      "rgbaSha256": "9dc1935c12cac55862a5e32da3776be3a456371197f98f42f94a7b63d532c9e1"
+      "pngSha256": "fe1459b49c3b066e693dc2f3401ea68b23294bbe860131426b8353781306bda0",
+      "rgbaSha256": "fcd3682e28392bad5c511f67a716a3d88991eab2dd5fbb4acac011127e5a2795"
     },
     {
       "state": "running-right",
@@ -122,8 +118,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-receive-open",
       "path": "qa/official-frames-dark/running-right/02.png",
-      "pngSha256": "3d0bb065e05b31cbd26a56318342e5aa6900cd7e44c2302b4fac6cfd12c82a9f",
-      "rgbaSha256": "8f6379dc952e7761b8fcf1644cf73c8333f6e5a6e5a0bb6d164f2fcea0e1b0ba"
+      "pngSha256": "cdd30ac36795f9e0b544830bcda87052dda9db09160e582d4539d45513143100",
+      "rgbaSha256": "1a87381244b4ba2467142dedababcd037d08a6bc0d47ba4784fb68b60e7784d0"
     },
     {
       "state": "running-right",
@@ -132,8 +128,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-receive-contact",
       "path": "qa/official-frames-dark/running-right/03.png",
-      "pngSha256": "bdaf8d682a28c0f984f0795cd5896d0b7accd2a891fa8951802ca94cf2cffe75",
-      "rgbaSha256": "0e49ab7e1c36518d3c2c38d5c7e9c321e6332d718b9cca4f3e6ef54927a27693"
+      "pngSha256": "9414282510d040fd6bd92a5060a3aaa1d77058150c40e51eb8a07865e1d57b05",
+      "rgbaSha256": "73ce0ae91e7b9221e1b6258ee041d25d8c7fa94e95cb34ef1d5357c560b390e3"
     },
     {
       "state": "running-right",
@@ -142,8 +138,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-receive-release",
       "path": "qa/official-frames-dark/running-right/04.png",
-      "pngSha256": "c1b490c9c4579359195d2273ab43cf73d0e36f7dd407c7725aa398ad35436b0c",
-      "rgbaSha256": "1b8b43dffa039f774fa20d9efdf66f147c238c3fead7ac99ac35500e63aced53"
+      "pngSha256": "a8fdb03268143267f60da72d8bdfb2b731dfdbf554c7ced9f675741284f8a754",
+      "rgbaSha256": "76a3ab6bb488f21a8a9c26635d50cac97ccf93ff96bbc56da0920e47c70f249a"
     },
     {
       "state": "running-right",
@@ -152,8 +148,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-scan-release",
       "path": "qa/official-frames-dark/running-right/05.png",
-      "pngSha256": "9d113333d89060184d5488064259404fbeb53c52541bf9165fc4d3e853b7ecd3",
-      "rgbaSha256": "32d7f67584bc45f329c410052cab3f28c5301ff23bcead4addc21e331a0db04b"
+      "pngSha256": "fa93eccf1e8417edb310c029e2c69aeabb515379f4eeff75e57ec0fb458f880b",
+      "rgbaSha256": "8da8f313e2d3a2be95fdfa42ecb3e4e35fbdc761ab19f490aab1690984caf76c"
     },
     {
       "state": "running-right",
@@ -162,8 +158,8 @@
       "durationMs": 120,
       "atlasFrameName": "right-drag",
       "path": "qa/official-frames-dark/running-right/06.png",
-      "pngSha256": "8476fd5af3f00182884050426c4f578a33eef96b79cc537e94119d0a89f633bb",
-      "rgbaSha256": "dd9cffb4154950724f2b3b177976500ad66066e64e8bc748be2bb06f225ef6d5"
+      "pngSha256": "da8afe351f5c7adc702aa7d9b658356bad078ba27e6e40e8dc88374d1ef499e2",
+      "rgbaSha256": "158bf1a0669d0c742b85e1a0c8b7b722f4b6630ea9094dcd6b0a225ec2a99bf1"
     },
     {
       "state": "running-right",
@@ -172,8 +168,8 @@
       "durationMs": 220,
       "atlasFrameName": "right-settle",
       "path": "qa/official-frames-dark/running-right/07.png",
-      "pngSha256": "35844521df04d7410efed70b7d9cdee3be6a6a07a15edb84ba6a200dd86a0127",
-      "rgbaSha256": "edb1fabee92d1f7853ce3951e2d8adfac4ef2a373aa77b752a6a09a2132a7eb0"
+      "pngSha256": "7d60d7268f0dfbd81a34910d41859d1272d2ec5361d1136eaa4e824b111c2cbc",
+      "rgbaSha256": "ec8805d8db5393b3783e93cdb277665bf695f811c47bad160124a74552d75eca"
     },
     {
       "state": "running-left",
@@ -182,8 +178,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-compose",
       "path": "qa/official-frames-dark/running-left/00.png",
-      "pngSha256": "2b8ad8d1fe617b711b836601b8c68f14a1e4f4be76e39f2721a4c9b8fa7cfbf2",
-      "rgbaSha256": "53bea42129ff1e626b03e8604cb7cb42d4bafbfc3638c1736d67c2912f349052"
+      "pngSha256": "42871484674399469b88df7e9ea6715103ebbae8f6eb8858f907b0776af15c3a",
+      "rgbaSha256": "0311819f84c9efc13085c9a244cf1fb584c4f00bfba582da9e245dff3c8cea78"
     },
     {
       "state": "running-left",
@@ -192,8 +188,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-pencil-entry",
       "path": "qa/official-frames-dark/running-left/01.png",
-      "pngSha256": "8084fab797dc2191fc5c7822c434ec1195e4c401febfa36db5f18140686706c0",
-      "rgbaSha256": "c5e3b5cc9c0a8998a07e3f26abce5ef434f119584df32d6f07e285d5a3abd236"
+      "pngSha256": "6d57005c6ebdd5ea7d9a0e5d7112647400c139e430a2d6a292068317e7d8e1a6",
+      "rgbaSha256": "b3551719aba8b41c5ad521b3d95dbd73b39f1448805fe369ac0dcc44715deea5"
     },
     {
       "state": "running-left",
@@ -202,8 +198,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-pencil-write",
       "path": "qa/official-frames-dark/running-left/02.png",
-      "pngSha256": "0d24ac260a03c16c59517acd3bbb2c943573002c2ec0df4a3192526790e939b9",
-      "rgbaSha256": "93fab3ccc856609f2240ffcafba51be92d9a3c558a402f48d705af8a3963e435"
+      "pngSha256": "0bf0c89956491a8f3e2de73ed1a0e96c23785ecbdda01a4320775dcdde3e932e",
+      "rgbaSha256": "cab1fe381441c0c77fc3f25c9169184f9405bc8341731597838f32fb797086f5"
     },
     {
       "state": "running-left",
@@ -212,8 +208,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-pencil-lift",
       "path": "qa/official-frames-dark/running-left/03.png",
-      "pngSha256": "c885d3854b88c696d96aaffe7699b493e1ed6ae5dbe3e7210da7ab37eea23985",
-      "rgbaSha256": "6d15d6e67a743ec3affe237f7c2fd559b3957c606100b0f1363521c97c864f6f"
+      "pngSha256": "f2c37b350590baec96647ea9d96df1eb800f5b47f9f54aa108c8024f3e8c0d28",
+      "rgbaSha256": "17c80f4dca23194553635eeacdd8ff08dc05c40aaf1d7753e3a167499dfb0a73"
     },
     {
       "state": "running-left",
@@ -222,8 +218,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-send",
       "path": "qa/official-frames-dark/running-left/04.png",
-      "pngSha256": "4bccde752ef191901904f11fa883d2e7a98badd9661be8741c993cb92de0c72d",
-      "rgbaSha256": "a33202272e0384a389bd0b5d9528cb14b319ef9a1512e6e7ff63b0bb0a6a95e1"
+      "pngSha256": "f887420933e8842710c593876faf45f1de095c4d47797b95f1146cd65cdf5c0e",
+      "rgbaSha256": "d6805e7f743d057aaff152b7c15af555c356225750a0164342d6a3e6bf9fdaf2"
     },
     {
       "state": "running-left",
@@ -232,8 +228,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-dock",
       "path": "qa/official-frames-dark/running-left/05.png",
-      "pngSha256": "7d98c74399884584550e962b7553e6777f46fde4ab3ab0cef3fe0ea9c7dbb568",
-      "rgbaSha256": "8599af19318e9bd86b6e5b0c7a5ce5199913f61a5fe3954fa07f2f4d690579f8"
+      "pngSha256": "5687e208eb1c184ec633d035b7482cfeb743ab7cd8e4b53fbbb88023e00a677f",
+      "rgbaSha256": "49ce93dccf6351010b9bdcd58e89b20ba9e10ca5e728afe2ee3ffeeca0212ecd"
     },
     {
       "state": "running-left",
@@ -242,8 +238,8 @@
       "durationMs": 120,
       "atlasFrameName": "left-dock-release",
       "path": "qa/official-frames-dark/running-left/06.png",
-      "pngSha256": "de7fc646be6a53339f8221fd0fd88a68e103ba9d8a31cc65f89fce526a866981",
-      "rgbaSha256": "b6da3cbc18cd10576daeb252b2ad8220277b80095c585689d8e5c17663905314"
+      "pngSha256": "b21562549b110f2780a7036009fc743918f4d08a1534f8900c75b2d7ae56c9be",
+      "rgbaSha256": "b7df896b42d6e8e40d7bf8b50fdc6cfbf26969e08ed28d1f9a99c17ea79f0eb4"
     },
     {
       "state": "running-left",
@@ -252,8 +248,8 @@
       "durationMs": 220,
       "atlasFrameName": "left-settle",
       "path": "qa/official-frames-dark/running-left/07.png",
-      "pngSha256": "35844521df04d7410efed70b7d9cdee3be6a6a07a15edb84ba6a200dd86a0127",
-      "rgbaSha256": "edb1fabee92d1f7853ce3951e2d8adfac4ef2a373aa77b752a6a09a2132a7eb0"
+      "pngSha256": "eac70874f0245bcab639e5cca9e50539b9bfa3b6886091c74f30169d90c4caf3",
+      "rgbaSha256": "d898db9f53a81ef2e83a99e9b0a6435c7db93bcd234ed6be657d2dfa247be1ee"
     },
     {
       "state": "waving",
@@ -262,8 +258,8 @@
       "durationMs": 140,
       "atlasFrameName": "wave-rise",
       "path": "qa/official-frames-dark/waving/00.png",
-      "pngSha256": "f309b299ac43c94b61428fe10b22454f12f1da7d1f4a08c585d5f965f6b1c5c2",
-      "rgbaSha256": "a31981326a5ca0fb9e30714b72243d249b8418d4cde7758905bb0c7c8ea33bd4"
+      "pngSha256": "56c6e91d5d34ae1ebb5d01491d2350d79baf31e08819b41b7090bcaa867159fd",
+      "rgbaSha256": "421d6ca79476bce04413684286e80da051227332f6975b4737e6f0abd5cb8b18"
     },
     {
       "state": "waving",
@@ -272,8 +268,8 @@
       "durationMs": 140,
       "atlasFrameName": "wave-dictate-entry",
       "path": "qa/official-frames-dark/waving/01.png",
-      "pngSha256": "a3d65b7fe9a9831e4ba6815aad945cd1719c92a98f0b6d25c9c8623b0793a7c8",
-      "rgbaSha256": "0d8c766fa21db5e8d199c864a44eebbc83b32d3796d7641f020bd349d38dd568"
+      "pngSha256": "e0530e3e1fe86830a18c0eb4e1bb96259f38bfd07849a55e243c4446bb29c175",
+      "rgbaSha256": "ee2b61129010292a33e2e54825e278933576118c141a7c5ecf21bba165e3f96c"
     },
     {
       "state": "waving",
@@ -282,8 +278,8 @@
       "durationMs": 140,
       "atlasFrameName": "wave-dictate-open",
       "path": "qa/official-frames-dark/waving/02.png",
-      "pngSha256": "da7be8f8ff18c7d18ecc06b0363d2cb8e4b63780a60441392d81d3b2f2d6dcce",
-      "rgbaSha256": "697aebf64bba0899ea088286697229b6f672827eafd1dcd0c067c4c4f0a3e48c"
+      "pngSha256": "6aa153e273dcfca5da84aad69fa2f4a8c64cab2cd7ab87593d6035141356e086",
+      "rgbaSha256": "00c2a38396340ce7abd7cb47fec3b8eb6dc750353db56440f3a6f31969a7d45f"
     },
     {
       "state": "waving",
@@ -292,8 +288,8 @@
       "durationMs": 280,
       "atlasFrameName": "wave-settle",
       "path": "qa/official-frames-dark/waving/03.png",
-      "pngSha256": "dd13df28ea1bcbdfcef0c0ac4d333ff8be3ef6587413614ebbe7dd495d8dc51c",
-      "rgbaSha256": "76f3415e1ec0b2979ba36e34079d4dbe9c251167f419803d34bfc5f5bdffa50d"
+      "pngSha256": "db073540504e5ae1ee14e7ca55a314fcf51e10032591574841467e8000f0291d",
+      "rgbaSha256": "c78bc62312923c6f4fc52c2c0b7fd6297b968ace3165f3feade12971c53ecb34"
     },
     {
       "state": "jumping",
@@ -302,8 +298,8 @@
       "durationMs": 140,
       "atlasFrameName": "jump-crouch",
       "path": "qa/official-frames-dark/jumping/00.png",
-      "pngSha256": "7b66f9f3144f2f08d89cdc13ff492038dc701ff7441c376eae2386ad5bc3a020",
-      "rgbaSha256": "0aa9103caf9abab7404ef199564fc0e7eb34b6bf9bcd6a2b80bf788b7acf314a"
+      "pngSha256": "8dd52ec2776ec430ad1645f07ab2e7288132432e77511c99bf5505f13f6abd21",
+      "rgbaSha256": "6fbef8bf7b03a692ca4aee138af4971903b5de01e7d69bd2952fef8aee7ed2b1"
     },
     {
       "state": "jumping",
@@ -312,8 +308,8 @@
       "durationMs": 140,
       "atlasFrameName": "jump-ball-rise",
       "path": "qa/official-frames-dark/jumping/01.png",
-      "pngSha256": "558dbf1ea6deebb04fc8f9ba5bc7858c13be568b91e97c919ee5c9e957af133d",
-      "rgbaSha256": "caab37685312011c782f5620d8b5a7f9f24d25529162901ffb5eb12de927ff2b"
+      "pngSha256": "a34d5190004fab5e94798d0ed3e39f889209b5e1bdda837296a99775b6c025d9",
+      "rgbaSha256": "20893216cc732692195e16baf11df526d4d167ca2215a2e89da30164f80a4607"
     },
     {
       "state": "jumping",
@@ -322,8 +318,8 @@
       "durationMs": 140,
       "atlasFrameName": "jump-ball-impact",
       "path": "qa/official-frames-dark/jumping/02.png",
-      "pngSha256": "d5b54b7fd21b991814e456ffc60662aaef995fb8fb131dbc86130ab7b74d6db1",
-      "rgbaSha256": "e4c48bb216e50008e99d84ba21027ee14f6290f0fbab9dc49eef63d2c3893fc7"
+      "pngSha256": "2c8a04600dad4fddd8a62d2ea89d41c1d5a82836162b0a93ca68857b32c3118c",
+      "rgbaSha256": "5a35c8449946e5c30044561591cdf61c6759d3b70810283fbf363ef4bb9a1ef2"
     },
     {
       "state": "jumping",
@@ -332,8 +328,8 @@
       "durationMs": 140,
       "atlasFrameName": "jump-ball-rebound",
       "path": "qa/official-frames-dark/jumping/03.png",
-      "pngSha256": "d635b95553ec5cdc2794138ebb485b766a2b55272b1a3dae9c5f0e6201768399",
-      "rgbaSha256": "0a3130e4bc13320c575085baff226fd37fbeff6a119cafced068ad58623948c2"
+      "pngSha256": "031273bc6f392901c50200ebf0eb74f6c6b24b84c5ffbe3384d644001e755714",
+      "rgbaSha256": "8387c8da43c2decb04c687ea25a8761eb09edea077e07cedff8b69e9f4aa2349"
     },
     {
       "state": "jumping",
@@ -342,8 +338,8 @@
       "durationMs": 280,
       "atlasFrameName": "jump-land",
       "path": "qa/official-frames-dark/jumping/04.png",
-      "pngSha256": "e8396ab2b047ceca9dfd521556b52e9c8d54e38fa0353b674f3349869663f27a",
-      "rgbaSha256": "710affc6d8e3f6ad8218f9cf4ecc849ddbb03dcabeb7fb86d9cc6acff56d6f80"
+      "pngSha256": "d220d00e6853f297bccf7f4007fadfc509c20d5cc39bc7dab147136f38470de2",
+      "rgbaSha256": "c4d577e690a6082efe6022275478ec2f379aaec1b636bc18f10a888cb390bf78"
     },
     {
       "state": "failed",
@@ -352,8 +348,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-suspicious",
       "path": "qa/official-frames-dark/failed/00.png",
-      "pngSha256": "e69352e46ad8da20e8ed15b7a6eee00e4b868a9c8e2eeea3aea79fccefb2558a",
-      "rgbaSha256": "1bb09c5f61f18f159a3252ac926de0a5fcaa557c8701ec01727791612525eec4"
+      "pngSha256": "c06d116ec6bf917febaffaf28318cc26bc48dca9719695c2a463efc67d35592e",
+      "rgbaSha256": "8a6c12d5a5504319cf387ba9eb65e434ef661b7f12a3b3a33f21f3abe808be89"
     },
     {
       "state": "failed",
@@ -362,8 +358,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-bang-entry",
       "path": "qa/official-frames-dark/failed/01.png",
-      "pngSha256": "f11aafa9b82eb145eda54049ed6bebbe73c8b6a6da4d50b92a6347307a901b60",
-      "rgbaSha256": "58ffc226af4492a722a06f27d4198c266ccdeefea8ee9eb18bdea10543157934"
+      "pngSha256": "d2331b71582aa591e30a0f895fd01aac02773e854ff819783f816ee2de29f869",
+      "rgbaSha256": "45079cd4e3cecdcd02a4941e2fcc4242af96e1330eadb412406d498a65c84167"
     },
     {
       "state": "failed",
@@ -372,8 +368,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-bang-open",
       "path": "qa/official-frames-dark/failed/02.png",
-      "pngSha256": "5391ad9b703b1133c117ecee0cf00fd98ca7535044785db1b34a4d4f453fb592",
-      "rgbaSha256": "32bceed309c11423a980a7fc17b254336610275282f4cb67c840c8e533debd4c"
+      "pngSha256": "ba455e992b40ab43c836952d959d2f8f743854866e1628e7516264d0082d26a3",
+      "rgbaSha256": "74612293305dc97e5baed018074de085cc31ebe5d5aa5666a212857f0dfd3155"
     },
     {
       "state": "failed",
@@ -382,8 +378,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-bang-impact",
       "path": "qa/official-frames-dark/failed/03.png",
-      "pngSha256": "b70f54f7ee85e8070ea3637254aacbe9a75d28354fc187d6ee15a4b5cf476bdf",
-      "rgbaSha256": "c9dfdd23110fe8a7a90b91d54d748a45f0cdc9e21e3f808cfdbfe0bf984fbb7f"
+      "pngSha256": "9502c0cba878767eaf3e81ff2bb5a3d3f3ece6381aa94cb714b1ace247be3a4a",
+      "rgbaSha256": "869898005a16f08e8b0501736d9dd1fa51e77bf1d8f1e57286e8c5454654e2f2"
     },
     {
       "state": "failed",
@@ -392,8 +388,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-standby",
       "path": "qa/official-frames-dark/failed/04.png",
-      "pngSha256": "c4243312a8a69527b698b04246dc09a07b015338a30dbaf80babe9a693dfe75f",
-      "rgbaSha256": "304ee9e1b47d05413a9a82e0e3035e5913b715d26e1249c6a192234f872d3c5a"
+      "pngSha256": "3202b2ef0325319d9aef037782d8c632aa04a04b47dc4909b2b9b059dad158c7",
+      "rgbaSha256": "5e57105d371e7145a351dc7adf9ba71048d299d2f281dcb6677d538f66294f7d"
     },
     {
       "state": "failed",
@@ -402,8 +398,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-sad-drift",
       "path": "qa/official-frames-dark/failed/05.png",
-      "pngSha256": "46083396a4257ee06cddff0d3d5e452a5253c00f3162d6ac0f4439a8cca3633e",
-      "rgbaSha256": "b19e85dce8466c333fc00ea7f9f3e1debbb83d9aa1be27ed449e1452cb2322d6"
+      "pngSha256": "83589ce2d3155981d2835ef3104237daebf4d96786251dc1d5580763793395e2",
+      "rgbaSha256": "154b973d136a399e92f9b8b4c162c07eaf61762650379e5e05256e4f39e884b1"
     },
     {
       "state": "failed",
@@ -412,8 +408,8 @@
       "durationMs": 140,
       "atlasFrameName": "blocked-shy-recover",
       "path": "qa/official-frames-dark/failed/06.png",
-      "pngSha256": "7ee3923531988c16c07197f68271a75bde06304fcf4ac6c82561f94355f838fc",
-      "rgbaSha256": "35d58def35d7b02d30e2dd2c28f73cf7dbd47bd61e3a085f44beafabf625a9a9"
+      "pngSha256": "02e2da8b932b282bd281ea2d5e90cee7ba7e9832259a7341af3abb18362ae65f",
+      "rgbaSha256": "34b8ffd6e55422a6bc82ee7352e6f0f5a6c4584a50bd13e486468a5ca1757f34"
     },
     {
       "state": "failed",
@@ -422,8 +418,8 @@
       "durationMs": 240,
       "atlasFrameName": "blocked-confused-settle",
       "path": "qa/official-frames-dark/failed/07.png",
-      "pngSha256": "01eaed9c98497ee5aec1e8ad5d8db9a62c00d2b7e7a99e3ea524d38873f332ba",
-      "rgbaSha256": "dd7372201c4518fa186667f7afe9bee8e26805587f8ffaf1543711801b683a35"
+      "pngSha256": "bc8dfa5e3d010775a701cffae6082c46051811b8f9baff7c22a7a2c9ffb8537a",
+      "rgbaSha256": "94958b09f9bd72f31bf683a4838b6af4a1230915911136aedc603b79dc9f3d81"
     },
     {
       "state": "waiting",
@@ -432,8 +428,8 @@
       "durationMs": 150,
       "atlasFrameName": "wait-attentive",
       "path": "qa/official-frames-dark/waiting/00.png",
-      "pngSha256": "114a0f208c8e74a58f0c4b0eda0019f3687ae681891832da19dcfedc876ce36d",
-      "rgbaSha256": "444b9856d14051d9727ea6fbe3cc4567af44d307309c56c6a2c964c90fb155a3"
+      "pngSha256": "3a316081e59cb4f039d52fc2937432adc93f621a85d857d83c88aa177777d902",
+      "rgbaSha256": "e2098bcbcb0c9c9a970610d50cf2c54f4bf5112e79821314478b31d2d70031b8"
     },
     {
       "state": "waiting",
@@ -442,8 +438,8 @@
       "durationMs": 150,
       "atlasFrameName": "wait-orbit-entry",
       "path": "qa/official-frames-dark/waiting/01.png",
-      "pngSha256": "8e5fac83b6925d708494caf79ea8dee62ce0f2d4afdb870f79ff1fa626991dfe",
-      "rgbaSha256": "85c93d30f682d83bfc678b621bbe15aa0b034dcccf707af3702642653bf273c4"
+      "pngSha256": "852066ee28b796306b8a5a8c3cd288349517957820864b377cda398fec33553a",
+      "rgbaSha256": "8a864cc2a4ac7ca44b7f85faa44dde974beb793ab690d513cdc4a2b42ac6a12e"
     },
     {
       "state": "waiting",
@@ -452,8 +448,8 @@
       "durationMs": 150,
       "atlasFrameName": "wait-orbit",
       "path": "qa/official-frames-dark/waiting/02.png",
-      "pngSha256": "702c302a321881011b326a421da4e9ca88aa48915f3bdd464097c7e90734c1ed",
-      "rgbaSha256": "612766f8e9579e10bb9ee0e5c70a31291605a13e3f8ea5a63ebd868c8e410ecd"
+      "pngSha256": "f950ef8a39e0763bff3dc695643e8af52ab95d9facbe6e5e034739d2cdb3cbb4",
+      "rgbaSha256": "c4b2e2dcf6c7c7a70be5f3c508707dbb6a1d837faabcee69c63cdecea29d173b"
     },
     {
       "state": "waiting",
@@ -462,8 +458,8 @@
       "durationMs": 150,
       "atlasFrameName": "wait-progress",
       "path": "qa/official-frames-dark/waiting/03.png",
-      "pngSha256": "8c3fe08e8feeb45d7cc16574901a86831dccb8cf66b2e92fd21ae9ea1b41d375",
-      "rgbaSha256": "83db59e1d54f621dcbeb69e8c05c21256ec4b514f8b17c34fdb9cf825d4bec03"
+      "pngSha256": "e38e991533a3065d7a0cd7052a77327542c41928716532d2f3b37e5b0c8d37d0",
+      "rgbaSha256": "2486bf25b6876d2be4778e70d4e7f45022d1fa1a0d215c5b4641b228576d0745"
     },
     {
       "state": "waiting",
@@ -472,8 +468,8 @@
       "durationMs": 150,
       "atlasFrameName": "wait-progress-release",
       "path": "qa/official-frames-dark/waiting/04.png",
-      "pngSha256": "87eadd5d616501529c241deabce5c11d2ac212b508954c3a78e0be06242bbea4",
-      "rgbaSha256": "9252aade5d1c56fdeee443b4900ea3a4d327c4bd011e1d523554d87b6eaa3d18"
+      "pngSha256": "97e9102df6e6cf3a774eeb6f0d5ecaa5cb3f1d13b1706c086fd0e94add66fa2c",
+      "rgbaSha256": "d0fc3f43952761f301498a81ed9bc56be5ea12747826d4101b5dae28126b6df9"
     },
     {
       "state": "waiting",
@@ -482,8 +478,8 @@
       "durationMs": 260,
       "atlasFrameName": "wait-uncertain-settle",
       "path": "qa/official-frames-dark/waiting/05.png",
-      "pngSha256": "cdc5bd7f36957e7b3d49807c6492a347df6f2b6cf2890c22618d412c56e8e3ef",
-      "rgbaSha256": "4ae46beec77e700d509ab6092e94ba60c9bb6f5bb88398443a988c4f6520afa3"
+      "pngSha256": "f92adba7d8bec0c99f9d7b45903a37ac97941711dc9b66efa0e474db936659f2",
+      "rgbaSha256": "20999947ab29ab8cbe45f6345178fac8457182b2a0cbc453feb6d4097a5ff3c5"
     },
     {
       "state": "running",
@@ -492,8 +488,8 @@
       "durationMs": 120,
       "atlasFrameName": "work-focus",
       "path": "qa/official-frames-dark/running/00.png",
-      "pngSha256": "aa5769395fad64cf9fcbebaa30fa95c2187e010974baced4a76b551ef4ecbb97",
-      "rgbaSha256": "f02a75970550f8e3df67108fad0c7a70b09f48bc4c00eac7a28ca886483bc1f1"
+      "pngSha256": "14bde573d1ed09a8966b1914c9ea8bd758da6bbf6bc3b96d8d9c2c6dfc4fc4cc",
+      "rgbaSha256": "2dc7b2264572208c892ccbe0872fe48c6f84b88e4d372293b1838e4112c542d9"
     },
     {
       "state": "running",
@@ -502,8 +498,8 @@
       "durationMs": 120,
       "atlasFrameName": "work-gather",
       "path": "qa/official-frames-dark/running/01.png",
-      "pngSha256": "a327926e09dbce897eba18ced605722946344872e8c25ad1e893ce9236662902",
-      "rgbaSha256": "a7f3d4cf496c357f75ec4ed9b68bbff413ce7b4e72a6f9b1846310adc7ef8388"
+      "pngSha256": "9f23ad1e8b8610787067639d5bab819a876398ae28af2070d5f74754f35c191a",
+      "rgbaSha256": "ce4c63ab789845e699c49762ea805602972cdb87f1664031cd439d88f0aa6223"
     },
     {
       "state": "running",
@@ -512,8 +508,8 @@
       "durationMs": 120,
       "atlasFrameName": "work-think",
       "path": "qa/official-frames-dark/running/02.png",
-      "pngSha256": "244b04b541efff3eafa77e9b8b817321cfff26dd7ee212f7a4532f7ae4ad854b",
-      "rgbaSha256": "68cfcbda77b440c413ec62761feb4d06c12f3b97a33a34fb72078f6209768126"
+      "pngSha256": "35d9c336dff9abbd0e266e8428fd28e4769954524a9eea6057aa47fccd42cf19",
+      "rgbaSha256": "7324e7c68b503e695c95a191e4920ab349110be4b8603a5e210f1b28e06e518f"
     },
     {
       "state": "running",
@@ -522,8 +518,8 @@
       "durationMs": 120,
       "atlasFrameName": "work-radar",
       "path": "qa/official-frames-dark/running/03.png",
-      "pngSha256": "fd9e20c1881711802bd90d06ce5ce1bb09baa9e3460eac3f9a82ec57c51dd822",
-      "rgbaSha256": "2b1e17f57596e69bffd633d3b75537f5e187b598451949fb32e1e7177407e11c"
+      "pngSha256": "b055175048c45a4171d61603c27a82f7dd0a225c72195e9c064bcffb1f31d358",
+      "rgbaSha256": "82c710fab9e8c2a09496329e0ecddd29038e3f83c0b4abc8c76c09b60eea3850"
     },
     {
       "state": "running",
@@ -532,8 +528,8 @@
       "durationMs": 120,
       "atlasFrameName": "work-whirl-release",
       "path": "qa/official-frames-dark/running/04.png",
-      "pngSha256": "678f91b08a626a79bbcb12ae054ae7d46105a7f9f80d8996514bbc1d89de04f8",
-      "rgbaSha256": "42909ea904c33d0a50753ec400cbc37885ba78438a81e7e3875e44e95dcaa563"
+      "pngSha256": "775b130afdb72f9b539f04d9eed6f2729a844c5cebf74fa3d7280352265471a4",
+      "rgbaSha256": "92b19ba03371e148817c8e29c2bec6cd9faf5dcd37be7f81cc8956575b66db5c"
     },
     {
       "state": "running",
@@ -542,8 +538,8 @@
       "durationMs": 220,
       "atlasFrameName": "work-settle",
       "path": "qa/official-frames-dark/running/05.png",
-      "pngSha256": "38de9799acfb15d149f39f5d90602c962f6d7fc5ea95c20d764caca3191e3fe3",
-      "rgbaSha256": "b3258b3f2b46d8eb648aeacb40df3ad93c56d4fff141e96acd7f35e9978d12a0"
+      "pngSha256": "4c376651f2563f975d7328ee7bfe8a32d0e4ee30114a7978aab82c6c6bfe31bf",
+      "rgbaSha256": "203379d8c409653a4638c0b1a4e3a901c974377b6e963f19cb79761715ede274"
     },
     {
       "state": "review",
@@ -552,8 +548,8 @@
       "durationMs": 150,
       "atlasFrameName": "review-ready",
       "path": "qa/official-frames-dark/review/00.png",
-      "pngSha256": "4a8a718ce855ace56b4d750d8c361a19e111a84ca80b65dc4f10e8b375e67e25",
-      "rgbaSha256": "054ef1dcf336412e230ed81d92b35b2c07970c474a380c5f85490d10d3b23653"
+      "pngSha256": "31468cfa95c5695be203db9ed07491260558f47da673d7e7ce38a04fdb8cf17e",
+      "rgbaSha256": "83dab5f0483a8de2aa6533fb6716b89a1636b1b1c15ddd50a94b147c5933eafa"
     },
     {
       "state": "review",
@@ -562,8 +558,8 @@
       "durationMs": 150,
       "atlasFrameName": "review-surprise",
       "path": "qa/official-frames-dark/review/01.png",
-      "pngSha256": "403805205f18b9d331de21ee148ee0df7f1babaef604c2f2976fe8223e7187dd",
-      "rgbaSha256": "514fcc1338c9445f2ac1dd164168a6c54a0567327db1d544e59b5f50e66ef795"
+      "pngSha256": "cc6c38d9e694abbd2dc4e05ccbac1afb96de952fc7036202bd50c43b04612fed",
+      "rgbaSha256": "70834822016b85c18c5301e74c0a68b8469ee3d336ce167a1c0cb5811af4f1ca"
     },
     {
       "state": "review",
@@ -572,8 +568,8 @@
       "durationMs": 150,
       "atlasFrameName": "review-ribbon-entry",
       "path": "qa/official-frames-dark/review/02.png",
-      "pngSha256": "ee1acdfec23c75ebb99c94e65d00e76f32f6fc817ae9e6d28b3e0ce89bb4eaa9",
-      "rgbaSha256": "7f18231d6af07816e21aa2e3fe27b559797e5652d4e5543168bc5fab600dcba1"
+      "pngSha256": "9759f53014033d538451002438909a0b27311091aaf87493aef14f11a210bc0c",
+      "rgbaSha256": "f9d521a5cc863f80a6f1f3fa80024c66d0648a66c11cef6f5789a8593d7c7db7"
     },
     {
       "state": "review",
@@ -582,8 +578,8 @@
       "durationMs": 150,
       "atlasFrameName": "review-ribbon-crest",
       "path": "qa/official-frames-dark/review/03.png",
-      "pngSha256": "ccb44a16333610cb24f8e51c53c13100e20fc062bfaf7ae44112251a6a3a2f68",
-      "rgbaSha256": "6a369667f888ac89a63b8a47d5c762c1976aa8066abd98d43f300cc5b167470f"
+      "pngSha256": "832345ec43ecf177e3755a5d989bcf7ea88761b19e1cd8d7668c13ca12d7c43d",
+      "rgbaSha256": "f0d65af6878eacf326e3678ba6b0fbce23462a59be9a3a528bb2c5d8db7103b3"
     },
     {
       "state": "review",
@@ -592,8 +588,8 @@
       "durationMs": 150,
       "atlasFrameName": "review-ribbon-storm",
       "path": "qa/official-frames-dark/review/04.png",
-      "pngSha256": "138e7c5027eeae592fb42be5b64af0cd75c7c5d85f8f0150760810efc05fa094",
-      "rgbaSha256": "a8e1750d0e8a8417fcffece50e24098dd105faf0f2ecc1bec631a0ba81cad562"
+      "pngSha256": "5d5fa7efc1a8ed7eff09e7e469dfed6925295288e48b655d34298a36d57ccd41",
+      "rgbaSha256": "fc096095a2c7c1b6ad6c620b495bb7d8cc6f1699063a01ba6cb6ca6d8084b19d"
     },
     {
       "state": "review",
@@ -602,8 +598,8 @@
       "durationMs": 280,
       "atlasFrameName": "review-ribbon-exit",
       "path": "qa/official-frames-dark/review/05.png",
-      "pngSha256": "7321f3741022c4c6c61a1d6a00ee50e64934f0d21061c43646b3396655fa8365",
-      "rgbaSha256": "9a6970fa00c0c783eea37527c5e1019305104560a45060bf8f0c797c0b72237d"
+      "pngSha256": "38675106bb57376e28a1c65351793df6308ec902bb7805a0eb1b3d59f9883b37",
+      "rgbaSha256": "756d40346af0cfc006cfef84a9a4388d131f5e59bad52ebc93efb89288aed38d"
     }
   ]
 }

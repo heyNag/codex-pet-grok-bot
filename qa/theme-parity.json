@@ -1,39 +1,39 @@
 {
   "schemaVersion": 1,
   "ok": true,
-  "darkAtlasSha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
-  "lightAtlasSha256": "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+  "darkAtlasSha256": "169d46e3ba27f583bcfaa5239bf4015eee1b27c26bdacc7013cb3c5329c14e41",
+  "lightAtlasSha256": "14d5a5c2814eee704653ea7a75f5122cf2fab5ec8dc769b661d38e027dda9142",
   "dimensions": {
     "width": 1536,
     "height": 2288,
     "channels": 4
   },
   "alphaMaskSha256": {
-    "dark": "5dfba0e1d5a2e7399293eea598d7f9ec54a904018bb14aedb34eedf313aa8284",
-    "light": "5dfba0e1d5a2e7399293eea598d7f9ec54a904018bb14aedb34eedf313aa8284"
+    "dark": "b142cec221bc900b6c566606c575a3887bedf756e5bb3338103e93cf382de14a",
+    "light": "b142cec221bc900b6c566606c575a3887bedf756e5bb3338103e93cf382de14a"
   },
   "alphaMismatchPixels": 0,
-  "unclassifiedOpaquePairs": 2214,
+  "unclassifiedOpaquePairs": 2972,
   "exactAccentColorPixels": {
     "dark": {
-      "coral": 108,
-      "blue": 598,
-      "green": 706,
-      "gold": 565,
-      "violet": 726,
-      "teal": 201,
-      "body": 844462,
-      "eyes": 46031
+      "coral": 118,
+      "blue": 1291,
+      "green": 858,
+      "gold": 264,
+      "violet": 1131,
+      "teal": 213,
+      "body": 1505506,
+      "eyes": 57772
     },
     "light": {
-      "coral": 108,
-      "blue": 598,
-      "green": 706,
-      "gold": 565,
-      "violet": 726,
-      "teal": 201,
-      "body": 844461,
-      "eyes": 46039
+      "coral": 118,
+      "blue": 1291,
+      "green": 855,
+      "gold": 264,
+      "violet": 1130,
+      "teal": 213,
+      "body": 1505474,
+      "eyes": 57783
     }
   },
   "accentColors": {
@@ -46,6 +46,6 @@
   },
   "errors": [],
   "warnings": [
-    "2214 fully opaque overlapping pixels are composited colors rather than direct monochrome inversions or exact accents"
+    "2972 fully opaque overlapping pixels are composited colors rather than direct monochrome inversions or exact accents"
   ]
 }

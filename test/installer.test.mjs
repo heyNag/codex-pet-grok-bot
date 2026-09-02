@@ -212,6 +212,7 @@ const assertNoTransientArtifacts = async (codexHome) => {
     entries.filter((entry) => (
       entry === ".codex-pet-grok-bot.lock"
       || entry.startsWith(".codex-pet-grok-bot.stage.")
+      || entry.startsWith(".codex-pet-grok-bot.remove.")
     )),
     [],
   );
@@ -298,6 +299,200 @@ test("both installs two independently identified pets in one transaction", async
   assert.match(result.stdout, /Installed Grok Bot Light/);
   await assertBundleMatches(fixture, "dark");
   await assertBundleMatches(fixture, "light");
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove dark deletes only the exact managed dark pet", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-dark-");
+  await runInstaller(fixture, ["both"]);
+
+  const result = await runInstaller(fixture, ["remove", "dark"], {
+    source: "not-a-source-url",
+  });
+
+  assert.match(result.stdout, /Removed Grok Bot Dark/);
+  assert.equal(result.stderr, "");
+  assert.equal(await pathExists(targetPath(fixture, "dark")), false);
+  await assertBundleMatches(fixture, "light");
+  assert.deepEqual(await readdir(path.join(fixture, "pets")), [variants.light.id]);
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove light deletes only the exact managed light pet", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-light-");
+  await runInstaller(fixture, ["both"]);
+
+  const result = await runInstaller(fixture, ["remove", "light"]);
+
+  assert.match(result.stdout, /Removed Grok Bot Light/);
+  assert.equal(result.stderr, "");
+  assert.equal(await pathExists(targetPath(fixture, "light")), false);
+  await assertBundleMatches(fixture, "dark");
+  assert.deepEqual(await readdir(path.join(fixture, "pets")), [variants.dark.id]);
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove both leaves unrelated pets untouched and no duplicate Grok Bot paths", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-both-");
+  await runInstaller(fixture, ["both"]);
+  const unrelated = path.join(fixture, "pets", "unrelated-pet");
+  await mkdir(unrelated);
+  await writeFile(path.join(unrelated, "sentinel"), "keep me");
+  const existingBackup = path.join(fixture, "pet-backups", "unrelated-backup");
+  await mkdir(existingBackup, { recursive: true });
+  await writeFile(path.join(existingBackup, "sentinel"), "keep this backup");
+
+  const result = await runInstaller(fixture, ["remove", "both"]);
+
+  assert.match(result.stdout, /Removed Grok Bot Dark/);
+  assert.match(result.stdout, /Removed Grok Bot Light/);
+  assert.equal(result.stderr, "");
+  assert.equal(await pathExists(targetPath(fixture, "dark")), false);
+  assert.equal(await pathExists(targetPath(fixture, "light")), false);
+  assert.equal(await readFile(path.join(unrelated, "sentinel"), "utf8"), "keep me");
+  assert.equal(
+    await readFile(path.join(existingBackup, "sentinel"), "utf8"),
+    "keep this backup",
+  );
+  assert.deepEqual(await readdir(path.join(fixture, "pets")), ["unrelated-pet"]);
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove is idempotent when selected pet IDs are already absent", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-absent-");
+
+  const result = await runInstaller(fixture, ["remove", "both"]);
+
+  assert.match(result.stdout, /Grok Bot Dark is already absent/);
+  assert.match(result.stdout, /Grok Bot Light is already absent/);
+  assert.equal(result.stderr, "");
+  assert.deepEqual(await readdir(path.join(fixture, "pets")), []);
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove supports a custom CODEX_HOME containing spaces", async (context) => {
+  const parent = await makeFixture(context, "grok-installer-remove-spaces-");
+  const fixture = path.join(parent, "custom Codex home");
+  await mkdir(fixture);
+  await runInstaller(fixture, ["dark"]);
+
+  const result = await runInstaller(fixture, ["remove", "dark"]);
+
+  assert.match(result.stdout, /Removed Grok Bot Dark/);
+  assert.equal(result.stderr, "");
+  assert.equal(await pathExists(targetPath(fixture, "dark")), false);
+  assert.deepEqual(await readdir(path.join(fixture, "pets")), []);
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("remove refuses modified managed pets without touching either selected ID", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-modified-");
+  await runInstaller(fixture, ["both"]);
+  const lightTarget = targetPath(fixture, "light");
+  const modified = Buffer.concat([
+    await readFile(path.join(lightTarget, "spritesheet.webp")),
+    Buffer.from("local edit"),
+  ]);
+  await writeFile(path.join(lightTarget, "spritesheet.webp"), modified);
+
+  const error = await expectFailure(runInstaller(fixture, ["remove", "both"]));
+
+  assert.match(error.stderr, /nothing was removed/);
+  await assertBundleMatches(fixture, "dark");
+  assert.deepEqual(await readFile(path.join(lightTarget, "spritesheet.webp")), modified);
+  assert.equal(await pathExists(targetPath(fixture, "light")), true);
+  assert.deepEqual(
+    (await readdir(path.join(fixture, "pets"))).sort(),
+    [variants.dark.id, variants.light.id],
+  );
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("failure moving the second removal target restores the first pet", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-rollback-");
+  const canonicalFixture = await realpath(fixture);
+  await runInstaller(fixture, ["both"]);
+  const stubDirectory = await makeFixture(context, "grok-installer-remove-rollback-stub-");
+  const marker = path.join(stubDirectory, "failed-second-removal");
+  const stub = path.join(stubDirectory, "mv");
+  await writeFile(stub, [
+    "#!/bin/sh",
+    "if [ \"$#\" -eq 2 ] && [ \"$1\" = \"$GROK_BOT_TEST_LIGHT_TARGET\" ]; then",
+    "  case \"$2\" in",
+    "    \"$GROK_BOT_TEST_CODEX_ROOT\"/.codex-pet-grok-bot.remove.*/grok-bot-light)",
+    "      : > \"$GROK_BOT_TEST_FAILURE_MARKER\"",
+    "      exit 73",
+    "      ;;",
+    "  esac",
+    "fi",
+    "exec \"$GROK_BOT_TEST_REAL_MV\" \"$@\"",
+    "",
+  ].join("\n"));
+  await chmod(stub, 0o700);
+
+  const error = await expectFailure(runInstaller(fixture, ["remove", "both"], {
+    pathPrefix: stubDirectory,
+    env: {
+      GROK_BOT_TEST_CODEX_ROOT: canonicalFixture,
+      GROK_BOT_TEST_FAILURE_MARKER: marker,
+      GROK_BOT_TEST_LIGHT_TARGET: targetPath(canonicalFixture, "light"),
+      GROK_BOT_TEST_REAL_MV: realMv,
+    },
+  }));
+
+  assert.match(error.stderr, /could not quarantine Grok Bot Light for removal/);
+  assert.equal(await pathExists(marker), true);
+  await assertBundleMatches(fixture, "dark");
+  await assertBundleMatches(fixture, "light");
+  assert.deepEqual(
+    (await readdir(path.join(fixture, "pets"))).sort(),
+    [variants.dark.id, variants.light.id],
+  );
+  await assertNoTransientArtifacts(fixture);
+});
+
+test("TERM after a removal rename restores the quarantined pet", async (context) => {
+  const fixture = await makeFixture(context, "grok-installer-remove-term-");
+  const canonicalFixture = await realpath(fixture);
+  await runInstaller(fixture, ["both"]);
+  const stubDirectory = await makeFixture(context, "grok-installer-remove-term-stub-");
+  const marker = path.join(stubDirectory, "termed-after-removal-rename");
+  const stub = path.join(stubDirectory, "mv");
+  await writeFile(stub, [
+    "#!/bin/sh",
+    "if [ \"$#\" -eq 2 ] && [ \"$1\" = \"$GROK_BOT_TEST_DARK_TARGET\" ] && [ ! -e \"$GROK_BOT_TEST_TERM_MARKER\" ]; then",
+    "  case \"$2\" in",
+    "    \"$GROK_BOT_TEST_CODEX_ROOT\"/.codex-pet-grok-bot.remove.*/grok-bot-dark)",
+    "      \"$GROK_BOT_TEST_REAL_MV\" \"$@\" || exit $?",
+    "      : > \"$GROK_BOT_TEST_TERM_MARKER\"",
+    "      kill -TERM \"$PPID\"",
+    "      exit 0",
+    "      ;;",
+    "  esac",
+    "fi",
+    "exec \"$GROK_BOT_TEST_REAL_MV\" \"$@\"",
+    "",
+  ].join("\n"));
+  await chmod(stub, 0o700);
+
+  const error = await expectFailure(runInstaller(fixture, ["remove", "both"], {
+    pathPrefix: stubDirectory,
+    env: {
+      GROK_BOT_TEST_CODEX_ROOT: canonicalFixture,
+      GROK_BOT_TEST_DARK_TARGET: targetPath(canonicalFixture, "dark"),
+      GROK_BOT_TEST_REAL_MV: realMv,
+      GROK_BOT_TEST_TERM_MARKER: marker,
+    },
+  }));
+
+  assert.equal(error.code, 143);
+  assert.equal(await pathExists(marker), true);
+  await assertBundleMatches(fixture, "dark");
+  await assertBundleMatches(fixture, "light");
+  assert.deepEqual(
+    (await readdir(path.join(fixture, "pets"))).sort(),
+    [variants.dark.id, variants.light.id],
+  );
   await assertNoTransientArtifacts(fixture);
 });
 

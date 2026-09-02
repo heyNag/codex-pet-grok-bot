@@ -1,4 +1,8 @@
 import { SOURCE_EFFECTS, SOURCE_STATES } from "./source-states.mjs";
+import {
+  runtimeSpriteOriginIsIntegral,
+  runtimeSpriteOriginSnap,
+} from "./runtime-geometry.mjs";
 
 const CELL_WIDTH = 192;
 const CELL_HEIGHT = 208;
@@ -12,6 +16,7 @@ const petThemes = new Map([
       packageId: "grok-bot-dark",
       appearance: "white bot on a dark surface",
       spritesheet: "../pet/grok-bot-dark/spritesheet.webp",
+      authoringAtlas: "../qa/authoring-atlas-dark.webp",
       sourceAtlas: "./source-lab/state-atlas-dark.webp",
     },
   ],
@@ -23,6 +28,7 @@ const petThemes = new Map([
       packageId: "grok-bot-light",
       appearance: "black bot on a light surface",
       spritesheet: "../pet/grok-bot-light/spritesheet.webp",
+      authoringAtlas: "../qa/authoring-atlas-light.webp",
       sourceAtlas: "./source-lab/state-atlas-light.webp",
     },
   ],
@@ -146,6 +152,9 @@ const elements = {
   previousFrame: document.querySelector("#previous-frame"),
   nextFrame: document.querySelector("#next-frame"),
   hostSettle: document.querySelector("#host-settle"),
+  runtimePetSize: document.querySelector("#runtime-pet-size"),
+  smoothRenderer: document.querySelector("#smooth-renderer"),
+  rendererReadout: document.querySelector("#renderer-readout"),
   gazeField: document.querySelector("#gaze-field"),
   gazePointer: document.querySelector("#gaze-pointer"),
   angleReadout: document.querySelector("#angle-readout"),
@@ -184,6 +193,7 @@ const themeElements = new Map(
 let behavior = behaviors[0];
 let frame = 0;
 let playing = true;
+let activeAtlasRows = 11;
 let timer = null;
 let completedCycles = 0;
 let idleMultiplier = 6;
@@ -194,7 +204,49 @@ let viewMode = "behavior";
 let currentSourceState = null;
 let currentSourceEffect = SOURCE_EFFECTS.find(({ effect }) => effect === "whirl");
 const atlasProbeVersions = new Map([...petThemes.keys()].map((themeId) => [themeId, 0]));
-const motionProbeVersions = new Map([...petThemes.keys()].map((themeId) => [themeId, 0]));
+const motionImageListeners = new Map();
+let runtimeSpriteSnapRequest = null;
+let runtimeSpriteSnapGeneration = 0;
+
+function visibleRuntimeSpriteWraps() {
+  return [...themeElements.values()]
+    .map(({ sprite }) => sprite.closest(".sprite-wrap"))
+    .filter((wrap) => wrap && !wrap.closest("[hidden]"));
+}
+
+function snapRuntimeSpriteOrigins() {
+  const wraps = visibleRuntimeSpriteWraps();
+  wraps.forEach((wrap) => {
+    const rect = wrap.getBoundingClientRect();
+    const currentX = Number.parseFloat(wrap.style.getPropertyValue("--runtime-snap-x")) || 0;
+    const currentY = Number.parseFloat(wrap.style.getPropertyValue("--runtime-snap-y")) || 0;
+    const offset = runtimeSpriteOriginSnap({
+      x: rect.x - currentX,
+      y: rect.y - currentY,
+    });
+    wrap.style.setProperty("--runtime-snap-x", `${offset.x}px`);
+    wrap.style.setProperty("--runtime-snap-y", `${offset.y}px`);
+  });
+
+  return wraps.every((wrap) => runtimeSpriteOriginIsIntegral(wrap.getBoundingClientRect()));
+}
+
+function scheduleRuntimeSpriteOriginSnap() {
+  runtimeSpriteSnapGeneration += 1;
+  const generation = runtimeSpriteSnapGeneration;
+  if (runtimeSpriteSnapRequest !== null) {
+    window.cancelAnimationFrame(runtimeSpriteSnapRequest);
+  }
+  let settlingFrames = 4;
+  const settle = () => {
+    if (generation !== runtimeSpriteSnapGeneration) return;
+    snapRuntimeSpriteOrigins();
+    settlingFrames -= 1;
+    if (settlingFrames > 0) runtimeSpriteSnapRequest = window.requestAnimationFrame(settle);
+    else runtimeSpriteSnapRequest = null;
+  };
+  runtimeSpriteSnapRequest = window.requestAnimationFrame(settle);
+}
 
 function renderAtlasLegend(kind) {
   elements.atlasLegend.replaceChildren();
@@ -224,21 +276,27 @@ function renderAtlasLegend(kind) {
 function setAtlasMode(kind) {
   const sourceMode = kind === "source";
   const rows = sourceMode ? 5 : 11;
+  activeAtlasRows = rows;
   const height = rows * CELL_HEIGHT;
 
   for (const [themeId, theme] of petThemes) {
     const targets = themeElements.get(themeId);
-    const source = sourceMode ? theme.sourceAtlas : theme.spritesheet;
-    targets.sprite.style.backgroundImage = `url("${source}")`;
-    targets.sprite.style.backgroundSize = `${CELL_WIDTH * 8}px ${height}px`;
-    targets.atlasImage.src = source;
+    const atlasSource = sourceMode ? theme.sourceAtlas : theme.spritesheet;
+    const spriteSource = sourceMode
+      ? theme.sourceAtlas
+      : !playing && viewMode === "behavior"
+        ? theme.authoringAtlas
+        : theme.spritesheet;
+    targets.sprite.style.backgroundImage = `url("${spriteSource}")`;
+    targets.sprite.style.backgroundSize = `${8 * 100}% ${rows * 100}%`;
+    targets.atlasImage.src = atlasSource;
     targets.atlasFrame.style.setProperty("--atlas-rows", String(rows));
     targets.atlasFrame.style.setProperty("--atlas-height", String(height));
     targets.atlasFrame.dataset.atlasKind = kind;
     targets.atlasImage.alt = sourceMode
       ? `Five-row Grok Bot Character Lab state atlas for ${theme.label}, the ${theme.appearance}`
       : `Complete 8 by 11 Grok Bot sprite atlas for ${theme.label}, the ${theme.appearance}`;
-    checkAtlas(themeId, source);
+    checkAtlas(themeId, spriteSource);
   }
 
   if (sourceMode) {
@@ -267,12 +325,13 @@ function setAtlasMode(kind) {
   }
 
   renderAtlasLegend(kind);
+  scheduleRuntimeSpriteOriginSnap();
 }
 
 function setSpriteCell(row, column, label = behavior.label) {
   for (const [themeId, theme] of petThemes) {
     const targets = themeElements.get(themeId);
-    targets.sprite.style.backgroundPosition = `${-column * CELL_WIDTH}px ${-row * CELL_HEIGHT}px`;
+    targets.sprite.style.backgroundPosition = `${column / 7 * 100}% ${row / (activeAtlasRows - 1) * 100}%`;
     targets.sprite.setAttribute("aria-label", `${theme.label} Grok Bot: ${label}, row ${row}, column ${column}`);
     targets.atlasFocus.style.transform = `translate(${column * 100}%, ${row * 100}%)`;
   }
@@ -337,7 +396,7 @@ function updateBehaviorUI(options = {}) {
   if (!options.preserveRuntimeLabel) {
     elements.runtimeState.textContent = `${behavior.label} · ${behavior.event}`;
   }
-  elements.framePill.textContent = `${behavior.frames} frames`;
+  elements.framePill.textContent = `${behavior.frames} host cells`;
   elements.timingReadout.textContent = `${behavior.durations.join(" · ")} ms${idleMultiplier === 6 ? " · 6× settle" : ""}`;
   renderTimingTrack();
   renderFrame();
@@ -352,12 +411,12 @@ function selectBehavior(id, options = {}) {
   gazeActive = false;
   elements.gazeField.classList.remove("is-tracking");
   elements.stateSelect.value = "";
+  if (options.play === true) playing = true;
   setAtlasMode("install");
   behavior = nextBehavior;
   frame = 0;
   completedCycles = 0;
   idleMultiplier = behavior.id === "idle" ? 6 : 1;
-  if (options.play === true) playing = true;
   updateBehaviorUI();
   updateTransportUI();
 
@@ -412,9 +471,9 @@ function selectSourceEffect(effect) {
     button.setAttribute("aria-pressed", String(selected));
   }
   for (const [themeId, theme] of petThemes) {
+    if (previewMode !== "both" && previewMode !== themeId) continue;
     const source = `./source-lab/motion/${theme.id}/${sourceEffect.effect}.webp`;
     const targets = themeElements.get(themeId);
-    targets.motionImage.src = source;
     targets.motionImage.alt = `${sourceEffect.label} for the Grok Bot ${sourceEffect.state} state, rendered at 60 frames per second for ${theme.label}`;
     checkMotion(themeId, source);
   }
@@ -461,14 +520,18 @@ function updateTransportUI() {
   }
 
   elements.playIcon.textContent = playing ? "Ⅱ" : "▶";
-  elements.playLabel.textContent = playing ? "Pause" : "Play";
-  elements.playPause.setAttribute("aria-label", playing ? "Pause animation" : "Play animation");
+  elements.playLabel.textContent = playing ? "Inspect frame" : "Play fluid";
+  elements.playPause.setAttribute(
+    "aria-label",
+    playing ? "Pause on the current authored cell" : "Resume the fluid runtime preview",
+  );
   elements.previousFrame.setAttribute("aria-label", "Previous frame");
   elements.nextFrame.setAttribute("aria-label", "Next frame");
 }
 
 function setPlaying(nextPlaying) {
   playing = nextPlaying;
+  if (viewMode === "behavior") setAtlasMode("install");
   updateTransportUI();
   if (playing) scheduleNextFrame();
   else clearPlaybackTimer();
@@ -596,20 +659,23 @@ function checkAtlas(themeId, source) {
 
 function checkMotion(themeId, source) {
   const targets = themeElements.get(themeId);
-  const probeVersion = (motionProbeVersions.get(themeId) ?? 0) + 1;
-  motionProbeVersions.set(themeId, probeVersion);
-  const probe = new Image();
-  probe.addEventListener("error", () => {
-    if (probeVersion !== motionProbeVersions.get(themeId)) return;
+  const previous = motionImageListeners.get(themeId);
+  if (previous) {
+    targets.motionImage.removeEventListener("error", previous.onError);
+    targets.motionImage.removeEventListener("load", previous.onLoad);
+  }
+  const onError = () => {
     targets.motionMissing.hidden = false;
     targets.motionImage.hidden = true;
-  });
-  probe.addEventListener("load", () => {
-    if (probeVersion !== motionProbeVersions.get(themeId)) return;
+  };
+  const onLoad = () => {
     targets.motionMissing.hidden = true;
     targets.motionImage.hidden = false;
-  });
-  probe.src = `${source}?preview=${Date.now()}`;
+  };
+  motionImageListeners.set(themeId, { onError, onLoad });
+  targets.motionImage.addEventListener("error", onError, { once: true });
+  targets.motionImage.addEventListener("load", onLoad, { once: true });
+  targets.motionImage.src = source;
 }
 
 function setPreviewMode(mode) {
@@ -624,6 +690,16 @@ function setPreviewMode(mode) {
     targets.stage.hidden = hidden;
     targets.motionStage.hidden = hidden;
     targets.atlasView.hidden = hidden;
+    if (hidden) {
+      const listeners = motionImageListeners.get(themeId);
+      if (listeners) {
+        targets.motionImage.removeEventListener("error", listeners.onError);
+        targets.motionImage.removeEventListener("load", listeners.onLoad);
+        motionImageListeners.delete(themeId);
+      }
+      targets.motionImage.removeAttribute("src");
+      targets.motionImage.hidden = true;
+    }
   }
 
   setAtlasMode(viewMode === "source" ? "source" : "install");
@@ -634,9 +710,26 @@ function setPreviewMode(mode) {
     button.setAttribute("aria-pressed", String(selected));
   }
   selectSourceEffect(currentSourceEffect.effect);
+  scheduleRuntimeSpriteOriginSnap();
+}
+
+function updateRendererSimulation() {
+  const selection = elements.runtimePetSize.value;
+  const defaultFallback = selection === "default";
+  const smooth = elements.smoothRenderer.checked;
+  if (defaultFallback) document.documentElement.style.removeProperty("--runtime-pet-width");
+  else document.documentElement.style.setProperty("--runtime-pet-width", `${Number(selection)}px`);
+  document.body.dataset.rendererFilter = smooth ? "smooth" : "pixelated";
+  const rect = visibleRuntimeSpriteWraps()[0]?.getBoundingClientRect();
+  const size = defaultFallback
+    ? `7.04rem default · ${rect?.width.toFixed(6)} × ${rect?.height.toFixed(6)} CSS px`
+    : `${Number(selection)} px`;
+  elements.rendererReadout.textContent = `${smooth ? "Smooth inspection" : "Pixelated"} · ${size}`;
+  scheduleRuntimeSpriteOriginSnap();
 }
 
 createControls();
+updateRendererSimulation();
 setPreviewMode(previewMode);
 selectBehavior("idle", { play: true });
 setPlaying(true);
@@ -661,6 +754,25 @@ elements.hostSettle.addEventListener("change", () => {
   updateBehaviorUI();
   scheduleNextFrame();
 });
+elements.runtimePetSize.addEventListener("change", updateRendererSimulation);
+elements.smoothRenderer.addEventListener("change", updateRendererSimulation);
+window.addEventListener("resize", scheduleRuntimeSpriteOriginSnap);
+window.addEventListener("scroll", scheduleRuntimeSpriteOriginSnap, { passive: true });
+const runtimeSpriteResizeObserver = new ResizeObserver(scheduleRuntimeSpriteOriginSnap);
+runtimeSpriteResizeObserver.observe(document.documentElement);
+runtimeSpriteResizeObserver.observe(document.body);
+runtimeSpriteResizeObserver.observe(document.querySelector(".stage-panel"));
+runtimeSpriteResizeObserver.observe(document.querySelector("#pet-stages"));
+for (const { stage } of themeElements.values()) runtimeSpriteResizeObserver.observe(stage);
+document.fonts?.ready.then(scheduleRuntimeSpriteOriginSnap);
+if (globalThis.PerformanceObserver?.supportedEntryTypes?.includes("layout-shift")) {
+  const runtimeLayoutShiftObserver = new PerformanceObserver((entries) => {
+    if (entries.getEntries().some(({ hadRecentInput }) => !hadRecentInput)) {
+      scheduleRuntimeSpriteOriginSnap();
+    }
+  });
+  runtimeLayoutShiftObserver.observe({ type: "layout-shift", buffered: true });
+}
 elements.gazeField.addEventListener("pointerenter", beginGaze);
 elements.gazeField.addEventListener("pointermove", updateGaze);
 elements.gazeField.addEventListener("pointerleave", endGaze);

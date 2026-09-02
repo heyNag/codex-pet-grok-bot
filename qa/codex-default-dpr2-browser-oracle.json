@@ -1,0 +1,672 @@
+{
+  "schemaVersion": 1,
+  "kind": "codex-default-dpr2-browser-oracle",
+  "ok": true,
+  "target": {
+    "cssWidthExpression": "7.04rem",
+    "rootFontSizePx": 16,
+    "aspectRatio": "192 / 208",
+    "backgroundSize": "800% 1100%",
+    "backgroundPosition": "column / 7 * 100%; row / 10 * 100%",
+    "imageRendering": "pixelated",
+    "devicePixelRatio": 2,
+    "measuredCssRect": {
+      "x": 0,
+      "y": 0,
+      "width": 112.6328125,
+      "height": 122.015625
+    },
+    "measuredDeviceFootprint": {
+      "width": 225,
+      "height": 244
+    },
+    "capturedZoomContract": {
+      "visualViewportScale": 1,
+      "bodyZoom": "1"
+    },
+    "originContract": {
+      "fixtureCssOriginsAreIntegers": true,
+      "fixtureDeviceOriginsAreIntegers": true,
+      "capturedHostOriginsAreIntegers": true,
+      "hostLayoutEvidence": "manual code-audit premise: the packaged overlay bound by renderer.applicationResourcesSha256 rounds mascot left/top and window content bounds to integer CSS pixels before each layout application",
+      "implicationAtDpr2": "under that app-resource-bound layout premise, each normal renderer-local mascot origin lands on an even integer device pixel; the screenshot itself proves only the captured live element and integer-origin fixture maps"
+    },
+    "actualHostElements": [
+      {
+        "id": "codex",
+        "state": "idle",
+        "rect": {
+          "x": 298,
+          "y": 854,
+          "width": 112.6328125,
+          "height": 122.015625
+        },
+        "deviceOrigin": {
+          "x": 596,
+          "y": 1708
+        },
+        "backgroundSize": "800% 1100%",
+        "imageRendering": "pixelated",
+        "dpr": 2,
+        "backgroundPositionUsesAtlasGrid": true
+      }
+    ]
+  },
+  "renderer": {
+    "browser": "Chrome/151.0.7922.174",
+    "protocolVersion": "1.3",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "v8Version": "15.1.206.23",
+    "webkitVersion": "537.36 (@39c51c70dd5feca6b6aba5bb7997b595011c553d)",
+    "mainExecutableSha256": "228fb899e6a7c27ae43151857616f0ba2b926de67cfc119a370038fdd16f407e",
+    "frameworkSha256": "89738f94b75f1946dff8c7848c6798d53ff19c15d39979ef5bc51a7a86701539",
+    "applicationResourcesSha256": "f56ac8d5254a10fc4a04e7417fa787d135c3bbca49bad7d668d4ae65833d40c7"
+  },
+  "screenshotProbe": {
+    "method": "exact renderer Page.captureScreenshot; eight 3-bit binary source-coordinate passes",
+    "passCount": 8,
+    "encodedLinearIndexBits": 22,
+    "viewportCss": {
+      "width": 960,
+      "height": 1430
+    },
+    "screenshotDevice": {
+      "width": 1920,
+      "height": 2860
+    },
+    "channelTrace": [
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 4,
+        "minimumOneChannel": 255
+      },
+      {
+        "ambiguousChannelSamples": 0,
+        "maximumZeroChannel": 0,
+        "minimumOneChannel": 255
+      }
+    ],
+    "diagnosticPath": "qa/codex-default-dpr2-browser-oracle.png",
+    "diagnosticSha256": "e9083af5533f9517ea9f829d6371b6bd4c9e312db2b086dcf0f7d8acb6532846"
+  },
+  "sourceMaps": {
+    "outputDeviceWidth": 225,
+    "outputDeviceHeight": 244,
+    "encoding": "CDP2MAP1; row-major r0c0..r10c7; per-cell base x[225] + y[244] with uint16 target-index/uint8 x/uint8 y sparse overrides; zlib-deflate",
+    "compressedPath": "qa/codex-default-dpr2-browser-oracle-map.bin",
+    "compressedBytes": 1815,
+    "compressedSha256": "e1a1c63baecaa9315391237391d6d4e7858f4d8bee7f0565da956dc9981f4d00",
+    "compactBytes": 50746,
+    "compactSha256": "d49d4f612c06c8f44dafc0783a74203de13816b054264888c07229f39cd73512",
+    "rawBytes": 9662400,
+    "rawSha256": "117152a05f7b50c6aa8b9be0ede70103bb7b1f4a41380768524646b3a542d7dd",
+    "roundTripRawSha256": "117152a05f7b50c6aa8b9be0ede70103bb7b1f4a41380768524646b3a542d7dd",
+    "allCellCount": 88,
+    "orderedCellTraceSha256": "b59276ae4d5b277d574f506fe599b411044715db4cb4ce205a1d731818f12678",
+    "nonSeparablePixels": {
+      "x": 2276,
+      "y": 0
+    },
+    "cellTrace": [
+      {
+        "key": "r0c0",
+        "sourceCoordinateMapSha256": "73a5e2372b327040177bc10193154467ca035e44d88ffd6ddf385f53b4636200",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c1",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c2",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c3",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c4",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c5",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c6",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r0c7",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c0",
+        "sourceCoordinateMapSha256": "c9484bdfb59d7b083c9cc6568542c27bb57efc899a2e7537144455d651aa70bd",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c1",
+        "sourceCoordinateMapSha256": "c656a9423db7d364e2b174c3bc3f0942a9b8dd835d354be0de88c480d75aa413",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c2",
+        "sourceCoordinateMapSha256": "4ef0d1c4b60f5623b8f77dcde8083706541530bfa9d0338d0485432a7ea84bd0",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c3",
+        "sourceCoordinateMapSha256": "4ef0d1c4b60f5623b8f77dcde8083706541530bfa9d0338d0485432a7ea84bd0",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c4",
+        "sourceCoordinateMapSha256": "4ef0d1c4b60f5623b8f77dcde8083706541530bfa9d0338d0485432a7ea84bd0",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c5",
+        "sourceCoordinateMapSha256": "c656a9423db7d364e2b174c3bc3f0942a9b8dd835d354be0de88c480d75aa413",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c6",
+        "sourceCoordinateMapSha256": "c458c4ff9c4060fed45fc3a4bc453129f032aac2482b88a75684f7a52ee73c92",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r1c7",
+        "sourceCoordinateMapSha256": "c458c4ff9c4060fed45fc3a4bc453129f032aac2482b88a75684f7a52ee73c92",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c0",
+        "sourceCoordinateMapSha256": "e06bb26be457aae22338bfbd8bf13d5235dc8d302f791f402991f0065b9e5390",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c1",
+        "sourceCoordinateMapSha256": "16f1cf5dc07f46d0293f8310b808b9a27c0665eddd74dad5a0a1f99971c84a3f",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c2",
+        "sourceCoordinateMapSha256": "b50d35718c513521528e65cc42d0d0ac828fab2ec428c7de9e7e3a7e530d23f9",
+        "xNonSeparablePixels": 14,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c3",
+        "sourceCoordinateMapSha256": "6f2e5228d9acc8cdf35c14744cea285a07f808442313e752d1ab726354af7b8c",
+        "xNonSeparablePixels": 29,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c4",
+        "sourceCoordinateMapSha256": "ee10fbc62d40e2d8ad885fcf7641e5fdc7eff3f621338b17aac110a6e55a4847",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c5",
+        "sourceCoordinateMapSha256": "16f1cf5dc07f46d0293f8310b808b9a27c0665eddd74dad5a0a1f99971c84a3f",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c6",
+        "sourceCoordinateMapSha256": "1aa4774b80a0fb21491b682045ccfa319ed4db357a9e2598fd975052c626a5c2",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r2c7",
+        "sourceCoordinateMapSha256": "1aa4774b80a0fb21491b682045ccfa319ed4db357a9e2598fd975052c626a5c2",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c0",
+        "sourceCoordinateMapSha256": "f4212c195db45f370375766e7a62bd59bd985d6e9ac389a77be599ced2eacef6",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c1",
+        "sourceCoordinateMapSha256": "26b535c45626d922012aaa6773db3bca0b8a75fb9c07c050946a3ebad9a5663e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c2",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c3",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c4",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c5",
+        "sourceCoordinateMapSha256": "26b535c45626d922012aaa6773db3bca0b8a75fb9c07c050946a3ebad9a5663e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c6",
+        "sourceCoordinateMapSha256": "a35986613c3d77d01ed82a75d2e81b12a8ea07df5afc68f3916d79dda448c644",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r3c7",
+        "sourceCoordinateMapSha256": "a35986613c3d77d01ed82a75d2e81b12a8ea07df5afc68f3916d79dda448c644",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c0",
+        "sourceCoordinateMapSha256": "7db4b9b18b31393d8edcaf18e697832a8f1f92cf2a75dd7ccc895fda7d4f1328",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c1",
+        "sourceCoordinateMapSha256": "d41003df00c3d49ea2de916d7e47f3b2b86215807f17b9da8480d2d39e29a170",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c2",
+        "sourceCoordinateMapSha256": "5fb2c1748d8b00a73c6a6c1fa2e73a2ce35e3f1b0400e6a1af789212175422d7",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c3",
+        "sourceCoordinateMapSha256": "5fb2c1748d8b00a73c6a6c1fa2e73a2ce35e3f1b0400e6a1af789212175422d7",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c4",
+        "sourceCoordinateMapSha256": "5fb2c1748d8b00a73c6a6c1fa2e73a2ce35e3f1b0400e6a1af789212175422d7",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c5",
+        "sourceCoordinateMapSha256": "d41003df00c3d49ea2de916d7e47f3b2b86215807f17b9da8480d2d39e29a170",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c6",
+        "sourceCoordinateMapSha256": "40e2987d0880f0062a7ab8efaed73b99bd84d87d328a701e9d05f32618034bec",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r4c7",
+        "sourceCoordinateMapSha256": "40e2987d0880f0062a7ab8efaed73b99bd84d87d328a701e9d05f32618034bec",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c0",
+        "sourceCoordinateMapSha256": "73a5e2372b327040177bc10193154467ca035e44d88ffd6ddf385f53b4636200",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c1",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c2",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c3",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c4",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c5",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c6",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r5c7",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c0",
+        "sourceCoordinateMapSha256": "f4212c195db45f370375766e7a62bd59bd985d6e9ac389a77be599ced2eacef6",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c1",
+        "sourceCoordinateMapSha256": "26b535c45626d922012aaa6773db3bca0b8a75fb9c07c050946a3ebad9a5663e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c2",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c3",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c4",
+        "sourceCoordinateMapSha256": "a045a106d962458a88db3f4376672c932749201e5ad2b341214ee4b36644b9d4",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c5",
+        "sourceCoordinateMapSha256": "26b535c45626d922012aaa6773db3bca0b8a75fb9c07c050946a3ebad9a5663e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c6",
+        "sourceCoordinateMapSha256": "a35986613c3d77d01ed82a75d2e81b12a8ea07df5afc68f3916d79dda448c644",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r6c7",
+        "sourceCoordinateMapSha256": "a35986613c3d77d01ed82a75d2e81b12a8ea07df5afc68f3916d79dda448c644",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c0",
+        "sourceCoordinateMapSha256": "70e6c08bf787edd58be6563e9d05e06660694f75128176c9c09705a65500e2e1",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c1",
+        "sourceCoordinateMapSha256": "eb37c9465fcde53d189d6cb7e15e56cefa469c0aaa8c374c62be4786cba21b3e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c2",
+        "sourceCoordinateMapSha256": "30950c6b13689653cef6edb9c9c790dd67b05c2d2e9ab06cf7598da6c94cd83e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c3",
+        "sourceCoordinateMapSha256": "30950c6b13689653cef6edb9c9c790dd67b05c2d2e9ab06cf7598da6c94cd83e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c4",
+        "sourceCoordinateMapSha256": "30950c6b13689653cef6edb9c9c790dd67b05c2d2e9ab06cf7598da6c94cd83e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c5",
+        "sourceCoordinateMapSha256": "eb37c9465fcde53d189d6cb7e15e56cefa469c0aaa8c374c62be4786cba21b3e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c6",
+        "sourceCoordinateMapSha256": "9e370932e1940759ff980c05667c42d9b18a2b2d93f6f7a69b1b7a15f38914c7",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r7c7",
+        "sourceCoordinateMapSha256": "9e370932e1940759ff980c05667c42d9b18a2b2d93f6f7a69b1b7a15f38914c7",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c0",
+        "sourceCoordinateMapSha256": "7b0a073c545e67dc23ebc70c0d2e0d7c57877f6bf4837b3ce0cf5ab19028780d",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c1",
+        "sourceCoordinateMapSha256": "6999946934cb576e735790c47adc538666ba2284375d051a18a10304ff3d5f67",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c2",
+        "sourceCoordinateMapSha256": "df40958631a27f2c9475fda2ee5895cca41fdb85ce05cc5fe9766e6304d1b2df",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c3",
+        "sourceCoordinateMapSha256": "df40958631a27f2c9475fda2ee5895cca41fdb85ce05cc5fe9766e6304d1b2df",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c4",
+        "sourceCoordinateMapSha256": "df40958631a27f2c9475fda2ee5895cca41fdb85ce05cc5fe9766e6304d1b2df",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c5",
+        "sourceCoordinateMapSha256": "6999946934cb576e735790c47adc538666ba2284375d051a18a10304ff3d5f67",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c6",
+        "sourceCoordinateMapSha256": "e87461c6a0d794e0304a0a65300eb7058d68e89cb6d7284a90977c8167527f6f",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r8c7",
+        "sourceCoordinateMapSha256": "e87461c6a0d794e0304a0a65300eb7058d68e89cb6d7284a90977c8167527f6f",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c0",
+        "sourceCoordinateMapSha256": "73a5e2372b327040177bc10193154467ca035e44d88ffd6ddf385f53b4636200",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c1",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c2",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c3",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c4",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c5",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c6",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r9c7",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c0",
+        "sourceCoordinateMapSha256": "73a5e2372b327040177bc10193154467ca035e44d88ffd6ddf385f53b4636200",
+        "xNonSeparablePixels": 203,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c1",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c2",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c3",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c4",
+        "sourceCoordinateMapSha256": "9886eb7240c7cf4fd2f21eedcf9800e1ffe511d9ed3a82aeef4cc51f1c23c3ac",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c5",
+        "sourceCoordinateMapSha256": "ad7041ab171180fd21710bb774619040ec28abd3eaec8b03e28907d6169a252e",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c6",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      },
+      {
+        "key": "r10c7",
+        "sourceCoordinateMapSha256": "c196ef27b595fe7f106ccbd3cc716924897458c1500b4fb72ba26966fefc975b",
+        "xNonSeparablePixels": 0,
+        "yNonSeparablePixels": 0
+      }
+    ]
+  },
+  "errors": []
+}

@@ -4,8 +4,25 @@ title = "codex-pet-grok-bot Gitleaks configuration"
 useDefault = true
 
 [[allowlists]]
-description = "A sealed SHA-256 beside the blind-review answer-key path is evidence metadata, not a credential."
+description = "Deterministic animated-atlas integrity constants"
+targetRules = ["generic-api-key"]
+condition = "AND"
 regexTarget = "match"
-regexes = [
-  '''direction-blind-answer-key\.json": "[a-f0-9]{64}"''',
-]
+paths = ['''^scripts/qa-evidence\.mjs$''']
+regexes = ['''^ANIMATED_(?:SAME|CROSS)_NON_NEIGHBOR_PAIR_KEYS_SHA256 = "[0-9a-f]{64}"$''']
+
+[[allowlists]]
+description = "Generated animated-atlas integrity fields"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "match"
+paths = ['''^qa/animated-atlas-(?:dark|light)\.json$''']
+regexes = ['''^nonNeighborPairKeysSha256":"[0-9a-f]{64}"$''']
+
+[[allowlists]]
+description = "Generated direction-blind answer-key integrity digest"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "match"
+paths = ['''^qa/evidence\.json$''']
+regexes = ['''^direction-blind-answer-key\.json": "[0-9a-f]{64}"$''']

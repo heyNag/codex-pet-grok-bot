@@ -5,6 +5,13 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import sharp from "sharp";
 import { renderFrameSvg } from "../src/grok-art.mjs";
+import { renderCoverageSpritePixels } from "../src/coverage-raster.mjs";
+import {
+  FLUID_ATLAS_FRAME_COUNT,
+  fluidAtlasDelays,
+  fluidPoseAt,
+  fluidRowPoseAt,
+} from "../src/fluid-atlas.mjs";
 import {
   ATLAS_HEIGHT,
   ATLAS_WIDTH,
@@ -24,20 +31,27 @@ const rowPreviewRoot = path.join(previewRoot, "rows");
 const frameDebugRoot = path.join(previewRoot, "frames");
 const sourceLabRoot = path.join(previewRoot, "source-lab");
 const buildPreviews = !process.argv.includes("--sprites-only");
+const requestedVariant = process.argv.find((argument) => argument.startsWith("--variant="))?.split("=")[1];
 const builds = [
   {
     theme: "dark-codex",
     outputPath: path.join(repositoryRoot, "pet", "grok-bot-dark", "spritesheet.webp"),
+    authoringPath: path.join(repositoryRoot, "qa", "authoring-atlas-dark.webp"),
     contactPath: path.join(previewRoot, "contact-sheet.png"),
     buildRows: true,
   },
   {
     theme: "light-codex",
     outputPath: path.join(repositoryRoot, "pet", "grok-bot-light", "spritesheet.webp"),
+    authoringPath: path.join(repositoryRoot, "qa", "authoring-atlas-light.webp"),
     contactPath: path.join(previewRoot, "contact-sheet-light.png"),
     buildRows: false,
   },
 ];
+const selectedBuilds = requestedVariant == null
+  ? builds
+  : builds.filter((build) => build.outputPath.includes(`grok-bot-${requestedVariant}`));
+if (selectedBuilds.length === 0) throw new Error(`Unknown build variant: ${requestedVariant}`);
 
 if (buildPreviews) {
   await rm(rowPreviewRoot, { force: true, recursive: true });
@@ -56,7 +70,7 @@ if (buildPreviews) {
   ].map((file) => rm(path.join(sourceLabRoot, file), { force: true })));
 }
 
-for (const build of builds) {
+for (const build of selectedBuilds) {
   await mkdir(path.dirname(build.outputPath), { recursive: true });
   const renderedRows = [];
   const composites = [];
@@ -68,11 +82,7 @@ for (const build of builds) {
         title: `${row.label}: ${frame.name}`,
         theme: build.theme,
       }));
-      const pixels = await sharp(svg, { density: 144 })
-        .resize(CELL_WIDTH, CELL_HEIGHT, { fit: "fill" })
-        .ensureAlpha()
-        .png({ compressionLevel: 9, palette: false })
-        .toBuffer();
+      const pixels = await renderCoverageSpritePixels(svg);
       frames.push(pixels);
       composites.push({ input: pixels, left: column * CELL_WIDTH, top: row.index * CELL_HEIGHT });
     }
@@ -91,6 +101,25 @@ for (const build of builds) {
   const atlasPng = await atlas.clone().png({ compressionLevel: 9, palette: false }).toBuffer();
   await sharp(atlasPng)
     .webp({ alphaQuality: 100, effort: 6, lossless: true, quality: 100 })
+    .toFile(build.authoringPath);
+
+  const animatedPages = [];
+  for (let animationFrame = 0; animationFrame < FLUID_ATLAS_FRAME_COUNT; animationFrame += 1) {
+    animatedPages.push(await renderFluidAtlasPage(build.theme, animationFrame));
+  }
+  await sharp(animatedPages, { join: { animated: true } })
+    .webp({
+      alphaQuality: 100,
+      delay: fluidAtlasDelays(),
+      // libwebp produces the same lossless bytes as effort 6 for this atlas,
+      // while effort 5 avoids several minutes of redundant search per theme.
+      effort: 5,
+      exact: true,
+      loop: 0,
+      lossless: true,
+      minSize: true,
+      quality: 100,
+    })
     .toFile(build.outputPath);
 
   if (buildPreviews) await buildContactSheet(atlasPng, build);
@@ -100,20 +129,50 @@ for (const build of builds) {
   }
 
   const metadata = await sharp(build.outputPath).metadata();
-  if (metadata.width !== ATLAS_WIDTH || metadata.height !== ATLAS_HEIGHT || metadata.channels !== 4) {
+  if (
+    metadata.width !== ATLAS_WIDTH
+    || metadata.height !== ATLAS_HEIGHT
+    || metadata.channels !== 4
+    || metadata.pages !== FLUID_ATLAS_FRAME_COUNT
+  ) {
     throw new Error(`Unexpected atlas metadata: ${JSON.stringify(metadata)}`);
   }
 
-  console.log(`Built ${path.relative(repositoryRoot, build.outputPath)} (${metadata.width}×${metadata.height}, ${POPUlATED_LABEL()}, ${build.theme})`);
+  console.log(`Built ${path.relative(repositoryRoot, build.outputPath)} (${metadata.width}×${metadata.height}, ${populatedLabel()}, ${build.theme})`);
+}
+
+async function renderFluidAtlasPage(theme, animationFrame) {
+  const composites = [];
+  for (const row of ROWS) {
+    const rowPose = fluidRowPoseAt(row, animationFrame);
+    if (rowPose) {
+      const pixels = await renderPose(rowPose, theme, `${row.label}: fluid ${animationFrame}`);
+      for (let column = 0; column < row.frames.length; column += 1) {
+        composites.push({ input: pixels, left: column * CELL_WIDTH, top: row.index * CELL_HEIGHT });
+      }
+      continue;
+    }
+
+    for (let column = 0; column < row.frames.length; column += 1) {
+      const pose = fluidPoseAt(row.frames[column], row.id, animationFrame);
+      const pixels = await renderPose(pose, theme, `${row.label}: ${row.frames[column].name} fluid ${animationFrame}`);
+      composites.push({ input: pixels, left: column * CELL_WIDTH, top: row.index * CELL_HEIGHT });
+    }
+  }
+
+  return sharp({
+    create: {
+      width: ATLAS_WIDTH,
+      height: ATLAS_HEIGHT,
+      channels: 4,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    },
+  }).composite(composites).png({ compressionLevel: 6, palette: false }).toBuffer();
 }
 
 async function renderPose(pose, theme, title) {
   const svg = Buffer.from(renderFrameSvg(pose, { title, theme }));
-  return sharp(svg, { density: 144 })
-    .resize(CELL_WIDTH, CELL_HEIGHT, { fit: "fill" })
-    .ensureAlpha()
-    .png({ compressionLevel: 9, palette: false })
-    .toBuffer();
+  return renderCoverageSpritePixels(svg);
 }
 
 async function composeAtlas(frames, columns, rows) {
@@ -211,7 +270,7 @@ async function buildEffectTransitionContact(frames, theme, suffix) {
     .png({ compressionLevel: 9 }).toFile(path.join(sourceLabRoot, `effect-transitions-${suffix}.png`));
 }
 
-function POPUlATED_LABEL() {
+function populatedLabel() {
   return `${POPULATED_FRAME_COUNT} populated cells across ${ROW_COUNT} rows`;
 }
 
@@ -267,8 +326,8 @@ async function buildRowPreview(row) {
 
   // Lossless animated WebP preserves the semitransparent effect frames.
   // GIF's one-bit alpha turns standby/radar cells into misleading opaque dots.
-  // Keep preview animation best-effort so the canonical atlas never depends on
-  // optional animated-output support in a particular libvips build.
+  // This preview-only authoring-row animation stays best-effort so static QA
+  // generation never depends on optional animated output in a libvips build.
   try {
     const animatedFrames = row.renderedFrames.slice(0, row.durations.length);
     const stack = sharp({

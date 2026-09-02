@@ -1,7 +1,8 @@
 # Codex pet format contract
 
-This project targets the Codex desktop custom-pet **v2** static atlas. Because
-a WebP cannot inspect the host theme at runtime, the build emits two complete
+This project targets the Codex desktop custom-pet **v2** atlas with a lossless
+animated WebP. Because an image cannot inspect the host theme at runtime, the
+build emits two complete
 bundles rather than one theme-adaptive pet:
 
 ```text
@@ -61,8 +62,8 @@ once and selecting or reinstalling one does not replace the other.
 | Columns | 8 |
 | Rows | 11 |
 | Total cells | 88 |
-| Populated cells | 74 |
-| Transparent unused cells | 14 |
+| Populated cells | 73 |
+| Transparent unused cells | 15 |
 | Cell width | 192 px |
 | Cell height | 208 px |
 | Maximum file size | 20 MiB |
@@ -79,11 +80,11 @@ repository deliberately fixes `spritesheetPath` to `spritesheet.webp` and its
 validator rejects every other packaged format so the shipped and tested
 contract has one unambiguous encoder and MIME type.
 
-## Static row layout
+## Semantic row layout
 
 | Row | Meaning | Populated columns | Durations (ms) |
 | ---: | --- | --- | --- |
-| 0 | Idle | 0–6 | `280, 110, 110, 140, 140, 320` for c0–c5; c6 is neutral/rest |
+| 0 | Idle | 0–5 | `280, 110, 110, 140, 140, 320` |
 | 1 | Travel right | 0–7 | `120, 120, 120, 120, 120, 120, 120, 220` |
 | 2 | Travel left | 0–7 | `120, 120, 120, 120, 120, 120, 120, 220` |
 | 3 | Wave / greeting | 0–3 | `140, 140, 140, 280` |
@@ -95,10 +96,10 @@ contract has one unambiguous encoder and MIME type.
 | 9 | Gaze: 0° through 157.5° | 0–7 | Direct selection |
 | 10 | Gaze: 180° through 337.5° | 0–7 | Direct selection |
 
-Row 0 contains seven visible cells but six animation durations: c0–c5 form the
-idle cycle and c6 is the host-selected neutral/rest pose. The host's `running`
-row means active task work, not literal locomotion. Rows 1 and 2 are the
-left/right travel cycles used while the pet is dragged.
+Row 0 contains six visible cells: c0–c5 form the idle cycle and c6–c7 stay
+transparent. The host's `running` row means active task work, not literal
+locomotion. Rows 1 and 2 are the left/right travel cycles used while the pet is
+dragged.
 
 ## Desktop playback semantics
 
@@ -107,8 +108,7 @@ current desktop host. In the Codex desktop runtime:
 
 - every idle c0–c5 duration is multiplied by `6`, so the raw `1100 ms` sequence
   becomes a `6600 ms` loop;
-- c6 is the required `neutralLookFrame`, populated but excluded from the timed
-  idle loop; c7 is transparent;
+- c6 and c7 are unused and must remain transparent;
 - each non-idle behavior row plays three complete cycles, then begins the slow
   idle loop at idle c0;
 - a row repeat jumps from its last timed frame to that same row's c0, while the
@@ -120,7 +120,44 @@ current desktop host. In the Codex desktop runtime:
 
 The manifest has no per-row duration, repeat-count, transition, or idle-speed
 field. The preview mirrors these host rules; the atlas must encode continuity
-in the frames themselves.
+in the image itself.
+
+## Authored poses and the fluid shipping atlas
+
+The build keeps two complementary representations:
+
+- `qa/authoring-atlas-dark.webp` and `qa/authoring-atlas-light.webp` are static
+  inspection atlases containing every distinct authored key pose; and
+- each installable `pet/*/spritesheet.webp` is the animated atlas the host
+  renders.
+
+The authoring atlases are QA inputs, not install fallbacks. In the shipping
+animation, every populated column of timed rows 0–8 shows the same continuous
+row performance at a given embedded time. A host column jump therefore reveals
+the same pose instead of producing a stitched discontinuity. The idle row
+continuously passes through its six authored expression landmarks rather than
+hard-cutting when the host advances columns. The gaze rows retain all 16
+direction-specific cells and add only phase-safe micro-motion.
+
+The embedded WebP clock and the host cell clock are independent. Every image
+page and every row transition must therefore be safe at any phase. The complete
+two-clock model, lifecycle behavior, performance tradeoffs, and QA matrix are
+documented in [CODEX-PET-RUNTIME.md](CODEX-PET-RUNTIME.md).
+
+## Desktop raster rendering
+
+The current desktop host renders each selected cell with pixelated image
+filtering and switches atlas positions at the timing boundaries above. It does
+not tween, crossfade, or synthesize intermediate poses. The embedded WebP adds
+the temporal in-betweens, but the manifest has no field that can request smooth
+spatial filtering or change the host playback mechanism.
+
+The authoritative default is the CSS fallback `7.04rem`. At a 16px root size,
+the current renderer measures it at `112.6328125 x 122.015625` CSS pixels and
+captures a `225 x 244` device-pixel footprint at DPR2. Release acceptance uses
+that exact screenshot-derived coordinate map. The preview's `96 px · native
+1:1` setting remains a source-detail reference, and **Smooth inspection** is
+diagnostic only.
 
 ## Direction order
 
@@ -147,8 +184,8 @@ Gaze angles advance clockwise in 22.5° steps. Zero degrees is up.
 
 ## Empty-cell and alpha rules
 
-The 14 unused cells are row 0 column 7; row 3 columns 4–7; row 4 columns 5–7;
-and rows 6–8 columns 6–7. They must be RGBA `(0, 0, 0, 0)` throughout—not
+The 15 unused cells are row 0 columns 6–7; row 3 columns 4–7; row 4 columns
+5–7; and rows 6–8 columns 6–7. They must be RGBA `(0, 0, 0, 0)` throughout—not
 merely visually transparent pixels with colored RGB data under zero alpha.
 
 The validator also requires:
@@ -157,22 +194,24 @@ The validator also requires:
 - an alpha channel and transparent background;
 - visible content in every required cell;
 - no visible content in unused cells;
-- non-identical animation frames;
+- distinct key poses in the static authoring atlas and intentional
+  same-phase column identity in animated action rows;
 - clockwise gaze ordering and meaningful directional eye displacement;
 - a valid v2 manifest whose sprite path resolves inside its bundle; and
 - an atlas at or below the 20 MiB limit.
 
 ## Theme and motion branches
 
-Theme cannot be chosen inside a single static atlas, so the two bundle IDs are
+Theme cannot be chosen inside a single image, so the two bundle IDs are
 the supported theme branch. The exact fills and effect colors are in
 [COLOR-SYSTEM.md](COLOR-SYSTEM.md).
 
-By the project owner's explicit choice, this repository does not generate a
-separate reduced-motion atlas, manifest, timing table, or custom code branch.
-Both theme variants use the same single choreography. That choice cannot
-disable host accessibility behavior: Codex may freeze a pet on c0 when its own
-reduced-motion setting is active, and the v2 manifest has no opt-out field.
+This repository authors one choreography and does not generate a separate
+reduced-motion atlas, manifest, timing table, or custom code branch. Both theme
+variants use that same choreography. This cannot
+disable host accessibility behavior: Codex may freeze its own cell selection
+on c0 when reduced motion is active, and the v2 manifest has no opt-out field.
+The embedded WebP animation remains independent and continues playing.
 
 ## Local activation boundary
 

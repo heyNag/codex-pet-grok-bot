@@ -66,7 +66,6 @@
                 <strong>Dark Codex</strong>
                 <code>grok-bot-dark</code>
               </div>
-              <div class="halo" aria-hidden="true"></div>
               <div class="sprite-wrap">
                 <div
                   class="pet-sprite"
@@ -90,7 +89,6 @@
                 <strong>Light Codex</strong>
                 <code>grok-bot-light</code>
               </div>
-              <div class="halo" aria-hidden="true"></div>
               <div class="sprite-wrap">
                 <div
                   class="pet-sprite"
@@ -109,7 +107,7 @@
           <div class="transport" aria-label="Animation playback controls">
             <button class="transport-primary" id="play-pause" type="button">
               <span id="play-icon" aria-hidden="true">Ⅱ</span>
-              <span id="play-label">Pause</span>
+              <span id="play-label">Inspect frame</span>
             </button>
             <button class="transport-button" id="previous-frame" type="button" aria-label="Previous frame">
               ←
@@ -121,6 +119,29 @@
               <input id="host-settle" type="checkbox" checked />
               <span aria-hidden="true"></span>
               Host settle
+            </label>
+          </div>
+
+          <div class="runtime-renderer" aria-label="Codex renderer simulation controls">
+            <div>
+              <span class="mini-label">Codex renderer</span>
+              <strong id="renderer-readout">Pixelated · 7.04rem default</strong>
+            </div>
+            <label>
+              <span>Pet size</span>
+              <select id="runtime-pet-size">
+                <option value="80">80 px</option>
+                <option value="96">96 px · native 1:1</option>
+                <option value="default" selected>7.04rem · Codex default</option>
+                <option value="112">112 px · optional integer</option>
+                <option value="144">144 px</option>
+                <option value="224">224 px</option>
+              </select>
+            </label>
+            <label class="renderer-filter-toggle">
+              <input id="smooth-renderer" type="checkbox" />
+              <span aria-hidden="true"></span>
+              Smooth inspection
             </label>
           </div>
 
@@ -204,7 +225,7 @@
               <p class="mini-label">Codex behavior</p>
               <h2>Animation rows</h2>
             </div>
-            <span class="frame-pill" id="frame-pill">6 frames</span>
+            <span class="frame-pill" id="frame-pill">6 host cells</span>
           </div>
 
           <div class="behavior-list" id="behavior-list"></div>

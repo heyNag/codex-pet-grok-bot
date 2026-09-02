@@ -20,11 +20,11 @@ const pixelBytesPerCell = CELL_WIDTH * CELL_HEIGHT * 4;
 
 const variants = Object.freeze({
   dark: Object.freeze({
-    atlasPath: path.join(repositoryRoot, "pet", "grok-bot-dark", "spritesheet.webp"),
+    atlasPath: path.join(repositoryRoot, "qa", "authoring-atlas-dark.webp"),
     outputRoot: path.join(qaRoot, "official-frames-dark"),
   }),
   light: Object.freeze({
-    atlasPath: path.join(repositoryRoot, "pet", "grok-bot-light", "spritesheet.webp"),
+    atlasPath: path.join(repositoryRoot, "qa", "authoring-atlas-light.webp"),
     outputRoot: path.join(qaRoot, "official-frames-light"),
   }),
 });
@@ -63,16 +63,13 @@ async function extractVariant(name, variant) {
 
   const frames = [];
   for (const row of timedRows) {
-    const expectedFrameCount = row.index === 0 ? row.durations.length + 1 : row.durations.length;
+    const expectedFrameCount = row.durations.length;
     if (row.frames.length !== expectedFrameCount) {
       throw new Error(
         `${row.id} has ${row.frames.length} authored frames, expected ${expectedFrameCount}`,
       );
     }
 
-    // Idle c6 is the separately selected neutral-look cell, not part of the
-    // timed six-frame idle preview. The official renderer expects only frames
-    // represented by the row's duration table.
     const timedFrameCount = row.durations.length;
     const rowDirectory = path.join(variant.outputRoot, row.id);
     await mkdir(rowDirectory, { recursive: true });
@@ -127,7 +124,6 @@ async function extractVariant(name, variant) {
     cell: { width: CELL_WIDTH, height: CELL_HEIGHT, channels: 4, bytes: pixelBytesPerCell },
     extractionPolicy: {
       timedRows: timedRows.map((row) => row.id),
-      idleNeutralLookCellExcluded: { row: 0, column: 6 },
       verification: "every extracted PNG was decoded and compared byte-for-byte with its source atlas cell",
     },
     frames,

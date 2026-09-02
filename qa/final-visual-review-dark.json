@@ -1,15 +1,16 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "variant": "dark",
   "petId": "grok-bot-dark",
-  "atlasSha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
+  "shippingAtlasSha256": "1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f",
+  "authoringAtlasSha256": "169d46e3ba27f583bcfaa5239bf4015eee1b27c26bdacc7013cb3c5329c14e41",
   "ok": true,
   "reviewer": {
-    "kind": "independent-agent-visual-audit",
-    "name": "Sagan"
+    "kind": "human-guided-agent-visual-audit",
+    "name": "Codex"
   },
-  "reviewedAt": "2026-08-31T01:40:09+07:00",
-  "method": "Independent original-detail inspection of the final installed atlas, all runtime-length previews, all 39 character-state snapshots, all 14 static and animated effect studies, both theme treatments, and the complete contact and direction sheets.",
+  "reviewedAt": "2026-09-01T18:43:31.784Z",
+  "method": "Human-guided visual inspection covered the lossless 60-phase, 1000 ms shipping atlas at native detail and in cropped runtime simulations, all 73 runtime-addressable cells, every timed row, all gaze directions, the 39-state character atlas, all 14 effects, the exact 7.04rem default fallback at DPR2 captured by the Chromium 151 screenshot oracle, and the native 96px/DPR2 reference path. Automated every-pair p-to-q motion, host-transition, alpha, halo, gutter, compositing, and cross-theme measurements were used as supporting evidence rather than substitutes for visual review.",
   "coverage": {
     "installedRows": [
       "idle",
@@ -112,151 +113,183 @@
   "reviewedArtifacts": [
     {
       "path": "pet/grok-bot-dark/spritesheet.webp",
-      "sha256": "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4"
+      "sha256": "1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f"
+    },
+    {
+      "path": "qa/authoring-atlas-dark.webp",
+      "sha256": "169d46e3ba27f583bcfaa5239bf4015eee1b27c26bdacc7013cb3c5329c14e41"
+    },
+    {
+      "path": "qa/animated-atlas-dark.json",
+      "sha256": "3587185dfebebaa8bf688298165759803b67163d6cc8483d78cc3a39df7ac65a"
     },
     {
       "path": "qa/contact-sheet-dark.png",
-      "sha256": "bbb2c8baabd0e04773f45d305d1b4f8493c62b4d29821d39c214874d1298775e"
+      "sha256": "6b5136becb8ef69062a1a2fb0ea3f9ee064e613db1d156752b1535580731ba30"
     },
     {
       "path": "qa/look-directions-dark.png",
-      "sha256": "6eae807f0bf8e5b5d934b6b61f50b11f830c28bb3b6808c81eff8ff1dae83278"
+      "sha256": "1c90705f5d67ec255c3c6cc51bded72e356aa39243f2cdcd247150a0172ae08e"
     },
     {
       "path": "qa/runtime-continuity-dark.json",
-      "sha256": "fbc88c52ec867847877e4b27477740d8c6711330a5a9d8ef4ad644a9bb6fd7ee"
+      "sha256": "29c85068c374fb44c8b907adede28e7fa920f14cd6abdf024b6e61b42e531000"
     },
     {
       "path": "qa/runtime-previews-dark/00-idle-runtime.webp",
-      "sha256": "57e7d9be7aee9d4c06a231d7bfe311ff84ac4f2d0b4a5843bf7fb284934fd90d"
+      "sha256": "4d2a3ddd283d96e7c488923a604dca337f690413fcfb3bed5d177c5963d21a61"
     },
     {
       "path": "qa/runtime-previews-dark/01-running-right-runtime.webp",
-      "sha256": "bbbe036278320458a08b12a6a003423c2b3e82098ace275f87af3b6c05bfc1a8"
+      "sha256": "dd9e69242690bcc87cc46d88323a0a47e2a6f3c8917caa7f1db278d8f4c8672c"
     },
     {
       "path": "qa/runtime-previews-dark/02-running-left-runtime.webp",
-      "sha256": "b39eaf730f1745e4a8af41c1162ed12e0da719792365eef20ea7f02991374ac5"
+      "sha256": "a2b62f2d352295c708b88a2579b1b858586240e655a9cb912ef34a9bdd39d7c8"
     },
     {
       "path": "qa/runtime-previews-dark/03-waving-runtime.webp",
-      "sha256": "8ffbf04830fbf846e77df21ce58825de3dca6edc6505f95aca32ac0624cc4031"
+      "sha256": "f2b10b1755a8a19a17366d7d9bb758f8179ee68810bf72679acc1b7fc2f0d7ab"
     },
     {
       "path": "qa/runtime-previews-dark/04-jumping-runtime.webp",
-      "sha256": "e16d1056c9351000fb82ff3ee3a4fb388be178614e56ab1c791822b90ec25356"
+      "sha256": "da314f33807ed24af71d62181dd811be8075c81192ffef9c8a54255a66df7c69"
     },
     {
       "path": "qa/runtime-previews-dark/05-failed-runtime.webp",
-      "sha256": "7a450b396011c7da7e4accf11d6c2ac7e10c1c00ff51313931ba608313ef10cb"
+      "sha256": "b93e88dc371ada136d3848bbc3d6da39a3cc1f3918e23d8dc68a7f6537bd5d74"
     },
     {
       "path": "qa/runtime-previews-dark/06-waiting-runtime.webp",
-      "sha256": "97d2a3f8100b982c27c5fe47c504ddfe575fdded8b4e147babfeb6af170204f6"
+      "sha256": "95d67083ce23e2b1d0f4faaf9ae1eea331c0a1a9c0be6b50b765646381d82506"
     },
     {
       "path": "qa/runtime-previews-dark/07-running-runtime.webp",
-      "sha256": "7054ef51889385bbc1da1e6fb7c2ee2e68f9c14b48145347d6aa37d6e8ddf941"
+      "sha256": "18ce68973d634cd74a69888aade3f060a57cf5772001aeb74683fd4eae623631"
     },
     {
       "path": "qa/runtime-previews-dark/08-review-runtime.webp",
-      "sha256": "4a2586455f17ef61ca745ef03c8e7c3349b08bcf68331a8842da550865ec5fdc"
+      "sha256": "0ff529a4d97dd62c67a06190bac9c1f33c764c9bb8804ba07c1bd88f6bbead26"
     },
     {
       "path": "preview/source-lab/state-atlas-dark.webp",
-      "sha256": "af92337a169708201d747e9771a2be0661814498e2703d4878b08cf1b4fe4113"
+      "sha256": "498bb45877ddb6d0b30b3235bf4fd4f81796818a5ee7a098762acb0fd4697165"
     },
     {
       "path": "preview/source-lab/state-contact-dark.png",
-      "sha256": "7a29248f777127148b23cd15f668c03a6aaeeee724e45a6ab2984f0b0fbf68c2"
+      "sha256": "218be421c62f98d0876d0e442478b3c80e175fd17e775a65a1c9a1ffeee932a5"
     },
     {
       "path": "preview/source-lab/effect-transitions-dark.webp",
-      "sha256": "87491482aa0a45f63c924fde0ceef20da49f458b8ad70453f929d31981f5e5d3"
+      "sha256": "f759b472f5cc16a1dbaab7ad47ea140ef450ae9355edd7e0a049061c9e475c0c"
     },
     {
       "path": "preview/source-lab/effect-transitions-dark.png",
-      "sha256": "106cc6d346693b3c4af1f2d54ec14dc00f02e080ae76f2de4ec6a715dccd0876"
+      "sha256": "6887b0fb1efca9796343658793acadee8610003f9d7871f50e96cb7f6fc52d12"
     },
     {
       "path": "preview/source-lab/motion/manifest.json",
-      "sha256": "a22b7db00666baba594a50ca7d77f45f52319d9b96f456c3c2403eff2a750c05"
+      "sha256": "13983d91cbe680982f4cb42b8b85c9f7c273dd8346c0699cfbaaf96404df4a2e"
     },
     {
       "path": "preview/source-lab/motion/dark/dots.webp",
-      "sha256": "53bb458f0b5b5b1df73708bcd5de771dbaf76b649d0a36688610c9d68f5d5f7e"
+      "sha256": "81acad42757e8f364c9d335fcf6ba939f603e2b0fb16b3d29bbb62f65a8b0d9f"
     },
     {
       "path": "preview/source-lab/motion/dark/orbit.webp",
-      "sha256": "fd1d3843846e0dd32a21cac26a4f748180a439e365335c59775600c1f0402bc9"
+      "sha256": "29a9e2b1e10a0547547f30d115671da9431d7f06dec7329902047b547d34eb0f"
     },
     {
       "path": "preview/source-lab/motion/dark/radar.webp",
-      "sha256": "f2fb806f90fbc930fb8c7eed90182fddf95aade788f5a31e641d3c03969a975a"
+      "sha256": "dc98eb2293f4ff5c71e4e3f39e3c285fd4c52abe3ef5e65f5cada47f23ed75bc"
     },
     {
       "path": "preview/source-lab/motion/dark/progress.webp",
-      "sha256": "fd7877e68bb8c20b1629adb2a206e2e383a51474aa39f3a815e33267c8ca1ee2"
+      "sha256": "5274c13ef4e3a2ca92ded94b6248115f4b1c9f37c2ced31b1664681310efec8b"
     },
     {
       "path": "preview/source-lab/motion/dark/gather.webp",
-      "sha256": "c8e8245d186801453f5585584b6cf0419f1f57b6a4666a9be080b21cd4d21611"
+      "sha256": "9bce96cd4ef620b5a5c98764eebcf05cf558d1cd0c6c371ccf35fce8620ce88c"
     },
     {
       "path": "preview/source-lab/motion/dark/wave.webp",
-      "sha256": "337f1d36fc41b494d3a264f40ce90d21d2e6cdc1e2b8f9324f8281d47ce198c7"
+      "sha256": "b93b69bedfb361de40fbb682f4e896540d3c0c1a7c9d03e7a9e77338155f27d2"
     },
     {
       "path": "preview/source-lab/motion/dark/send.webp",
-      "sha256": "7d9739cee70a0be04062bd10fd962793276e2e400dd2d2014cee838a6252f22b"
+      "sha256": "abd59c93c8a4059c70d357c3cf57efd248586584331f72e96876d9a3095c20e7"
     },
     {
       "path": "preview/source-lab/motion/dark/receive.webp",
-      "sha256": "a77b89bcaaca616b0d3f2051c7d5f8ea80068f912d5b62814c2cf92e80391307"
+      "sha256": "a7fa6179f662cd4b935138af01bd51258a15cdeacdcb1cf524bc0502ad3fc998"
     },
     {
       "path": "preview/source-lab/motion/dark/dock.webp",
-      "sha256": "1ecc6a7ef2904713f4a826b8ef540696900fe49776d3b3e29c761a37ce35e40b"
+      "sha256": "d3e4ba26a4b67ec5a5f0c51ae180c393a358204fb3a417e1a964ca0407cf1ed7"
     },
     {
       "path": "preview/source-lab/motion/dark/ball.webp",
-      "sha256": "2b83aea8f3180d75188aa661585471027d9526d374e4c0b7cca1c77d20594bd4"
+      "sha256": "951cdf314d71084f9009d6e97e08d8c7169e03a36df40998cc9ccd39a0385930"
     },
     {
       "path": "preview/source-lab/motion/dark/whirl.webp",
-      "sha256": "522955131067e849c5e113c27e7fb4e89c08854f1f0f89f1443ca7e63d598d46"
+      "sha256": "7953e2d536b01ceb45c924cd00b1ee555e2f24a89ce2a9f6c8bda7727e22b728"
     },
     {
       "path": "preview/source-lab/motion/dark/standby.webp",
-      "sha256": "b3e1cba92c4d91e5ee8e0176237446ad32a077144e0d13084e3c3c11ab906af1"
+      "sha256": "d21f4f5e195c5144959f4d035627268360fd1e835cf14dac11d81f37313f5bad"
     },
     {
       "path": "preview/source-lab/motion/dark/pencil.webp",
-      "sha256": "2d4eb34b35781034912c0d83bd6e156a71fb6db5c45b056264e8b51a9c2fb273"
+      "sha256": "6099aa584856dc6f266dd339ab4f7d6625e958f88d949deb5fe46c428a9f8603"
     },
     {
       "path": "preview/source-lab/motion/dark/bang.webp",
-      "sha256": "f0ae7dd478108fd9641f4d6444fff55cf94e2f317db8c1c9ce0317f72a4d57f9"
+      "sha256": "7f08a136b78afbe8efb05040b6208718b821b8df94b284eb8b7efdea8ad66857"
     },
     {
       "path": "qa/official-hatch-qa.json",
-      "sha256": "5669b3ffbb306e1a3640f2d0263f4b7aef592970257a858dc259ad5d71865549"
+      "sha256": "5a6649a846316a5744d32bf8e37bbec3611c4b811762b505f79caec925949e9a"
+    },
+    {
+      "path": "qa/codex-default-dpr2-browser-oracle.json",
+      "sha256": "f3a69deb679cd3f72e90ff8e5771c69d849da6710a27392a3cbb696bc4437c63"
+    },
+    {
+      "path": "qa/codex-default-dpr2-browser-oracle.png",
+      "sha256": "e9083af5533f9517ea9f829d6371b6bd4c9e312db2b086dcf0f7d8acb6532846"
+    },
+    {
+      "path": "qa/codex-default-dpr2-browser-oracle-map.bin",
+      "sha256": "e1a1c63baecaa9315391237391d6d4e7858f4d8bee7f0565da956dc9981f4d00"
+    },
+    {
+      "path": "qa/arbitrary-phase-baselines.json.gz",
+      "sha256": "c4c4552f34a427a09293ebb39a5f1a8a0c9b12d5c276e81baedbe24800b371f1"
+    },
+    {
+      "path": "qa/arbitrary-phase-qa.json",
+      "sha256": "5a806bae41172d2d693e4b50fbc9b374baf0d0f5292759cd1b017b2bb49d64cd"
+    },
+    {
+      "path": "qa/exhaustive-edge-qa.json",
+      "sha256": "58077ba9b155c1d4528af664dffe69e656a2aec7d2c48b49e00a3090478c1fb7"
     }
   ],
   "observations": [
-    "The six idle samples now visibly advance the opposed satellites through a continuous orbit with natural front and rear occlusion.",
-    "Whirl ribbons reveal smoothly from the emission threshold through the mature activation landmark without a one-frame pop.",
-    "The exact black and white inversion and all six character accent colors remain intact in this theme.",
-    "All 25 literal eye topology families remain expressive at pet scale, including surprise rounds, slits, brushes, mixed eyes, and recovery poses.",
-    "All sixteen gaze poses are semantically clear, clockwise, and free of left-right or up-down inversion.",
-    "The review performance reads cleanly as surprise burst, ribbon entry, foreground storm, and a controlled return to the neutral body.",
-    "No clipping, dirty transparent pixels, theme-specific geometry drift, or detached full-size effect artifacts are visible.",
-    "The deliberately punchy jump, wave, failed, and travel beats remain coherent within the host's fixed four-to-eight-frame action rows."
+    "All 73 runtime-addressable cells contain deliberate artwork and continuous internal motion across the 60 lossless phases; all 15 unused atlas cells remain fully transparent.",
+    "Every populated source column in each timed row is byte-identical at each decoder phase. The exact browser audit nevertheless retains all per-column screenshot maps because Chromium texture-coordinate seams can make the displayed samples differ by column.",
+    "Every ordered decoder-phase p-to-q pair passes the full-cycle topology and intended-surface materiality bounds for all 73 reachable cells and all 1,813 reachable changed-cell edges. Per-cell and per-edge authored profiles, exact ordered metric traces, continuity aliases, and same-phase semantic distances are sealed independently; long skips are never judged by adjacent-motion ratios.",
+    "The idle performance continuously breathes, settles, blinks, and reshapes the eyes while remaining loop-safe; action rows retain their own readable emotional posture without abrupt topology swaps.",
+    "The exact default fallback resolves to 112.6328125 by 122.015625 CSS pixels and a 225 by 244 device-pixel footprint at DPR2. Its full 88-cell two-dimensional coordinate map is derived from real renderer screenshots, not from a self-validating resize helper.",
+    "Dark and light shipping atlases have exact per-page alpha masks and silhouette metrics, preserving identical geometry and timing while reversing the body and eye relationship.",
+    "All 16 gaze sectors move both eyes in the intended direction on every internal page and enter safely from each eligible timed state at any embedded animation phase.",
+    "The 39 character states and 14 effect families remain visually distinct, bounded by transparent gutters, and legible at the host-equivalent default and native Retina pet scales in both theme treatments."
   ],
   "limitations": [
-    "Whirl uses a deterministic four-belt treatment rather than a stochastic trail population.",
-    "The fixed Codex row budget cannot include every 60 fps intermediate frame from the motion studies.",
-    "Travel rows communicate receive and write/send/dock status performances rather than literal locomotion."
+    "The host controls semantic row selection, authored cell timing, and the three-cycle action settle; the embedded WebP supplies fluid in-cell motion but cannot change that host lifecycle.",
+    "The host applies pixelated background rendering. The 7.04rem default fallback necessarily resamples a 192px source cell at DPR2, while the optional 96px path preserves a one-to-one source-to-device-pixel reference.",
+    "Gaze changes are driven only by cursor or caret targets exposed by the host, so ordinary pointer movement does not continuously steer the pet's eyes."
   ],
   "blockingIssues": [],
   "warnings": []

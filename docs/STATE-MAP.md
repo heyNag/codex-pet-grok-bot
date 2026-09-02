@@ -86,24 +86,25 @@ transition.
 
 | Row | Performance arc |
 | ---: | --- |
-| 0 — idle | Quiet breath / humming phase → ambient satellite exchange → shy glance → blink → opposed exchange → reopen; c6 is the separate neutral look. |
-| 1 — travel right | Search → receive entry → open → contact → release → scan release → drag contact → settle. |
-| 2 — travel left | Compressed-eye transition → pencil entry/write/lift → send → dock → dock release → settle; authored rather than mirrored. |
-| 3 — wave | Attached blob-arm rise → dictation-wave entry/open → warm happy/proud settle. |
-| 4 — jump | Anticipation crouch → exact ball rise → impact → rebound → squash landing. |
-| 5 — failed | Suspicious hold → bang entry/open/impact → standby collapse → sad/shy recovery → confused settle. |
-| 6 — waiting | Attentive hold → monochrome orbit entry/morph → progress morph/release → uncertain settle. |
-| 7 — active work | Focus → gather/spawn → dots/thought → radar → whirl release → focused settle. |
-| 8 — review | Ready hold → surprise burst → ribbon entry → crest → foreground storm → proud exit. |
+| 0 — idle | Quiet breath → soft eye in-between → gentle glance → blink → reopen across c0–c5. |
+| 1 — travel right | Directional search gaze with a gentle repeating gait and a low-opacity attached trail. |
+| 2 — travel left | The exact mirrored cadence, gaze, gait, and attached trail of travel right. |
+| 3 — wave | Four connected attached-arm poses rise, open, sweep, and settle around one warm expression. |
+| 4 — jump | Anticipation crouch → rise → apex → fall → squash landing, with body volume held steady. |
+| 5 — failed | Suspicious/confused eyes morph toward a sad read, then recover without collapsing the body. |
+| 6 — waiting | Attentive eyes open toward curiosity and return while a soft attached asking gesture holds the pose together. |
+| 7 — active work | Focused eyes morph into a thinking topology and back while the body stays anchored. |
+| 8 — review | Proud eyes open into a happy topology as one celebration treatment fades in, crests, and fades out. |
 | 9–10 — gaze | Sixteen independently selected 22.5° pointer directions, clockwise from up. |
 
-Every performance frame keeps the canonical `blob` body identity. The 18 body
-shapes are avatar-level options and may inform deformation studies, but the
-state mapping does not swap avatar silhouettes as emotional roulette.
-
-The two-satellite track uses the `humming` equations for ambient idle. The
-layered front/behind rainbow celebration provides the high-energy completion
-beat. Neither changes the state, eye, effect, or timing tables.
+Every installed performance frame keeps the canonical `blob` body identity and
+a nearly constant visible mass. The 18 body shapes are avatar-level options and
+may inform deformation studies, but the state mapping does not swap avatar
+silhouettes as emotional roulette. Intermediate eye topologies, small elastic
+body changes, and attached gestures are interpolated inside the animated WebP;
+same-phase timed columns, including idle c0–c5, make the host's discrete sprite
+switches invisible.
+Travel trails and review color stay subordinate to that continuous silhouette.
 
 ## Expression lab versus shipping rows
 
@@ -119,13 +120,20 @@ inspection artifacts:
 - matching dark/light contact sheets under
   [`../preview/source-lab/`](../preview/source-lab/).
 
+The installed rows do not use the compact-body effect morphs from the full
+effect library. Keeping those transformations in the Character Lab preserves
+the complete expressive system for inspection while allowing the runtime rows
+to hold one stable silhouette through repeats and handoffs.
+
 The state library uses effect-specific landmarks where the generic `A = 0.62`
 snapshot would hide the defining action: first impact for `ball`, ribbon onset
-for `whirl`, and the eye-hide crossover for `standby`.
+for `whirl`, and the eye-dissolve midpoint for `standby`.
 
-At `A = 0.50` the effect system stops drawing eyes. At `A = 0.62` the general
-body morph reaches its target. These landmarks make the behavior inspectable
-without turning mutually exclusive modes into a single installed frame.
+The effect system keeps eyes fully visible through `A = 0.36`, dissolves and
+draws them inward through the `A = 0.50` midpoint, reaches the general body-morph
+target at `A = 0.62`, and makes the eyes fully invisible at `A = 0.64`. These
+landmarks make the behavior inspectable without turning mutually exclusive
+modes into a single installed frame.
 
 ## Runtime event translation
 
@@ -139,18 +147,19 @@ without turning mutually exclusive modes into a single installed frame.
 | Task needs user input | Waiting |
 | Task is running | Active work |
 | Task is ready for review | Ready for review |
-| Pointer is in the gaze field | One of 16 directional cells |
+| A supported caret or cursor target is active | One of 16 directional cells |
 
 The preview can drive a mapped row by character-state name for coverage review;
 the installed Codex pet itself receives only the host's smaller state
 vocabulary.
 
 In the desktop runtime, idle c0–c5 is slowed `6×` (`1.10 s` raw,
-`6.60 s` played). Idle c6 is a populated neutral-look frame outside that timed
-cycle. Each non-idle row plays three complete cycles, then hands off from its
-last frame to idle c0; ordinary repeats return to the same row's c0. The
-installed choreography is designed around both boundaries.
+`6.60 s` played); c6–c7 are unused. Each non-idle row plays three complete
+cycles, then hands off from its last frame to idle c0; ordinary repeats return
+to the same row's c0. The installed choreography is designed around both
+boundaries at every possible embedded animation phase.
 
-The project has one timing choreography and, by explicit owner choice, no
-custom reduced-motion atlas or branch. The host may still freeze the pet on c0
-when reduced motion is active; the manifest cannot disable that behavior.
+The repository authors one timing choreography with no custom reduced-motion
+atlas or branch. The host may still freeze the pet on c0
+when reduced motion is active; the manifest cannot disable that behavior, and
+the embedded WebP continues independently.

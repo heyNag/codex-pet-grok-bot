@@ -5,8 +5,8 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const darkPath = path.join(root, "pet/grok-bot-dark/spritesheet.webp");
-const lightPath = path.join(root, "pet/grok-bot-light/spritesheet.webp");
+const darkPath = path.join(root, "qa/authoring-atlas-dark.webp");
+const lightPath = path.join(root, "qa/authoring-atlas-light.webp");
 const reportPath = path.join(root, "qa/theme-parity.json");
 
 const ACCENT_COLORS = Object.freeze({

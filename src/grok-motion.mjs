@@ -1,6 +1,5 @@
-// The character's activation spring. The shipped Codex pet is a fixed atlas;
-// this module powers reproducible motion studies and shows where the static
-// atlas samples sit on that curve.
+// The character's activation spring drives the continuous effect studies and
+// provides deterministic landmarks for authored character poses.
 export const ACTIVATION_SPRING = Object.freeze({
   damping: 28,
   stiffness: 196,

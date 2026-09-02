@@ -66,7 +66,7 @@ export const SOURCE_STATES = Object.freeze([
   sourceState("alerting", 35, "failed", 5, 2, "Failed / blocked", "The bang morph opens into a sharp, attentive signal."),
   sourceState("dragging", 36, "travel-right", 1, 6, "Travel right", "Directional resistance connects the soft silhouette to physical movement."),
   sourceState("bouncing", 37, "jump", 4, 2, "Jump", "The ball morph captures a volume-preserving impact landmark."),
-  sourceState("powering-down", 38, "failed", 5, 4, "Failed / blocked", "The standby collapse reaches the eye-hide crossover before recovery."),
+  sourceState("powering-down", 38, "failed", 5, 4, "Failed / blocked", "The standby collapse reaches the eye-dissolve midpoint before recovery."),
 ]);
 
 export const SOURCE_EFFECTS = Object.freeze([

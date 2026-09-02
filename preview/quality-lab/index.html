@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grok Bot · Quality comparison</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <a href="../index.html">← Character Lab</a>
+      <p class="eyebrow">WORKING STUDY · NOT AN INSTALLABLE RELEASE</p>
+      <h1>Same character.<br>Closer inspection.</h1>
+      <p class="intro">Compare the checkpoint and candidate using the real atlas layout, pixelated filtering, and both themes. No added shadow or backdrop is baked into the artwork.</p>
+    </header>
+    <section class="controls" aria-label="Comparison controls">
+      <label>Candidate<select id="candidate"></select></label>
+      <label>Behavior<select id="behavior"></select></label>
+      <label>Display size<select id="size"><option value="default">Codex default · 7.04rem</option><option value="96">96 px · 1:1 at DPR2</option><option value="144">144 px</option></select></label>
+      <button id="play" type="button">Pause and inspect</button>
+      <label class="timeline">Synchronized inspection time<input id="time" type="range" min="0" max="999" value="0" disabled><output id="time-label">Native playback</output></label>
+    </section>
+    <p id="status" class="status" role="status">Loading candidate catalog… Run <code>npm run quality:build</code> if it has not been generated.</p>
+    <section id="comparison" class="comparison" aria-label="Both themes, checkpoint and candidate">
+      <article class="card dark" data-theme="dark" data-kind="checkpoint"><header><h2>Checkpoint</h2><span>Dark surface</span></header><div class="stage"><div class="pet" role="img" aria-label="Checkpoint pet on dark surface"></div></div><p class="details"></p></article>
+      <article class="card dark" data-theme="dark" data-kind="candidate"><header><h2>Candidate</h2><span>Dark surface</span></header><div class="stage"><div class="pet" role="img" aria-label="Candidate pet on dark surface"></div></div><p class="details"></p></article>
+      <article class="card light" data-theme="light" data-kind="checkpoint"><header><h2>Checkpoint</h2><span>Light surface</span></header><div class="stage"><div class="pet" role="img" aria-label="Checkpoint pet on light surface"></div></div><p class="details"></p></article>
+      <article class="card light" data-theme="light" data-kind="candidate"><header><h2>Candidate</h2><span>Light surface</span></header><div class="stage"><div class="pet" role="img" aria-label="Candidate pet on light surface"></div></div><p class="details"></p></article>
+    </section>
+    <footer>
+      <p>Native playback uses the browser’s animated WebP decoder. Image clocks are independent; pause and scrub for exact corresponding timeline samples.</p>
+      <p>96 px is a supported size comparison, not a package setting. The pet cannot force a display size, smooth filtering, or interpolation between Codex’s state changes.</p>
+      <p id="geometry"></p>
+    </footer>
+  </main>
+  <script type="module" src="app.mjs"></script>
+</body>
+</html>
