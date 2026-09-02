@@ -4,9 +4,9 @@ set -eu
 umask 077
 
 REPOSITORY_URL="https://github.com/heyNag/codex-pet-grok-bot"
-SOURCE_REF="7083db88e073ac11b73ead06a50c677ba30d638b"
+SOURCE_REF="6e8604c0ec7c9a1adb6b1e2211660d94b6630fad"
 DEFAULT_SOURCE_BASE="https://raw.githubusercontent.com/heyNag/codex-pet-grok-bot/$SOURCE_REF"
-RELEASE="1.0.0"
+RELEASE="1.3.0"
 RECEIPT_NAME=".codex-pet-grok-bot-receipt"
 JOURNAL_NAME="transaction-journal"
 LOCK_OWNER_NAME="owner"
@@ -83,16 +83,16 @@ set_variant_metadata() {
       meta_name="Grok Bot Dark"
       meta_manifest_sha="d969b71040a5e2b8939eb50bb4463729ae8797f08ad97105c8cf5ba98f4f5be0"
       meta_manifest_size="218"
-      meta_sprite_sha="ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4"
-      meta_sprite_size="148122"
+      meta_sprite_sha="1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f"
+      meta_sprite_size="3075860"
       ;;
     light)
       meta_id="grok-bot-light"
       meta_name="Grok Bot Light"
       meta_manifest_sha="ca9cfa7e77a53719a031bc77e514b78766bb3b52fa2ca2c7c0d271f404fb46d1"
       meta_manifest_size="221"
-      meta_sprite_sha="14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314"
-      meta_sprite_size="148874"
+      meta_sprite_sha="58824abc00ae809965f339761d72acc23ddfe34aef031a0df5b0dba13cfe4b11"
+      meta_sprite_size="3072750"
       ;;
     *)
       fail "unsupported variant: $meta_variant"

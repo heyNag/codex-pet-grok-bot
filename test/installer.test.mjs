@@ -23,7 +23,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const installer = path.join(root, "install.sh");
 const sourceBase = pathToFileURL(root).href.replace(/\/$/, "");
 const receiptName = ".codex-pet-grok-bot-receipt";
-const sourceRef = "7083db88e073ac11b73ead06a50c677ba30d638b";
+const sourceRef = "6e8604c0ec7c9a1adb6b1e2211660d94b6630fad";
 const realMv = execFileSync("/bin/sh", ["-c", "command -v mv"], {
   encoding: "utf8",
 }).trim();
@@ -54,13 +54,13 @@ const variants = {
     id: "grok-bot-dark",
     name: "Grok Bot Dark",
     manifestSha: "d969b71040a5e2b8939eb50bb4463729ae8797f08ad97105c8cf5ba98f4f5be0",
-    spriteSha: "ee2f30d37bb5356152d910ff1ffbf79246b5b7aedf284f88a8ecf6c0bd91d1d4",
+    spriteSha: "1909a53fe90d482332410e9ffb2d1a22d9adbfa548d74430df4f8ae26f96773f",
   },
   light: {
     id: "grok-bot-light",
     name: "Grok Bot Light",
     manifestSha: "ca9cfa7e77a53719a031bc77e514b78766bb3b52fa2ca2c7c0d271f404fb46d1",
-    spriteSha: "14e07d0bd9cb552c2b6bdbe8bf3aff98deb37adb16ed5c9cf5922f6831039314",
+    spriteSha: "58824abc00ae809965f339761d72acc23ddfe34aef031a0df5b0dba13cfe4b11",
   },
 };
 
@@ -132,7 +132,7 @@ const sourcePath = (variant, file) => (
 const expectedReceipt = (
   variant,
   {
-    release = "1.0.0",
+    release = "1.3.0",
     ref = sourceRef,
     manifestSha = variants[variant].manifestSha,
     spriteSha = variants[variant].spriteSha,
@@ -984,7 +984,7 @@ test("a SIGKILL after the old pet rename is journal-recovered by the next update
   assert.equal(journal.schema, "1");
   assert.equal(journal.project, "heyNag/codex-pet-grok-bot");
   assert.equal(journal.phase, "prepared");
-  assert.equal(journal.release, "1.0.0");
+  assert.equal(journal.release, "1.3.0");
   assert.equal(journal.source_ref, sourceRef);
   assert.equal(journal.codex_root, canonicalFixture);
   assert.equal(journal.dark_state, "update");
@@ -1137,7 +1137,7 @@ test("a SIGKILL after publishing the committed journal preserves the verified ne
   assert.equal(journal.schema, "1");
   assert.equal(journal.project, "heyNag/codex-pet-grok-bot");
   assert.equal(journal.phase, "committed");
-  assert.equal(journal.release, "1.0.0");
+  assert.equal(journal.release, "1.3.0");
   assert.equal(journal.source_ref, sourceRef);
   assert.equal(journal.codex_root, canonicalFixture);
   assert.equal(journal.dark_state, "update");
